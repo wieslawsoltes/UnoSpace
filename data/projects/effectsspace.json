@@ -1,0 +1,121 @@
+{
+  "slug": "effectsspace",
+  "name": "EffectsSpace",
+  "repo": "wieslawsoltes/EffectsSpace",
+  "tagline": "A C# motion-design and compositing workbench for desktop and browser",
+  "summary": "EffectsSpace is an independent motion-design and compositing application built with Uno Platform, .NET and SkiaSharp, operating on a real composition model of layers, nested compositions, keyframes, masks, mattes, effects, video frames and audio samples. The browser app is the same C# Uno workbench compiled to WebAssembly, drawing preview into Uno's existing Skia canvas. It imports Motion JPEG AVI and PCM WAVE media and exports PNG sequences, AVI with sound and high-precision WAVE mixes.",
+  "category": "Media",
+  "inspiredBy": "Adobe After Effects-style motion design tools",
+  "version": "0.1.0-alpha.1",
+  "heroStats": [
+    { "value": "11", "label": "reusable, packable libraries" },
+    { "value": "17", "label": "layer blend modes" },
+    { "value": "11", "label": "built-in effects" },
+    { "value": "96 kHz", "label": "Float32 / PCM24 WAVE delivery" }
+  ],
+  "highlights": [
+    { "title": "Layered compositions", "text": "Shapes, Bezier paths, text, images, Motion JPEG video, PCM audio, nulls, guides, adjustment layers and nested pre-comps.", "icon": "layers" },
+    { "title": "Keyframe animation", "text": "Stopwatches, auto-key, linear/hold/Bezier interpolation, Easy Ease and value or signed-velocity graphs.", "icon": "timeline" },
+    { "title": "Multi-key editing", "text": "Select, marquee, retime, copy, cut and paste keys across transform, effect and audio channels as single undoable transactions.", "icon": "keyboard" },
+    { "title": "Masks and mattes", "text": "Independently feathered Add/Subtract/Intersect masks with direct node editing, plus alpha and luma track mattes.", "icon": "mask" },
+    { "title": "Effects and blend modes", "text": "Blur, Glow, Drop Shadow, Exposure, Fractal Noise, Vignette and more, with seventeen blend modes and masked adjustment layers.", "icon": "effects" },
+    { "title": "Bounded expressions", "text": "Side-effect-free scalar expressions with time, clamp, linear, ease, wiggle and loopOut; not JavaScript and no host access.", "icon": "code" },
+    { "title": "Real media and audio", "text": "Import Motion JPEG AVI and PCM WAVE, remap source time, animate gain/balance and preview on the Web Audio clock.", "icon": "audio" },
+    { "title": "Precision delivery", "text": "Export transparent PNG sequences, Motion JPEG AVI with stereo sound, or PCM16/PCM24/Float32 WAVE with optional TPDF dither.", "icon": "download" }
+  ],
+  "featureGroups": [
+    { "area": "Compose", "items": ["Solids, rounded rectangles, ellipses, stars, Bezier paths and inline-edited text", "Images, Motion JPEG video, PCM audio, nulls and guides", "Parent chains, nested compositions and pre-compose", "Seventeen blend modes and multi-sample composition motion blur"] },
+    { "area": "Viewer", "items": ["Fit, zoom and pan", "Move, eight scale handles, rotation and anchor compensation", "Pen tool with symmetric Bezier handles and path node editing", "Direct mask node and tangent editing with cancellation"] },
+    { "area": "Animate", "items": ["Frame-snapped time, stopwatches and auto-key", "Linear, Hold and Bezier interpolation with Easy Ease", "Value and signed-velocity graph editors", "Multi-key selection, retiming, nudging and session-local clipboard", "Bounded scalar expressions: wiggle, loopOut, linear, ease, clamp"] },
+    { "area": "Composite", "items": ["Masked adjustment layers that affect only layers below", "Alpha, alpha inverted, luma and luma inverted track mattes", "Add/Subtract/Intersect/None masks with opacity, feather, expansion and inversion", "Time remap, freeze frame and continuous remap-curve reversal"] },
+    { "area": "Effects", "items": ["Blur, Glow and Drop Shadow", "Exposure, Brightness/Contrast, Hue/Saturation and Tint", "Invert and Posterize", "Fractal Noise fill generator and Vignette overlay"] },
+    { "area": "Media and audio", "items": ["Classic Motion JPEG AVI with optional PCM audio", "Mono/stereo integer and float WAVE, 8–192 kHz", "Gain and balance automation with source waveform display", "Band-limited windowed-sinc resampling with an exact same-rate path"] },
+    { "area": "Projects and delivery", "items": ["Versioned, self-contained .effects projects with embedded media", "IndexedDB (browser) and local app-data (desktop) recovery", "Transparent PNG frames and ZIP PNG sequences with a rational manifest", "Motion JPEG AVI with PCM16/48 kHz sound and PCM16/PCM24/Float32 WAVE mixes"] }
+  ],
+  "packages": [
+    { "name": "EffectsSpace.Core", "role": "Compositions, layers, paths, effects, channels and rational time", "ui": "None", "layer": "model" },
+    { "name": "EffectsSpace.Animation", "role": "Curves, derivatives, easing, transforms and bounded expressions", "ui": "None", "layer": "engine" },
+    { "name": "EffectsSpace.Documents", "role": "Versioned JSON, validation, budgets and storage/audio-output contracts", "ui": "None", "layer": "io" },
+    { "name": "EffectsSpace.Editing", "role": "Transactions, selection-aware history, keyframe clipboard and commands", "ui": "None", "layer": "engine" },
+    { "name": "EffectsSpace.Rendering", "role": "Indexed frame evaluation, render plans, hit testing and export schedules", "ui": "None", "layer": "rendering" },
+    { "name": "EffectsSpace.Media", "role": "RIFF/AVI/WAVE, PCM indexing, sinc resampling, audio mixing and AVI muxing", "ui": "None", "layer": "io" },
+    { "name": "EffectsSpace.Skia", "role": "Compositing, filters and masks, resource caches and PNG/AVI rendering", "ui": "SkiaSharp", "layer": "rendering" },
+    { "name": "EffectsSpace.Controls", "role": "Original studio chrome, icons, choices, splitters and numeric scrubbing", "ui": "Uno", "layer": "controls" },
+    { "name": "EffectsSpace.Viewer", "role": "Composition viewer with camera, transforms, paths, inline text, masks and waveform", "ui": "Uno + Skia", "layer": "editor" },
+    { "name": "EffectsSpace.Timeline", "role": "Row-cached timeline, clip/key editing, marquee and value/velocity graphs", "ui": "Uno + Skia", "layer": "editor" },
+    { "name": "EffectsSpace.Workbench", "role": "Panels, media/delivery settings, transport, render queue and document workflows", "ui": "Uno + Skia", "layer": "workbench" }
+  ],
+  "codeSamples": [
+    {
+      "title": "Run on desktop and publish for the browser",
+      "lang": "sh",
+      "code": "# Fetch checksum-verified open typography and retain its license\npython3 scripts/fetch-assets.py\n\n# Native desktop: Windows, macOS or Linux\ndotnet run --project src/EffectsSpace.App -f net10.0-desktop \\\n  -p:EffectsSpaceDesktopOnly=true\n\n# Real Uno WebAssembly application\ndotnet workload install wasm-tools\ndotnet publish src/EffectsSpace.App -f net10.0-browserwasm -c Release \\\n  -o artifacts/publish -p:WasmShellWebAppBasePath=/EffectsSpace/\npython3 scripts/collect-site.py artifacts/publish artifacts/site\npython3 scripts/serve-site.py --directory artifacts/site --port 4173"
+    },
+    {
+      "title": "Run the engine and media test suites",
+      "lang": "sh",
+      "code": "# Engine and media regression executables\ndotnet run --project tests/EffectsSpace.Tests -c Release\ndotnet run --project tests/EffectsSpace.Animation.Tests -c Release\ndotnet run --project tests/EffectsSpace.Skia.Tests -c Release\ndotnet run --project tests/EffectsSpace.Compositing.Tests -c Release\ndotnet run --project tests/EffectsSpace.Media.Tests -c Release\ndotnet run --project tests/EffectsSpace.Media.Skia.Tests -c Release\ndotnet run --project tests/EffectsSpace.Audio.Tests -c Release\n\n# Independent media validation: requires test-only FFmpeg/ffprobe\npython3 scripts/verify-media.py\npython3 scripts/verify-audio.py\n\n# Real keyboard, pointer, file-picker and download interactions\nnpm ci --ignore-scripts\nnpx playwright install chromium\nnpm run test:browser"
+    }
+  ],
+  "shortcuts": [
+    { "action": "Save / Open / Import", "keys": "Ctrl S / Ctrl O / Ctrl I" },
+    { "action": "Undo / Redo", "keys": "Ctrl Z / Ctrl Shift Z" },
+    { "action": "Duplicate / Split / Pre-compose", "keys": "Ctrl D / Ctrl Shift D / Ctrl Shift C" },
+    { "action": "Key copy / cut / paste", "keys": "Ctrl C / Ctrl X / Ctrl V" },
+    { "action": "Play / previous frame / next frame", "keys": "Space / Page Up / Page Down" },
+    { "action": "Work area start / end", "keys": "B / N" },
+    { "action": "Transform / effect properties", "keys": "P, S, R, T, A / E" },
+    { "action": "Animated properties / Easy Ease", "keys": "U / F9" },
+    { "action": "Graph / value–velocity switch", "keys": "Shift F3 / Shift F4" },
+    { "action": "Composite / Render stats / Media", "keys": "Shift F5 / Shift F6 / Shift F7" },
+    { "action": "New adjustment / Time remap / Freeze", "keys": "Ctrl Alt Y / Ctrl Alt T / Ctrl Alt F" },
+    { "action": "CLOCKWORK sample / AVI / WAVE export", "keys": "Ctrl Alt L / Ctrl Alt M / Ctrl Alt W" }
+  ],
+  "formats": [
+    { "name": ".effects (versioned JSON with embedded media)", "support": "read/write" },
+    { "name": "Motion JPEG AVI (optional PCM audio)", "support": "import" },
+    { "name": "WAVE (mono/stereo integer and float PCM)", "support": "import" },
+    { "name": "PNG / JPEG / WebP", "support": "import" },
+    { "name": "PNG frame and ZIP PNG sequence", "support": "export" },
+    { "name": "Motion JPEG AVI with PCM16/48 kHz audio", "support": "export" },
+    { "name": "WAVE (PCM16 / PCM24 / Float32)", "support": "export" }
+  ],
+  "playground": {
+    "intro": "The browser studio opens the editable ORBITAL motion study at its hero frame, running the same C# workbench compiled to WebAssembly.",
+    "tour": [
+      { "title": "Explore ORBITAL", "text": "Click compositions in the Project panel and double-click a composition layer to enter the nested orbital system." },
+      { "title": "Draw and transform", "text": "Drag with the Rectangle, Ellipse or Star tool, then press V to move, scale with the eight handles, or W to rotate." },
+      { "title": "Animate a property", "text": "Enable a stopwatch, move the playhead, change the value, then press F9 for Easy Ease and Shift F3 to open the graph." },
+      { "title": "Add an effect and mask", "text": "Pick an entry in Effects & Presets, then Add Mask and open Composite (Shift F5) to feather or edit its path." },
+      { "title": "Try real media", "text": "Press Ctrl Alt L to load the CLOCKWORK video/audio study and open Media with Shift F7 to see its waveform." },
+      { "title": "Export", "text": "Snapshot a transparent PNG, render a PNG sequence, or export AVI with Ctrl Alt M and a WAVE mix with Ctrl Alt W." }
+    ]
+  },
+  "architecture": [
+    { "name": "Model and documents", "text": "Uno- and Skia-free compositions, layers and rational time, plus validated versioned documents and storage contracts.", "packages": ["EffectsSpace.Core", "EffectsSpace.Documents"] },
+    { "name": "Animation and editing", "text": "Curves, easing and bounded expressions with atomic transactions, selection-aware history and keyframe clipboard.", "packages": ["EffectsSpace.Animation", "EffectsSpace.Editing"] },
+    { "name": "Rendering and media", "text": "Renderer-neutral frame plans and portable AVI/WAVE media, composited through SkiaSharp.", "packages": ["EffectsSpace.Rendering", "EffectsSpace.Media", "EffectsSpace.Skia"] },
+    { "name": "Studio controls", "text": "Original Uno controls plus Skia-painted viewer and timeline surfaces drawn into SKCanvasElement.", "packages": ["EffectsSpace.Controls", "EffectsSpace.Viewer", "EffectsSpace.Timeline"] },
+    { "name": "Workbench", "text": "Panels, transport, render queue and document workflows hosted by a thin desktop/WebAssembly app.", "packages": ["EffectsSpace.Workbench"] }
+  ],
+  "boundaries": [
+    "Development alpha of 2D editing, not complete Adobe After Effects parity",
+    "No MP4/H.264/WebM, 3D, tracking, Adobe formats/plugins or dedicated WebGPU renderer",
+    "Native timeline preview is silent; browser audible preview is limited to 60 seconds",
+    "8-bit sRGB workflow: no HDR, linear-light or color management; AVI export has no alpha",
+    "Embedded media limited to 32 MiB per asset and 64 MiB total; exports capped at 3600 frames"
+  ],
+  "docs": [
+    { "title": "User guide", "path": "docs/USER-GUIDE.md", "blurb": "Workspace, layer tools, projects, animation, effects and export" },
+    { "title": "Feature ledger", "path": "docs/FEATURES.md", "blurb": "Implemented behavior and explicit boundaries per area" },
+    { "title": "Architecture", "path": "docs/ARCHITECTURE.md", "blurb": "Dependency direction, time model, compositing and GPU choice" },
+    { "title": "Animation editing", "path": "docs/ANIMATION-EDITING.md", "blurb": "Multi-key transactions, clipboard mapping, easing and velocity" },
+    { "title": "Compositing", "path": "docs/COMPOSITING.md", "blurb": "Adjustments, masks, mattes, source time and render caches" },
+    { "title": "Portable media", "path": "docs/MEDIA.md", "blurb": "AVI/WAVE contracts, video rendering, audio clock and limits" },
+    { "title": "Audio fidelity", "path": "docs/AUDIO-FIDELITY.md", "blurb": "Precision, resampling, dither, delivery settings and measurements" },
+    { "title": "Audio update 2026-09-28", "path": "docs/AUDIO-UPDATE-2026-09-28.md", "blurb": "Audio compatibility and performance changes" },
+    { "title": "Embedding", "path": "docs/EMBEDDING.md", "blurb": "Use the engine without Uno and integrate the Uno controls" },
+    { "title": "Validation", "path": "docs/VALIDATION.md", "blurb": "Engine, pixel, browser and native validation suites" },
+    { "title": "Deployment", "path": "docs/DEPLOYMENT.md", "blurb": "Build workflow, GitHub Pages deployment and releases" }
+  ]
+}

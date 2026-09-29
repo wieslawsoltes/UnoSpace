@@ -1,0 +1,262 @@
+{
+  "slug": "gitspace",
+  "repo": "wieslawsoltes/GitSpace",
+  "version": "0.1.0",
+  "dotnetSdk": "10.0.100",
+  "unoSdk": "6.7.30",
+  "pinned": [],
+  "github": {
+    "stars": 2,
+    "forks": 0,
+    "openIssues": 0,
+    "createdAt": "2026-09-28T10:09:07Z",
+    "pushedAt": "2026-09-28T16:36:02Z",
+    "homepage": "https://wieslawsoltes.github.io/GitSpace/",
+    "license": "MIT"
+  },
+  "lastCommit": {
+    "sha": "6d7edf5",
+    "date": "2026-09-28T18:36:02+02:00",
+    "subject": "feat: add partial staging, conflict review and cached diff rendering (#2)"
+  },
+  "loc": {
+    "total": 3124,
+    "src": 2666,
+    "tests": 458
+  },
+  "projectCount": 10,
+  "libraryCount": 7,
+  "testProjectCount": 2,
+  "projects": [
+    {
+      "name": "GitSpace.App",
+      "path": "src/GitSpace.App/GitSpace.App.csproj",
+      "kind": "app",
+      "sdk": "Uno.Sdk",
+      "targetFrameworks": [
+        "net10.0-browserwasm",
+        "net10.0-desktop"
+      ],
+      "packable": false,
+      "description": "Independent GitHub Desktop-style Git client for desktop and browser.",
+      "unoFeatures": [
+        "SkiaRenderer"
+      ],
+      "projectRefs": [
+        "GitSpace.Workbench.Uno",
+        "GitSpace.Git"
+      ],
+      "packageRefs": [],
+      "files": 7,
+      "loc": 228
+    },
+    {
+      "name": "GitSpace.Controls.Uno",
+      "path": "src/GitSpace.Controls.Uno/GitSpace.Controls.Uno.csproj",
+      "kind": "library",
+      "sdk": "Uno.Sdk",
+      "targetFrameworks": [
+        "net10.0-browserwasm",
+        "net10.0-desktop"
+      ],
+      "packable": true,
+      "description": "Custom compact Uno Git client controls: repository toolbar, change list, history, commit composer, diff viewport and resizable panels.",
+      "unoFeatures": [
+        "SkiaRenderer"
+      ],
+      "projectRefs": [
+        "GitSpace.Core",
+        "GitSpace.Rendering.Skia"
+      ],
+      "packageRefs": [],
+      "files": 9,
+      "loc": 618
+    },
+    {
+      "name": "GitSpace.Core",
+      "path": "src/GitSpace.Core/GitSpace.Core.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "Portable GitSpace repository contracts, safety validation and workspace models.",
+      "unoFeatures": [],
+      "projectRefs": [],
+      "packageRefs": [],
+      "files": 3,
+      "loc": 152
+    },
+    {
+      "name": "GitSpace.Diff",
+      "path": "src/GitSpace.Diff/GitSpace.Diff.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "Bounded Myers line diff, split alignment, intraline spans and viewport calculations.",
+      "unoFeatures": [],
+      "projectRefs": [],
+      "packageRefs": [],
+      "files": 3,
+      "loc": 224
+    },
+    {
+      "name": "GitSpace.Git",
+      "path": "src/GitSpace.Git/GitSpace.Git.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "Asynchronous safe-argument system Git backend with cancellation, repository serialization and bounded output.",
+      "unoFeatures": [],
+      "projectRefs": [
+        "GitSpace.Core"
+      ],
+      "packageRefs": [],
+      "files": 7,
+      "loc": 570
+    },
+    {
+      "name": "GitSpace.Hosting.GitHub",
+      "path": "src/GitSpace.Hosting.GitHub/GitSpace.Hosting.GitHub.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "Independently reusable GitHub pull-request HTTP client with session-scoped credentials and bounded responses.",
+      "unoFeatures": [],
+      "projectRefs": [],
+      "packageRefs": [],
+      "files": 1,
+      "loc": 55
+    },
+    {
+      "name": "GitSpace.Rendering.Skia",
+      "path": "src/GitSpace.Rendering.Skia/GitSpace.Rendering.Skia.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "Viewport-virtualized, reusable Skia unified and split Git diff renderer.",
+      "unoFeatures": [],
+      "projectRefs": [
+        "GitSpace.Diff"
+      ],
+      "packageRefs": [
+        {
+          "id": "SkiaSharp",
+          "version": "3.119.2"
+        }
+      ],
+      "files": 2,
+      "loc": 201
+    },
+    {
+      "name": "GitSpace.Rendering.Tests",
+      "path": "tests/GitSpace.Rendering.Tests/GitSpace.Rendering.Tests.csproj",
+      "kind": "test",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "",
+      "unoFeatures": [],
+      "projectRefs": [
+        "GitSpace.Rendering.Skia"
+      ],
+      "packageRefs": [
+        {
+          "id": "SkiaSharp.NativeAssets.Linux.NoDependencies",
+          "version": "3.119.2"
+        }
+      ],
+      "files": 1,
+      "loc": 112
+    },
+    {
+      "name": "GitSpace.Tests",
+      "path": "tests/GitSpace.Tests/GitSpace.Tests.csproj",
+      "kind": "test",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "",
+      "unoFeatures": [],
+      "projectRefs": [
+        "GitSpace.Core",
+        "GitSpace.Diff",
+        "GitSpace.Git"
+      ],
+      "packageRefs": [],
+      "files": 2,
+      "loc": 346
+    },
+    {
+      "name": "GitSpace.Workbench.Uno",
+      "path": "src/GitSpace.Workbench.Uno/GitSpace.Workbench.Uno.csproj",
+      "kind": "library",
+      "sdk": "Uno.Sdk",
+      "targetFrameworks": [
+        "net10.0-browserwasm",
+        "net10.0-desktop"
+      ],
+      "packable": true,
+      "description": "Embeddable Git client workbench composed of reusable Uno controls and an injected repository backend.",
+      "unoFeatures": [
+        "SkiaRenderer"
+      ],
+      "projectRefs": [
+        "GitSpace.Controls.Uno",
+        "GitSpace.Hosting.GitHub"
+      ],
+      "packageRefs": [],
+      "files": 4,
+      "loc": 618
+    }
+  ],
+  "nuget": [
+    {
+      "id": "SkiaSharp",
+      "version": "3.119.2"
+    },
+    {
+      "id": "SkiaSharp.NativeAssets.Linux.NoDependencies",
+      "version": "3.119.2"
+    }
+  ],
+  "workflows": [
+    {
+      "file": "build.yml",
+      "name": "Build and test"
+    },
+    {
+      "file": "pages.yml",
+      "name": "Browser and Pages"
+    },
+    {
+      "file": "release.yml",
+      "name": "Release"
+    }
+  ],
+  "docs": [
+    "docs/architecture.md",
+    "docs/compatibility.md",
+    "docs/development.md",
+    "docs/rendering-performance.md",
+    "docs/typography.md"
+  ],
+  "images": []
+}

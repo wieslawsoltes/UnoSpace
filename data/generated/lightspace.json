@@ -1,0 +1,277 @@
+{
+  "slug": "lightspace",
+  "repo": "wieslawsoltes/LightSpace",
+  "version": "0.4.1-alpha.1",
+  "dotnetSdk": "10.0.401",
+  "unoSdk": "6.7.30",
+  "pinned": [],
+  "github": {
+    "stars": 1,
+    "forks": 0,
+    "openIssues": 0,
+    "createdAt": "2026-09-27T17:25:48Z",
+    "pushedAt": "2026-09-28T14:27:32Z",
+    "homepage": "https://wieslawsoltes.github.io/LightSpace/",
+    "license": "MIT"
+  },
+  "lastCommit": {
+    "sha": "d858d08",
+    "date": "2026-09-28T16:27:11+02:00",
+    "subject": "release: finalize 0.4.1 slider-crash hotfix and verify saved adjustment values"
+  },
+  "loc": {
+    "total": 5881,
+    "src": 4802,
+    "tests": 1079
+  },
+  "projectCount": 10,
+  "libraryCount": 8,
+  "testProjectCount": 1,
+  "projects": [
+    {
+      "name": "LightSpace.App",
+      "path": "src/LightSpace.App/LightSpace.App.csproj",
+      "kind": "app",
+      "sdk": "Uno.Sdk",
+      "targetFrameworks": [
+        "net10.0-browserwasm",
+        "net10.0-desktop"
+      ],
+      "packable": false,
+      "description": "Local-first non-destructive photo editing with Uno Platform.",
+      "unoFeatures": [
+        "SkiaRenderer"
+      ],
+      "projectRefs": [
+        "LightSpace.Workbench"
+      ],
+      "packageRefs": [],
+      "files": 9,
+      "loc": 255
+    },
+    {
+      "name": "LightSpace.Catalog",
+      "path": "src/LightSpace.Catalog/LightSpace.Catalog.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "Versioned catalog serialization and photo search, filtering, sorting and album queries.",
+      "unoFeatures": [],
+      "projectRefs": [
+        "LightSpace.Core"
+      ],
+      "packageRefs": [],
+      "files": 6,
+      "loc": 325
+    },
+    {
+      "name": "LightSpace.Controls",
+      "path": "src/LightSpace.Controls/LightSpace.Controls.csproj",
+      "kind": "library",
+      "sdk": "Uno.Sdk",
+      "targetFrameworks": [
+        "net10.0-browserwasm",
+        "net10.0-desktop"
+      ],
+      "packable": true,
+      "description": "Original Uno photography controls: chrome, iconography, sliders, curves, histograms, thumbnails and interactive photo canvas.",
+      "unoFeatures": [
+        "SkiaRenderer"
+      ],
+      "projectRefs": [
+        "LightSpace.Editing",
+        "LightSpace.Rendering.Skia"
+      ],
+      "packageRefs": [],
+      "files": 21,
+      "loc": 1403
+    },
+    {
+      "name": "LightSpace.Core",
+      "path": "src/LightSpace.Core/LightSpace.Core.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "Immutable photography adjustments, geometry, local masks and versioned catalog models.",
+      "unoFeatures": [],
+      "projectRefs": [],
+      "packageRefs": [],
+      "files": 8,
+      "loc": 724
+    },
+    {
+      "name": "LightSpace.Editing",
+      "path": "src/LightSpace.Editing/LightSpace.Editing.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "Non-destructive editing sessions, gesture transactions, batch synchronization, undo and named versions.",
+      "unoFeatures": [],
+      "projectRefs": [
+        "LightSpace.Catalog",
+        "LightSpace.Storage"
+      ],
+      "packageRefs": [],
+      "files": 5,
+      "loc": 319
+    },
+    {
+      "name": "LightSpace.Engine.Tests",
+      "path": "tests/LightSpace.Engine.Tests/LightSpace.Engine.Tests.csproj",
+      "kind": "test",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "",
+      "unoFeatures": [],
+      "projectRefs": [
+        "LightSpace.Editing",
+        "LightSpace.Rendering.Skia"
+      ],
+      "packageRefs": [
+        {
+          "id": "SkiaSharp.NativeAssets.Linux.NoDependencies",
+          "version": "3.119.4"
+        }
+      ],
+      "files": 11,
+      "loc": 1079
+    },
+    {
+      "name": "LightSpace.Imaging",
+      "path": "src/LightSpace.Imaging/LightSpace.Imaging.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "Bounded image decoding, EXIF orientation, sRGB conversion and original procedural sample images.",
+      "unoFeatures": [],
+      "projectRefs": [
+        "LightSpace.Core"
+      ],
+      "packageRefs": [
+        {
+          "id": "SkiaSharp",
+          "version": "3.119.4"
+        }
+      ],
+      "files": 2,
+      "loc": 116
+    },
+    {
+      "name": "LightSpace.Rendering.Skia",
+      "path": "src/LightSpace.Rendering.Skia/LightSpace.Rendering.Skia.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "GPU-capable SkSL photo development, masks, clone spots, histogram and crop-aware export.",
+      "unoFeatures": [],
+      "projectRefs": [
+        "LightSpace.Imaging"
+      ],
+      "packageRefs": [],
+      "files": 9,
+      "loc": 548
+    },
+    {
+      "name": "LightSpace.Storage",
+      "path": "src/LightSpace.Storage/LightSpace.Storage.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "Platform-independent import, export and recovery storage contracts.",
+      "unoFeatures": [],
+      "projectRefs": [],
+      "packageRefs": [],
+      "files": 4,
+      "loc": 112
+    },
+    {
+      "name": "LightSpace.Workbench",
+      "path": "src/LightSpace.Workbench/LightSpace.Workbench.csproj",
+      "kind": "library",
+      "sdk": "Uno.Sdk",
+      "targetFrameworks": [
+        "net10.0-browserwasm",
+        "net10.0-desktop"
+      ],
+      "packable": true,
+      "description": "Composable Lightroom-style photography workspace with a local catalog, non-destructive editor and platform storage services.",
+      "unoFeatures": [
+        "SkiaRenderer"
+      ],
+      "projectRefs": [
+        "LightSpace.Controls",
+        "LightSpace.Storage"
+      ],
+      "packageRefs": [],
+      "files": 15,
+      "loc": 1000
+    }
+  ],
+  "nuget": [
+    {
+      "id": "SkiaSharp",
+      "version": "3.119.4"
+    },
+    {
+      "id": "SkiaSharp.NativeAssets.Linux.NoDependencies",
+      "version": "3.119.4"
+    }
+  ],
+  "workflows": [
+    {
+      "file": "build.yml",
+      "name": "Build"
+    },
+    {
+      "file": "desktop.yml",
+      "name": "Desktop"
+    },
+    {
+      "file": "pages.yml",
+      "name": "Pages"
+    },
+    {
+      "file": "release.yml",
+      "name": "Release"
+    },
+    {
+      "file": "slider-diagnostic.yml",
+      "name": "Slider baseline diagnostic"
+    }
+  ],
+  "docs": [
+    "docs/ADVANCED-EDITING.md",
+    "docs/ARCHITECTURE.md",
+    "docs/COLOR-AND-MASKS.md",
+    "docs/FEATURE-COVERAGE.md",
+    "docs/GETTING-STARTED.md",
+    "docs/PERFORMANCE.md",
+    "docs/RECOVERY-PUBLICATION.md",
+    "docs/RECOVERY.md",
+    "docs/RELEASE-NOTES.md",
+    "docs/VALIDATION.md",
+    "docs/WASM-SLIDER-FIX.md"
+  ],
+  "images": []
+}

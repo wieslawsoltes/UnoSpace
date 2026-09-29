@@ -1,0 +1,22 @@
+{
+  "name": "unospace",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Uno Space — showcase website for Uno Platform browser workspaces by Wiesław Šoltés.",
+  "type": "module",
+  "license": "MIT",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "sync": "node scripts/sync.mjs",
+    "sync:pull": "node scripts/sync.mjs --pull",
+    "shots": "node scripts/shots.mjs",
+    "og": "node scripts/og.mjs",
+    "build": "node scripts/build.mjs",
+    "test": "node scripts/check.mjs",
+    "serve": "node scripts/serve.mjs",
+    "dev": "node scripts/build.mjs && node scripts/serve.mjs"
+  },
+  "devDependencies": {
+    "playwright": "1.63.0"
+  }
+}

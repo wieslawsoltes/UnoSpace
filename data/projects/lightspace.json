@@ -1,0 +1,403 @@
+{
+  "slug": "lightspace",
+  "name": "LightSpace",
+  "repo": "wieslawsoltes/LightSpace",
+  "tagline": "A local-first photography workspace for desktop and browser",
+  "summary": "LightSpace is a shared Uno desktop/WebAssembly photography application: browse a local catalog, develop a photograph, refine its composition and masks, and export a rendered copy while the original bytes stay untouched. A dark workspace combines a library sidebar, photo canvas, filmstrip, histogram and development inspector, powered by GPU-capable SkSL effects and eight reusable C# libraries.",
+  "category": "Media",
+  "inspiredBy": "Lightroom-style photo workflows",
+  "version": "0.4.1-alpha.1",
+  "heroStats": [
+    {
+      "value": "8",
+      "label": "reusable C# libraries"
+    },
+    {
+      "value": "17",
+      "label": "development sliders"
+    },
+    {
+      "value": "32",
+      "label": "curve points per RGB channel"
+    },
+    {
+      "value": "8",
+      "label": "local masks per photo"
+    }
+  ],
+  "highlights": [
+    {
+      "title": "Non-destructive development",
+      "text": "Light, white balance, vibrance, curves, eight color bands and effects are stored as settings; original encoded bytes are never modified.",
+      "icon": "light"
+    },
+    {
+      "title": "Local photo catalog",
+      "text": "Import, search, rate, flag and group photos into albums in a paged grid and filmstrip that runs entirely on your device.",
+      "icon": "grid"
+    },
+    {
+      "title": "Four-way color grading",
+      "text": "Shadow, midtone, highlight and global wheels with luminance, blending and balance controls.",
+      "icon": "palette"
+    },
+    {
+      "title": "Arbitrary RGB curves",
+      "text": "Master, red, green and blue curves with up to 32 points each and linear or shape-preserving smooth interpolation.",
+      "icon": "chart"
+    },
+    {
+      "title": "Masks and brushes",
+      "text": "Radial and linear gradients, luminance and sampled Oklab color ranges, and pressure-aware brush masks with local adjustments.",
+      "icon": "mask"
+    },
+    {
+      "title": "GPU-capable SkSL effects",
+      "text": "Compiled SkSL runtime effects render inside Uno's Skia composition path, with software rendering for tests and export.",
+      "icon": "bolt"
+    },
+    {
+      "title": "XMP sidecars",
+      "text": "Import and export standard metadata and a reported Camera Raw subset, with a native extension for full LightSpace round trips.",
+      "icon": "share"
+    },
+    {
+      "title": "Content-addressed recovery",
+      "text": "Originals stored under SHA-256 keys, atomically published edit manifests and integrity checks on restore.",
+      "icon": "recovery"
+    }
+  ],
+  "featureGroups": [
+    {
+      "area": "Organize",
+      "items": [
+        "Import JPEG, PNG, WebP, BMP or the first GIF frame, retaining original bytes",
+        "Paged grid, detail view and filmstrip with 60-photo pages",
+        "Search filenames, captions and keywords",
+        "Ratings, pick/reject flags and albums",
+        "Copy/paste and sync development settings across selected photos"
+      ]
+    },
+    {
+      "area": "Develop",
+      "items": [
+        "Light, relative white balance, vibrance/saturation and monochrome",
+        "Eight-band HSV color mixer with hue, saturation and luminance",
+        "Four-way color grading with blending and balance",
+        "Creative presets, texture/clarity/dehaze approximations and sharpening",
+        "Spatial smoothing, vignette and grain; double-click resets a slider"
+      ]
+    },
+    {
+      "area": "Curves",
+      "items": [
+        "Master, red, green and blue curves with up to 32 points per channel",
+        "Linear or shape-preserving smooth interpolation",
+        "Add, drag and delete points or type Input/Output values",
+        "2048-entry floating-point lookup cache reused across unrelated edits"
+      ]
+    },
+    {
+      "area": "Crop, clone and compare",
+      "items": [
+        "Free crop rectangles with handles, centered ratios, quarter turns and flips",
+        "Up to 32 feathered clone stamps from an explicit Alt-click source",
+        "Original view and a draggable before/after divider",
+        "Fit, source-pixel 100% zoom and wheel zoom around the pointer"
+      ]
+    },
+    {
+      "area": "Masks",
+      "items": [
+        "Up to eight masks with enable, amount, inversion, rename and duplicate",
+        "Rotatable radial and linear gradients with on-canvas handles",
+        "Luminance ranges and up to five sampled Oklab color pins",
+        "Pressure-aware brush masks with size, feather, flow and density",
+        "Local exposure, contrast, temperature, tint and saturation"
+      ]
+    },
+    {
+      "area": "Preserve and export",
+      "items": [
+        "One transaction per gesture with 100-step undo/redo and named versions",
+        "Export 8-bit sRGB JPEG, PNG or WebP copies or a ZIP of a selection",
+        "Portable .lightspace catalogs with originals, edits, albums and versions",
+        "XMP sidecar import with a compatibility report before applying",
+        "IndexedDB or native recovery with source integrity checks and retry"
+      ]
+    }
+  ],
+  "packages": [
+    {
+      "name": "LightSpace.Core",
+      "role": "Photo state, grading, curves/interpolation, masks, brush samples, geometry and presets",
+      "ui": "None",
+      "layer": "model"
+    },
+    {
+      "name": "LightSpace.Catalog",
+      "role": "Schema migration, serialization, queries and XMP metadata/settings interchange",
+      "ui": "None",
+      "layer": "io"
+    },
+    {
+      "name": "LightSpace.Editing",
+      "role": "Gesture transactions, bounded undo/redo, versions, synchronization and revision-aware recovery",
+      "ui": "None",
+      "layer": "engine"
+    },
+    {
+      "name": "LightSpace.Imaging",
+      "role": "Bounded decoding, EXIF orientation, sRGB conversion and fallback artwork",
+      "ui": "SkiaSharp",
+      "layer": "io"
+    },
+    {
+      "name": "LightSpace.Rendering.Skia",
+      "role": "SkSL runtime effects, image cache, curve tables, incremental brush coverage, histogram and export",
+      "ui": "SkiaSharp",
+      "layer": "rendering"
+    },
+    {
+      "name": "LightSpace.Storage",
+      "role": "Import/export contracts, atomic native recovery store and optional sidecar-picker capability",
+      "ui": "None",
+      "layer": "service"
+    },
+    {
+      "name": "LightSpace.Controls",
+      "role": "Original Uno chrome, icons, sliders, grading/mixer/curve/mask/brush controls and photo canvas",
+      "ui": "Uno + Skia",
+      "layer": "controls"
+    },
+    {
+      "name": "LightSpace.Workbench",
+      "role": "Composable workspace, inspectors, commands, dialogs and save UX",
+      "ui": "Uno + Skia",
+      "layer": "workbench"
+    }
+  ],
+  "codeSamples": [
+    {
+      "title": "Embed processing",
+      "lang": "csharp",
+      "code": "using LightSpace.Core;\nusing LightSpace.Editing;\nusing LightSpace.Imaging;\nusing LightSpace.Rendering.Skia;\nusing SkiaSharp;\n\nvar photo = PhotoCodec.Import(\"mountains.jpg\", File.ReadAllBytes(\"mountains.jpg\"));\nvar session = new EditorSession(new CatalogDocument { Photos = [photo], ActivePhoto = photo.Id });\nsession.Edit(\"Refine contrast\", state => state with\n{\n    Develop = state.Develop with\n    {\n        Exposure = .3f,\n        Channels = new ChannelCurves\n        {\n            Master = new PointCurve { Points = [new(0, 0), new(.25f, .18f), new(.75f, .82f), new(1, 1)] }\n        }\n    }\n});\nusing var renderer = new PhotoRenderer();\nFile.WriteAllBytes(\"mountains-edited.jpg\",\n    renderer.Export(photo, SKEncodedImageFormat.Jpeg, quality: 92, maxDimension: 4096));\nsession.Undo(); // Original encoded bytes are untouched."
+    },
+    {
+      "title": "Build and run",
+      "lang": "bash",
+      "code": "git clone https://github.com/wieslawsoltes/LightSpace.git\ncd LightSpace\npython3 scripts/fetch-assets.py\ndotnet workload install wasm-tools --skip-manifest-update\n\n# Model, processing, lifetime, recovery, XMP and performance checks\ndotnet run --project tests/LightSpace.Engine.Tests -c Release\n\n# Shared native desktop host\ndotnet run --project src/LightSpace.App -f net10.0-desktop \\\n  -p:LightSpaceDesktopOnly=true\n\n# Actual Uno WebAssembly publication\ndotnet publish src/LightSpace.App -f net10.0-browserwasm -c Release \\\n  -o artifacts/publish -p:WasmShellWebAppBasePath=/LightSpace/\npython3 scripts/collect-site.py artifacts/publish artifacts/site\npython3 scripts/serve-site.py --directory artifacts/site --port 4173"
+    }
+  ],
+  "shortcuts": [
+    {
+      "action": "Grid / edit (detail)",
+      "keys": "G / E or D"
+    },
+    {
+      "action": "Crop / masks / brush",
+      "keys": "R / M / B"
+    },
+    {
+      "action": "Brush size",
+      "keys": "[ / ]"
+    },
+    {
+      "action": "Zoom / comparison / original",
+      "keys": "Z / Y / \\"
+    },
+    {
+      "action": "Rating",
+      "keys": "0–5"
+    },
+    {
+      "action": "Pick / reject / clear flag",
+      "keys": "P / X / U"
+    },
+    {
+      "action": "Previous / next photo",
+      "keys": "Left / Right"
+    },
+    {
+      "action": "Undo / redo",
+      "keys": "Ctrl/Cmd Z / Ctrl/Cmd Shift Z"
+    },
+    {
+      "action": "Import / catalog backup / export",
+      "keys": "Ctrl/Cmd I / Ctrl/Cmd S / Ctrl/Cmd E"
+    },
+    {
+      "action": "Select filtered",
+      "keys": "Ctrl/Cmd A"
+    },
+    {
+      "action": "Copy / paste settings",
+      "keys": "Ctrl/Cmd C / Ctrl/Cmd V"
+    },
+    {
+      "action": "Cancel gesture or dialog",
+      "keys": "Escape"
+    }
+  ],
+  "formats": [
+    {
+      "name": ".jpg / .jpeg",
+      "support": "read/write"
+    },
+    {
+      "name": ".png",
+      "support": "read/write"
+    },
+    {
+      "name": ".webp",
+      "support": "read/write"
+    },
+    {
+      "name": ".bmp",
+      "support": "import"
+    },
+    {
+      "name": ".gif (first frame)",
+      "support": "import"
+    },
+    {
+      "name": ".lightspace (portable catalog)",
+      "support": "read/write"
+    },
+    {
+      "name": ".xmp sidecar",
+      "support": "read/write"
+    },
+    {
+      "name": ".zip (selected photos)",
+      "support": "export"
+    }
+  ],
+  "playground": {
+    "intro": "Open the live WebAssembly build and develop the demonstration catalog — every edit is non-destructive and stays on your device.",
+    "tour": [
+      {
+        "title": "Browse the catalog",
+        "text": "Press G for the grid, rate photos with 0–5, flag picks with P, and search by filename, caption or keyword."
+      },
+      {
+        "title": "Develop a photo",
+        "text": "Press E to open Edit, drag Light and Color sliders, double-click a slider to reset it, and press Escape to cancel a gesture."
+      },
+      {
+        "title": "Shape curves and grades",
+        "text": "Open RGB curves and click to add points on the master or a color channel, then open Grade to tint shadows and highlights."
+      },
+      {
+        "title": "Add a local mask",
+        "text": "Press M, add a radial or linear gradient or sample a color range with click/Shift-click, then adjust local exposure."
+      },
+      {
+        "title": "Compare before and after",
+        "text": "Press Y for the before/after view and drag the divider, or press Backslash to toggle the original."
+      },
+      {
+        "title": "Export a copy",
+        "text": "Press Ctrl/Cmd+E to export a JPEG, PNG or WebP copy, or Ctrl/Cmd+S to save a portable catalog backup."
+      }
+    ]
+  },
+  "architecture": [
+    {
+      "name": "Photo model",
+      "text": "Immutable photo state, adjustments, curves, masks and geometry with no Uno dependency.",
+      "packages": [
+        "LightSpace.Core"
+      ]
+    },
+    {
+      "name": "Catalog, imaging and storage",
+      "text": "Versioned catalog serialization and XMP, bounded Skia decoding, and platform-independent storage contracts.",
+      "packages": [
+        "LightSpace.Catalog",
+        "LightSpace.Imaging",
+        "LightSpace.Storage"
+      ]
+    },
+    {
+      "name": "Editing and rendering",
+      "text": "Gesture transactions, undo and versions alongside SkSL development, masks, histogram and export.",
+      "packages": [
+        "LightSpace.Editing",
+        "LightSpace.Rendering.Skia"
+      ]
+    },
+    {
+      "name": "Uno UI",
+      "text": "Original photography controls composed into a reusable workspace for browser and desktop hosts.",
+      "packages": [
+        "LightSpace.Controls",
+        "LightSpace.Workbench"
+      ]
+    }
+  ],
+  "boundaries": [
+    "Independent early-stage software, not a pixel-identical or feature-complete Lightroom replacement",
+    "No RAW/DNG/HEIF/TIFF decoding, AI tools, HDR/panorama merging or calibrated camera/lens correction",
+    "Output is 8-bit sRGB up to an 8192 px long edge; source EXIF/IPTC is not embedded in copies",
+    "Brush mask coverage is capped at a 1024-pixel long edge, even for export",
+    "Recovery is local and unencrypted — not cloud sync or a substitute for original-file backups"
+  ],
+  "docs": [
+    {
+      "title": "Getting started",
+      "path": "docs/GETTING-STARTED.md",
+      "blurb": "Organize, develop, mask, compare, export and the keyboard reference"
+    },
+    {
+      "title": "Advanced editing and XMP",
+      "path": "docs/ADVANCED-EDITING.md",
+      "blurb": "RGB point curves, brush masks, XMP sidecars and component APIs"
+    },
+    {
+      "title": "Color and masks",
+      "path": "docs/COLOR-AND-MASKS.md",
+      "blurb": "Four-way color grading, sampled color ranges and local mask semantics"
+    },
+    {
+      "title": "Feature coverage",
+      "path": "docs/FEATURE-COVERAGE.md",
+      "blurb": "Implemented behavior and remaining compatibility boundaries"
+    },
+    {
+      "title": "Architecture",
+      "path": "docs/ARCHITECTURE.md",
+      "blurb": "Dependency graph, transactions and the shader processing order"
+    },
+    {
+      "title": "Performance",
+      "path": "docs/PERFORMANCE.md",
+      "blurb": "Caches, work avoidance and scoped performance evidence"
+    },
+    {
+      "title": "Recovery",
+      "path": "docs/RECOVERY.md",
+      "blurb": "Committed, content-addressed recovery contract"
+    },
+    {
+      "title": "Recovery publication",
+      "path": "docs/RECOVERY-PUBLICATION.md",
+      "blurb": "Atomic manifest publication hardening"
+    },
+    {
+      "title": "Validation",
+      "path": "docs/VALIDATION.md",
+      "blurb": "Engine and browser validation scopes and regressions"
+    },
+    {
+      "title": "WebAssembly slider fix",
+      "path": "docs/WASM-SLIDER-FIX.md",
+      "blurb": "Investigation and evidence for the 0.4.1 edit-slider crash hotfix"
+    },
+    {
+      "title": "Release notes",
+      "path": "docs/RELEASE-NOTES.md",
+      "blurb": "What changed in LightSpace 0.4.1-alpha.1"
+    }
+  ]
+}

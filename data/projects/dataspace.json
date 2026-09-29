@@ -1,0 +1,301 @@
+{
+  "slug": "dataspace",
+  "name": "DataSpace",
+  "repo": "wieslawsoltes/DataSpace",
+  "tagline": "An Access-style database studio running natively in the browser",
+  "summary": "DataSpace is a modular database studio with an Office-style ribbon, editable datasheets, graphical queries, form design, report previews and relationship diagrams. The browser build is the actual Uno/Skia application compiled to WebAssembly, backed by a managed SQL engine with subqueries, crosstabs and transactional undo — all split into five independently reusable libraries.",
+  "category": "Data",
+  "inspiredBy": "Microsoft Access-style desktop databases",
+  "version": "0.2.0-preview.3",
+  "heroStats": [
+    {
+      "value": "5",
+      "label": "reusable libraries"
+    },
+    {
+      "value": "100×",
+      "label": "faster single-cell edit on 25,000 records (171 ms → 1.68 ms)"
+    },
+    {
+      "value": "1,000×",
+      "label": "fewer join comparisons with transient hash joins"
+    },
+    {
+      "value": "256",
+      "label": "record display cache for lazy datasheets"
+    }
+  ],
+  "highlights": [
+    {
+      "title": "Office-style workspace",
+      "text": "Ribbon, quick-access commands, File backstage, searchable object navigation and tabbed objects in one shell.",
+      "icon": "layout"
+    },
+    {
+      "title": "Skia-drawn datasheets",
+      "text": "Visible-cell drawing with lazy row materialization, range selection, TSV clipboard, sorting, filtering and cached totals.",
+      "icon": "table"
+    },
+    {
+      "title": "Visual query design",
+      "text": "A native QBE grid with draggable source cards, join properties and criteria rows that round-trips SELECT SQL.",
+      "icon": "query"
+    },
+    {
+      "title": "Real SQL engine",
+      "text": "Managed parser and executor with hash joins, UNION, correlated subqueries, TRANSFORM/PIVOT crosstabs and SELECT INTO.",
+      "icon": "database"
+    },
+    {
+      "title": "Forms and reports",
+      "text": "Bound record-entry forms with snapped drag/resize design, plus paginated report previews with Skia PDF export.",
+      "icon": "form"
+    },
+    {
+      "title": "Transactional undo",
+      "text": "Every edit is validated and published as one atomic, undoable revision; failed edits leave the live document untouched.",
+      "icon": "history"
+    },
+    {
+      "title": "Safe browser storage",
+      "text": "Transactional IndexedDB saves with cross-tab version checks, so a conflicting tab fails instead of silently overwriting.",
+      "icon": "shield"
+    },
+    {
+      "title": "Reusable libraries",
+      "text": "Core, Query, Storage, Rendering and Controls ship as separate packages; the engine runs without Uno at all.",
+      "icon": "package"
+    }
+  ],
+  "featureGroups": [
+    {
+      "area": "Shell",
+      "items": [
+        "Ribbon with quick-access commands and a File backstage",
+        "Searchable object navigation with tabbed objects",
+        "Record navigation and explicit error reporting",
+        "Northwind-style demonstration workspace on first launch"
+      ]
+    },
+    {
+      "area": "Tables and datasheets",
+      "items": [
+        "Typed fields with required, default, primary and unique constraints",
+        "Detached field design and ordered single/composite index editing",
+        "Visible-cell Skia drawing with lazy row materialization",
+        "Range selection, keyboard navigation, native text editing and TSV clipboard",
+        "Sorting, resizing, filtering, debounced search and cached totals"
+      ]
+    },
+    {
+      "area": "Queries",
+      "items": [
+        "Design View, SQL View and Datasheet View for every query",
+        "Native QBE grid with draggable source cards, joins, criteria and OR rows",
+        "Crosstab Builder with fixed column headings and row totals",
+        "Find Duplicates and Find Unmatched builders that generate ordinary SQL",
+        "Parameter editing and read-only result grids"
+      ]
+    },
+    {
+      "area": "Query engine",
+      "items": [
+        "Streaming SELECT/TOP with bounded ordered TOP selection",
+        "INNER/LEFT/CROSS joins with transient equality hash joins",
+        "UNION/UNION ALL, GROUP BY/HAVING and saved queries as sources",
+        "Correlated scalar, EXISTS, IN, ANY/SOME and ALL subqueries",
+        "Atomic INSERT/UPDATE/DELETE, SELECT INTO and constraint-index DDL",
+        "TRANSFORM/PIVOT crosstab execution"
+      ]
+    },
+    {
+      "area": "Forms and reports",
+      "items": [
+        "Bound text and Yes/No controls with record navigation",
+        "Snapped control drag/resize, creation, deletion and property sheet",
+        "Reports from table or query sources with title, orientation and field selection",
+        "Pagination, zoom and Skia PDF export through the same page renderer"
+      ]
+    },
+    {
+      "area": "Relationships and macros",
+      "items": [
+        "Referential checks and cascades",
+        "Draggable relationship diagrams",
+        "Explicitly invoked, ordered workspace macro actions; imported macros never auto-run"
+      ]
+    },
+    {
+      "area": "Files and storage",
+      "items": [
+        "Versioned .dspace JSON documents",
+        "CSV import and export via External Data → Text File",
+        "Transactional IndexedDB with cross-tab version conflict detection",
+        "Explicit .dspace backup exports and desktop file adapters"
+      ]
+    }
+  ],
+  "packages": [
+    {
+      "name": "DataSpace.Core",
+      "role": "Typed document model, validation, relational constraints, transactions, history, snapshots and document codec",
+      "ui": "None",
+      "layer": "model"
+    },
+    {
+      "name": "DataSpace.Query",
+      "role": "Managed SQL parser, expression evaluation, relational execution, QBE/Find/crosstab models and lazy table views",
+      "ui": "None",
+      "layer": "engine"
+    },
+    {
+      "name": "DataSpace.Storage",
+      "role": "CSV interchange, versioned optimistic persistence contracts and asynchronous save sessions",
+      "ui": "None",
+      "layer": "io"
+    },
+    {
+      "name": "DataSpace.Rendering",
+      "role": "UI-independent Skia datasheet, form, relationship, report and icon renderers",
+      "ui": "SkiaSharp",
+      "layer": "rendering"
+    },
+    {
+      "name": "DataSpace.Controls",
+      "role": "Office-style Uno ribbon, navigation, datasheet, object designers, query builders and optional workspace shell",
+      "ui": "Uno + Skia",
+      "layer": "controls"
+    }
+  ],
+  "codeSamples": [
+    {
+      "title": "Engine usage without Uno",
+      "lang": "csharp",
+      "code": "using DataSpace.Core;\nusing DataSpace.Query;\n\nvar workspace = new DatabaseWorkspace(new DatabaseDocument { Name = \"Inventory\" });\nworkspace.Edit(\"Create table\", document => ObjectFactory.CreateTable(document));\nworkspace.Edit(\"Add record\", document => RecordOperations.Insert(\n    document.Table(\"Table1\"), new Dictionary<string, string?> { [\"Title\"] = \"Notebook\" }));\n\nvar view = TableView.Open(workspace.Document, \"Table1\", sortField: \"Title\");\nvar firstPage = view.ReadPage(0, 50);\nworkspace.UpdateRecords(\"Edit title\", \"Table1\", [new(firstPage[0].Id, \"Title\", \"Drawing pad\")]);\nvar result = new QueryEngine().Select(workspace.Document,\n    \"SELECT ID, Title FROM Table1 UNION ALL SELECT 0, 'Unassigned' ORDER BY Title\");\nworkspace.Undo();"
+    },
+    {
+      "title": "Embed the workspace",
+      "lang": "csharp",
+      "code": "var workspace = new DatabaseWorkspace(SampleDatabase.Create());\nvar session = new WorkspaceSession(workspace, new MemoryWorkspaceStore());\nawait session.InitializeAsync();\nvar view = new DatabaseWorkspaceView(workspace)\n{\n    StorageIsDirty = () => session.IsDirty,\n    SaveDatabaseAsync = () => session.SaveAsync()\n};\n// Put view in your Uno page/window. Inject ImportTextAsync and ExportFileAsync\n// for your file-dialog or document-management integration."
+    },
+    {
+      "title": "Build and run",
+      "lang": "bash",
+      "code": "git clone https://github.com/wieslawsoltes/DataSpace.git\ncd DataSpace\ndotnet workload install wasm-tools\n\ndotnet test tests/DataSpace.Tests/DataSpace.Tests.csproj -c Release\ndotnet run --project src/DataSpace.App/DataSpace.App.csproj -f net10.0-desktop\n\n# Publish the real browser application\ndotnet publish src/DataSpace.App/DataSpace.App.csproj \\\n  -c Release -f net10.0-browserwasm -o artifacts/publish\npython3 scripts/stage-site.py\npython3 -m http.server 8080 --directory artifacts/site"
+    }
+  ],
+  "shortcuts": [
+    {
+      "action": "Commit the active editor and save locally",
+      "keys": "Ctrl S"
+    }
+  ],
+  "formats": [
+    {
+      "name": ".dspace (versioned JSON)",
+      "support": "read/write"
+    },
+    {
+      "name": "CSV",
+      "support": "read/write"
+    },
+    {
+      "name": "PDF (reports)",
+      "support": "export"
+    }
+  ],
+  "playground": {
+    "intro": "The live build opens a Northwind-style demonstration database you can browse, query and edit entirely in the browser.",
+    "tour": [
+      {
+        "title": "Explore the sample database",
+        "text": "Use the searchable object navigation to open tables in tabs, then sort, filter and search a datasheet."
+      },
+      {
+        "title": "Edit and undo",
+        "text": "Edit cells directly in a datasheet, copy a range as TSV, and step back through changes with undo."
+      },
+      {
+        "title": "Design a query",
+        "text": "Open a query and switch between Design View, SQL View and Datasheet View to see the QBE grid round-trip SQL."
+      },
+      {
+        "title": "Build a crosstab",
+        "text": "Choose Crosstab Builder, pick row headings, a column heading and an aggregate, then Generate SQL and Run."
+      },
+      {
+        "title": "Find duplicates",
+        "text": "Use Find Duplicates or Find Unmatched in the query editor to generate a saved SQL query from a table and keys."
+      },
+      {
+        "title": "Import and save",
+        "text": "Import a CSV via External Data → Text File, press Ctrl+S to save to IndexedDB, and export a .dspace backup."
+      }
+    ]
+  },
+  "architecture": [
+    {
+      "name": "Model",
+      "text": "Owns the typed document, validation, copy-on-write transactions, undo history and snapshots.",
+      "packages": [
+        "DataSpace.Core"
+      ]
+    },
+    {
+      "name": "Query and storage",
+      "text": "A managed SQL engine and visual design models, plus CSV and optimistic versioned persistence, all built on Core.",
+      "packages": [
+        "DataSpace.Query",
+        "DataSpace.Storage"
+      ]
+    },
+    {
+      "name": "Rendering",
+      "text": "SkiaSharp renderers for datasheets, forms, relationships, reports and icons that depend on Core but not Uno.",
+      "packages": [
+        "DataSpace.Rendering"
+      ]
+    },
+    {
+      "name": "Controls",
+      "text": "Independently usable Uno ribbon, datasheet, designers and query builders, plus an optional full workspace shell.",
+      "packages": [
+        "DataSpace.Controls"
+      ]
+    }
+  ],
+  "boundaries": [
+    "Not a Microsoft Access replacement: native .accdb/.mdb, ACE/Jet and VBA are not supported",
+    "Browser storage is local, unencrypted and scoped to the origin/profile — export .dspace backups",
+    "Derived FROM subqueries, RIGHT/FULL joins and updatable joined queries are not implemented",
+    "Reports lack group sections, subreports, charts and conditional formatting; forms lack subforms and events",
+    "Query execution is synchronous in the browser; indexes are constraint metadata, not persistent B-trees"
+  ],
+  "docs": [
+    {
+      "title": "Architecture",
+      "path": "docs/ARCHITECTURE.md",
+      "blurb": "Transactions, SQL pipeline, rendering and persistence design"
+    },
+    {
+      "title": "Compatibility",
+      "path": "docs/COMPATIBILITY.md",
+      "blurb": "What is implemented versus remaining Access compatibility work"
+    },
+    {
+      "title": "Performance",
+      "path": "docs/PERFORMANCE.md",
+      "blurb": "Execution paths, reproducible benchmarks and measurement scope"
+    },
+    {
+      "title": "Query analytics",
+      "path": "docs/QUERY-ANALYTICS.md",
+      "blurb": "Crosstabs, make-table queries and index DDL syntax and limits"
+    },
+    {
+      "title": "Subqueries and Find builders",
+      "path": "docs/SUBQUERIES.md",
+      "blurb": "Nested SELECT semantics, caching, limits and Find query builders"
+    }
+  ]
+}

@@ -1,0 +1,354 @@
+{
+  "slug": "presentationspace",
+  "name": "PresentationSpace",
+  "repo": "wieslawsoltes/PresentationSpace",
+  "tagline": "Office-style slide editing in C#, one engine for browser and desktop",
+  "summary": "PresentationSpace is an Office-style presentation workspace built with Uno Platform and SkiaSharp, with a tabbed ribbon, filmstrip, notes, slide sorter and slide show. The browser runs the same .NET application compiled to WebAssembly, not an HTML mock-up. Underneath sits an independent, reusable engine for immutable documents, rich text, merged tables, native charts and a documented PPTX subset, plus PNG and vector PDF export.",
+  "category": "Documents",
+  "inspiredBy": "the PowerPoint desktop workflow",
+  "version": "0.6.0",
+  "heroStats": [
+    {
+      "value": "6",
+      "label": "independently reusable libraries"
+    },
+    {
+      "value": "12",
+      "label": "ribbon tabs"
+    },
+    {
+      "value": "6",
+      "label": "chart types"
+    },
+    {
+      "value": "1,000",
+      "label": "slides in the large-deck sample"
+    }
+  ],
+  "highlights": [
+    {
+      "title": "Familiar ribbon workspace",
+      "text": "Home, Insert, Draw, Design, Transitions, Animations, Slide Show, Review, View, Shape Format, Table Design and Help tabs, plus the File workspace.",
+      "icon": "slides"
+    },
+    {
+      "title": "Direct Skia canvas",
+      "text": "The editor viewport, slide previews and player draw straight onto Uno's SKCanvasElement compositor canvas, with retained drawing and picture caches.",
+      "icon": "canvas"
+    },
+    {
+      "title": "Mixed rich text",
+      "text": "Character styles, bullets, paragraph alignment and spacing survive editing, native files, supported PPTX interchange and PNG/PDF export.",
+      "icon": "text"
+    },
+    {
+      "title": "Merged, styled tables",
+      "text": "Merge and split cells, insert or delete tracks, and apply Table Design palette presets, banding and ten border scopes.",
+      "icon": "table"
+    },
+    {
+      "title": "Native charts",
+      "text": "Six categorical chart types with multi-series data, exported as native chart parts with editable embedded XLSX workbooks.",
+      "icon": "chart"
+    },
+    {
+      "title": "PPTX interchange",
+      "text": "Import and export a documented PPTX subset: text runs, preset shapes, pictures, tables, charts, notes and basic transitions.",
+      "icon": "share"
+    },
+    {
+      "title": "Slide show",
+      "text": "Present from the beginning or current slide with fade/push/wipe transitions, appear/fade/fly-in effects and black or white screen.",
+      "icon": "eye"
+    },
+    {
+      "title": "Deck-scale virtualization",
+      "text": "Virtualized filmstrip and sorter views recycle only visible tiles; open the 1,000-slide sample to try it.",
+      "icon": "gauge"
+    }
+  ],
+  "featureGroups": [
+    {
+      "area": "Slides",
+      "items": [
+        "New, duplicate, delete, reorder and hide slides",
+        "Non-destructive predefined layouts that retain unmatched content",
+        "Backgrounds, slide sizing and slide numbers",
+        "Resizable filmstrip and slide sorter"
+      ]
+    },
+    {
+      "area": "Objects and arrangement",
+      "items": [
+        "Text, basic geometric shapes, lines/arrows and raster pictures",
+        "Multi-selection, marquee, eight resize handles and rotation",
+        "Aspect constraints, snapping, nudging, pan and zoom",
+        "Selection groups, front/back ordering, alignment and distribution",
+        "Object locking and visibility"
+      ]
+    },
+    {
+      "area": "Text",
+      "items": [
+        "Mixed character styles with bold, italic and underline on selected ranges",
+        "Bullets, paragraph alignment and spacing",
+        "Wrapping and vertical alignment",
+        "Find and replace that preserves styles between matches"
+      ]
+    },
+    {
+      "area": "Tables",
+      "items": [
+        "Rectangular merges and splits, row/column insertion and deletion",
+        "Cell fills, margins and solid/dashed/dotted borders",
+        "Table Design: four palette presets, first/last-column emphasis and column banding",
+        "Ten border scopes that update both sides of shared edges",
+        "Up to 100 rows, 100 columns and one million characters per table"
+      ]
+    },
+    {
+      "area": "Charts",
+      "items": [
+        "Column, bar, line, area, pie and doughnut charts",
+        "Multi-series data with nullable values and grouping options",
+        "Standalone chart data editor with spreadsheet copy/paste",
+        "Native chart parts with editable embedded XLSX workbooks on PPTX export"
+      ]
+    },
+    {
+      "area": "Presentation",
+      "items": [
+        "Basic fade, push and wipe transitions",
+        "Appear, fade and fly-in object effects",
+        "Hidden-slide skipping and black/white screen",
+        "Present from the beginning (F5) or current slide (Shift+F5)"
+      ]
+    },
+    {
+      "area": "Workflow",
+      "items": [
+        "Transactional undo/redo and an internal clipboard",
+        "Command search with Alt+Q",
+        "Speaker notes and local comments",
+        "Device-local AutoSave recovery with no account or server"
+      ]
+    },
+    {
+      "area": "Files",
+      "items": [
+        "Native .pspace preserving mixed text, notes, comments and animation settings",
+        "Documented PPTX import and export subset",
+        "Slide PNG and vector PDF export",
+        "Bounded ZIP/XML input checks: DTDs prohibited, no external-relationship retrieval"
+      ]
+    }
+  ],
+  "packages": [
+    {
+      "name": "PresentationSpace.Core",
+      "role": "Immutable documents, rich text, layouts, tables, chart data, geometry, commands and undo",
+      "ui": "None",
+      "layer": "model"
+    },
+    {
+      "name": "PresentationSpace.Formats",
+      "role": "Bounded PPTX ZIP/XML, native chart/table parts and embedded chart workbooks",
+      "ui": "None",
+      "layer": "io"
+    },
+    {
+      "name": "PresentationSpace.Rendering.Skia",
+      "role": "Slides, tables, six chart types, mixed text, images, thumbnails, selection, PNG/PDF",
+      "ui": "SkiaSharp",
+      "layer": "rendering"
+    },
+    {
+      "name": "PresentationSpace.Ribbon.Uno",
+      "role": "Ribbon tabs, overflow scrolling, groups, buttons, compact toggle and Office-style palette",
+      "ui": "Uno",
+      "layer": "controls"
+    },
+    {
+      "name": "PresentationSpace.Controls.Uno",
+      "role": "Viewport, filmstrip, sorter, inspector, table/chart data editors, notes and slide show",
+      "ui": "Uno + Skia",
+      "layer": "controls"
+    },
+    {
+      "name": "PresentationSpace.Editor.Uno",
+      "role": "Embeddable complete editor with an injectable IWorkspaceStorage contract",
+      "ui": "Uno + Skia",
+      "layer": "editor"
+    }
+  ],
+  "codeSamples": [
+    {
+      "title": "Embed the editor",
+      "lang": "csharp",
+      "code": "using PresentationSpace.Core;\nusing PresentationSpace.Editor.Uno;\n\nvar session = new EditorSession(SlideFactory.Welcome());\nvar editor = new PresentationEditor(session, myStorageService);\nmyPage.Content = editor;"
+    },
+    {
+      "title": "Use the engine without Uno",
+      "lang": "csharp",
+      "code": "using PresentationSpace.Core;\nusing PresentationSpace.Formats;\nusing PresentationSpace.Rendering.Skia;\n\nvar session = new EditorSession();\nvar title = SlideFactory.Text(\"Hello, slides\", 80, 100, 900, 130, 56);\ntitle = RichText.Format(title, 0, 5,\n    style => style with { Bold = true, Color = \"#D35230\" });\nsession.Insert(title);\nsession.ApplyLayout(\"Title only\"); // Unmatched content is retained.\n\nusing var renderer = new SlideRenderer();\nbyte[] png = renderer.ExportPng(session.Document, session.CurrentSlide);\nExportResult pptx = PptxCodec.Export(session.Document);\n// Display pptx.Warnings; valid OOXML is not a guarantee of visual equivalence."
+    },
+    {
+      "title": "Use charts independently",
+      "lang": "csharp",
+      "code": "var data = new ChartSpec\n{\n    Kind = ChartKind.Line,\n    Title = \"Quarterly performance\",\n    Categories = [\"Q1\", \"Q2\", \"Q3\"],\n    Series = [\n        new() { Name = \"Actual\", Color = \"#D35230\", Values = [10, null, 25] },\n        new() { Name = \"Plan\", Color = \"#4472C4\", Values = [15, 18, 22] }\n    ]\n};\nvar shape = ChartModel.Apply(new SlideShape\n{\n    Name = \"Performance chart\", Bounds = new(100, 180, 960, 540)\n}, data);\nsession.Insert(shape);\n\n// Or draw directly on an existing Skia canvas, without an editor or document.\nrenderer.RenderChart(canvas, data, new RectF(0, 0, 640, 360), new TextStyle());"
+    }
+  ],
+  "shortcuts": [
+    {
+      "action": "New slide / save / open",
+      "keys": "Ctrl M / Ctrl S / Ctrl O"
+    },
+    {
+      "action": "Undo / redo outside text inputs",
+      "keys": "Ctrl Z / Ctrl Y or Ctrl Shift Z"
+    },
+    {
+      "action": "Bold / italic / underline",
+      "keys": "Ctrl B / Ctrl I / Ctrl U"
+    },
+    {
+      "action": "Copy / cut / paste / duplicate objects",
+      "keys": "Ctrl C / Ctrl X / Ctrl V / Ctrl D"
+    },
+    {
+      "action": "Select all / group / ungroup",
+      "keys": "Ctrl A / Ctrl G / Ctrl Shift G"
+    },
+    {
+      "action": "Edit text",
+      "keys": "Double-click / F2 / Enter"
+    },
+    {
+      "action": "Move selection (ten-unit steps with Shift)",
+      "keys": "Arrows / Shift Arrows"
+    },
+    {
+      "action": "Temporarily disable snapping",
+      "keys": "Hold Alt while dragging"
+    },
+    {
+      "action": "Pan / zoom",
+      "keys": "Middle-button or Space-drag / Ctrl wheel"
+    },
+    {
+      "action": "Command search",
+      "keys": "Alt Q"
+    },
+    {
+      "action": "Present from beginning / current slide",
+      "keys": "F5 / Shift F5"
+    },
+    {
+      "action": "Black / white screen during slide show",
+      "keys": "B / W"
+    }
+  ],
+  "formats": [
+    {
+      "name": ".pspace",
+      "support": "read/write"
+    },
+    {
+      "name": ".pptx (documented subset)",
+      "support": "read/write"
+    },
+    {
+      "name": "PNG (slide image)",
+      "support": "export"
+    },
+    {
+      "name": "PDF (vector)",
+      "support": "export"
+    }
+  ],
+  "playground": {
+    "intro": "The live build is the same .NET editor compiled to WebAssembly, so you can build, format and present a deck right in the browser with no account or server.",
+    "tour": [
+      {
+        "title": "Scale up to 1,000 slides",
+        "text": "Use Open large-deck sample to load a 1,000-slide workspace, scroll the filmstrip, and open Rendering statistics for draw and cache counters."
+      },
+      {
+        "title": "Format mixed text",
+        "text": "Double-click a text box (or press F2), select a few words and press Ctrl+B or Ctrl+I; the slide canvas shows the mixed styling after commit."
+      },
+      {
+        "title": "Switch layouts safely",
+        "text": "Press Alt+Q and run Apply Title only layout, then Apply Blank layout; unmatched content is retained rather than deleted."
+      },
+      {
+        "title": "Build a chart",
+        "text": "Search Edit chart data to change values, then try Chart type Doughnut or Chart grouping Stacked from command search."
+      },
+      {
+        "title": "Design a table",
+        "text": "Select a table, open Format Shape → Table design & layout, then use the Table Design tab for palette presets, banding and borders."
+      },
+      {
+        "title": "Present it",
+        "text": "Press F5 to start the slide show, use the arrows or Space to navigate, B or W for a black or white screen, and Esc to end."
+      }
+    ]
+  },
+  "architecture": [
+    {
+      "name": "Document model",
+      "text": "Immutable documents, slides, shapes, rich text, tables and charts with an EditorSession command boundary and bounded undo.",
+      "packages": [
+        "PresentationSpace.Core"
+      ]
+    },
+    {
+      "name": "Formats and rendering",
+      "text": "Dependency-free PPTX import/export alongside a SkiaSharp renderer for the canvas, thumbnails, PNG and vector PDF.",
+      "packages": [
+        "PresentationSpace.Formats",
+        "PresentationSpace.Rendering.Skia"
+      ]
+    },
+    {
+      "name": "Uno controls",
+      "text": "An Office-style ribbon plus slide viewport, filmstrip, sorter, inspectors, data editors and slide show controls.",
+      "packages": [
+        "PresentationSpace.Ribbon.Uno",
+        "PresentationSpace.Controls.Uno"
+      ]
+    },
+    {
+      "name": "Editor",
+      "text": "The complete embeddable editing workspace, with storage injected through IWorkspaceStorage.",
+      "packages": [
+        "PresentationSpace.Editor.Uno"
+      ]
+    }
+  ],
+  "boundaries": [
+    "Development preview: not a complete or pixel-exact PowerPoint implementation",
+    "PPTX import is not lossless: unsupported OOXML parts are dropped, so keep the original file",
+    "AutoSave is device-local recovery only, not cloud backup or coauthoring",
+    "Inline text input is a plain TextBox; mixed styling appears on the canvas after commit",
+    "SmartArt, media, full master/theme inheritance, second-display presenter view and .ppt/.pptm remain unfinished"
+  ],
+  "docs": [
+    {
+      "title": "Architecture",
+      "path": "docs/architecture.md",
+      "blurb": "Dependency direction, immutable documents, rich text, layouts, rendering, tables"
+    },
+    {
+      "title": "Compatibility and limitations",
+      "path": "docs/compatibility.md",
+      "blurb": "Format matrix for .pspace and PPTX, plus text, table and chart fidelity"
+    },
+    {
+      "title": "Performance",
+      "path": "docs/performance.md",
+      "blurb": "Direct canvas rendering, cache budgets and deck-scale virtualization"
+    }
+  ]
+}

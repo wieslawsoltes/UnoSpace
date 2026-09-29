@@ -1,0 +1,319 @@
+{
+  "slug": "gridspace",
+  "repo": "wieslawsoltes/GridSpace",
+  "version": "0.3.0-alpha.1",
+  "dotnetSdk": "10.0.401",
+  "unoSdk": "6.7.30",
+  "pinned": [],
+  "github": {
+    "stars": 3,
+    "forks": 0,
+    "openIssues": 0,
+    "createdAt": "2026-09-27T09:50:15Z",
+    "pushedAt": "2026-09-28T06:39:49Z",
+    "homepage": "https://wieslawsoltes.github.io/GridSpace/",
+    "license": "MIT"
+  },
+  "lastCommit": {
+    "sha": "682798b",
+    "date": "2026-09-28T08:39:38+02:00",
+    "subject": "fix: transform spill references safely across structural edits and out-of-bounds copies"
+  },
+  "loc": {
+    "total": 7671,
+    "src": 6335,
+    "tests": 1259
+  },
+  "projectCount": 11,
+  "libraryCount": 8,
+  "testProjectCount": 2,
+  "projects": [
+    {
+      "name": "GridSpace.App",
+      "path": "src/GridSpace.App/GridSpace.App.csproj",
+      "kind": "app",
+      "sdk": "Uno.Sdk",
+      "targetFrameworks": [
+        "net10.0-browserwasm",
+        "net10.0-desktop"
+      ],
+      "packable": false,
+      "description": "Local-first spreadsheet built with Uno Platform and SkiaSharp.",
+      "unoFeatures": [
+        "SkiaRenderer"
+      ],
+      "projectRefs": [
+        "GridSpace.Workbench"
+      ],
+      "packageRefs": [],
+      "files": 8,
+      "loc": 297
+    },
+    {
+      "name": "GridSpace.Benchmarks",
+      "path": "tools/GridSpace.Benchmarks/GridSpace.Benchmarks.csproj",
+      "kind": "test",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "",
+      "unoFeatures": [],
+      "projectRefs": [
+        "GridSpace.Editing"
+      ],
+      "packageRefs": [],
+      "files": 1,
+      "loc": 77
+    },
+    {
+      "name": "GridSpace.Controls",
+      "path": "src/GridSpace.Controls/GridSpace.Controls.csproj",
+      "kind": "library",
+      "sdk": "Uno.Sdk",
+      "targetFrameworks": [
+        "net10.0-browserwasm",
+        "net10.0-desktop"
+      ],
+      "packable": true,
+      "description": "Custom Uno spreadsheet surface, ribbon, formula bar, sheet tabs, scrollbars and Office-style controls.",
+      "unoFeatures": [
+        "SkiaRenderer"
+      ],
+      "projectRefs": [
+        "GridSpace.Skia"
+      ],
+      "packageRefs": [],
+      "files": 19,
+      "loc": 1305
+    },
+    {
+      "name": "GridSpace.Core",
+      "path": "src/GridSpace.Core/GridSpace.Core.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": true,
+      "description": "Sparse spreadsheet document model, A1 addressing, styles and workbook persistence contracts.",
+      "unoFeatures": [],
+      "projectRefs": [],
+      "packageRefs": [],
+      "files": 14,
+      "loc": 442
+    },
+    {
+      "name": "GridSpace.Editing",
+      "path": "src/GridSpace.Editing/GridSpace.Editing.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": true,
+      "description": "Transactional spreadsheet editing, bounded undo/redo, fill, clipboard, filtering and sheet operations.",
+      "unoFeatures": [],
+      "projectRefs": [
+        "GridSpace.Formulas"
+      ],
+      "packageRefs": [],
+      "files": 10,
+      "loc": 789
+    },
+    {
+      "name": "GridSpace.Formulas",
+      "path": "src/GridSpace.Formulas/GridSpace.Formulas.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": true,
+      "description": "Bounded, non-eval spreadsheet formula parser and calculation engine.",
+      "unoFeatures": [],
+      "projectRefs": [
+        "GridSpace.Core"
+      ],
+      "packageRefs": [],
+      "files": 13,
+      "loc": 1440
+    },
+    {
+      "name": "GridSpace.IO",
+      "path": "src/GridSpace.IO/GridSpace.IO.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": true,
+      "description": "Bounded XLSX, CSV, TSV and native workbook interchange with explicit fidelity warnings.",
+      "unoFeatures": [],
+      "projectRefs": [
+        "GridSpace.Editing"
+      ],
+      "packageRefs": [],
+      "files": 11,
+      "loc": 992
+    },
+    {
+      "name": "GridSpace.Layout",
+      "path": "src/GridSpace.Layout/GridSpace.Layout.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": true,
+      "description": "Sparse spreadsheet axis indexing, viewport geometry and frozen-pane hit testing.",
+      "unoFeatures": [],
+      "projectRefs": [
+        "GridSpace.Core"
+      ],
+      "packageRefs": [],
+      "files": 3,
+      "loc": 163
+    },
+    {
+      "name": "GridSpace.Skia",
+      "path": "src/GridSpace.Skia/GridSpace.Skia.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": true,
+      "description": "Viewport-culled SkiaSharp spreadsheet, selection and chart rendering.",
+      "unoFeatures": [],
+      "projectRefs": [
+        "GridSpace.Layout",
+        "GridSpace.Editing"
+      ],
+      "packageRefs": [
+        {
+          "id": "SkiaSharp",
+          "version": "3.119.2"
+        }
+      ],
+      "files": 5,
+      "loc": 332
+    },
+    {
+      "name": "GridSpace.Tests",
+      "path": "tests/GridSpace.Tests/GridSpace.Tests.csproj",
+      "kind": "test",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "",
+      "unoFeatures": [],
+      "projectRefs": [
+        "GridSpace.IO",
+        "GridSpace.Skia"
+      ],
+      "packageRefs": [
+        {
+          "id": "Microsoft.NET.Test.Sdk",
+          "version": "18.10.1"
+        },
+        {
+          "id": "xunit",
+          "version": "2.9.3"
+        },
+        {
+          "id": "xunit.runner.visualstudio",
+          "version": "3.1.5"
+        },
+        {
+          "id": "SkiaSharp.NativeAssets.Linux.NoDependencies",
+          "version": "3.119.2"
+        },
+        {
+          "id": "DocumentFormat.OpenXml",
+          "version": "3.5.1"
+        }
+      ],
+      "files": 14,
+      "loc": 1259
+    },
+    {
+      "name": "GridSpace.Workbench",
+      "path": "src/GridSpace.Workbench/GridSpace.Workbench.csproj",
+      "kind": "library",
+      "sdk": "Uno.Sdk",
+      "targetFrameworks": [
+        "net10.0-browserwasm",
+        "net10.0-desktop"
+      ],
+      "packable": true,
+      "description": "Composable Excel-style spreadsheet workbench, commands, dialogs and local recovery orchestration.",
+      "unoFeatures": [
+        "SkiaRenderer"
+      ],
+      "projectRefs": [
+        "GridSpace.Controls",
+        "GridSpace.IO"
+      ],
+      "packageRefs": [],
+      "files": 6,
+      "loc": 575
+    }
+  ],
+  "nuget": [
+    {
+      "id": "DocumentFormat.OpenXml",
+      "version": "3.5.1"
+    },
+    {
+      "id": "Microsoft.NET.Test.Sdk",
+      "version": "18.10.1"
+    },
+    {
+      "id": "SkiaSharp",
+      "version": "3.119.2"
+    },
+    {
+      "id": "SkiaSharp.NativeAssets.Linux.NoDependencies",
+      "version": "3.119.2"
+    },
+    {
+      "id": "xunit",
+      "version": "2.9.3"
+    },
+    {
+      "id": "xunit.runner.visualstudio",
+      "version": "3.1.5"
+    }
+  ],
+  "workflows": [
+    {
+      "file": "build.yml",
+      "name": "Build"
+    },
+    {
+      "file": "desktop.yml",
+      "name": "Desktop"
+    },
+    {
+      "file": "environment.yml",
+      "name": "Verify toolchain"
+    },
+    {
+      "file": "release.yml",
+      "name": "Release"
+    }
+  ],
+  "docs": [
+    "docs/architecture.md",
+    "docs/arrays-performance.md",
+    "docs/compatibility.md",
+    "docs/development.md",
+    "docs/parity-data-tools.md",
+    "docs/shared-formulas.md"
+  ],
+  "images": []
+}

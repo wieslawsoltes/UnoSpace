@@ -1,0 +1,35 @@
+{
+  "owner": "wieslawsoltes",
+  "site": {
+    "title": "Uno Space",
+    "tagline": "Seventeen native-grade creative & engineering workspaces, written in C#, running in your browser.",
+    "baseUrl": "https://wieslawsoltes.github.io/UnoSpace/"
+  },
+  "categories": [
+    { "id": "Design", "label": "Design & Illustration", "color": "#ff5fa2" },
+    { "id": "Documents", "label": "Documents & Office", "color": "#4fa3ff" },
+    { "id": "Media", "label": "Photo, Video & Motion", "color": "#ffb547" },
+    { "id": "Engineering", "label": "Engineering & Science", "color": "#3ee6a8" },
+    { "id": "Developer", "label": "Developer Tools", "color": "#a58bff" },
+    { "id": "Data", "label": "Data & Knowledge", "color": "#35d8e8" }
+  ],
+  "projects": [
+    { "repo": "VectorSpace", "category": "Design", "accent": "#ff5fa2", "accent2": "#ff9f5f" },
+    { "repo": "ArtSpace", "category": "Design", "accent": "#ff7ad9", "accent2": "#b980ff" },
+    { "repo": "TextSpace", "category": "Documents", "accent": "#4fa3ff", "accent2": "#7cf2ff" },
+    { "repo": "GridSpace", "category": "Documents", "accent": "#35d07f", "accent2": "#b4f25a" },
+    { "repo": "PdfSpace", "category": "Documents", "accent": "#ff5a5a", "accent2": "#ffb36b" },
+    { "repo": "PresentationSpace", "category": "Documents", "accent": "#ff8a3d", "accent2": "#ffd166" },
+    { "repo": "ImageSpace", "category": "Media", "accent": "#3dbbff", "accent2": "#8f7bff" },
+    { "repo": "LightSpace", "category": "Media", "accent": "#ffc53d", "accent2": "#ff7b54" },
+    { "repo": "VideoSpace", "category": "Media", "accent": "#b36bff", "accent2": "#ff5fa2" },
+    { "repo": "EffectsSpace", "category": "Media", "accent": "#8b6bff", "accent2": "#3de0ff" },
+    { "repo": "CadSpace", "category": "Engineering", "accent": "#2fe0c8", "accent2": "#4f8bff" },
+    { "repo": "LabSpace", "category": "Engineering", "accent": "#3ee6a8", "accent2": "#e6f23e" },
+    { "repo": "ControlSpace", "category": "Engineering", "accent": "#5ee05a", "accent2": "#2fc4ff" },
+    { "repo": "CodeSpace", "category": "Developer", "accent": "#5b8cff", "accent2": "#a58bff" },
+    { "repo": "GitSpace", "category": "Developer", "accent": "#ff6a3d", "accent2": "#ffcf5c" },
+    { "repo": "DataSpace", "category": "Data", "accent": "#35d8e8", "accent2": "#5b8cff" },
+    { "repo": "NoteSpace", "category": "Data", "accent": "#c9a0ff", "accent2": "#ffa0c8" }
+  ]
+}

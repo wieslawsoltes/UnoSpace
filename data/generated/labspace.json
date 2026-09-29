@@ -1,0 +1,319 @@
+{
+  "slug": "labspace",
+  "repo": "wieslawsoltes/LabSpace",
+  "version": "0.2.0-alpha.1",
+  "dotnetSdk": "10.0.401",
+  "unoSdk": "6.7.30",
+  "pinned": [],
+  "github": {
+    "stars": 1,
+    "forks": 0,
+    "openIssues": 1,
+    "createdAt": "2026-09-28T18:17:53Z",
+    "pushedAt": "2026-09-29T07:49:21Z",
+    "homepage": "https://wieslawsoltes.github.io/LabSpace/",
+    "license": "MIT"
+  },
+  "lastCommit": {
+    "sha": "2d50c2e",
+    "date": "2026-09-29T00:19:08+02:00",
+    "subject": "fix: resolve Quick Drop from synchronous query state before executing Enter"
+  },
+  "loc": {
+    "total": 3778,
+    "src": 3338,
+    "tests": 424
+  },
+  "projectCount": 12,
+  "libraryCount": 9,
+  "testProjectCount": 2,
+  "projects": [
+    {
+      "name": "LabSpace.App",
+      "path": "src/LabSpace.App/LabSpace.App.csproj",
+      "kind": "app",
+      "sdk": "Uno.Sdk",
+      "targetFrameworks": [
+        "net10.0-browserwasm",
+        "net10.0-desktop"
+      ],
+      "packable": false,
+      "description": "Graphical instrumentation studio for desktop and browser.",
+      "unoFeatures": [
+        "SkiaRenderer"
+      ],
+      "projectRefs": [
+        "LabSpace.Workbench"
+      ],
+      "packageRefs": [],
+      "files": 7,
+      "loc": 196
+    },
+    {
+      "name": "LabSpace.Benchmarks",
+      "path": "tools/LabSpace.Benchmarks/LabSpace.Benchmarks.csproj",
+      "kind": "test",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "",
+      "unoFeatures": [],
+      "projectRefs": [
+        "LabSpace.Dataflow",
+        "LabSpace.Documents"
+      ],
+      "packageRefs": [],
+      "files": 1,
+      "loc": 16
+    },
+    {
+      "name": "LabSpace.Controls",
+      "path": "src/LabSpace.Controls/LabSpace.Controls.csproj",
+      "kind": "library",
+      "sdk": "Uno.Sdk",
+      "targetFrameworks": [
+        "net10.0-browserwasm",
+        "net10.0-desktop"
+      ],
+      "packable": true,
+      "description": "Custom Uno diagram, instrument, palette, chrome and inspector controls.",
+      "unoFeatures": [
+        "SkiaRenderer"
+      ],
+      "projectRefs": [
+        "LabSpace.Skia"
+      ],
+      "packageRefs": [],
+      "files": 9,
+      "loc": 723
+    },
+    {
+      "name": "LabSpace.Core",
+      "path": "src/LabSpace.Core/LabSpace.Core.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "Typed virtual instruments, graphical programs and front-panel models.",
+      "unoFeatures": [],
+      "projectRefs": [],
+      "packageRefs": [],
+      "files": 6,
+      "loc": 307
+    },
+    {
+      "name": "LabSpace.Dataflow",
+      "path": "src/LabSpace.Dataflow/LabSpace.Dataflow.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "Typed graph compiler and deterministic, bounded dataflow execution.",
+      "unoFeatures": [],
+      "projectRefs": [
+        "LabSpace.Signals"
+      ],
+      "packageRefs": [],
+      "files": 5,
+      "loc": 542
+    },
+    {
+      "name": "LabSpace.Documents",
+      "path": "src/LabSpace.Documents/LabSpace.Documents.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "Versioned bounded project persistence and executable example VIs.",
+      "unoFeatures": [],
+      "projectRefs": [
+        "LabSpace.Core"
+      ],
+      "packageRefs": [],
+      "files": 3,
+      "loc": 194
+    },
+    {
+      "name": "LabSpace.Editing",
+      "path": "src/LabSpace.Editing/LabSpace.Editing.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "Transactional graphical editing, bounded history and debugger sessions.",
+      "unoFeatures": [],
+      "projectRefs": [
+        "LabSpace.Dataflow",
+        "LabSpace.Documents"
+      ],
+      "packageRefs": [],
+      "files": 2,
+      "loc": 340
+    },
+    {
+      "name": "LabSpace.Signals",
+      "path": "src/LabSpace.Signals/LabSpace.Signals.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "Bounded signal generation, filtering, statistics and FFT kernels.",
+      "unoFeatures": [],
+      "projectRefs": [
+        "LabSpace.Core"
+      ],
+      "packageRefs": [],
+      "files": 1,
+      "loc": 64
+    },
+    {
+      "name": "LabSpace.Skia",
+      "path": "src/LabSpace.Skia/LabSpace.Skia.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "Original Skia instrument, plot and typed diagram rendering components.",
+      "unoFeatures": [],
+      "projectRefs": [
+        "LabSpace.Editing"
+      ],
+      "packageRefs": [
+        {
+          "id": "SkiaSharp",
+          "version": "3.119.4"
+        }
+      ],
+      "files": 6,
+      "loc": 458
+    },
+    {
+      "name": "LabSpace.Storage",
+      "path": "src/LabSpace.Storage/LabSpace.Storage.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "Portable project import, export and recovery storage contracts.",
+      "unoFeatures": [],
+      "projectRefs": [],
+      "packageRefs": [],
+      "files": 2,
+      "loc": 37
+    },
+    {
+      "name": "LabSpace.Tests",
+      "path": "tests/LabSpace.Tests/LabSpace.Tests.csproj",
+      "kind": "test",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "",
+      "unoFeatures": [],
+      "projectRefs": [
+        "LabSpace.Editing",
+        "LabSpace.Storage"
+      ],
+      "packageRefs": [
+        {
+          "id": "Microsoft.NET.Test.Sdk",
+          "version": "18.10.1"
+        },
+        {
+          "id": "xunit",
+          "version": "2.9.3"
+        },
+        {
+          "id": "xunit.runner.visualstudio",
+          "version": "3.1.5"
+        }
+      ],
+      "files": 6,
+      "loc": 424
+    },
+    {
+      "name": "LabSpace.Workbench",
+      "path": "src/LabSpace.Workbench/LabSpace.Workbench.csproj",
+      "kind": "library",
+      "sdk": "Uno.Sdk",
+      "targetFrameworks": [
+        "net10.0-browserwasm",
+        "net10.0-desktop"
+      ],
+      "packable": true,
+      "description": "Composable graphical instrumentation workbench for Uno desktop and browser hosts.",
+      "unoFeatures": [
+        "SkiaRenderer"
+      ],
+      "projectRefs": [
+        "LabSpace.Controls",
+        "LabSpace.Storage"
+      ],
+      "packageRefs": [],
+      "files": 4,
+      "loc": 477
+    }
+  ],
+  "nuget": [
+    {
+      "id": "Microsoft.NET.Test.Sdk",
+      "version": "18.10.1"
+    },
+    {
+      "id": "SkiaSharp",
+      "version": "3.119.4"
+    },
+    {
+      "id": "xunit",
+      "version": "2.9.3"
+    },
+    {
+      "id": "xunit.runner.visualstudio",
+      "version": "3.1.5"
+    }
+  ],
+  "workflows": [
+    {
+      "file": "build.yml",
+      "name": "Build and deploy"
+    },
+    {
+      "file": "engine.yml",
+      "name": "Engine tests"
+    },
+    {
+      "file": "environment.yml",
+      "name": "Toolchain verification"
+    },
+    {
+      "file": "release.yml",
+      "name": "Release packages"
+    }
+  ],
+  "docs": [
+    "docs/architecture.md",
+    "docs/compatibility.md",
+    "docs/development.md",
+    "docs/typed-structures.md",
+    "docs/user-guide.md"
+  ],
+  "images": []
+}

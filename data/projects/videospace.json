@@ -1,0 +1,113 @@
+{
+  "slug": "videospace",
+  "name": "VideoSpace",
+  "repo": "wieslawsoltes/VideoSpace",
+  "tagline": "Local-first nonlinear video editing with GPU composition in-browser",
+  "summary": "VideoSpace is a nonlinear video editor running as a real Uno WebAssembly and native desktop app, built on a frame-addressed C# editing engine, reusable custom controls and a local browser media pipeline. It supports transitions, editable nested sequences, multicamera sources and offline VP8/VP9 + Opus WebM export, all without a media upload service. The engine ships as ten packable libraries, six of which do not depend on Uno.",
+  "category": "Media",
+  "inspiredBy": "Adobe Premiere Pro-style nonlinear editors",
+  "version": "0.3.0-alpha.1",
+  "heroStats": [
+    { "value": "10", "label": "packable .NET libraries" },
+    { "value": "2–16", "label": "sources per multicamera group" },
+    { "value": "80,000", "label": "clips in the indexed timeline benchmark" },
+    { "value": "5", "label": "workspace layouts" }
+  ],
+  "highlights": [
+    { "title": "Real NLE editing", "text": "Razor, trim, guarded ripple, roll, slip, rate stretch, insert/overwrite and linked selection, with invalid edits rolled back atomically.", "icon": "timeline" },
+    { "title": "Transitions with real handles", "text": "Cross dissolve, dips to black/white, directional wipes and audio crossfades with centered, start or end-at-cut alignment.", "icon": "film" },
+    { "title": "Editable nested sequences", "text": "Nest a selection and keep its tracks, effects, transitions, captions, markers and audio editable, with guarded unnesting.", "icon": "layers" },
+    { "title": "Multicamera cuts", "text": "Combine 2–16 manually offset sources and cut between angles with keys 1–9 or Effect Controls.", "icon": "camera" },
+    { "title": "GPU composition", "text": "Hardware WebGPU preferred, WebGL2 fallback and reduced Canvas preview, with nested sequences and transitions rendered in one context.", "icon": "chip" },
+    { "title": "Offline WebM export", "text": "Offline export to VP9/VP8 + Opus WebM that renders every output frame, with explicit frame timestamps and sample-clock stereo audio.", "icon": "download" },
+    { "title": "Keyframed effects", "text": "Effect Controls with typed or scrubbed values, keyframe diamonds, editable color presets and curves that survive split and trim.", "icon": "effects" },
+    { "title": "Local-first by design", "text": "Media stays on your device: IndexedDB recovery in the browser and portable .videospace manifests, no upload service.", "icon": "lock" }
+  ],
+  "featureGroups": [
+    { "area": "Workspace", "items": ["Source and Program monitors, project bins and multitrack timeline", "Effect Controls, color presets, captions, history and metering", "Editing, Color, Effects, Audio and Captions layouts", "Resizable panel dividers and custom-styled Uno controls"] },
+    { "area": "Timeline editing", "items": ["Selection, razor, guarded ripple, roll, slip, rate stretch and hand tools", "Insert/overwrite from Source with In/Out marks, or drag onto a track", "Snapping, clipboard, track lock/visibility/mute/solo and sync-lock", "Transactional undo/redo; invalid operations roll back rather than half-apply"] },
+    { "area": "Transitions", "items": ["Cross dissolve and dips to black or white", "Directional wipes", "Constant-gain and constant-power audio crossfades", "Centered, start-at-cut and end-at-cut alignment using real source handles"] },
+    { "area": "Nesting and multicam", "items": ["Nest a complete temporal selection into an editable child sequence", "Open, edit and return from nested sequences; saves always keep the root", "Multicamera sources from 2–16 video/image/generated assets with manual offsets", "Fixed-angle audio or audio-follow-video; camera cuts via keys 1–9"] },
+    { "area": "Rendering and performance", "items": ["Hardware WebGPU → WebGL2 → reduced Canvas preview in the browser", "Host-owned Skia canvas on native desktop", "Prepared per-revision indexes replace full-timeline scans", "No extra evaluations, uploads or frames while the editor is idle"] },
+    { "area": "Media and output", "items": ["Import local video, audio and images via Import or file drop (browser-supported sources)", "Indexed VP8/VP9 WebM/Matroska source decoding", "Offline VP9/VP8 + Opus WebM export", "PNG frame capture, SRT captions, cuts-only EDL and generated/nested WAV"] }
+  ],
+  "packages": [
+    { "name": "VideoSpace.Core", "role": "Media/sequence model, rational time, validation and prepared indexes", "ui": "None", "layer": "model" },
+    { "name": "VideoSpace.Editing", "role": "Atomic edits, transitions, nesting, camera cuts, clipboard and history", "ui": "None", "layer": "engine" },
+    { "name": "VideoSpace.Timeline", "role": "Indexed timeline geometry, hit testing, snapping and anchored zoom", "ui": "None", "layer": "engine" },
+    { "name": "VideoSpace.Effects", "role": "Keyframed evaluation and prepared recursive frame plans", "ui": "None", "layer": "engine" },
+    { "name": "VideoSpace.Audio", "role": "Prepared sample-clock mixing, waveform reduction, metering and WAV", "ui": "None", "layer": "engine" },
+    { "name": "VideoSpace.Documents", "role": "Validated native manifests, SRT captions and guarded cuts-only EDL", "ui": "None", "layer": "io" },
+    { "name": "VideoSpace.Rendering", "role": "Skia layer/transition/sequence composition, procedural footage and PNG", "ui": "SkiaSharp", "layer": "rendering" },
+    { "name": "VideoSpace.Media", "role": "Browser storage, GPU graph, local media, packet indexing and codecs", "ui": "Uno", "layer": "service" },
+    { "name": "VideoSpace.Controls", "role": "Custom timeline, monitors, bins, panels, icons and editing fields", "ui": "Uno + Skia", "layer": "controls" },
+    { "name": "VideoSpace.Workbench", "role": "Embeddable nonlinear editing workspace, effects inspector and workflows", "ui": "Uno + Skia", "layer": "workbench" }
+  ],
+  "codeSamples": [
+    {
+      "title": "Build, test and publish for the browser",
+      "lang": "sh",
+      "code": "git clone https://github.com/wieslawsoltes/VideoSpace.git\ncd VideoSpace\npython3 scripts/fetch-assets.py\ndotnet run --project tests/VideoSpace.Tests -c Release\ndotnet run --project tests/VideoSpace.Parity.Tests -c Release\n\ndotnet workload install wasm-tools --skip-manifest-update\ndotnet publish src/VideoSpace.App -f net10.0-browserwasm -c Release \\\n  -o artifacts/publish -p:WasmShellWebAppBasePath=/VideoSpace/\npython3 scripts/collect-site.py artifacts/publish artifacts/site\npython3 scripts/serve-site.py --directory artifacts/site --port 4173"
+    },
+    {
+      "title": "Run on desktop",
+      "lang": "sh",
+      "code": "dotnet run --project src/VideoSpace.App -f net10.0-desktop \\\n  -p:VideoSpaceDesktopOnly=true"
+    }
+  ],
+  "shortcuts": [
+    { "action": "Play/pause; shuttle/stop", "keys": "Space; J / K / L" },
+    { "action": "One frame; ten frames", "keys": "Left / Right; Shift Left / Right" },
+    { "action": "Sequence bounds; In / Out / marker", "keys": "Home / End; I / O / M" },
+    { "action": "Selection / razor / ripple / roll / slip / stretch / hand", "keys": "V / C / B / N / Y / R / H" },
+    { "action": "Cut multicamera clip to angle", "keys": "1–9" },
+    { "action": "Toggle snapping", "keys": "S" },
+    { "action": "Insert / overwrite Source", "keys": "Comma / Period" },
+    { "action": "Split", "keys": "Ctrl K" },
+    { "action": "Lift / guarded ripple delete", "keys": "Delete / Shift Delete" },
+    { "action": "Undo / redo", "keys": "Ctrl Z / Ctrl Shift Z" },
+    { "action": "New / save / open / import", "keys": "Ctrl N / S / O / I" },
+    { "action": "Anchored timeline zoom", "keys": "Ctrl-wheel" }
+  ],
+  "formats": [
+    { "name": ".videospace (native JSON manifest)", "support": "read/write" },
+    { "name": "Video, audio and images (browser-supported)", "support": "import" },
+    { "name": "WebM (VP9/VP8 + Opus)", "support": "export" },
+    { "name": "PNG", "support": "export" },
+    { "name": "SRT captions", "support": "export" },
+    { "name": "EDL (CMX3600, cuts-only)", "support": "export" },
+    { "name": "WAV (generated/nested audio)", "support": "export" }
+  ],
+  "playground": {
+    "intro": "The browser editor opens the original NORTH sample with generated landscapes, titles, synthesized audio, markers and captions ready to edit.",
+    "tour": [
+      { "title": "Play NORTH", "text": "Press Space to play the sample and click the timeline ruler to seek." },
+      { "title": "Trim and cut", "text": "Press C to razor a clip, then use B, N or Y to ripple, roll or slip an edit point." },
+      { "title": "Add a transition", "text": "Select the outgoing clip at a cut and choose Clip → Add / edit transition to add a dissolve, dip or wipe." },
+      { "title": "Import your own media", "text": "Import or drop local files, select an asset to open Source, mark In/Out and press comma or period to insert or overwrite." },
+      { "title": "Nest a sequence", "text": "Select every clip in a range and choose Sequence → Nest selection, then open the nested sequence to edit inside it." },
+      { "title": "Save and export", "text": "Save a .videospace manifest, capture a PNG frame, or export an offline WebM movie." }
+    ]
+  },
+  "architecture": [
+    { "name": "Model and documents", "text": "Frame-based project model with rational time and prepared indexes, plus validated manifests, SRT and EDL.", "packages": ["VideoSpace.Core", "VideoSpace.Documents"] },
+    { "name": "Engine", "text": "Transactional editing, timeline geometry, prepared frame plans and sample-clock audio mixing, all without Uno.", "packages": ["VideoSpace.Editing", "VideoSpace.Timeline", "VideoSpace.Effects", "VideoSpace.Audio"] },
+    { "name": "Rendering and media", "text": "Skia composition on native hosts and a single-context WebGPU/WebGL2 graph with WebM indexing and codecs in the browser.", "packages": ["VideoSpace.Rendering", "VideoSpace.Media"] },
+    { "name": "Controls and workbench", "text": "Custom Uno timeline, monitors and bins composed into an embeddable editing workspace.", "packages": ["VideoSpace.Controls", "VideoSpace.Workbench"] }
+  ],
+  "boundaries": [
+    "Implemented NLE subset, not complete or pixel-identical Adobe Premiere Pro parity",
+    "Native desktop lacks imported video/audio playback, video export and live audio output",
+    "No automatic multicam sync or simultaneous angle grid; no .prproj/AAF/Final Cut XML interchange",
+    "Export is limited to a ten-minute range with explicit memory budgets; arbitrary VFR accuracy not claimed",
+    "Saved manifests omit media bytes; IndexedDB recovery is quota-dependent and not a backup"
+  ],
+  "docs": [
+    { "title": "User guide", "path": "docs/user-guide.md", "blurb": "Editing, transitions, nesting, multicam, export and shortcuts" },
+    { "title": "Architecture", "path": "docs/architecture.md", "blurb": "Session authority, prepared execution, compositing and indexed media" },
+    { "title": "Reusable libraries", "path": "docs/libraries.md", "blurb": "API examples for editing, nesting, planning and JavaScript modules" },
+    { "title": "Capability ledger", "path": "docs/limitations.md", "blurb": "Explicit platform, format and parity boundaries" },
+    { "title": "Performance", "path": "docs/performance.md", "blurb": "Prepared revisions, measurements and resource lifetime contracts" },
+    { "title": "Development", "path": "docs/development.md", "blurb": "Toolchain, test suites and validation workflow" }
+  ]
+}

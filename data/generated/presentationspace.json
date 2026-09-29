@@ -1,0 +1,302 @@
+{
+  "slug": "presentationspace",
+  "repo": "wieslawsoltes/PresentationSpace",
+  "version": "0.6.0",
+  "dotnetSdk": "10.0.100",
+  "unoSdk": "6.7.30",
+  "pinned": [],
+  "github": {
+    "stars": 0,
+    "forks": 0,
+    "openIssues": 3,
+    "createdAt": "2026-09-27T10:02:27Z",
+    "pushedAt": "2026-09-28T06:11:07Z",
+    "homepage": "https://wieslawsoltes.github.io/PresentationSpace/",
+    "license": "MIT"
+  },
+  "lastCommit": {
+    "sha": "9971625",
+    "date": "2026-09-28T08:08:33+02:00",
+    "subject": "feat: PresentationSpace 0.6 responsive UI, table design and indexed editing (#9)"
+  },
+  "loc": {
+    "total": 7192,
+    "src": 5813,
+    "tests": 1379
+  },
+  "projectCount": 9,
+  "libraryCount": 6,
+  "testProjectCount": 2,
+  "projects": [
+    {
+      "name": "PresentationSpace.App",
+      "path": "src/PresentationSpace.App/PresentationSpace.App.csproj",
+      "kind": "app",
+      "sdk": "Uno.Sdk",
+      "targetFrameworks": [
+        "net10.0-browserwasm",
+        "net10.0-desktop"
+      ],
+      "packable": false,
+      "description": "Independent Office-style presentation editor built with Uno Platform and SkiaSharp.",
+      "unoFeatures": [
+        "SkiaRenderer"
+      ],
+      "projectRefs": [
+        "PresentationSpace.Editor.Uno"
+      ],
+      "packageRefs": [],
+      "files": 8,
+      "loc": 236
+    },
+    {
+      "name": "PresentationSpace.Controls.Uno",
+      "path": "src/PresentationSpace.Controls.Uno/PresentationSpace.Controls.Uno.csproj",
+      "kind": "library",
+      "sdk": "Uno.Sdk",
+      "targetFrameworks": [
+        "net10.0-browserwasm",
+        "net10.0-desktop"
+      ],
+      "packable": true,
+      "description": "Reusable slide viewport, filmstrip, inspector, notes, sorter and presenter controls for Uno Platform.",
+      "unoFeatures": [
+        "SkiaRenderer"
+      ],
+      "projectRefs": [
+        "PresentationSpace.Core",
+        "PresentationSpace.Rendering.Skia",
+        "PresentationSpace.Ribbon.Uno"
+      ],
+      "packageRefs": [
+        {
+          "id": "Uno.WinUI.Graphics2DSK",
+          "version": "6.7.135"
+        },
+        {
+          "id": "Uno.Foundation.Runtime.WebAssembly",
+          "version": "6.7.135"
+        }
+      ],
+      "files": 20,
+      "loc": 1606
+    },
+    {
+      "name": "PresentationSpace.Core",
+      "path": "src/PresentationSpace.Core/PresentationSpace.Core.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "Immutable presentation model, geometry, editing commands and transactional undo without a UI dependency.",
+      "unoFeatures": [],
+      "projectRefs": [],
+      "packageRefs": [],
+      "files": 16,
+      "loc": 1473
+    },
+    {
+      "name": "PresentationSpace.Editor.Uno",
+      "path": "src/PresentationSpace.Editor.Uno/PresentationSpace.Editor.Uno.csproj",
+      "kind": "library",
+      "sdk": "Uno.Sdk",
+      "targetFrameworks": [
+        "net10.0-browserwasm",
+        "net10.0-desktop"
+      ],
+      "packable": true,
+      "description": "Embeddable Office-style presentation editing workspace with pluggable storage for Uno Platform.",
+      "unoFeatures": [
+        "SkiaRenderer"
+      ],
+      "projectRefs": [
+        "PresentationSpace.Controls.Uno",
+        "PresentationSpace.Formats"
+      ],
+      "packageRefs": [],
+      "files": 11,
+      "loc": 869
+    },
+    {
+      "name": "PresentationSpace.Formats",
+      "path": "src/PresentationSpace.Formats/PresentationSpace.Formats.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "Bounded, dependency-free PresentationML import and editable PowerPoint export.",
+      "unoFeatures": [],
+      "projectRefs": [
+        "PresentationSpace.Core"
+      ],
+      "packageRefs": [],
+      "files": 4,
+      "loc": 635
+    },
+    {
+      "name": "PresentationSpace.Performance",
+      "path": "tests/PresentationSpace.Performance/PresentationSpace.Performance.csproj",
+      "kind": "test",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "",
+      "unoFeatures": [],
+      "projectRefs": [
+        "PresentationSpace.Core",
+        "PresentationSpace.Rendering.Skia"
+      ],
+      "packageRefs": [
+        {
+          "id": "SkiaSharp.NativeAssets.Linux.NoDependencies",
+          "version": "3.119.2"
+        }
+      ],
+      "files": 1,
+      "loc": 46
+    },
+    {
+      "name": "PresentationSpace.Rendering.Skia",
+      "path": "src/PresentationSpace.Rendering.Skia/PresentationSpace.Rendering.Skia.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "Reusable SkiaSharp slide rendering, thumbnails, PNG and PDF export.",
+      "unoFeatures": [],
+      "projectRefs": [
+        "PresentationSpace.Core"
+      ],
+      "packageRefs": [
+        {
+          "id": "SkiaSharp",
+          "version": "3.119.2"
+        }
+      ],
+      "files": 7,
+      "loc": 741
+    },
+    {
+      "name": "PresentationSpace.Ribbon.Uno",
+      "path": "src/PresentationSpace.Ribbon.Uno/PresentationSpace.Ribbon.Uno.csproj",
+      "kind": "library",
+      "sdk": "Uno.Sdk",
+      "targetFrameworks": [
+        "net10.0-browserwasm",
+        "net10.0-desktop"
+      ],
+      "packable": true,
+      "description": "Reusable Office-style ribbon tabs, groups and command controls for Uno Platform.",
+      "unoFeatures": [
+        "SkiaRenderer"
+      ],
+      "projectRefs": [],
+      "packageRefs": [],
+      "files": 5,
+      "loc": 253
+    },
+    {
+      "name": "PresentationSpace.Tests",
+      "path": "tests/PresentationSpace.Tests/PresentationSpace.Tests.csproj",
+      "kind": "test",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "",
+      "unoFeatures": [],
+      "projectRefs": [
+        "PresentationSpace.Core",
+        "PresentationSpace.Formats",
+        "PresentationSpace.Rendering.Skia"
+      ],
+      "packageRefs": [
+        {
+          "id": "SkiaSharp.NativeAssets.Linux.NoDependencies",
+          "version": "3.119.2"
+        },
+        {
+          "id": "DocumentFormat.OpenXml",
+          "version": "3.3.0"
+        },
+        {
+          "id": "Microsoft.NET.Test.Sdk",
+          "version": "17.14.1"
+        },
+        {
+          "id": "xunit",
+          "version": "2.9.3"
+        },
+        {
+          "id": "xunit.runner.visualstudio",
+          "version": "3.1.4"
+        }
+      ],
+      "files": 13,
+      "loc": 1333
+    }
+  ],
+  "nuget": [
+    {
+      "id": "DocumentFormat.OpenXml",
+      "version": "3.3.0"
+    },
+    {
+      "id": "Microsoft.NET.Test.Sdk",
+      "version": "17.14.1"
+    },
+    {
+      "id": "SkiaSharp",
+      "version": "3.119.2"
+    },
+    {
+      "id": "SkiaSharp.NativeAssets.Linux.NoDependencies",
+      "version": "3.119.2"
+    },
+    {
+      "id": "Uno.Foundation.Runtime.WebAssembly",
+      "version": "6.7.135"
+    },
+    {
+      "id": "Uno.WinUI.Graphics2DSK",
+      "version": "6.7.135"
+    },
+    {
+      "id": "xunit",
+      "version": "2.9.3"
+    },
+    {
+      "id": "xunit.runner.visualstudio",
+      "version": "3.1.4"
+    }
+  ],
+  "workflows": [
+    {
+      "file": "build.yml",
+      "name": "Build and test"
+    },
+    {
+      "file": "pages.yml",
+      "name": "Browser and GitHub Pages"
+    },
+    {
+      "file": "release.yml",
+      "name": "Release"
+    }
+  ],
+  "docs": [
+    "docs/architecture.md",
+    "docs/compatibility.md",
+    "docs/performance.md"
+  ],
+  "images": []
+}

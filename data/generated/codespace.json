@@ -1,0 +1,301 @@
+{
+  "slug": "codespace",
+  "repo": "wieslawsoltes/CodeSpace",
+  "version": "0.1.0",
+  "dotnetSdk": "10.0.100",
+  "unoSdk": "6.7.30",
+  "pinned": [],
+  "github": {
+    "stars": 0,
+    "forks": 0,
+    "openIssues": 0,
+    "createdAt": "2026-09-27T17:34:24Z",
+    "pushedAt": "2026-09-28T06:06:32Z",
+    "homepage": "https://wieslawsoltes.github.io/CodeSpace/",
+    "license": "MIT"
+  },
+  "lastCommit": {
+    "sha": "35a802f",
+    "date": "2026-09-28T08:06:26+02:00",
+    "subject": "docs: record incremental typing benchmarks and verified recovery semantics"
+  },
+  "loc": {
+    "total": 3842,
+    "src": 3524,
+    "tests": 318
+  },
+  "projectCount": 12,
+  "libraryCount": 8,
+  "testProjectCount": 3,
+  "projects": [
+    {
+      "name": "CodeSpace.App",
+      "path": "src/CodeSpace.App/CodeSpace.App.csproj",
+      "kind": "app",
+      "sdk": "Uno.Sdk",
+      "targetFrameworks": [
+        "net10.0-browserwasm",
+        "net10.0-desktop"
+      ],
+      "packable": false,
+      "description": "Independent VS Code-style developer workbench with custom Uno Platform components.",
+      "unoFeatures": [
+        "SkiaRenderer"
+      ],
+      "projectRefs": [
+        "CodeSpace.Workbench.Uno"
+      ],
+      "packageRefs": [],
+      "files": 9,
+      "loc": 340
+    },
+    {
+      "name": "CodeSpace.Controls.Uno",
+      "path": "src/CodeSpace.Controls.Uno/CodeSpace.Controls.Uno.csproj",
+      "kind": "library",
+      "sdk": "Uno.Sdk",
+      "targetFrameworks": [
+        "net10.0-browserwasm",
+        "net10.0-desktop"
+      ],
+      "packable": true,
+      "description": "Reusable custom Uno editor, input bridge, explorer, activity bar, tabs, splitter and quick-pick controls.",
+      "unoFeatures": [
+        "SkiaRenderer"
+      ],
+      "projectRefs": [
+        "CodeSpace.Rendering.Skia",
+        "CodeSpace.Docking"
+      ],
+      "packageRefs": [],
+      "files": 6,
+      "loc": 616
+    },
+    {
+      "name": "CodeSpace.Core",
+      "path": "src/CodeSpace.Core/CodeSpace.Core.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "",
+      "unoFeatures": [],
+      "projectRefs": [],
+      "packageRefs": [],
+      "files": 3,
+      "loc": 357
+    },
+    {
+      "name": "CodeSpace.Docking",
+      "path": "src/CodeSpace.Docking/CodeSpace.Docking.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "",
+      "unoFeatures": [],
+      "projectRefs": [],
+      "packageRefs": [],
+      "files": 1,
+      "loc": 82
+    },
+    {
+      "name": "CodeSpace.Editor",
+      "path": "src/CodeSpace.Editor/CodeSpace.Editor.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "",
+      "unoFeatures": [],
+      "projectRefs": [
+        "CodeSpace.Core"
+      ],
+      "packageRefs": [],
+      "files": 3,
+      "loc": 335
+    },
+    {
+      "name": "CodeSpace.Extensions",
+      "path": "src/CodeSpace.Extensions/CodeSpace.Extensions.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "",
+      "unoFeatures": [],
+      "projectRefs": [
+        "CodeSpace.Core"
+      ],
+      "packageRefs": [],
+      "files": 2,
+      "loc": 140
+    },
+    {
+      "name": "CodeSpace.FeatureTests",
+      "path": "tests/CodeSpace.FeatureTests/CodeSpace.FeatureTests.csproj",
+      "kind": "test",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "",
+      "unoFeatures": [],
+      "projectRefs": [
+        "CodeSpace.Rendering.Skia"
+      ],
+      "packageRefs": [
+        {
+          "id": "SkiaSharp.NativeAssets.Linux.NoDependencies",
+          "version": "3.119.2"
+        }
+      ],
+      "files": 2,
+      "loc": 216
+    },
+    {
+      "name": "CodeSpace.Languages",
+      "path": "src/CodeSpace.Languages/CodeSpace.Languages.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "",
+      "unoFeatures": [],
+      "projectRefs": [
+        "CodeSpace.Core"
+      ],
+      "packageRefs": [],
+      "files": 2,
+      "loc": 256
+    },
+    {
+      "name": "CodeSpace.ProtocolTests",
+      "path": "tests/CodeSpace.ProtocolTests/CodeSpace.ProtocolTests.csproj",
+      "kind": "test",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "",
+      "unoFeatures": [],
+      "projectRefs": [
+        "CodeSpace.Extensions",
+        "CodeSpace.Languages",
+        "CodeSpace.Editor"
+      ],
+      "packageRefs": [],
+      "files": 1,
+      "loc": 53
+    },
+    {
+      "name": "CodeSpace.Rendering.Skia",
+      "path": "src/CodeSpace.Rendering.Skia/CodeSpace.Rendering.Skia.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "",
+      "unoFeatures": [],
+      "projectRefs": [
+        "CodeSpace.Editor",
+        "CodeSpace.Languages"
+      ],
+      "packageRefs": [
+        {
+          "id": "SkiaSharp",
+          "version": "3.119.2"
+        }
+      ],
+      "files": 2,
+      "loc": 294
+    },
+    {
+      "name": "CodeSpace.Tests",
+      "path": "tests/CodeSpace.Tests/CodeSpace.Tests.csproj",
+      "kind": "test",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "",
+      "unoFeatures": [],
+      "projectRefs": [
+        "CodeSpace.Core",
+        "CodeSpace.Editor",
+        "CodeSpace.Docking"
+      ],
+      "packageRefs": [],
+      "files": 1,
+      "loc": 49
+    },
+    {
+      "name": "CodeSpace.Workbench.Uno",
+      "path": "src/CodeSpace.Workbench.Uno/CodeSpace.Workbench.Uno.csproj",
+      "kind": "library",
+      "sdk": "Uno.Sdk",
+      "targetFrameworks": [
+        "net10.0-browserwasm",
+        "net10.0-desktop"
+      ],
+      "packable": true,
+      "description": "Composable VS Code-style workbench with custom Uno components.",
+      "unoFeatures": [
+        "SkiaRenderer"
+      ],
+      "projectRefs": [
+        "CodeSpace.Controls.Uno",
+        "CodeSpace.Extensions"
+      ],
+      "packageRefs": [],
+      "files": 14,
+      "loc": 1104
+    }
+  ],
+  "nuget": [
+    {
+      "id": "SkiaSharp",
+      "version": "3.119.2"
+    },
+    {
+      "id": "SkiaSharp.NativeAssets.Linux.NoDependencies",
+      "version": "3.119.2"
+    }
+  ],
+  "workflows": [
+    {
+      "file": "build.yml",
+      "name": "Build and test"
+    },
+    {
+      "file": "pages.yml",
+      "name": "Browser and Pages"
+    },
+    {
+      "file": "release.yml",
+      "name": "Release"
+    }
+  ],
+  "docs": [
+    "docs/architecture.md",
+    "docs/building.md",
+    "docs/compatibility.md",
+    "docs/performance.md"
+  ],
+  "images": []
+}

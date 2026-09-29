@@ -1,0 +1,455 @@
+{
+  "slug": "pdfspace",
+  "name": "PdfSpace",
+  "repo": "wieslawsoltes/PdfSpace",
+  "tagline": "Read, edit and review PDFs — locally, in the browser or on desktop",
+  "summary": "PdfSpace is a local-first PDF application built in C# with Uno Platform and SkiaSharp. The browser runs a real Uno WebAssembly app with the same document, editing and rendering libraries as the desktop host, and an Acrobat-inspired shell brings together tabs, comments, form preparation, native object and original-text editing, on-device OCR, AES-256 protection, redaction and page organization. No document or password is sent to a processing service.",
+  "category": "Documents",
+  "inspiredBy": "Acrobat-style PDF editors",
+  "version": "0.5.3-alpha.1",
+  "heroStats": [
+    {
+      "value": "12",
+      "label": "reusable, packable libraries"
+    },
+    {
+      "value": "3",
+      "label": "on-device OCR languages"
+    },
+    {
+      "value": "AES-256",
+      "label": "password protection in the browser"
+    },
+    {
+      "value": "5",
+      "label": "distinct save and export operations"
+    }
+  ],
+  "highlights": [
+    {
+      "title": "Genuine Uno WebAssembly",
+      "text": "The browser build is a real Uno/Skia application sharing its engines with the desktop host — not a PDF.js viewer or HTML canvas app.",
+      "icon": "globe"
+    },
+    {
+      "title": "Review without flattening",
+      "text": "Highlights, notes, replies, ink, shapes, stamps and links are written back as native PDF annotation objects.",
+      "icon": "note"
+    },
+    {
+      "title": "Prepare and fill forms",
+      "text": "Create text, check-box and dropdown fields, fill imported forms, and import or export values as XFDF or JSON.",
+      "icon": "form"
+    },
+    {
+      "title": "Edit native objects",
+      "text": "Select native text, paths, images and Form groups on the page, then move, resize, align, group, crop or restyle them with one-step undo.",
+      "icon": "pen"
+    },
+    {
+      "title": "Real original-text edits",
+      "text": "Replaces actual PDF text-showing operands instead of covering them with a white rectangle; unsupported cases are rejected.",
+      "icon": "text"
+    },
+    {
+      "title": "Local Scan & OCR",
+      "text": "Recognize image-only PDFs in English, Polish or German, review words against the scan, and export a searchable PDF.",
+      "icon": "ocr"
+    },
+    {
+      "title": "Protect and redact a copy",
+      "text": "Export AES-256 PDFs with separate opening and owner passwords, or build a confirmed image-only redacted copy.",
+      "icon": "lock"
+    },
+    {
+      "title": "Indexed performance",
+      "text": "Indexed page geometry, bounded search indexes and bounded picture/source caches reduce repeated layout and parsing work on large documents.",
+      "icon": "gauge"
+    }
+  ],
+  "featureGroups": [
+    {
+      "area": "Read and navigate",
+      "items": [
+        "Multiple document tabs for PDFs and editable workspaces",
+        "Search and copy text; zoom, pan and Ctrl+wheel zoom around the pointer",
+        "Continuous, single-page and two-page layouts with virtualized thumbnails",
+        "Original PDF outlines alongside editable workspace bookmarks",
+        "Local named destinations and internal links that follow page reorganization"
+      ]
+    },
+    {
+      "area": "Review and comment",
+      "items": [
+        "Text, highlight, underline, strikethrough, notes and threaded replies",
+        "Ink, shapes, arrows, stamps and links",
+        "Move, resize and recolor annotations; resolve comments; undo and redo",
+        "Supported annotations and replies export as native PDF objects"
+      ]
+    },
+    {
+      "area": "Forms",
+      "items": [
+        "Create text, check-box and dropdown fields directly on a page",
+        "Fill imported text fields, check boxes, radio groups and single-select choices",
+        "Edit tooltips, defaults, read-only/required/multiline flags, font size and maximum length",
+        "Import/export plain field values as XFDF or versioned JSON in one undoable transaction",
+        "Check required fields and Tab / Shift+Tab between supported widgets"
+      ]
+    },
+    {
+      "area": "Edit existing content",
+      "items": [
+        "Replace supported original text, including text inside nested Form XObjects",
+        "Select, move, resize, rotate, flip, replace, insert or delete native image placements",
+        "Align, distribute, crop, stack, group and copy/paste objects across documents",
+        "Edit real path geometry, control points and solid fill/stroke",
+        "Native opacity, blending, stroke caps/joins, miter and dash editing",
+        "Shift constrains movement and aspect ratio; Alt resizes from the center"
+      ]
+    },
+    {
+      "area": "Scan & OCR",
+      "items": [
+        "Local recognition in English, Polish or German at 150, 200 or 300 DPI",
+        "Recognize image-only PDFs or import PNG/JPEG scans honoring EXIF orientation",
+        "Review low-confidence words against the original scan and correct them",
+        "Export a searchable PDF with an invisible Unicode text layer",
+        "Browser self-hosts pinned Tesseract.js/WASM models; native hosts use Tesseract 5"
+      ]
+    },
+    {
+      "area": "Organize and export",
+      "items": [
+        "Reorder, rotate, duplicate, delete, crop, combine, extract and split pages",
+        "Export native PDF or a separately labeled flattened visual PDF",
+        "Download PNG, text, form data or an editable .pdfspace workspace",
+        "Browser recovery in IndexedDB; atomic temporary-file recovery on desktop"
+      ]
+    },
+    {
+      "area": "Protect and redact",
+      "items": [
+        "AES-256 revision 6 output with distinct opening and owner passwords",
+        "Print, copy and edit permission flags; owner authentication before re-editing",
+        "Browser encryption runs in an isolated, hash-pinned QPDF WASM worker",
+        "Raster redaction rebuilds every page as an image with burned-in marks"
+      ]
+    }
+  ],
+  "packages": [
+    {
+      "name": "PdfSpace.Core",
+      "role": "Workspace, page, annotation, field and geometry models with validated JSON",
+      "ui": "None",
+      "layer": "model"
+    },
+    {
+      "name": "PdfSpace.Layout",
+      "role": "Crop/rotation transforms and viewport/page layouts without UI dependencies",
+      "ui": "None",
+      "layer": "model"
+    },
+    {
+      "name": "PdfSpace.Editing",
+      "role": "Transactional editing, shared field state and bounded undo/redo",
+      "ui": "None",
+      "layer": "engine"
+    },
+    {
+      "name": "PdfSpace.Documents",
+      "role": "PdfPig import, text extraction, search, page ranges and XFDF/JSON form data",
+      "ui": "None",
+      "layer": "io"
+    },
+    {
+      "name": "PdfSpace.Rendering.Skia",
+      "role": "Source-pinned Apache-2.0 PdfPig Skia renderer with image-alpha, dash and miter fixes",
+      "ui": "SkiaSharp",
+      "layer": "rendering"
+    },
+    {
+      "name": "PdfSpace.Skia",
+      "role": "Cached rendering, overlays, visual/PNG export and raster redaction",
+      "ui": "SkiaSharp",
+      "layer": "rendering"
+    },
+    {
+      "name": "PdfSpace.Pdf",
+      "role": "PDFsharp native annotation/form writer, source-text editing and security-provider contract",
+      "ui": "PDFsharp + SkiaSharp",
+      "layer": "io"
+    },
+    {
+      "name": "PdfSpace.Ocr",
+      "role": "Local OCR contracts, raster preparation, bounded TSV decoding and snapshot batches",
+      "ui": "SkiaSharp",
+      "layer": "service"
+    },
+    {
+      "name": "PdfSpace.Controls",
+      "role": "Custom Uno icons, command buttons, tabs, panels, palettes and dialogs",
+      "ui": "Uno + Skia",
+      "layer": "controls"
+    },
+    {
+      "name": "PdfSpace.Viewer",
+      "role": "Embeddable document viewport with annotation editing, form input and thumbnails",
+      "ui": "Uno + Skia",
+      "layer": "editor"
+    },
+    {
+      "name": "PdfSpace.Storage",
+      "role": "Platform-neutral file, recovery, clipboard and print contracts",
+      "ui": "None",
+      "layer": "service"
+    },
+    {
+      "name": "PdfSpace.Workbench",
+      "role": "Complete multi-document shell and PDF workflows",
+      "ui": "Uno + Skia",
+      "layer": "workbench"
+    }
+  ],
+  "codeSamples": [
+    {
+      "title": "Build and run",
+      "lang": "bash",
+      "code": "git clone https://github.com/wieslawsoltes/PdfSpace.git\ncd PdfSpace\npython3 scripts/fetch-assets.py\ndotnet workload install wasm-tools\n\n# Native engine and PDF round-trip tests.\ndotnet run --project tests/PdfSpace.Tests -c Release\n\n# Desktop host.\ndotnet run --project src/PdfSpace.App -f net10.0-desktop -p:PdfSpaceDesktopOnly=true\n\n# Browser publish and static-root collection.\ndotnet publish src/PdfSpace.App -f net10.0-browserwasm -c Release \\\n  -o artifacts/publish -p:WasmShellWebAppBasePath=/PdfSpace/\npython3 scripts/collect-site.py artifacts/publish artifacts/site\npython3 scripts/serve-site.py --directory artifacts/site --port 4173"
+    }
+  ],
+  "shortcuts": [
+    {
+      "action": "Open PDF or workspace",
+      "keys": "Ctrl/Cmd O"
+    },
+    {
+      "action": "New blank PDF",
+      "keys": "Ctrl/Cmd N"
+    },
+    {
+      "action": "Save editable workspace",
+      "keys": "Ctrl/Cmd S"
+    },
+    {
+      "action": "Export visual PDF",
+      "keys": "Ctrl/Cmd Shift S"
+    },
+    {
+      "action": "Find",
+      "keys": "Ctrl/Cmd F"
+    },
+    {
+      "action": "Open printable PDF",
+      "keys": "Ctrl/Cmd P"
+    },
+    {
+      "action": "Undo / redo",
+      "keys": "Ctrl/Cmd Z / Ctrl/Cmd Shift Z"
+    },
+    {
+      "action": "Fit page / 100%",
+      "keys": "Ctrl/Cmd 0 / Ctrl/Cmd 1"
+    },
+    {
+      "action": "Select / hand / text / ink tool",
+      "keys": "V / H / T / D"
+    },
+    {
+      "action": "Previous / next page",
+      "keys": "Page Up / Page Down"
+    },
+    {
+      "action": "Nudge selected annotation",
+      "keys": "Arrow keys"
+    },
+    {
+      "action": "Cancel gesture or inline text edit",
+      "keys": "Escape"
+    }
+  ],
+  "formats": [
+    {
+      "name": ".pdf",
+      "support": "read/write"
+    },
+    {
+      "name": ".pdfspace (editable workspace)",
+      "support": "read/write"
+    },
+    {
+      "name": "Encrypted .pdf (AES-256)",
+      "support": "read/write"
+    },
+    {
+      "name": "Flattened visual .pdf",
+      "support": "export"
+    },
+    {
+      "name": "Redacted image-only .pdf",
+      "support": "export"
+    },
+    {
+      "name": "XFDF form data",
+      "support": "read/write"
+    },
+    {
+      "name": "JSON form data",
+      "support": "read/write"
+    },
+    {
+      "name": "PNG / JPEG (scans and images)",
+      "support": "import"
+    },
+    {
+      "name": "PNG (page)",
+      "support": "export"
+    },
+    {
+      "name": "Text",
+      "support": "export"
+    }
+  ],
+  "playground": {
+    "intro": "Open the live WebAssembly build and try every workflow on the included original sample documents — no upload of private files needed.",
+    "tour": [
+      {
+        "title": "Browse the sample report",
+        "text": "Open the six-page Circular futures report, switch between continuous, single and two-page layouts, search with Ctrl/Cmd+F and jump via thumbnails."
+      },
+      {
+        "title": "Mark it up",
+        "text": "Highlight text, add a note and a reply, draw ink or an arrow, then resize or recolor the annotation and undo with Ctrl/Cmd+Z."
+      },
+      {
+        "title": "Fill the review form",
+        "text": "Open the interactive review form, Tab through fields, and use Prepare a form → Check required fields to find missing values."
+      },
+      {
+        "title": "Edit native objects",
+        "text": "Choose All tools → Edit objects → Open object editing example; drag, Shift-constrain, align or restyle native text, paths and images."
+      },
+      {
+        "title": "Run on-device OCR",
+        "text": "In All tools → Scan & OCR, open the scanned example, recognize the page, correct a word, then export a searchable PDF."
+      },
+      {
+        "title": "Reorganize pages",
+        "text": "In Organize pages, drag thumbnails to reorder, rotate or extract pages, and export the result as a native PDF."
+      }
+    ]
+  },
+  "architecture": [
+    {
+      "name": "Model and geometry",
+      "text": "Immutable workspace, annotation and field models, layout transforms and transactional undo — free of Uno, rendering and storage.",
+      "packages": [
+        "PdfSpace.Core",
+        "PdfSpace.Layout",
+        "PdfSpace.Editing"
+      ]
+    },
+    {
+      "name": "Parsing and rendering",
+      "text": "PdfPig import and search feed a source-pinned Skia renderer with cached pictures, overlays and visual export.",
+      "packages": [
+        "PdfSpace.Documents",
+        "PdfSpace.Rendering.Skia",
+        "PdfSpace.Skia"
+      ]
+    },
+    {
+      "name": "PDF writing and recognition",
+      "text": "A PDFsharp-backed structured writer, pluggable security provider and local OCR pipeline.",
+      "packages": [
+        "PdfSpace.Pdf",
+        "PdfSpace.Ocr"
+      ]
+    },
+    {
+      "name": "Uno controls and viewer",
+      "text": "Custom Uno controls and an embeddable Skia viewport for pointer editing, forms and thumbnails.",
+      "packages": [
+        "PdfSpace.Controls",
+        "PdfSpace.Viewer"
+      ]
+    },
+    {
+      "name": "Workbench",
+      "text": "The multi-document shell composes the workflows; hosts inject browser or desktop storage contracts.",
+      "packages": [
+        "PdfSpace.Workbench",
+        "PdfSpace.Storage"
+      ]
+    }
+  ],
+  "boundaries": [
+    "Functional PDF workflows, not complete or pixel-identical Adobe Acrobat compatibility",
+    "Export PDF rewrites the document; it is not an incremental or guaranteed lossless save",
+    "No XFA, form scripts/calculations, certificate signatures, full tagging/compliance or Office conversion",
+    "Text editing has no paragraph reflow or complex-script shaping; unsupported encodings are rejected",
+    "Redacted output is image-only; .pdfspace workspaces are unencrypted and keep the full original"
+  ],
+  "docs": [
+    {
+      "title": "Architecture",
+      "path": "docs/architecture.md",
+      "blurb": "Package boundaries, document state, rendering pipeline and recovery"
+    },
+    {
+      "title": "Components",
+      "path": "docs/components.md",
+      "blurb": "Embed headless editing, rendering, the viewport or the full workbench"
+    },
+    {
+      "title": "Compatibility",
+      "path": "docs/compatibility.md",
+      "blurb": "Save operations, security model, limits and what is not implemented"
+    },
+    {
+      "title": "Shortcuts",
+      "path": "docs/shortcuts.md",
+      "blurb": "Keyboard, pointer and form-navigation reference"
+    },
+    {
+      "title": "Form data and navigation",
+      "path": "docs/form-data-and-navigation.md",
+      "blurb": "XFDF/JSON form values, outlines, bookmarks and internal links"
+    },
+    {
+      "title": "Scan & OCR",
+      "path": "docs/ocr.md",
+      "blurb": "Local recognition workflow, engines, integration and limitations"
+    },
+    {
+      "title": "Object editing",
+      "path": "docs/object-editing.md",
+      "blurb": "Unified native object selection, paths, text blocks and grouping"
+    },
+    {
+      "title": "Native object editing",
+      "path": "docs/native-object-editing.md",
+      "blurb": "Editing native images and nested Form text without white-cover tricks"
+    },
+    {
+      "title": "Object appearance",
+      "path": "docs/object-appearance.md",
+      "blurb": "Opacity, blending, stroke styles and dense-page selection"
+    },
+    {
+      "title": "Interaction editing",
+      "path": "docs/interaction-editing.md",
+      "blurb": "Constrained and centered object gestures introduced in 0.5.2"
+    },
+    {
+      "title": "Photo import",
+      "path": "docs/photo-import.md",
+      "blurb": "EXIF-aware image insertion, duplication and undo memory budget"
+    },
+    {
+      "title": "Performance",
+      "path": "docs/performance.md",
+      "blurb": "Indexed geometry, search reuse, cache bounds and measurements"
+    }
+  ]
+}

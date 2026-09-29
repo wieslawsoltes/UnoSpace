@@ -1,0 +1,361 @@
+{
+  "slug": "labspace",
+  "name": "LabSpace",
+  "repo": "wieslawsoltes/LabSpace",
+  "tagline": "Build front panels, wire typed block diagrams and run them live",
+  "summary": "LabSpace is a graphical instrumentation studio for desktop and the browser: design front panels, connect typed block diagrams, inspect live values and run simulated signal-processing programs. It is a working independent implementation inspired by the classic NI LabVIEW workflow, with resumable nested execution, a step-into debugger and Skia-rendered editors that share one C# codebase across native and WebAssembly hosts.",
+  "category": "Engineering",
+  "inspiredBy": "the classic NI LabVIEW workflow",
+  "version": "0.2.0-alpha.1",
+  "heroStats": [
+    {
+      "value": "9",
+      "label": "packable reusable libraries"
+    },
+    {
+      "value": "4",
+      "label": "executable example VIs"
+    },
+    {
+      "value": "4,096",
+      "label": "nodes per diagram"
+    },
+    {
+      "value": "40 ms",
+      "label": "continuous-run target timer"
+    }
+  ],
+  "highlights": [
+    {
+      "title": "Paired panel and diagram",
+      "text": "Every VI has a Front Panel instrument interface and a Block Diagram program. Ctrl+E switches between them and Split shows both side by side.",
+      "icon": "layout"
+    },
+    {
+      "title": "Typed dataflow wiring",
+      "text": "Named terminals, single-driver inputs and output fan-out, with color-coded wires for numbers, Booleans, strings and waveforms. Incompatible types are rejected.",
+      "icon": "branch"
+    },
+    {
+      "title": "Typed structures",
+      "text": "For, While, Boolean Case and embedded SubVI nodes with typed tunnels, numeric auto-indexing, conditional collection and stacked shift registers.",
+      "icon": "puzzle"
+    },
+    {
+      "title": "Real signal processing",
+      "text": "Simulated sine, square and triangle sources feed filtering, RMS, peak-to-peak and Hann-windowed FFT kernels. Plots show real dataflow results, not decoration.",
+      "icon": "chart"
+    },
+    {
+      "title": "Step-into debugger",
+      "text": "Step over or into nested execution, set breakpoints inside structure bodies, highlight execution and attach probes to named outputs.",
+      "icon": "search"
+    },
+    {
+      "title": "Quick Drop",
+      "text": "Press Ctrl+Space, search for a function or control, press Enter and click to place it on the cursor position.",
+      "icon": "bolt"
+    },
+    {
+      "title": "Skia-rendered editors",
+      "text": "Both editors draw with SkiaSharp through Uno's SKCanvasElement, with visible-area culling, cached wire paths and SKPicture structure previews.",
+      "icon": "canvas"
+    },
+    {
+      "title": "Recovery built in",
+      "text": "Browser recovery uses per-origin IndexedDB and native hosts use application data. Invalid recovery is preserved rather than silently overwritten.",
+      "icon": "recovery"
+    }
+  ],
+  "featureGroups": [
+    {
+      "area": "Studio",
+      "items": [
+        "Project explorer, VI tabs and paired Front Panel / Block Diagram editors",
+        "Split view, searchable palettes and right-click context palettes",
+        "Context help, properties, error list and a broken Run arrow",
+        "Wheel zoom around the pointer, middle-button pan and Fit"
+      ]
+    },
+    {
+      "area": "Front panel",
+      "items": [
+        "Numeric controls, knobs, sliders, gauges, switches and LEDs",
+        "Strings, numeric arrays, waveform graphs and charts with value cursors",
+        "Edit Front Panel mode to move and resize controls; one drag is one undo unit",
+        "New controls create their matching diagram terminals together"
+      ]
+    },
+    {
+      "area": "Block diagram",
+      "items": [
+        "Typed named terminals, single-driver input wiring and output fan-out",
+        "Drag and marquee selection, arrow-key nudging, duplication and deletion",
+        "Copy/paste, undo/redo and probes on named outputs",
+        "Clean Up arranges nodes by dependency rank",
+        "Explicit Feedback node carries state across invocations"
+      ]
+    },
+    {
+      "area": "Structures",
+      "items": [
+        "For, While, Boolean Case and embedded SubVI connector contracts",
+        "Typed tunnels for numbers, Booleans, Unicode strings, numeric arrays and waveforms",
+        "Numeric input/output auto-indexing, conditional collection and array concatenation",
+        "Initialized and uninitialized stacked shift registers",
+        "Staged Tunnels and shift registers editor: Apply is one undoable transaction"
+      ]
+    },
+    {
+      "area": "Execution and debugging",
+      "items": [
+        "Cached topological plans that compile only when code changes",
+        "Run, run continuously, pause and abort",
+        "Step over (F10) and nested step into (F11)",
+        "Nested breakpoints, execution highlight and cooperative cancellation",
+        "Shared node budgets bound loops to 10,000 iterations"
+      ]
+    },
+    {
+      "area": "Functions and signals",
+      "items": [
+        "Arithmetic, transcendentals, Boolean logic and typed Select",
+        "Unicode string transforms and numeric array transforms",
+        "Waveform construction and simulated sine, square and triangle sources",
+        "Gain/offset, moving average, RMS, peak-to-peak and FFT"
+      ]
+    },
+    {
+      "area": "Documents",
+      "items": [
+        "Version-2 .labspace.json with source-generated serialization",
+        "Automatic migration of version-1 project files",
+        "Waveform CSV export from a selected waveform or array",
+        "Browser IndexedDB and native application-data recovery"
+      ]
+    }
+  ],
+  "packages": [
+    {
+      "name": "LabSpace.Core",
+      "role": "Models, immutable typed values, node catalog, named terminals and structure contracts",
+      "ui": "None",
+      "layer": "model"
+    },
+    {
+      "name": "LabSpace.Signals",
+      "role": "Signal generation, transformations, filtering, stable RMS and FFT",
+      "ui": "None",
+      "layer": "engine"
+    },
+    {
+      "name": "LabSpace.Dataflow",
+      "role": "Graph validation/compilation, named-output execution, nested activations and budgets",
+      "ui": "None",
+      "layer": "engine"
+    },
+    {
+      "name": "LabSpace.Documents",
+      "role": "Versioned source-generated JSON, validation/migration and executable examples",
+      "ui": "None",
+      "layer": "io"
+    },
+    {
+      "name": "LabSpace.Editing",
+      "role": "UI-independent editing, transactions, history, wiring and debugging session",
+      "ui": "None",
+      "layer": "editor"
+    },
+    {
+      "name": "LabSpace.Skia",
+      "role": "Instrument/diagram rendering, geometry, cached previews, icons and plot decimation",
+      "ui": "SkiaSharp",
+      "layer": "rendering"
+    },
+    {
+      "name": "LabSpace.Storage",
+      "role": "Host-neutral storage contract and protected recovery behavior",
+      "ui": "None",
+      "layer": "service"
+    },
+    {
+      "name": "LabSpace.Controls",
+      "role": "Uno canvases, chrome, palette, Quick Drop, connector editor and property inspector",
+      "ui": "Uno + Skia",
+      "layer": "controls"
+    },
+    {
+      "name": "LabSpace.Workbench",
+      "role": "Complete reusable studio, commands, navigation, execution and recovery scheduling",
+      "ui": "Uno + Skia",
+      "layer": "workbench"
+    }
+  ],
+  "codeSamples": [
+    {
+      "title": "Use the engine independently",
+      "lang": "csharp",
+      "code": "using LabSpace.Dataflow;\nusing LabSpace.Documents;\n\nvar vi = StructuredExamples.IndexedAccumulator();\nvar loop = vi.Diagram.Nodes.Single(node => node.Kind == \"for\");\nvar graph = GraphCompiler.Compile(vi.Diagram);\nvar runtime = new DataflowRuntime();\n\nusing var cancellation = new CancellationTokenSource();\nvar frame = runtime.Run(graph, cancellation.Token, maximumNodes: 100_000);\nConsole.WriteLine(frame.GetOutput(loop.Id, \"state\").Number); // 15\nConsole.WriteLine(string.Join(\", \", frame.GetOutput(loop.Id, \"totals\").Samples));\n// 1, 3, 6, 10, 15"
+    }
+  ],
+  "shortcuts": [
+    {
+      "action": "Switch Front Panel / Block Diagram",
+      "keys": "Ctrl E"
+    },
+    {
+      "action": "Run / run continuously",
+      "keys": "Ctrl R / F6"
+    },
+    {
+      "action": "Step over / step into",
+      "keys": "F10 / F11"
+    },
+    {
+      "action": "Quick Drop (Enter, then click to place)",
+      "keys": "Ctrl Space"
+    },
+    {
+      "action": "Save / open project / new VI",
+      "keys": "Ctrl S / Ctrl O / Ctrl N"
+    },
+    {
+      "action": "Undo / redo on canvas",
+      "keys": "Ctrl Z / Ctrl Y"
+    },
+    {
+      "action": "Copy / paste / duplicate on canvas",
+      "keys": "Ctrl C / Ctrl V / Ctrl D"
+    },
+    {
+      "action": "Select all / delete on canvas",
+      "keys": "Ctrl A / Delete"
+    },
+    {
+      "action": "Nudge on diagram by ten world units",
+      "keys": "Arrow keys"
+    },
+    {
+      "action": "Cancel gesture, placement or Quick Drop",
+      "keys": "Escape"
+    }
+  ],
+  "formats": [
+    {
+      "name": ".labspace.json",
+      "support": "read/write"
+    },
+    {
+      "name": ".labspace.json (version 1, migrated on load)",
+      "support": "read"
+    },
+    {
+      "name": "Waveform CSV",
+      "support": "export"
+    }
+  ],
+  "playground": {
+    "intro": "The live build is the real C#/Uno WebAssembly studio with four executable example VIs, so every plot you see comes from a running dataflow graph.",
+    "tour": [
+      {
+        "title": "Tune a signal",
+        "text": "Open Signal Analysis.vi, drag Amplitude or click Frequency on the front panel, then press Ctrl+R to run again and watch the waveform, RMS and spectrum update."
+      },
+      {
+        "title": "Run it continuously",
+        "text": "Press F6 to run continuously on the 40 ms timer, click a graph to position its value cursor, then pause or abort."
+      },
+      {
+        "title": "Accumulate with shift registers",
+        "text": "Open Indexed Accumulator.vi and Run to get 15 and [1,3,6,10,15]. Open Tunnels and shift registers, turn off Initialized, Apply and run twice for 15 then 30."
+      },
+      {
+        "title": "Quick Drop a function",
+        "text": "Switch to the Block Diagram with Ctrl+E, press Ctrl+Space, search for a function, press Enter and click to place it. Click an output terminal, then an input, to wire it."
+      },
+      {
+        "title": "Step through execution",
+        "text": "Press F10 to step over top-level nodes or F11 to step into a loop body; the context-help pane shows the active frame and recent values."
+      },
+      {
+        "title": "Save and export",
+        "text": "Press Ctrl+S to download a .labspace.json project, or select a waveform and use Export Waveform CSV."
+      }
+    ]
+  },
+  "architecture": [
+    {
+      "name": "Model",
+      "text": "Mutable authoring models, immutable runtime values and immutable structure contracts, with no XAML dependency.",
+      "packages": [
+        "LabSpace.Core"
+      ]
+    },
+    {
+      "name": "Engines",
+      "text": "Bounded signal kernels plus a graph compiler and resumable runtime with nested activations and shared budgets.",
+      "packages": [
+        "LabSpace.Signals",
+        "LabSpace.Dataflow"
+      ]
+    },
+    {
+      "name": "Documents and editing",
+      "text": "Versioned JSON persistence, host-neutral storage/recovery and a transactional editing and debugging session.",
+      "packages": [
+        "LabSpace.Documents",
+        "LabSpace.Editing",
+        "LabSpace.Storage"
+      ]
+    },
+    {
+      "name": "Rendering",
+      "text": "SkiaSharp instrument, plot and typed-diagram rendering with cached wire paths and SKPicture previews.",
+      "packages": [
+        "LabSpace.Skia"
+      ]
+    },
+    {
+      "name": "Uno workbench",
+      "text": "Reusable Uno canvases, palettes and inspectors composed into the complete embeddable studio.",
+      "packages": [
+        "LabSpace.Controls",
+        "LabSpace.Workbench"
+      ]
+    }
+  ],
+  "boundaries": [
+    "Not a complete, pixel-identical or binary-compatible LabVIEW replacement; the full G language is not implemented",
+    "NI .vi, .ctl and .lvproj files are not imported; older LabSpace 0.1 cannot read version-2 files",
+    "Acquisition is simulated: no NI-DAQmx, VISA, instrument drivers or physical I/O",
+    "DSP/dataflow run as managed CPU code, not WebGPU compute; scheduling is cooperative, not hard real time",
+    "Not validated for safety-critical equipment or physical/hard-real-time control"
+  ],
+  "docs": [
+    {
+      "title": "User guide",
+      "path": "docs/user-guide.md",
+      "blurb": "Panels, wiring, tunnels, debugging, files and the keyboard reference"
+    },
+    {
+      "title": "Typed structures",
+      "path": "docs/typed-structures.md",
+      "blurb": "Connector contracts, collection modes and resumable nested execution"
+    },
+    {
+      "title": "Architecture and performance",
+      "path": "docs/architecture.md",
+      "blurb": "Dependency layers, execution model, rendering caches and resource bounds"
+    },
+    {
+      "title": "Compatibility ledger",
+      "path": "docs/compatibility.md",
+      "blurb": "What is implemented versus the remaining LabVIEW parity boundaries"
+    },
+    {
+      "title": "Development and validation",
+      "path": "docs/development.md",
+      "blurb": "Toolchain, browser build, acceptance tests, packaging and deployment"
+    }
+  ]
+}

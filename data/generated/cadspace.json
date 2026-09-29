@@ -1,0 +1,313 @@
+{
+  "slug": "cadspace",
+  "repo": "wieslawsoltes/CadSpace",
+  "version": "0.1.0",
+  "dotnetSdk": "10.0.100",
+  "unoSdk": "6.7.30",
+  "pinned": [],
+  "github": {
+    "stars": 9,
+    "forks": 4,
+    "openIssues": 0,
+    "createdAt": "2026-09-27T10:14:48Z",
+    "pushedAt": "2026-09-28T19:43:26Z",
+    "homepage": "https://wieslawsoltes.github.io/CadSpace/",
+    "license": "MIT"
+  },
+  "lastCommit": {
+    "sha": "59f3943",
+    "date": "2026-09-28T21:43:26+02:00",
+    "subject": "Merge pull request #7 from sasakrsmanovic/patch-1"
+  },
+  "loc": {
+    "total": 9324,
+    "src": 8115,
+    "tests": 1209
+  },
+  "projectCount": 12,
+  "libraryCount": 6,
+  "testProjectCount": 5,
+  "projects": [
+    {
+      "name": "CadSpace.Advanced.Tests",
+      "path": "tests/CadSpace.Advanced.Tests/CadSpace.Advanced.Tests.csproj",
+      "kind": "test",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "",
+      "unoFeatures": [],
+      "projectRefs": [
+        "CadSpace.Dxf",
+        "CadSpace.Engine"
+      ],
+      "packageRefs": [],
+      "files": 4,
+      "loc": 267
+    },
+    {
+      "name": "CadSpace.App",
+      "path": "src/CadSpace.App/CadSpace.App.csproj",
+      "kind": "app",
+      "sdk": "Uno.Sdk",
+      "targetFrameworks": [
+        "net10.0-desktop",
+        "net10.0-browserwasm"
+      ],
+      "packable": false,
+      "description": "",
+      "unoFeatures": [
+        "SkiaRenderer",
+        "GLCanvas"
+      ],
+      "projectRefs": [
+        "CadSpace.Controls",
+        "CadSpace.Dxf"
+      ],
+      "packageRefs": [
+        {
+          "id": "Uno.WinUI.Graphics3DGL",
+          "version": "6.7.135"
+        }
+      ],
+      "files": 8,
+      "loc": 389
+    },
+    {
+      "name": "CadSpace.Controls",
+      "path": "src/CadSpace.Controls/CadSpace.Controls.csproj",
+      "kind": "library",
+      "sdk": "Uno.Sdk",
+      "targetFrameworks": [
+        "net10.0-desktop",
+        "net10.0-browserwasm"
+      ],
+      "packable": true,
+      "description": "",
+      "unoFeatures": [
+        "SkiaRenderer",
+        "GLCanvas"
+      ],
+      "projectRefs": [
+        "CadSpace.Engine",
+        "CadSpace.Rendering"
+      ],
+      "packageRefs": [
+        {
+          "id": "Uno.WinUI.Graphics3DGL",
+          "version": "6.7.135"
+        }
+      ],
+      "files": 31,
+      "loc": 2505
+    },
+    {
+      "name": "CadSpace.Dxf",
+      "path": "src/CadSpace.Dxf/CadSpace.Dxf.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "",
+      "unoFeatures": [],
+      "projectRefs": [
+        "CadSpace.Model"
+      ],
+      "packageRefs": [],
+      "files": 9,
+      "loc": 1467
+    },
+    {
+      "name": "CadSpace.Engine",
+      "path": "src/CadSpace.Engine/CadSpace.Engine.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "",
+      "unoFeatures": [],
+      "projectRefs": [
+        "CadSpace.Model"
+      ],
+      "packageRefs": [],
+      "files": 14,
+      "loc": 1561
+    },
+    {
+      "name": "CadSpace.Exchange.Tests",
+      "path": "tests/CadSpace.Exchange.Tests/CadSpace.Exchange.Tests.csproj",
+      "kind": "test",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "",
+      "unoFeatures": [],
+      "projectRefs": [
+        "CadSpace.Dxf",
+        "CadSpace.Engine"
+      ],
+      "packageRefs": [],
+      "files": 2,
+      "loc": 118
+    },
+    {
+      "name": "CadSpace.Geometry",
+      "path": "src/CadSpace.Geometry/CadSpace.Geometry.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "",
+      "unoFeatures": [],
+      "projectRefs": [],
+      "packageRefs": [],
+      "files": 4,
+      "loc": 349
+    },
+    {
+      "name": "CadSpace.Model",
+      "path": "src/CadSpace.Model/CadSpace.Model.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "",
+      "unoFeatures": [],
+      "projectRefs": [
+        "CadSpace.Geometry"
+      ],
+      "packageRefs": [],
+      "files": 11,
+      "loc": 1225
+    },
+    {
+      "name": "CadSpace.Performance.Tests",
+      "path": "tests/CadSpace.Performance.Tests/CadSpace.Performance.Tests.csproj",
+      "kind": "test",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "",
+      "unoFeatures": [],
+      "projectRefs": [
+        "CadSpace.Dxf",
+        "CadSpace.Engine"
+      ],
+      "packageRefs": [],
+      "files": 8,
+      "loc": 706
+    },
+    {
+      "name": "CadSpace.Persistence.Tests",
+      "path": "tests/CadSpace.Persistence.Tests/CadSpace.Persistence.Tests.csproj",
+      "kind": "test",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "",
+      "unoFeatures": [],
+      "projectRefs": [
+        "CadSpace.Dxf",
+        "CadSpace.Engine"
+      ],
+      "packageRefs": [],
+      "files": 2,
+      "loc": 82
+    },
+    {
+      "name": "CadSpace.Rendering",
+      "path": "src/CadSpace.Rendering/CadSpace.Rendering.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "",
+      "unoFeatures": [],
+      "projectRefs": [
+        "CadSpace.Model"
+      ],
+      "packageRefs": [
+        {
+          "id": "SkiaSharp",
+          "version": "3.119.2"
+        },
+        {
+          "id": "Silk.NET.OpenGL",
+          "version": "2.23.0"
+        }
+      ],
+      "files": 6,
+      "loc": 619
+    },
+    {
+      "name": "CadSpace.Tests",
+      "path": "tests/CadSpace.Tests/CadSpace.Tests.csproj",
+      "kind": "test",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "",
+      "unoFeatures": [],
+      "projectRefs": [
+        "CadSpace.Model"
+      ],
+      "packageRefs": [],
+      "files": 1,
+      "loc": 36
+    }
+  ],
+  "nuget": [
+    {
+      "id": "Silk.NET.OpenGL",
+      "version": "2.23.0"
+    },
+    {
+      "id": "SkiaSharp",
+      "version": "3.119.2"
+    },
+    {
+      "id": "Uno.WinUI.Graphics3DGL",
+      "version": "6.7.135"
+    }
+  ],
+  "workflows": [
+    {
+      "file": "build.yml",
+      "name": "Build, test and deploy"
+    },
+    {
+      "file": "release.yml",
+      "name": "Release"
+    }
+  ],
+  "docs": [
+    "docs/ARCHITECTURE.md",
+    "docs/COMMANDS.md",
+    "docs/FEATURES.md",
+    "docs/LINE-EDITING.md",
+    "docs/PERFORMANCE.md",
+    "docs/WIDE-POLYLINES.md",
+    "docs/WORKSPACE.md"
+  ],
+  "images": []
+}

@@ -1,0 +1,339 @@
+{
+  "slug": "notespace",
+  "name": "NoteSpace",
+  "repo": "wieslawsoltes/NoteSpace",
+  "tagline": "A familiar free-form notebook workspace built on Uno and Skia",
+  "summary": "NoteSpace is a notebook app with a purple desktop shell, grouped ribbon, notebook/section/page navigation and free-form pages rendered with SkiaSharp. It combines rich-text notes, tables, attachments and pressure-aware ink with scoped search and replace, autosave and validated backups — all written in C#, with JavaScript used only for browser storage, file/clipboard transfer and diagnostics.",
+  "category": "Documents",
+  "inspiredBy": "Microsoft OneNote-style notebooks",
+  "version": "0.1.0",
+  "heroStats": [
+    {
+      "value": "5",
+      "label": "independently packable libraries"
+    },
+    {
+      "value": "8",
+      "label": "levels of nested section groups"
+    },
+    {
+      "value": "100",
+      "label": "undoable transactions retained"
+    },
+    {
+      "value": "20",
+      "label": "saved versions per page"
+    }
+  ],
+  "highlights": [
+    {
+      "title": "Free-form pages",
+      "text": "Double-click anywhere on the paper to add a note, then drag its grip to move it or its corner to resize.",
+      "icon": "canvas"
+    },
+    {
+      "title": "Deep organization",
+      "text": "Notebooks, sections, nested section groups and two subpage levels with drag/drop, favorites and a recycle bin.",
+      "icon": "book"
+    },
+    {
+      "title": "Rich text formatting",
+      "text": "Fonts, sizes, bold/italic/underline/strike, colors, highlights, headings, lists, links, tags and checklists.",
+      "icon": "text"
+    },
+    {
+      "title": "Ink and shapes",
+      "text": "Pressure-aware pen where the device provides it, highlighter, stroke eraser, rectangles, ellipses and lines.",
+      "icon": "pen"
+    },
+    {
+      "title": "Tables in notes",
+      "text": "Edit cells in place, tab between them, insert, delete or transpose, and copy/paste quoted TSV.",
+      "icon": "table"
+    },
+    {
+      "title": "Scoped search and replace",
+      "text": "Search a page, section, notebook or everything, filter tags and to-dos, and replace text in one undoable step.",
+      "icon": "search"
+    },
+    {
+      "title": "Safe autosave",
+      "text": "IndexedDB and desktop stores reject stale writes, and failed loads open a non-saving recovery session.",
+      "icon": "recovery"
+    },
+    {
+      "title": "Page versions",
+      "text": "Chronological undo/redo plus manually saved page versions let you step back through your work.",
+      "icon": "history"
+    }
+  ],
+  "featureGroups": [
+    {
+      "area": "Organization",
+      "items": [
+        "Notebooks, sections, nested section groups and two subpage levels",
+        "Subtree drag/drop and reordering with before, after and inside placement",
+        "Cross-section page moves and cross-notebook section/group moves",
+        "Favorites, persistent collapse, page duplication and recycle-bin recovery",
+        "Non-destructive ungrouping that never deletes pages"
+      ]
+    },
+    {
+      "area": "Notes and formatting",
+      "items": [
+        "Free-form text containers with move/resize grips and title editing",
+        "Mixed-style ranges with font family, size, bold, italic, underline and strike",
+        "Colors, highlights, headings, lists and alignment",
+        "Links, tags and checklists"
+      ]
+    },
+    {
+      "area": "Tables and attachments",
+      "items": [
+        "In-place plain-text cell editing with keyboard traversal and row append",
+        "Row/column insert and delete, clear cell and transpose",
+        "Quoted TSV clipboard transfer preserving tabs, newlines and quotes",
+        "Whole-table editor, images and embedded file attachments"
+      ]
+    },
+    {
+      "area": "Drawing",
+      "items": [
+        "Pressure-aware pen input where the device provides it",
+        "Highlighter and stroke eraser",
+        "Rectangles, ellipses and lines",
+        "Gesture-level undo"
+      ]
+    },
+    {
+      "area": "Search and history",
+      "items": [
+        "Notebook, section and page search scopes",
+        "Case and whole-word matching with tag and to-do filters",
+        "Scoped, style-preserving Replace All as one undoable transaction",
+        "Chronological undo/redo and manually saved page versions"
+      ]
+    },
+    {
+      "area": "View and storage",
+      "items": [
+        "Light/dark chrome, paper color and ruled, grid or dotted paper",
+        "Zoom, fit, full-page view and collapsible ribbon/navigation",
+        "Section tabs, autosave and optimistic stale-write protection"
+      ]
+    },
+    {
+      "area": "Interchange",
+      "items": [
+        "Validated .notespace JSON backups",
+        "Plain text and basic Markdown import",
+        "Markdown and escaped HTML export",
+        "Rendered PNG page export including ink"
+      ]
+    }
+  ],
+  "packages": [
+    {
+      "name": "NoteSpace.Core",
+      "role": "Notebook, rich-text and ink model, geometry, source-generated JSON and validation",
+      "ui": "None",
+      "layer": "model"
+    },
+    {
+      "name": "NoteSpace.Editor",
+      "role": "Transactions and history, organization operations, scoped search/replace, rich-text and table edits, spatial indexes",
+      "ui": "None",
+      "layer": "editor"
+    },
+    {
+      "name": "NoteSpace.Storage",
+      "role": "Persistence contract, atomic file storage, conflict handling and import/export formats",
+      "ui": "None",
+      "layer": "io"
+    },
+    {
+      "name": "NoteSpace.Rendering.Skia",
+      "role": "Page composition, text layout, viewport culling, bounded native caches and PNG export",
+      "ui": "SkiaSharp",
+      "layer": "rendering"
+    },
+    {
+      "name": "NoteSpace.Controls",
+      "role": "Note surface, ribbon, notebook/page navigation, search, table editor, themes, backstage and status controls",
+      "ui": "Uno + Skia",
+      "layer": "controls"
+    }
+  ],
+  "codeSamples": [
+    {
+      "title": "Embed the note surface and search",
+      "lang": "csharp",
+      "code": "using NoteSpace.Controls;\nusing NoteSpace.Core;\nusing NoteSpace.Editor;\n\nvar session = new EditorSession(SampleWorkspace.Create());\nvar editor = new NoteSurface { Session = session };\nwindow.Content = editor;\n// Subscribe to session.Changed for your host's persistence and command UI.\n// Dispose the surface when its host is permanently closed.\n\nvar query = new NoteSearchQuery(\"draft\") {\n    Scope = NoteSearchScope.Page,\n    ScopeId = session.SelectedPage!.Id,\n    WholeWord = true\n};\nvar hits = session.Search(query).ToList();\nvar result = session.ReplaceAll(query, \"reviewed\");"
+    },
+    {
+      "title": "Build and run",
+      "lang": "sh",
+      "code": "git clone https://github.com/wieslawsoltes/NoteSpace.git\ncd NoteSpace\ndotnet workload install wasm-tools\n\ndotnet run --project tests/NoteSpace.Tests -c Release\ndotnet run --project tests/NoteSpace.Rendering.Tests -c Release\n\ndotnet run --project src/NoteSpace.App -f net10.0-browserwasm\ndotnet run --project src/NoteSpace.App -f net10.0-desktop\n\ndotnet publish src/NoteSpace.App -c Release -f net10.0-browserwasm \\\n  -o artifacts/publish -p:WasmShellWebAppBasePath=/NoteSpace/"
+    },
+    {
+      "title": "Pack reusable libraries",
+      "lang": "sh",
+      "code": "dotnet pack src/NoteSpace.Core -c Release -o artifacts/packages\ndotnet pack src/NoteSpace.Controls -c Release -o artifacts/packages"
+    }
+  ],
+  "shortcuts": [
+    {
+      "action": "Save",
+      "keys": "Ctrl S"
+    },
+    {
+      "action": "Search",
+      "keys": "Ctrl F"
+    },
+    {
+      "action": "Scoped replacement",
+      "keys": "Ctrl H"
+    },
+    {
+      "action": "New page / new subpage",
+      "keys": "Ctrl Alt N / Ctrl Alt Shift N"
+    },
+    {
+      "action": "New section group",
+      "keys": "Ctrl Alt G"
+    },
+    {
+      "action": "Focus page list",
+      "keys": "F6"
+    },
+    {
+      "action": "Rename / delete page (in page list)",
+      "keys": "F2 / Delete"
+    },
+    {
+      "action": "Undo / redo",
+      "keys": "Ctrl Z / Ctrl Y"
+    },
+    {
+      "action": "Bold / italic / underline",
+      "keys": "Ctrl B / Ctrl I / Ctrl U"
+    },
+    {
+      "action": "Next / previous table cell",
+      "keys": "Tab / Shift Tab"
+    },
+    {
+      "action": "Multiline input in a table cell",
+      "keys": "Ctrl Enter"
+    },
+    {
+      "action": "Commit and leave the editor",
+      "keys": "Escape"
+    }
+  ],
+  "formats": [
+    {
+      "name": ".notespace (JSON backup)",
+      "support": "read/write"
+    },
+    {
+      "name": "Plain text",
+      "support": "import"
+    },
+    {
+      "name": "Markdown (basic)",
+      "support": "import"
+    },
+    {
+      "name": "Markdown",
+      "support": "export"
+    },
+    {
+      "name": "HTML (escaped)",
+      "support": "export"
+    },
+    {
+      "name": "PNG (rendered page with ink)",
+      "support": "export"
+    }
+  ],
+  "playground": {
+    "intro": "The live build creates a sample notebook on first visit, so you can start writing, drawing and organizing pages right away.",
+    "tour": [
+      {
+        "title": "Add a page",
+        "text": "Choose Add page and type its title, then double-click blank paper to add a note and double-click it to edit."
+      },
+      {
+        "title": "Arrange notes",
+        "text": "Drag a note container by its top grip to move it, or by its lower-right corner to resize it."
+      },
+      {
+        "title": "Draw on the page",
+        "text": "Use Draw to sketch with the pen or highlighter, add shapes, and erase strokes."
+      },
+      {
+        "title": "Organize the notebook",
+        "text": "Right-click notebooks, sections, groups or pages for actions, or drag a page by its grip to reparent it."
+      },
+      {
+        "title": "Search and replace",
+        "text": "Press Ctrl+F to search a chosen scope, then Ctrl+H to replace text across notes and table cells in one undoable step."
+      },
+      {
+        "title": "Export a backup",
+        "text": "Export a .notespace backup, or export Markdown, escaped HTML or a rendered PNG of the page including ink."
+      }
+    ]
+  },
+  "architecture": [
+    {
+      "name": "Model",
+      "text": "Defines notebook data, rich text, ink and geometry with source-generated JSON and validation.",
+      "packages": [
+        "NoteSpace.Core"
+      ]
+    },
+    {
+      "name": "Editing and storage",
+      "text": "UI-independent transactions, search and organization operations, plus token-checked atomic persistence.",
+      "packages": [
+        "NoteSpace.Editor",
+        "NoteSpace.Storage"
+      ]
+    },
+    {
+      "name": "Rendering",
+      "text": "Turns model state into pixels with SkiaSharp and never references Uno.",
+      "packages": [
+        "NoteSpace.Rendering.Skia"
+      ]
+    },
+    {
+      "name": "Controls",
+      "text": "Adapts the renderer and editing session to Uno input, layout and accessibility as reusable controls.",
+      "packages": [
+        "NoteSpace.Controls"
+      ]
+    }
+  ],
+  "boundaries": [
+    "Does not read .one/.onepkg files or synchronize with OneDrive or Microsoft 365",
+    "No OCR, handwriting recognition, equations, audio/video or web clipping",
+    "Browser notes are local to the profile and not encrypted; export .notespace backups regularly",
+    "Table cells are plain text with uniform sizing; merged or rich cells are not supported",
+    "Stale tabs are stopped rather than merged; there is no live collaboration"
+  ],
+  "docs": [
+    {
+      "title": "Architecture",
+      "path": "docs/architecture.md",
+      "blurb": "Dependency boundaries, transactions, rendering, persistence and contracts"
+    },
+    {
+      "title": "Notebook organization",
+      "path": "docs/organization.md",
+      "blurb": "Section groups, moves, ungrouping and page subtree drop semantics"
+    }
+  ]
+}

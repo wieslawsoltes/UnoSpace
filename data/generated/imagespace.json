@@ -1,0 +1,485 @@
+{
+  "slug": "imagespace",
+  "repo": "wieslawsoltes/ImageSpace",
+  "version": "0.3.2-alpha.1",
+  "dotnetSdk": "10.0.401",
+  "unoSdk": "6.7.30",
+  "pinned": [],
+  "github": {
+    "stars": 1,
+    "forks": 0,
+    "openIssues": 0,
+    "createdAt": "2026-09-27T17:24:26Z",
+    "pushedAt": "2026-09-28T14:54:22Z",
+    "homepage": "https://wieslawsoltes.github.io/ImageSpace/",
+    "license": "MIT"
+  },
+  "lastCommit": {
+    "sha": "baff3e0",
+    "date": "2026-09-28T16:54:22+02:00",
+    "subject": "Merge ImageSpace 0.3.2 retained selection UI and overlay performance improvements"
+  },
+  "loc": {
+    "total": 12516,
+    "src": 9460,
+    "tests": 3056
+  },
+  "projectCount": 19,
+  "libraryCount": 11,
+  "testProjectCount": 7,
+  "projects": [
+    {
+      "name": "ImageSpace.App",
+      "path": "src/ImageSpace.App/ImageSpace.App.csproj",
+      "kind": "app",
+      "sdk": "Uno.Sdk",
+      "targetFrameworks": [
+        "net10.0-browserwasm",
+        "net10.0-desktop"
+      ],
+      "packable": false,
+      "description": "Local-first layered image editing with Uno Platform, Skia and WebGPU.",
+      "unoFeatures": [
+        "SkiaRenderer"
+      ],
+      "projectRefs": [
+        "ImageSpace.Workbench",
+        "ImageSpace.WebGpu"
+      ],
+      "packageRefs": [],
+      "files": 6,
+      "loc": 236
+    },
+    {
+      "name": "ImageSpace.Benchmarks",
+      "path": "tests/ImageSpace.Benchmarks/ImageSpace.Benchmarks.csproj",
+      "kind": "test",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "",
+      "unoFeatures": [],
+      "projectRefs": [
+        "ImageSpace.Imaging"
+      ],
+      "packageRefs": [],
+      "files": 3,
+      "loc": 359
+    },
+    {
+      "name": "ImageSpace.CompatibilityTests",
+      "path": "tests/ImageSpace.CompatibilityTests/ImageSpace.CompatibilityTests.csproj",
+      "kind": "test",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "",
+      "unoFeatures": [],
+      "projectRefs": [
+        "ImageSpace.Editing",
+        "ImageSpace.Documents",
+        "ImageSpace.Skia"
+      ],
+      "packageRefs": [
+        {
+          "id": "SkiaSharp.NativeAssets.Linux.NoDependencies",
+          "version": "3.119.4"
+        }
+      ],
+      "files": 7,
+      "loc": 1190
+    },
+    {
+      "name": "ImageSpace.Controls",
+      "path": "src/ImageSpace.Controls/ImageSpace.Controls.csproj",
+      "kind": "library",
+      "sdk": "Uno.Sdk",
+      "targetFrameworks": [
+        "net10.0-browserwasm",
+        "net10.0-desktop"
+      ],
+      "packable": true,
+      "description": "Custom dark editor buttons, icons, panels, color spectrum, numeric controls and histograms.",
+      "unoFeatures": [
+        "SkiaRenderer"
+      ],
+      "projectRefs": [
+        "ImageSpace.Core"
+      ],
+      "packageRefs": [],
+      "files": 8,
+      "loc": 871
+    },
+    {
+      "name": "ImageSpace.Core",
+      "path": "src/ImageSpace.Core/ImageSpace.Core.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": true,
+      "description": "Copy-on-write raster tiles, layer document model, color and selection primitives.",
+      "unoFeatures": [],
+      "projectRefs": [],
+      "packageRefs": [],
+      "files": 14,
+      "loc": 1015
+    },
+    {
+      "name": "ImageSpace.Documents",
+      "path": "src/ImageSpace.Documents/ImageSpace.Documents.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": true,
+      "description": "Versioned native document archives and bounded 8-bit RGB PSD interchange.",
+      "unoFeatures": [],
+      "projectRefs": [
+        "ImageSpace.Core"
+      ],
+      "packageRefs": [],
+      "files": 7,
+      "loc": 1046
+    },
+    {
+      "name": "ImageSpace.Editing",
+      "path": "src/ImageSpace.Editing/ImageSpace.Editing.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": true,
+      "description": "Transactional editor session, bounded tile history and image-editing commands.",
+      "unoFeatures": [],
+      "projectRefs": [
+        "ImageSpace.Imaging",
+        "ImageSpace.Filters"
+      ],
+      "packageRefs": [],
+      "files": 7,
+      "loc": 449
+    },
+    {
+      "name": "ImageSpace.Editor",
+      "path": "src/ImageSpace.Editor/ImageSpace.Editor.csproj",
+      "kind": "library",
+      "sdk": "Uno.Sdk",
+      "targetFrameworks": [
+        "net10.0-browserwasm",
+        "net10.0-desktop"
+      ],
+      "packable": true,
+      "description": "Embeddable Uno image viewport with paint, selection, transform, crop and navigation gestures.",
+      "unoFeatures": [
+        "SkiaRenderer"
+      ],
+      "projectRefs": [
+        "ImageSpace.Editing",
+        "ImageSpace.Skia",
+        "ImageSpace.Controls"
+      ],
+      "packageRefs": [],
+      "files": 7,
+      "loc": 835
+    },
+    {
+      "name": "ImageSpace.Filters",
+      "path": "src/ImageSpace.Filters/ImageSpace.Filters.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": true,
+      "description": "Deterministic selection-aware color, convolution, blur and stylization kernels.",
+      "unoFeatures": [],
+      "projectRefs": [
+        "ImageSpace.Core"
+      ],
+      "packageRefs": [],
+      "files": 2,
+      "loc": 219
+    },
+    {
+      "name": "ImageSpace.Imaging",
+      "path": "src/ImageSpace.Imaging/ImageSpace.Imaging.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": true,
+      "description": "Pressure-aware brush engine, selections, flood fill and raster transforms.",
+      "unoFeatures": [],
+      "projectRefs": [
+        "ImageSpace.Core"
+      ],
+      "packageRefs": [],
+      "files": 10,
+      "loc": 978
+    },
+    {
+      "name": "ImageSpace.LayerTests",
+      "path": "tests/ImageSpace.LayerTests/ImageSpace.LayerTests.csproj",
+      "kind": "test",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "",
+      "unoFeatures": [],
+      "projectRefs": [
+        "ImageSpace.Editing",
+        "ImageSpace.Documents",
+        "ImageSpace.Skia"
+      ],
+      "packageRefs": [
+        {
+          "id": "SkiaSharp.NativeAssets.Linux.NoDependencies",
+          "version": "3.119.4"
+        }
+      ],
+      "files": 1,
+      "loc": 496
+    },
+    {
+      "name": "ImageSpace.MaskEditingTests",
+      "path": "tests/ImageSpace.MaskEditingTests/ImageSpace.MaskEditingTests.csproj",
+      "kind": "test",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "",
+      "unoFeatures": [],
+      "projectRefs": [
+        "ImageSpace.Editing",
+        "ImageSpace.Documents",
+        "ImageSpace.Skia"
+      ],
+      "packageRefs": [
+        {
+          "id": "SkiaSharp.NativeAssets.Linux.NoDependencies",
+          "version": "3.119.4"
+        }
+      ],
+      "files": 1,
+      "loc": 322
+    },
+    {
+      "name": "ImageSpace.MaskTests",
+      "path": "tests/ImageSpace.MaskTests/ImageSpace.MaskTests.csproj",
+      "kind": "test",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "",
+      "unoFeatures": [],
+      "projectRefs": [
+        "ImageSpace.Editing",
+        "ImageSpace.Documents",
+        "ImageSpace.Skia"
+      ],
+      "packageRefs": [
+        {
+          "id": "SkiaSharp.NativeAssets.Linux.NoDependencies",
+          "version": "3.119.4"
+        }
+      ],
+      "files": 1,
+      "loc": 134
+    },
+    {
+      "name": "ImageSpace.RegressionTests",
+      "path": "tests/ImageSpace.RegressionTests/ImageSpace.RegressionTests.csproj",
+      "kind": "test",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "",
+      "unoFeatures": [],
+      "projectRefs": [
+        "ImageSpace.Editing",
+        "ImageSpace.Documents",
+        "ImageSpace.Skia"
+      ],
+      "packageRefs": [
+        {
+          "id": "SkiaSharp.NativeAssets.Linux.NoDependencies",
+          "version": "3.119.4"
+        }
+      ],
+      "files": 2,
+      "loc": 415
+    },
+    {
+      "name": "ImageSpace.Skia",
+      "path": "src/ImageSpace.Skia/ImageSpace.Skia.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": true,
+      "description": "GPU-capable Skia compositor, revision-cached tile images, live adjustments and image codecs.",
+      "unoFeatures": [],
+      "projectRefs": [
+        "ImageSpace.Core"
+      ],
+      "packageRefs": [
+        {
+          "id": "SkiaSharp",
+          "version": "3.119.4"
+        }
+      ],
+      "files": 6,
+      "loc": 692
+    },
+    {
+      "name": "ImageSpace.Storage",
+      "path": "src/ImageSpace.Storage/ImageSpace.Storage.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": true,
+      "description": "Host-independent file and recovery contracts for image editor applications.",
+      "unoFeatures": [],
+      "projectRefs": [],
+      "packageRefs": [],
+      "files": 1,
+      "loc": 11
+    },
+    {
+      "name": "ImageSpace.Tests",
+      "path": "tests/ImageSpace.Tests/ImageSpace.Tests.csproj",
+      "kind": "test",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "",
+      "unoFeatures": [],
+      "projectRefs": [
+        "ImageSpace.Editing",
+        "ImageSpace.Documents",
+        "ImageSpace.Skia"
+      ],
+      "packageRefs": [
+        {
+          "id": "SkiaSharp.NativeAssets.Linux.NoDependencies",
+          "version": "3.119.4"
+        }
+      ],
+      "files": 1,
+      "loc": 140
+    },
+    {
+      "name": "ImageSpace.WebGpu",
+      "path": "src/ImageSpace.WebGpu/ImageSpace.WebGpu.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": true,
+      "description": "Permissively licensed WebGPU RGBA compute kernels and host-independent capability contracts.",
+      "unoFeatures": [],
+      "projectRefs": [
+        "ImageSpace.Filters"
+      ],
+      "packageRefs": [],
+      "files": 1,
+      "loc": 14
+    },
+    {
+      "name": "ImageSpace.Workbench",
+      "path": "src/ImageSpace.Workbench/ImageSpace.Workbench.csproj",
+      "kind": "library",
+      "sdk": "Uno.Sdk",
+      "targetFrameworks": [
+        "net10.0-browserwasm",
+        "net10.0-desktop"
+      ],
+      "packable": true,
+      "description": "Reusable professional photo-editing workspace, panels, menus, multi-document tabs and file commands.",
+      "unoFeatures": [
+        "SkiaRenderer"
+      ],
+      "projectRefs": [
+        "ImageSpace.Editor",
+        "ImageSpace.Documents",
+        "ImageSpace.Storage"
+      ],
+      "packageRefs": [],
+      "files": 22,
+      "loc": 3094
+    }
+  ],
+  "nuget": [
+    {
+      "id": "SkiaSharp",
+      "version": "3.119.4"
+    },
+    {
+      "id": "SkiaSharp.NativeAssets.Linux.NoDependencies",
+      "version": "3.119.4"
+    }
+  ],
+  "workflows": [
+    {
+      "file": "build.yml",
+      "name": "Build"
+    },
+    {
+      "file": "desktop.yml",
+      "name": "Desktop"
+    },
+    {
+      "file": "format.yml",
+      "name": "Format source"
+    },
+    {
+      "file": "masks.yml",
+      "name": "Mask regressions"
+    },
+    {
+      "file": "pages.yml",
+      "name": "GitHub Pages"
+    },
+    {
+      "file": "release.yml",
+      "name": "Release"
+    }
+  ],
+  "docs": [
+    "docs/architecture.md",
+    "docs/compatibility-performance.md",
+    "docs/development.md",
+    "docs/features.md",
+    "docs/mask-application-and-rendering.md",
+    "docs/mask-editing.md",
+    "docs/mask-placement.md",
+    "docs/tonal-adjustments.md",
+    "docs/ui-performance-validation.md",
+    "docs/ui-responsiveness.md",
+    "docs/user-guide.md"
+  ],
+  "images": []
+}

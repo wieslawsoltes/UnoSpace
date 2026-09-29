@@ -1,0 +1,398 @@
+{
+  "slug": "vectorspace",
+  "repo": "wieslawsoltes/VectorSpace",
+  "version": "0.6.0-alpha.1",
+  "dotnetSdk": "10.0.401",
+  "unoSdk": "6.7.30",
+  "pinned": [
+    {
+      "name": ".NET SDK",
+      "version": "10.0.401"
+    },
+    {
+      "name": "Uno SDK",
+      "version": "6.7.30"
+    },
+    {
+      "name": "Uno WinUI, SDK-matched",
+      "version": "6.7.135"
+    },
+    {
+      "name": "Managed/native SkiaSharp",
+      "version": "3.119.2"
+    },
+    {
+      "name": "Playwright",
+      "version": "1.63.0"
+    }
+  ],
+  "github": {
+    "stars": 0,
+    "forks": 0,
+    "openIssues": 1,
+    "createdAt": "2026-09-27T07:27:33Z",
+    "pushedAt": "2026-09-29T07:01:49Z",
+    "homepage": "https://wieslawsoltes.github.io/VectorSpace/",
+    "license": "MIT"
+  },
+  "lastCommit": {
+    "sha": "9531fb4",
+    "date": "2026-09-29T00:46:50+02:00",
+    "subject": "Merge pull request #13: complete collaboration 0.6"
+  },
+  "loc": {
+    "total": 12635,
+    "src": 9742,
+    "tests": 2473
+  },
+  "projectCount": 15,
+  "libraryCount": 10,
+  "testProjectCount": 3,
+  "projects": [
+    {
+      "name": "VectorSpace.App",
+      "path": "src/VectorSpace.App/VectorSpace.App.csproj",
+      "kind": "app",
+      "sdk": "Uno.Sdk",
+      "targetFrameworks": [
+        "net10.0-browserwasm",
+        "net10.0-desktop"
+      ],
+      "packable": false,
+      "description": "Local-first vector design with Uno Platform and SkiaSharp.",
+      "unoFeatures": [
+        "SkiaRenderer"
+      ],
+      "projectRefs": [
+        "VectorSpace.Workbench"
+      ],
+      "packageRefs": [],
+      "files": 8,
+      "loc": 333
+    },
+    {
+      "name": "VectorSpace.Collaboration",
+      "path": "src/VectorSpace.Collaboration/VectorSpace.Collaboration.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": true,
+      "description": "Versioned collaboration transactions, conditional history, presence and transport for VectorSpace.",
+      "unoFeatures": [],
+      "projectRefs": [
+        "VectorSpace.Documents"
+      ],
+      "packageRefs": [],
+      "files": 11,
+      "loc": 817
+    },
+    {
+      "name": "VectorSpace.Collaboration.EditorTests",
+      "path": "tests/VectorSpace.Collaboration.EditorTests/VectorSpace.Collaboration.EditorTests.csproj",
+      "kind": "test",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "",
+      "unoFeatures": [],
+      "projectRefs": [
+        "VectorSpace.Collaboration",
+        "VectorSpace.Editing"
+      ],
+      "packageRefs": [],
+      "files": 4,
+      "loc": 335
+    },
+    {
+      "name": "VectorSpace.Collaboration.Tests",
+      "path": "tests/VectorSpace.Collaboration.Tests/VectorSpace.Collaboration.Tests.csproj",
+      "kind": "test",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "",
+      "unoFeatures": [],
+      "projectRefs": [
+        "VectorSpace.Collaboration"
+      ],
+      "packageRefs": [],
+      "files": 1,
+      "loc": 138
+    },
+    {
+      "name": "VectorSpace.Controls",
+      "path": "src/VectorSpace.Controls/VectorSpace.Controls.csproj",
+      "kind": "library",
+      "sdk": "Uno.Sdk",
+      "targetFrameworks": [
+        "net10.0-browserwasm",
+        "net10.0-desktop"
+      ],
+      "packable": true,
+      "description": "Compact, accessible Uno editor controls, original vector icons, numeric scrubbing, color spectrum and layer rows.",
+      "unoFeatures": [
+        "SkiaRenderer"
+      ],
+      "projectRefs": [],
+      "packageRefs": [],
+      "files": 10,
+      "loc": 535
+    },
+    {
+      "name": "VectorSpace.Core",
+      "path": "src/VectorSpace.Core/VectorSpace.Core.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": true,
+      "description": "Platform-independent vector document, scene graph and geometry for VectorSpace.",
+      "unoFeatures": [],
+      "projectRefs": [],
+      "packageRefs": [],
+      "files": 8,
+      "loc": 769
+    },
+    {
+      "name": "VectorSpace.Documents",
+      "path": "src/VectorSpace.Documents/VectorSpace.Documents.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": true,
+      "description": "Versioned JSON documents, safe SVG interchange and workspace storage contracts.",
+      "unoFeatures": [],
+      "projectRefs": [
+        "VectorSpace.Core"
+      ],
+      "packageRefs": [],
+      "files": 11,
+      "loc": 799
+    },
+    {
+      "name": "VectorSpace.Editing",
+      "path": "src/VectorSpace.Editing/VectorSpace.Editing.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": true,
+      "description": "Transactional editing, selection, undo/redo, components and viewport services.",
+      "unoFeatures": [],
+      "projectRefs": [
+        "VectorSpace.Core",
+        "VectorSpace.Documents",
+        "VectorSpace.Layout"
+      ],
+      "packageRefs": [],
+      "files": 14,
+      "loc": 1452
+    },
+    {
+      "name": "VectorSpace.Editor",
+      "path": "src/VectorSpace.Editor/VectorSpace.Editor.csproj",
+      "kind": "library",
+      "sdk": "Uno.Sdk",
+      "targetFrameworks": [
+        "net10.0-browserwasm",
+        "net10.0-desktop"
+      ],
+      "packable": true,
+      "description": "Embeddable Uno/Skia design surface with direct manipulation, vector tools, snapping, text editing and presentation.",
+      "unoFeatures": [
+        "SkiaRenderer"
+      ],
+      "projectRefs": [
+        "VectorSpace.Controls",
+        "VectorSpace.Skia"
+      ],
+      "packageRefs": [],
+      "files": 11,
+      "loc": 1491
+    },
+    {
+      "name": "VectorSpace.Layout",
+      "path": "src/VectorSpace.Layout/VectorSpace.Layout.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": true,
+      "description": "Reusable auto-layout, constraints, alignment and snapping for vector scenes.",
+      "unoFeatures": [],
+      "projectRefs": [
+        "VectorSpace.Core"
+      ],
+      "packageRefs": [],
+      "files": 2,
+      "loc": 391
+    },
+    {
+      "name": "VectorSpace.Prototyping",
+      "path": "src/VectorSpace.Prototyping/VectorSpace.Prototyping.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": true,
+      "description": "Deterministic isolated prototype playback, overlays, navigation, transitions and declarative interactions for VectorSpace.",
+      "unoFeatures": [],
+      "projectRefs": [
+        "VectorSpace.Editing"
+      ],
+      "packageRefs": [],
+      "files": 3,
+      "loc": 442
+    },
+    {
+      "name": "VectorSpace.Server",
+      "path": "server/VectorSpace.Server/VectorSpace.Server.csproj",
+      "kind": "server",
+      "sdk": "Microsoft.NET.Sdk.Web",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "Persistent collaboration service for VectorSpace.",
+      "unoFeatures": [],
+      "projectRefs": [
+        "VectorSpace.Collaboration",
+        "VectorSpace.Editing"
+      ],
+      "packageRefs": [],
+      "files": 8,
+      "loc": 420
+    },
+    {
+      "name": "VectorSpace.Skia",
+      "path": "src/VectorSpace.Skia/VectorSpace.Skia.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": true,
+      "description": "SkiaSharp rendering, hit testing, vector Boolean operations and raster export for VectorSpace.",
+      "unoFeatures": [],
+      "projectRefs": [
+        "VectorSpace.Prototyping",
+        "VectorSpace.Core",
+        "VectorSpace.Editing"
+      ],
+      "packageRefs": [
+        {
+          "id": "SkiaSharp",
+          "version": "3.119.2"
+        }
+      ],
+      "files": 8,
+      "loc": 793
+    },
+    {
+      "name": "VectorSpace.Tests",
+      "path": "tests/VectorSpace.Tests/VectorSpace.Tests.csproj",
+      "kind": "test",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "",
+      "unoFeatures": [],
+      "projectRefs": [
+        "VectorSpace.Skia"
+      ],
+      "packageRefs": [
+        {
+          "id": "SkiaSharp.NativeAssets.Linux",
+          "version": "3.119.2"
+        }
+      ],
+      "files": 13,
+      "loc": 2000
+    },
+    {
+      "name": "VectorSpace.Workbench",
+      "path": "src/VectorSpace.Workbench/VectorSpace.Workbench.csproj",
+      "kind": "library",
+      "sdk": "Uno.Sdk",
+      "targetFrameworks": [
+        "net10.0-browserwasm",
+        "net10.0-desktop"
+      ],
+      "packable": true,
+      "description": "Reusable VectorSpace workbench, layers, inspector, tool palette, prototype and document workflows.",
+      "unoFeatures": [
+        "SkiaRenderer"
+      ],
+      "projectRefs": [
+        "VectorSpace.Editor",
+        "VectorSpace.Collaboration"
+      ],
+      "packageRefs": [],
+      "files": 14,
+      "loc": 1920
+    }
+  ],
+  "nuget": [
+    {
+      "id": "SkiaSharp",
+      "version": "3.119.2"
+    },
+    {
+      "id": "SkiaSharp.NativeAssets.Linux",
+      "version": "3.119.2"
+    }
+  ],
+  "workflows": [
+    {
+      "file": "build.yml",
+      "name": "Build"
+    },
+    {
+      "file": "collaboration.yml",
+      "name": "Collaboration"
+    },
+    {
+      "file": "desktop.yml",
+      "name": "Desktop"
+    },
+    {
+      "file": "pages.yml",
+      "name": "Pages"
+    },
+    {
+      "file": "release.yml",
+      "name": "Release"
+    }
+  ],
+  "docs": [
+    "docs/APPEARANCE.md",
+    "docs/ARCHITECTURE.md",
+    "docs/COLLABORATION.md",
+    "docs/DESIGN_SYSTEMS.md",
+    "docs/EDITING.md",
+    "docs/FEATURES.md",
+    "docs/HOSTING.md",
+    "docs/PERFORMANCE.md",
+    "docs/PROTOTYPE_VALIDATION.md",
+    "docs/PROTOTYPING.md",
+    "docs/RESIZING.md",
+    "docs/VALIDATION.md"
+  ],
+  "images": [
+    "shots/vectorspace/workbench.png"
+  ]
+}

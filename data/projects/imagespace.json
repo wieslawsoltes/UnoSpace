@@ -1,0 +1,427 @@
+{
+  "slug": "imagespace",
+  "name": "ImageSpace",
+  "repo": "wieslawsoltes/ImageSpace",
+  "tagline": "A local-first layered image studio in C#, on desktop and the web",
+  "summary": "ImageSpace is an independent layered image editor built with Uno Platform, SkiaSharp and an optional WebGPU compute backend. Its photo-editing workspace runs as a genuine Uno WebAssembly application and shares its C# editor with Windows, Linux and macOS hosts. Eleven reusable .NET libraries separate the tile-based document model, brushes, selections, filters, transactions, file formats, rendering, controls, viewport and workbench.",
+  "category": "Media",
+  "inspiredBy": "Photoshop-style image editors",
+  "version": "0.3.2-alpha.1",
+  "heroStats": [
+    {
+      "value": "11",
+      "label": "reusable .NET libraries"
+    },
+    {
+      "value": "16",
+      "label": "layer blend modes"
+    },
+    {
+      "value": "14",
+      "label": "CPU filters"
+    },
+    {
+      "value": "8",
+      "label": "optional WebGPU color kernels"
+    }
+  ],
+  "highlights": [
+    {
+      "title": "Genuine Uno WebAssembly",
+      "text": "The browser workspace is a real Uno app sharing its C# editor with desktop hosts — not a monolithic canvas or an HTML mockup.",
+      "icon": "globe"
+    },
+    {
+      "title": "Layers, type and shapes",
+      "text": "Sparse pixel layers, editable multiline type and rectangle/ellipse shapes with sixteen blend modes, opacity, locks and reordering.",
+      "icon": "layers"
+    },
+    {
+      "title": "Pressure-aware painting",
+      "text": "Brush, pencil, eraser and clone with size, hardness, opacity and flow, plus basic smudge, dodge and burn.",
+      "icon": "brush"
+    },
+    {
+      "title": "Non-destructive Curves & Levels",
+      "text": "Adjustment layers with composite RGB and per-channel graphs, numeric and keyboard editing, presets and live undoable previews.",
+      "icon": "chart"
+    },
+    {
+      "title": "Independent masks",
+      "text": "Pixel, type, shape and adjustment masks with density, feather, unlinked affine placement and a separate Apply layer mask workflow.",
+      "icon": "mask"
+    },
+    {
+      "title": "Rich selections",
+      "text": "Rectangle, ellipse, lasso and contiguous color with add/subtract/intersect, feather, expand, contract, border and smooth.",
+      "icon": "wand"
+    },
+    {
+      "title": "Optional WebGPU compute",
+      "text": "A reusable browser WebGPU module accelerates eight color kernels, with an explicit CPU fallback and the tile model as source of truth.",
+      "icon": "chip"
+    },
+    {
+      "title": "Copy-on-write tiles",
+      "text": "Sparse 128-pixel RGBA tiles with copy-on-write snapshots power transactional undo without copying every pixel per stroke.",
+      "icon": "grid"
+    }
+  ],
+  "featureGroups": [
+    {
+      "area": "Paint",
+      "items": [
+        "Pressure-aware brush, pencil and eraser with size, hardness, opacity and flow",
+        "Clone from an Alt-click source on the active layer",
+        "Basic smudge, dodge and burn",
+        "Fill and linear gradient on the active pixel layer",
+        "Color spectrum, hex dialog and foreground/background swatches"
+      ]
+    },
+    {
+      "area": "Selection",
+      "items": [
+        "Rectangle, ellipse, lasso and contiguous color selection",
+        "Add, subtract and intersect with Shift, Alt and Shift+Alt",
+        "Invert, feather and alpha selection",
+        "Expand, contract, border and smooth that preserve soft coverage"
+      ]
+    },
+    {
+      "area": "Layers and masks",
+      "items": [
+        "Pixel, editable multiline type and rectangle/ellipse shape layers",
+        "Sixteen blend modes, opacity, visibility, locks, duplicate, reorder and rasterize",
+        "Masks on pixel, type, shape and adjustment layers with density and feather",
+        "Unlink masks to move, rotate and resize coverage; relink without a jump",
+        "Grayscale and red-overlay mask inspection views",
+        "Apply layer mask bakes coverage into pixel alpha as one undoable edit"
+      ]
+    },
+    {
+      "area": "Tone and effects",
+      "items": [
+        "Curves with 2–16 points per channel and shape-preserving cubic interpolation",
+        "Levels with input black/white, gamma and output endpoints",
+        "Live adjustments: brightness/contrast, saturation, invert, grayscale, sepia, blur",
+        "Fourteen CPU color/convolution filters that respect selections",
+        "Eight optional WebGPU kernels with CPU fallback"
+      ]
+    },
+    {
+      "area": "Geometry and navigation",
+      "items": [
+        "Eight-handle scaling, rotation and constrained motion",
+        "Numeric X/Y/W/H/Angle properties",
+        "Non-destructive crop with thirds guides that preserves off-canvas pixels",
+        "Canvas size and image size; wheel zoom, Space to pan, rulers and pixel grid"
+      ]
+    },
+    {
+      "area": "Files and recovery",
+      "items": [
+        "Editable .imagespace archives (reader accepts versions 1–4)",
+        "Bounded PSD v1 RGB/8 import and export, including placed user masks",
+        "PNG, JPEG and WebP import and composite export",
+        "Up to twelve document tabs",
+        "Local IndexedDB or atomic desktop recovery of the active document"
+      ]
+    }
+  ],
+  "packages": [
+    {
+      "name": "ImageSpace.Core",
+      "role": "Colors, copy-on-write tiles, layers, document invariants and tone curve/levels math",
+      "ui": "None",
+      "layer": "model"
+    },
+    {
+      "name": "ImageSpace.Imaging",
+      "role": "Pressure-aware brushes, selections, flood fill, raster geometry and histograms",
+      "ui": "None",
+      "layer": "engine"
+    },
+    {
+      "name": "ImageSpace.Filters",
+      "role": "Selection-aware color/convolution filters and sparse tone-lookup processing",
+      "ui": "None",
+      "layer": "engine"
+    },
+    {
+      "name": "ImageSpace.Editing",
+      "role": "Transactions, bounded tile history, rollback, mask application and editor commands",
+      "ui": "None",
+      "layer": "engine"
+    },
+    {
+      "name": "ImageSpace.Documents",
+      "role": "Versioned native archives and bounded 8-bit RGB PSD codec",
+      "ui": "None",
+      "layer": "io"
+    },
+    {
+      "name": "ImageSpace.Skia",
+      "role": "Compositor, revision-cached tile images, live adjustments, mask baking and image codecs",
+      "ui": "SkiaSharp",
+      "layer": "rendering"
+    },
+    {
+      "name": "ImageSpace.WebGpu",
+      "role": "WebGPU compute contracts and standalone JavaScript/WGSL RGBA kernels",
+      "ui": "WebGPU",
+      "layer": "service"
+    },
+    {
+      "name": "ImageSpace.Storage",
+      "role": "Host-independent file and recovery contracts",
+      "ui": "None",
+      "layer": "service"
+    },
+    {
+      "name": "ImageSpace.Controls",
+      "role": "Custom icons, buttons, menus, numeric fields, spectrum, histograms, curve and levels editors",
+      "ui": "Uno + Skia",
+      "layer": "controls"
+    },
+    {
+      "name": "ImageSpace.Editor",
+      "role": "Embeddable viewport with camera, paint, selection, transform and crop gestures",
+      "ui": "Uno + Skia",
+      "layer": "editor"
+    },
+    {
+      "name": "ImageSpace.Workbench",
+      "role": "Workspace, panels, tonal inspector, menus, commands and multi-document tabs",
+      "ui": "Uno + Skia",
+      "layer": "workbench"
+    }
+  ],
+  "codeSamples": [
+    {
+      "title": "Embed the viewport",
+      "lang": "csharp",
+      "code": "using ImageSpace.Core;\nusing ImageSpace.Editing;\nusing ImageSpace.Editor;\n\nvar session = new EditorSession(new ImageDocument(1600, 1000, \"Untitled\"));\nsession.AddLayer(\"Paint\");\nwindow.Content = new ImageViewport(session)\n{\n    Tool = EditorTool.Brush,\n    Foreground = new Rgba32(54, 145, 230)\n};"
+    },
+    {
+      "title": "Build and run",
+      "lang": "bash",
+      "code": "dotnet workload install wasm-tools --skip-manifest-update\npython3 scripts/fetch-assets.py\n\n# Native desktop host.\ndotnet run --project src/ImageSpace.App -f net10.0-desktop -p:ImageSpaceDesktopOnly=true\n\n# Genuine Uno browser application, with the GitHub Pages project prefix.\ndotnet publish src/ImageSpace.App -c Release -f net10.0-browserwasm \\\n  -p:WasmShellWebAppBasePath=/ImageSpace/ -o artifacts/publish\npython3 scripts/collect-site.py artifacts/publish site\npython3 scripts/serve-site.py --root site --port 4173"
+    }
+  ],
+  "shortcuts": [
+    {
+      "action": "New / Open / Save native archive",
+      "keys": "Ctrl N / Ctrl O / Ctrl S"
+    },
+    {
+      "action": "Undo / redo",
+      "keys": "Ctrl Z / Ctrl Shift Z"
+    },
+    {
+      "action": "New pixel layer / duplicate",
+      "keys": "Ctrl Shift N / Ctrl J"
+    },
+    {
+      "action": "Select all / deselect / inverse",
+      "keys": "Ctrl A / Ctrl D / Ctrl Shift I"
+    },
+    {
+      "action": "Invert pixels or active mask",
+      "keys": "Ctrl I"
+    },
+    {
+      "action": "Curves / Levels adjustment",
+      "keys": "Ctrl M / Ctrl L"
+    },
+    {
+      "action": "Brush / eraser / clone",
+      "keys": "B / E / S"
+    },
+    {
+      "action": "Rectangle / ellipse / lasso / color select",
+      "keys": "M / Shift M / L / W"
+    },
+    {
+      "action": "Move / crop / text",
+      "keys": "V / C / T"
+    },
+    {
+      "action": "Brush size",
+      "keys": "[ / ]"
+    },
+    {
+      "action": "Fit / 100% / rulers",
+      "keys": "Ctrl 0 / Ctrl 1 / Ctrl R"
+    },
+    {
+      "action": "Swap colors / reset black and white",
+      "keys": "X / D"
+    }
+  ],
+  "formats": [
+    {
+      "name": ".imagespace",
+      "support": "read/write"
+    },
+    {
+      "name": ".psd (v1 RGB/8)",
+      "support": "read/write"
+    },
+    {
+      "name": ".png",
+      "support": "read/write"
+    },
+    {
+      "name": ".jpg / .jpeg",
+      "support": "read/write"
+    },
+    {
+      "name": ".webp",
+      "support": "read/write"
+    },
+    {
+      "name": ".bmp",
+      "support": "import"
+    },
+    {
+      "name": ".gif (static)",
+      "support": "import"
+    }
+  ],
+  "playground": {
+    "intro": "Open the live WebAssembly workspace and edit the original After the light sample — pixel, type and shape layers are ready to explore.",
+    "tour": [
+      {
+        "title": "Explore the layers",
+        "text": "Select the sky, dune, type and shape layers in the Layers panel, or press V and click visible content to pick and transform it."
+      },
+      {
+        "title": "Paint on a new layer",
+        "text": "Add a pixel layer with +, press B for the brush, change size with [ and ], and tune hardness, opacity and flow."
+      },
+      {
+        "title": "Add a Curves layer",
+        "text": "Choose Image → Curves adjustment layer, click to add points and drag them; the preview updates live and Escape cancels."
+      },
+      {
+        "title": "Mask the adjustment",
+        "text": "Make a selection with M or L, add a layer mask, then paint black to hide and white to reveal; try the red Overlay view."
+      },
+      {
+        "title": "Apply a filter",
+        "text": "Run a filter on a selection; supported browser kernels use WebGPU when available, otherwise the CPU path."
+      },
+      {
+        "title": "Save and export",
+        "text": "Press Ctrl+S to download an editable .imagespace archive, or export the composite as PNG, JPEG or WebP."
+      }
+    ]
+  },
+  "architecture": [
+    {
+      "name": "Core model",
+      "text": "Straight-alpha RGBA8 pixels in sparse 128×128 copy-on-write tiles, layers and tone math.",
+      "packages": [
+        "ImageSpace.Core"
+      ]
+    },
+    {
+      "name": "Raster engines and files",
+      "text": "Brushes, selections and filters operate on the tile model; native archives and PSD are read and written here.",
+      "packages": [
+        "ImageSpace.Imaging",
+        "ImageSpace.Filters",
+        "ImageSpace.Documents"
+      ]
+    },
+    {
+      "name": "Transactions and rendering",
+      "text": "Transactional history over tiles, a revision-cached Skia compositor and an optional parallel WebGPU compute service.",
+      "packages": [
+        "ImageSpace.Editing",
+        "ImageSpace.Skia",
+        "ImageSpace.WebGpu"
+      ]
+    },
+    {
+      "name": "Uno controls and viewport",
+      "text": "Custom controls and an embeddable viewport drawing into Uno's SKCanvasElement.",
+      "packages": [
+        "ImageSpace.Controls",
+        "ImageSpace.Editor"
+      ]
+    },
+    {
+      "name": "Workbench",
+      "text": "Panels, menus and multi-document workflows, with hosts injecting file and recovery storage.",
+      "packages": [
+        "ImageSpace.Workbench",
+        "ImageSpace.Storage"
+      ]
+    }
+  ],
+  "boundaries": [
+    "Follows familiar Photoshop conventions but is not pixel-identical or at full Photoshop parity",
+    "PSD is bounded RGB/8 raster interchange: no smart objects, groups, clipping chains or ICC profiles",
+    "No layer groups, pen/path editor, layer styles, healing/content-aware tools or Camera Raw",
+    "Working limits: 8192 px per side, 16 megapixels per surface, 128 layers and twelve documents",
+    "WebGPU accelerates eight color kernels only; it is not a GPU-only engine"
+  ],
+  "docs": [
+    {
+      "title": "User guide",
+      "path": "docs/user-guide.md",
+      "blurb": "Painting, selections, masks, Curves/Levels, saving and keyboard reference"
+    },
+    {
+      "title": "Feature matrix",
+      "path": "docs/features.md",
+      "blurb": "Implemented behavior, compatibility boundary and working limits"
+    },
+    {
+      "title": "Architecture",
+      "path": "docs/architecture.md",
+      "blurb": "Package layering, copy-on-write tiles and the Skia rendering pipeline"
+    },
+    {
+      "title": "Curves and Levels",
+      "path": "docs/tonal-adjustments.md",
+      "blurb": "Tonal algorithms, interaction model, file compatibility and reuse API"
+    },
+    {
+      "title": "Mask editing",
+      "path": "docs/mask-editing.md",
+      "blurb": "Adjustment-mask coverage tools, density, feather and inspection"
+    },
+    {
+      "title": "Mask placement",
+      "path": "docs/mask-placement.md",
+      "blurb": "Linked/unlinked affine masks, archive v4 and source caching"
+    },
+    {
+      "title": "Apply layer mask",
+      "path": "docs/mask-application-and-rendering.md",
+      "blurb": "Destructive mask application and direct layer rendering contracts"
+    },
+    {
+      "title": "Compatibility and performance",
+      "path": "docs/compatibility-performance.md",
+      "blurb": "PSD contract and raster CPU/allocation improvements"
+    },
+    {
+      "title": "UI responsiveness",
+      "path": "docs/ui-responsiveness.md",
+      "blurb": "Retained UI updates that keep selection separate from content edits"
+    },
+    {
+      "title": "UI performance validation",
+      "path": "docs/ui-performance-validation.md",
+      "blurb": "Browser-trace follow-up fixes and interaction coverage"
+    },
+    {
+      "title": "Development",
+      "path": "docs/development.md",
+      "blurb": "Toolchain, validation suites, workflows and releases"
+    }
+  ]
+}

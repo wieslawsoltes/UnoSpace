@@ -1,0 +1,404 @@
+{
+  "slug": "textspace",
+  "name": "TextSpace",
+  "repo": "wieslawsoltes/TextSpace",
+  "tagline": "A local-first word processor with paginated paper, built in C#",
+  "summary": "TextSpace is an independent, local-first word processor built in C#, Uno Platform, SkiaSharp and HarfBuzz. Its ribbon, paginated editing surface, navigation panes, review tools and file workflows are reusable .NET controls—not an embedded web editor. Documents are processed locally with rolling recovery snapshots, and interchange covers native .textspace, bounded DOCX, PDF/PNG, HTML and plain text.",
+  "category": "Documents",
+  "inspiredBy": "Word-style word processors",
+  "version": "0.5.1-alpha.1",
+  "heroStats": [
+    {
+      "value": "10",
+      "label": "reusable, packable libraries"
+    },
+    {
+      "value": "17",
+      "label": "supported field types"
+    },
+    {
+      "value": "9",
+      "label": "ribbon tabs plus contextual tabs"
+    },
+    {
+      "value": "0",
+      "label": "accounts, uploads or AI services required"
+    }
+  ],
+  "highlights": [
+    {
+      "title": "Paginated paper",
+      "text": "Mixed-size sections, columns, per-section numbering, first/even/default headers and footers, paragraph keeps and widow control.",
+      "icon": "layout"
+    },
+    {
+      "title": "A familiar ribbon",
+      "text": "A custom ribbon with Home, Insert, Design, Layout, References, Mailings, Review, View and Help, plus contextual table and picture tabs.",
+      "icon": "control"
+    },
+    {
+      "title": "HarfBuzz typography",
+      "text": "HarfBuzz metrics with aligned tab stops and leaders, styles, paragraph spacing and discretionary or nonbreaking characters.",
+      "icon": "text"
+    },
+    {
+      "title": "Live fields and contents",
+      "text": "Seventeen field types with F9 updates, locks, sequences and REF/PAGEREF, plus a linked, rebuildable table of contents.",
+      "icon": "formula"
+    },
+    {
+      "title": "Merged and nested tables",
+      "text": "Rectangular merges, split-to-grid, nested tables, header-row repetition, vertical alignment and row splitting.",
+      "icon": "table"
+    },
+    {
+      "title": "Navigation and review",
+      "text": "Heading outline, page previews, search/replace, bookmarks, safe links, comments with replies and guarded change rejection.",
+      "icon": "search"
+    },
+    {
+      "title": "Real interchange",
+      "text": "Native .textspace, bounded DOCX import/export, PDF and PNG rendering, HTML and plain text, and CSV mail merge.",
+      "icon": "pdf"
+    },
+    {
+      "title": "Recovery Center",
+      "text": "Rolling IndexedDB/native snapshots, previewed repair and checksum-verified protected originals—without clearing your data.",
+      "icon": "recovery"
+    }
+  ],
+  "featureGroups": [
+    {
+      "area": "Editing",
+      "items": [
+        "Rich runs with paragraph splitting and joining",
+        "Grapheme-safe selections and transactional editing",
+        "Bounded undo/redo and native platform text input",
+        "Templates, import/export and rolling local history in the File backstage"
+      ]
+    },
+    {
+      "area": "Typography",
+      "items": [
+        "Font metadata, emphasis, colors and paragraph styles",
+        "Left, center, right, decimal and bar tabs with six leader styles",
+        "Discretionary and nonbreaking characters via Insert → Special Characters",
+        "Rich-run-aware wrapping without artificial break opportunities"
+      ]
+    },
+    {
+      "area": "Layout and sections",
+      "items": [
+        "Next, odd, even-page, continuous and next-column section starts",
+        "Per-section paper size, orientation, margins, columns and numbering",
+        "First/even/default plain-text headers and footers with placeholders",
+        "Widow/orphan control, keep with next, keep lines together, page break before",
+        "Balanced paragraph-only column bands on shared pages"
+      ]
+    },
+    {
+      "area": "Fields and contents",
+      "items": [
+        "17 allowlisted field types including PAGE, NUMPAGES, SEQ, REF and PAGEREF",
+        "F9 updates, Manage Fields, locking and unlinking",
+        "Numeric switches for Arabic, Roman and alphabetic display",
+        "Generated table of contents with linked entries and dot leaders"
+      ]
+    },
+    {
+      "area": "Tables and pictures",
+      "items": [
+        "Rectangular cell merges and split-to-grid",
+        "Nested tables and in-cell or in-flow pictures",
+        "First-header-row repetition, row splitting and minimum heights",
+        "Top/middle/bottom vertical alignment in cells"
+      ]
+    },
+    {
+      "area": "Navigation and review",
+      "items": [
+        "Heading outline and page previews",
+        "Search and replace",
+        "Bookmarks with atomic internal-link rename",
+        "Safe HTTP/HTTPS/mailto links and internal #bookmark links",
+        "Comments, replies and resolution with guarded local change rejection"
+      ]
+    },
+    {
+      "area": "Recovery",
+      "items": [
+        "Rolling IndexedDB (browser) or native snapshots",
+        "Actionable Recovery Center at startup instead of a reload-only error",
+        "Preview tab-stop repair before protecting the original",
+        "SHA-256-addressed protected originals that are never automatically evicted",
+        "Recovery → Open and Repair for native files"
+      ]
+    }
+  ],
+  "packages": [
+    {
+      "name": "TextSpace.Core",
+      "role": "Rich document model, typography, blocks, tables, anchors and text indexing",
+      "ui": "None",
+      "layer": "model"
+    },
+    {
+      "name": "TextSpace.Documents",
+      "role": "Native serialization/validation, repair plans, templates, HTML and CSV merge",
+      "ui": "None",
+      "layer": "io"
+    },
+    {
+      "name": "TextSpace.Editing",
+      "role": "Atomic editing, selections, formatting, structure and history",
+      "ui": "None",
+      "layer": "engine"
+    },
+    {
+      "name": "TextSpace.Layout",
+      "role": "Renderer-independent pagination, caret queries, section regions and hit testing",
+      "ui": "None",
+      "layer": "engine"
+    },
+    {
+      "name": "TextSpace.Skia",
+      "role": "HarfBuzz metrics, font registration, page rendering and PDF/PNG export",
+      "ui": "SkiaSharp + HarfBuzz",
+      "layer": "rendering"
+    },
+    {
+      "name": "TextSpace.OpenXml",
+      "role": "Bounded, dependency-light DOCX import/export",
+      "ui": "None",
+      "layer": "io"
+    },
+    {
+      "name": "TextSpace.Storage",
+      "role": "Recovery contracts, atomic files, protected archives and verified transport",
+      "ui": "None",
+      "layer": "service"
+    },
+    {
+      "name": "TextSpace.Controls",
+      "role": "Custom ribbon, galleries, menus, icons, palettes, dialogs and panes",
+      "ui": "Uno",
+      "layer": "controls"
+    },
+    {
+      "name": "TextSpace.Editor",
+      "role": "Embeddable paginated editor, native input bridge, rulers and previews",
+      "ui": "Uno + Skia",
+      "layer": "editor"
+    },
+    {
+      "name": "TextSpace.Workbench",
+      "role": "Composable office shell, commands, backstage, recovery, navigation and review",
+      "ui": "Uno + Skia",
+      "layer": "workbench"
+    }
+  ],
+  "codeSamples": [
+    {
+      "title": "Edit, bookmark and export DOCX/PDF",
+      "lang": "csharp",
+      "code": "using TextSpace.Documents;\nusing TextSpace.Editing;\nusing TextSpace.OpenXml;\nusing TextSpace.Skia;\n\nvar document = DocumentJson.FromText(\"Introduction\\nDetails\", \"Example\");\nvar editor = new EditorSession(document);\neditor.SetSelection(13, 20);\neditor.SetBookmark(\"Details\");\nFile.WriteAllBytes(\"Example.docx\", new DocxWriter().Write(document));\n\nusing var renderer = new DocumentRenderer();\n// Register required faces before layout for predictable typography.\nvar layout = renderer.Layout(document);\nFile.WriteAllBytes(\"Example.pdf\", renderer.ExportPdf(document, layout));"
+    },
+    {
+      "title": "Publish the browser app",
+      "lang": "sh",
+      "code": "dotnet workload install wasm-tools\ndotnet publish src/TextSpace.App -f net10.0-browserwasm -c Release \\\n  -p:WasmShellWebAppBasePath=/TextSpace/ -o artifacts/publish\npython3 scripts/collect-site.py artifacts/publish site\npython3 scripts/serve-site.py site --port 4173"
+    }
+  ],
+  "shortcuts": [
+    {
+      "action": "Update fields",
+      "keys": "F9"
+    },
+    {
+      "action": "Insert a literal tab (incl. table cells)",
+      "keys": "Ctrl Tab"
+    },
+    {
+      "action": "Next / previous table cell",
+      "keys": "Tab / Shift Tab"
+    },
+    {
+      "action": "Append a row from the last cell",
+      "keys": "Tab"
+    },
+    {
+      "action": "Follow a rendered hyperlink",
+      "keys": "Ctrl-click / Cmd-click"
+    }
+  ],
+  "formats": [
+    {
+      "name": ".textspace",
+      "support": "read/write"
+    },
+    {
+      "name": ".docx",
+      "support": "import/export"
+    },
+    {
+      "name": "PDF",
+      "support": "export"
+    },
+    {
+      "name": "PNG page image",
+      "support": "export"
+    },
+    {
+      "name": "HTML",
+      "support": "export"
+    },
+    {
+      "name": "Plain text",
+      "support": "import/export"
+    },
+    {
+      "name": "CSV (mail merge data)",
+      "support": "import"
+    }
+  ],
+  "playground": {
+    "intro": "The live browser build is the full C#/Skia word processor—write, paginate and export without an account or upload.",
+    "tour": [
+      {
+        "title": "Start from the backstage",
+        "text": "Open File to browse templates, import/export options and rolling local history."
+      },
+      {
+        "title": "Mix page layouts",
+        "text": "Choose Layout → Section Break → Continuous Section, then set Columns for the new section to see balanced column bands share a physical page."
+      },
+      {
+        "title": "Insert live fields",
+        "text": "Use Insert → Field to add PAGE or NUMWORDS, edit text, then press F9 or choose Update Fields. Try References → Table of Contents on Heading-styled text."
+      },
+      {
+        "title": "Merge and nest tables",
+        "text": "Place the caret in a table and use Table Layout → Merge Cells, Split Cell or Nested Table; Tab moves between anchor cells."
+      },
+      {
+        "title": "Bookmark and link",
+        "text": "Select text and open Insert → Navigation → Bookmark, then add Insert → Link with #YourBookmark and Ctrl-click to follow it."
+      },
+      {
+        "title": "Export your work",
+        "text": "Export the document as DOCX, PDF, a web page, plain text or a page image from the File backstage."
+      }
+    ]
+  },
+  "architecture": [
+    {
+      "name": "Document model",
+      "text": "UI-independent rich document model with persistent paragraph IDs and typographic-point geometry.",
+      "packages": [
+        "TextSpace.Core"
+      ]
+    },
+    {
+      "name": "Engines and interchange",
+      "text": "Serialization, transactional editing, deterministic pagination, bounded DOCX and recovery storage without UI dependencies.",
+      "packages": [
+        "TextSpace.Documents",
+        "TextSpace.Editing",
+        "TextSpace.Layout",
+        "TextSpace.OpenXml",
+        "TextSpace.Storage"
+      ]
+    },
+    {
+      "name": "Rendering",
+      "text": "SkiaSharp and HarfBuzz implement text metrics and paint the same geometry on screen and in PDF/PNG.",
+      "packages": [
+        "TextSpace.Skia"
+      ]
+    },
+    {
+      "name": "Uno surfaces",
+      "text": "Custom ribbon and office controls plus the embeddable paginated editor with native text input.",
+      "packages": [
+        "TextSpace.Controls",
+        "TextSpace.Editor"
+      ]
+    },
+    {
+      "name": "Workbench",
+      "text": "Assembles commands, backstage, recovery, navigation and review behind the IWorkspaceHost abstraction.",
+      "packages": [
+        "TextSpace.Workbench"
+      ]
+    }
+  ],
+  "boundaries": [
+    "Not Microsoft Word: no identical pagination, pixel-identical appearance or lossless DOCX round-tripping",
+    "Footnotes/endnotes, equations, floating drawings and rich independent header/footer stories are unfinished",
+    "No collaboration, macros or add-ins; the offline Editor checks style, not full spelling or grammar",
+    "AutoSave is device-local and abrupt termination can lose debounced edits—keep independent backups",
+    "Browser tests use Chromium; Safari, Firefox, mobile, IME and screen-reader parity need more validation"
+  ],
+  "docs": [
+    {
+      "title": "Compatibility ledger",
+      "path": "docs/COMPATIBILITY.md",
+      "blurb": "Implemented scope and boundaries for every major area"
+    },
+    {
+      "title": "Architecture",
+      "path": "docs/ARCHITECTURE.md",
+      "blurb": "Package boundaries, transactions, rendering and hosting contracts"
+    },
+    {
+      "title": "Sections and fields",
+      "path": "docs/SECTIONS-AND-FIELDS.md",
+      "blurb": "Section settings, field instructions and live table of contents"
+    },
+    {
+      "title": "Continuous sections",
+      "path": "docs/CONTINUOUS-SECTIONS.md",
+      "blurb": "Same-page section regions and column balancing"
+    },
+    {
+      "title": "Typography",
+      "path": "docs/TYPOGRAPHY.md",
+      "blurb": "Tab stops, leaders, special characters and paragraph keeps"
+    },
+    {
+      "title": "Tables",
+      "path": "docs/TABLES.md",
+      "blurb": "Merged cells, nested tables and row pagination"
+    },
+    {
+      "title": "Bookmarks",
+      "path": "docs/BOOKMARKS.md",
+      "blurb": "Named points and ranges, links and navigation"
+    },
+    {
+      "title": "Recovery",
+      "path": "docs/RECOVERY.md",
+      "blurb": "Recovery Center, Open and Repair and protected originals"
+    },
+    {
+      "title": "Recovery validation",
+      "path": "docs/RECOVERY-VALIDATION.md",
+      "blurb": "Evidence for recovery workflows and their performance"
+    },
+    {
+      "title": "Performance",
+      "path": "docs/PERFORMANCE.md",
+      "blurb": "Layout caches, indexed queries and reproducible benchmarks"
+    },
+    {
+      "title": "Recovery and input performance",
+      "path": "docs/PERFORMANCE-RECOVERY.md",
+      "blurb": "Measurements for recovery transport and native input"
+    },
+    {
+      "title": "Publishing",
+      "path": "docs/PUBLISHING.md",
+      "blurb": "Build, validation and GitHub Pages deployment"
+    }
+  ]
+}

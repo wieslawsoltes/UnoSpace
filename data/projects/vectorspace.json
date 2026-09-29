@@ -1,0 +1,426 @@
+{
+  "slug": "vectorspace",
+  "name": "VectorSpace",
+  "repo": "wieslawsoltes/VectorSpace",
+  "tagline": "Local-first vector design, prototyping and live collaboration",
+  "summary": "VectorSpace is a local-first vector design, prototyping and collaborative editing workspace built with Uno Platform and SkiaSharp. Its browser host runs real C# through Uno WebAssembly—not an HTML mockup, WebView wrapper or embedded third-party editor—and shares one workbench with Windows, macOS and Linux. An optional self-hosted ASP.NET service adds shared editing, remote cursors, comments and role-based invitations.",
+  "category": "Design",
+  "inspiredBy": "Figma-style design tools",
+  "version": "0.6.0-alpha.1",
+  "heroStats": [
+    {
+      "value": "10",
+      "label": "reusable, packable libraries"
+    },
+    {
+      "value": "16",
+      "label": "drawing tools in the palette"
+    },
+    {
+      "value": "4",
+      "label": "sharing roles, viewer to owner"
+    },
+    {
+      "value": "0",
+      "label": "accounts needed for local work"
+    }
+  ],
+  "highlights": [
+    {
+      "title": "Infinite canvas in C#",
+      "text": "An infinite canvas with a floating tool palette and contextual properties, painted by SkiaSharp through Uno's SKCanvasElement—no parallel HTML editor.",
+      "icon": "canvas"
+    },
+    {
+      "title": "Precise vector editing",
+      "text": "Cubic pen and freehand paths, anchor and handle editing, exact de Casteljau curve subdivision and Boolean operations.",
+      "icon": "pen"
+    },
+    {
+      "title": "Auto-layout and constraints",
+      "text": "Horizontal/vertical flow, wrapping, grid tracks and spans, padding and gaps, hug/fill sizing and edge or scale constraints.",
+      "icon": "layout"
+    },
+    {
+      "title": "Layered appearance",
+      "text": "Stack solid, gradient and image paints with Fill/Fit/Crop/Tile, crop images directly on canvas, and add shadows and layer blur.",
+      "icon": "palette"
+    },
+    {
+      "title": "Local design systems",
+      "text": "Component sets and variants, linked instances with overrides, and typed variables with aliases and inherited modes.",
+      "icon": "puzzle"
+    },
+    {
+      "title": "Interactive prototypes",
+      "text": "An isolated playback runtime with flows, triggers, conditions, modal overlays, runtime variables and smart-matched transitions.",
+      "icon": "magic"
+    },
+    {
+      "title": "Self-hosted collaboration",
+      "text": "Shared edits, remote cursors, participant following and synchronized comments against your own server, with per-user guarded undo.",
+      "icon": "users"
+    },
+    {
+      "title": "Local-first recovery",
+      "text": "No account for local work: recovery uses IndexedDB in the browser and the app-data folder on desktop, and Save downloads a real .vectorspace file.",
+      "icon": "recovery"
+    }
+  ],
+  "featureGroups": [
+    {
+      "area": "Vector tools",
+      "items": [
+        "Primitive shapes plus frames, sections and slices",
+        "Cubic pen and freehand pencil with configurable simplification tolerance",
+        "Point mode: multi-anchor selection, Smooth / Mirrored / Corner handles",
+        "Exact cubic subdivision, reverse path, open/close path and simplify freehand",
+        "Guides and Boolean operations"
+      ]
+    },
+    {
+      "area": "Direct manipulation",
+      "items": [
+        "Scoped, deep and marquee selection plus matching-property selection",
+        "Eight anchored resize handles, rotation, flips and Alt-drag duplication",
+        "Gesture-scoped snapping, cursor-anchored zoom and pan",
+        "Inline text editing and paste in place at the recorded world position"
+      ]
+    },
+    {
+      "area": "Layout",
+      "items": [
+        "Horizontal/vertical flow with wrapping",
+        "Grid layout with fixed, auto and fraction tracks and spans",
+        "Padding, gaps, constrained fill and axis-preserving hug/fill resize",
+        "Absolute children and edge/scale constraints"
+      ]
+    },
+    {
+      "area": "Appearance",
+      "items": [
+        "Layered solid, gradient and image paints with per-fill blend and reordering",
+        "PNG, JPEG and WebP placement with Fill, Fit, Crop and Tile modes",
+        "Direct on-canvas image cropping with a thirds grid",
+        "Strokes, dashes, opacity and blend modes",
+        "Independent drop and inner shadows plus layer blur"
+      ]
+    },
+    {
+      "area": "Design systems",
+      "items": [
+        "Local component sets, variants and linked instances",
+        "Supported overrides with stable descendant IDs across swaps",
+        "Color, number, string and boolean variables with aliases and modes",
+        "Dependency-aware clipboard and file operations"
+      ]
+    },
+    {
+      "area": "Prototypes",
+      "items": [
+        "Named flows and a dedicated player with Back, Restart and Close",
+        "Click, press/release, enter/leave, key and delay triggers",
+        "Ordered actions, typed conditions and runtime variables",
+        "Modal overlays, frame scrolling and interactive variants",
+        "Instant, dissolve, move-in, push and name-matched smart transitions"
+      ]
+    },
+    {
+      "area": "Collaboration",
+      "items": [
+        "Shared property and hierarchy edits with authoritative ordering",
+        "Remote cursors, selections and participant following",
+        "Synchronized comments with concurrent reply append",
+        "Viewer, commenter, editor and owner invitations with revocation",
+        "Persistent server revisions with download and conditional restore"
+      ]
+    }
+  ],
+  "packages": [
+    {
+      "name": "VectorSpace.Core",
+      "role": "Scene graph, variables, reactions, affine geometry and paths",
+      "ui": "None",
+      "layer": "model"
+    },
+    {
+      "name": "VectorSpace.Layout",
+      "role": "Flow/grid auto-layout, constraints and indexed snapping",
+      "ui": "None",
+      "layer": "engine"
+    },
+    {
+      "name": "VectorSpace.Documents",
+      "role": "Native JSON, validation, SVG interchange, samples and storage contracts",
+      "ui": "None",
+      "layer": "io"
+    },
+    {
+      "name": "VectorSpace.Editing",
+      "role": "Selection, transactions, undo/redo, components and viewport services",
+      "ui": "None",
+      "layer": "engine"
+    },
+    {
+      "name": "VectorSpace.Prototyping",
+      "role": "Deterministic isolated prototype playback, navigation and interpolation",
+      "ui": "None",
+      "layer": "engine"
+    },
+    {
+      "name": "VectorSpace.Collaboration",
+      "role": "Identity-addressed transactions, conditional undo, replicas and HTTP transport",
+      "ui": "None",
+      "layer": "service"
+    },
+    {
+      "name": "VectorSpace.Skia",
+      "role": "Design/prototype rendering, hit testing, Boolean paths and PNG export",
+      "ui": "SkiaSharp",
+      "layer": "rendering"
+    },
+    {
+      "name": "VectorSpace.Controls",
+      "role": "Dense editor controls, icons, numeric scrubbing, color picker and avatars",
+      "ui": "Uno + Skia",
+      "layer": "controls"
+    },
+    {
+      "name": "VectorSpace.Editor",
+      "role": "Design surface, prototype player and remote-presence overlay",
+      "ui": "Uno + Skia",
+      "layer": "editor"
+    },
+    {
+      "name": "VectorSpace.Workbench",
+      "role": "Complete authoring, sharing, recovery and history workflows",
+      "ui": "Uno + Skia",
+      "layer": "workbench"
+    }
+  ],
+  "codeSamples": [
+    {
+      "title": "Embed the workbench",
+      "lang": "csharp",
+      "code": "using VectorSpace.Documents;\nusing VectorSpace.Editing;\nusing VectorSpace.Workbench;\n\nvar session = new EditorSession(SampleDocument.Create());\n// Inject your IWorkspaceStorage implementation; optionally add ISharedRecoveryStorage.\nwindow.Content = new StudioWorkbench(session, storage);"
+    },
+    {
+      "title": "Render a frame without Uno",
+      "lang": "csharp",
+      "code": "using VectorSpace.Documents;\nusing VectorSpace.Skia;\n\nvar document = DocumentJson.Load(File.ReadAllText(\"design.vectorspace\"));\nvar frame = document.Pages[0].Nodes[0];\nusing var renderer = new SceneRenderer();\nFile.WriteAllBytes(\"frame.png\", renderer.ExportPng([frame], frame.WorldBounds, 2));"
+    },
+    {
+      "title": "Run a persistent collaboration server",
+      "lang": "bash",
+      "code": "export VECTORSPACE_CREATE_KEY=\"$(openssl rand -hex 32)\"\nexport VECTORSPACE_DATA=\"$HOME/.local/share/VectorSpace/rooms\"\ndotnet run --project server/VectorSpace.Server -c Release \\\n  --urls http://127.0.0.1:5097\n\n# Alternative, with a named persistent Docker volume:\ndocker compose up --build -d"
+    }
+  ],
+  "shortcuts": [
+    {
+      "action": "Move / Frame / Rectangle / Ellipse",
+      "keys": "V / F / R / O"
+    },
+    {
+      "action": "Pen / Pencil / Text / Comment",
+      "keys": "P / Shift P / T / C"
+    },
+    {
+      "action": "Pan / cursor-anchored zoom",
+      "keys": "Space-drag / Ctrl-wheel"
+    },
+    {
+      "action": "Multi-select / deep-select",
+      "keys": "Shift-click / Ctrl-click"
+    },
+    {
+      "action": "Duplicate while dragging",
+      "keys": "Alt-drag"
+    },
+    {
+      "action": "Undo / redo",
+      "keys": "Ctrl Z / Ctrl Shift Z"
+    },
+    {
+      "action": "Group / ungroup / auto-layout",
+      "keys": "Ctrl G / Ctrl Shift G / Shift A"
+    },
+    {
+      "action": "Nudge / large nudge",
+      "keys": "Arrow / Shift-arrow"
+    },
+    {
+      "action": "Fit all / selected",
+      "keys": "Shift 1 / Shift 2"
+    },
+    {
+      "action": "Place image",
+      "keys": "Ctrl Shift K"
+    },
+    {
+      "action": "Save / open / quick actions",
+      "keys": "Ctrl S / Ctrl O / Ctrl K"
+    },
+    {
+      "action": "Hide panels / cancel / rename",
+      "keys": "Tab / Escape / F2"
+    }
+  ],
+  "formats": [
+    {
+      "name": ".vectorspace",
+      "support": "read/write"
+    },
+    {
+      "name": "SVG",
+      "support": "import/export"
+    },
+    {
+      "name": "PNG",
+      "support": "export"
+    },
+    {
+      "name": "PNG / JPEG / WebP images",
+      "support": "import"
+    }
+  ],
+  "playground": {
+    "intro": "The live browser build is the full C# editor running on WebAssembly—open a sample playground and edit every shape, paint and interaction.",
+    "tour": [
+      {
+        "title": "Open a playground",
+        "text": "Press Ctrl+K and choose Prototype playground or Appearance playground to load an editable original sample."
+      },
+      {
+        "title": "Draw a path",
+        "text": "Press P, click-drag to pull Bézier handles and click the first anchor to close. Press Enter on a shape to edit its vector points."
+      },
+      {
+        "title": "Try auto-layout",
+        "text": "Select some layers and press Shift A, then adjust direction, gaps, padding and hug/fill sizing in the properties panel."
+      },
+      {
+        "title": "Place and crop an image",
+        "text": "Press Ctrl+Shift+K to place a PNG, JPEG or WebP, switch between Fill, Fit, Crop and Tile, then choose Edit image crop to drag it on canvas."
+      },
+      {
+        "title": "Present the prototype",
+        "text": "In the prototype playground choose Present prototype, click Explore the details, open the overlay, and use Back, Restart or R."
+      },
+      {
+        "title": "Save a real file",
+        "text": "Press Ctrl+S to download an editable .vectorspace document, or export SVG/PNG."
+      }
+    ]
+  },
+  "architecture": [
+    {
+      "name": "Scene model",
+      "text": "Platform-independent scene graph, geometry, variables and reactions with stable node IDs.",
+      "packages": [
+        "VectorSpace.Core"
+      ]
+    },
+    {
+      "name": "Engines",
+      "text": "UI-free net10.0 libraries for layout, documents, transactional editing, prototype playback and collaboration.",
+      "packages": [
+        "VectorSpace.Layout",
+        "VectorSpace.Documents",
+        "VectorSpace.Editing",
+        "VectorSpace.Prototyping",
+        "VectorSpace.Collaboration"
+      ]
+    },
+    {
+      "name": "Rendering",
+      "text": "SkiaSharp scene rendering with retained resources, hit testing, Boolean paths and PNG export.",
+      "packages": [
+        "VectorSpace.Skia"
+      ]
+    },
+    {
+      "name": "Uno surfaces",
+      "text": "Reusable Uno controls and the embeddable design canvas, prototype player and presence overlay.",
+      "packages": [
+        "VectorSpace.Controls",
+        "VectorSpace.Editor"
+      ]
+    },
+    {
+      "name": "Workbench",
+      "text": "Composes authoring, sharing, recovery and history into the complete browser/desktop workspace.",
+      "packages": [
+        "VectorSpace.Workbench"
+      ]
+    }
+  ],
+  "boundaries": [
+    "Independent of Figma: no native .fig/FigJam interchange, remote libraries, plugin execution or full Dev Mode",
+    "GitHub Pages hosts only the client; cross-device sharing needs your own HTTPS server with persistent disk",
+    "No vector networks, multi-contour topology editing, variable-width strokes or mixed rich-text runs",
+    "Collaboration merges properties, not characters or path anchors; capability links are not SSO identity",
+    "Browser recovery storage is not a backup service; save .vectorspace copies explicitly"
+  ],
+  "docs": [
+    {
+      "title": "Feature boundaries",
+      "path": "docs/FEATURES.md",
+      "blurb": "What works end to end, what is partial and what is not implemented"
+    },
+    {
+      "title": "Tools and direct editing",
+      "path": "docs/EDITING.md",
+      "blurb": "Vector point mode, drawing tools, transforms, clipboard and guides"
+    },
+    {
+      "title": "Constrained resizing",
+      "path": "docs/RESIZING.md",
+      "blurb": "Anchored resize handles, min/max limits and hug/fill behavior"
+    },
+    {
+      "title": "Appearance",
+      "path": "docs/APPEARANCE.md",
+      "blurb": "Images, gradients, crop modes, shadows and layer blur"
+    },
+    {
+      "title": "Design systems",
+      "path": "docs/DESIGN_SYSTEMS.md",
+      "blurb": "Variables, modes, aliases, component sets and variants"
+    },
+    {
+      "title": "Prototyping",
+      "path": "docs/PROTOTYPING.md",
+      "blurb": "Triggers, actions, overlays and transitions in the private runtime"
+    },
+    {
+      "title": "Prototype validation",
+      "path": "docs/PROTOTYPE_VALIDATION.md",
+      "blurb": "Prototype import, input handling and invalidation rules"
+    },
+    {
+      "title": "Collaboration",
+      "path": "docs/COLLABORATION.md",
+      "blurb": "Sharing workflow, roles, presence and conflict recovery"
+    },
+    {
+      "title": "Hosting",
+      "path": "docs/HOSTING.md",
+      "blurb": "Run and back up the self-hosted collaboration service"
+    },
+    {
+      "title": "Architecture",
+      "path": "docs/ARCHITECTURE.md",
+      "blurb": "Package boundaries, transactions, rendering and storage trust model"
+    },
+    {
+      "title": "Performance",
+      "path": "docs/PERFORMANCE.md",
+      "blurb": "Subsystem optimizations with reproducible measurements and limits"
+    },
+    {
+      "title": "Validation and delivery",
+      "path": "docs/VALIDATION.md",
+      "blurb": "Test coverage, CI gates and Pages deployment checks"
+    }
+  ]
+}

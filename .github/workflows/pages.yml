@@ -1,0 +1,77 @@
+name: Pages
+on:
+  push:
+    branches: [main]
+  schedule:
+    # Refresh live metrics from all Uno Space repositories every day.
+    - cron: '17 5 * * *'
+  workflow_run:
+    workflows: [Refresh screenshots]
+    types: [completed]
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: false
+jobs:
+  build:
+    name: Sync repositories & build
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: main
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Sync live metrics from source repositories
+        id: sync
+        continue-on-error: true
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: npm run sync
+      - name: Report sync fallback
+        if: steps.sync.outcome != 'success'
+        run: echo "::warning::Repository sync failed; building from committed data/generated snapshots."
+      - name: Build
+        run: npm run build
+      - name: Validate
+        run: npm test
+      - uses: actions/configure-pages@v5
+        with:
+          enablement: true
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: dist
+          include-hidden-files: true
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
+      - name: Verify deployment
+        env:
+          URL: ${{ steps.deployment.outputs.page_url }}
+          SHA: ${{ github.sha }}
+        run: |
+          for i in $(seq 1 30); do
+            if curl -fsS "${URL}build-info.json" | grep -q "$SHA"; then echo "Live at $URL ($SHA)"; break; fi
+            sleep 10
+          done
+          curl -fsS -o /dev/null "${URL}"
+          curl -fsS -o /dev/null "${URL}projects/vectorspace/"
+          curl -fsS -o /dev/null "${URL}playground/"

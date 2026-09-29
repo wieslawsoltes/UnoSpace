@@ -1,0 +1,256 @@
+{
+  "slug": "notespace",
+  "repo": "wieslawsoltes/NoteSpace",
+  "version": "0.1.0",
+  "dotnetSdk": "10.0.100",
+  "unoSdk": "6.7.30",
+  "pinned": [],
+  "github": {
+    "stars": 2,
+    "forks": 1,
+    "openIssues": 4,
+    "createdAt": "2026-09-27T10:07:21Z",
+    "pushedAt": "2026-09-28T06:03:28Z",
+    "homepage": "https://wieslawsoltes.github.io/NoteSpace/",
+    "license": "MIT"
+  },
+  "lastCommit": {
+    "sha": "15db358",
+    "date": "2026-09-28T08:03:28+02:00",
+    "subject": "Merge retained rendering, tables, scoped search and autosave improvements (#7)"
+  },
+  "loc": {
+    "total": 6246,
+    "src": 5112,
+    "tests": 1134
+  },
+  "projectCount": 9,
+  "libraryCount": 5,
+  "testProjectCount": 3,
+  "projects": [
+    {
+      "name": "NoteSpace.App",
+      "path": "src/NoteSpace.App/NoteSpace.App.csproj",
+      "kind": "app",
+      "sdk": "Uno.Sdk",
+      "targetFrameworks": [
+        "net10.0-browserwasm",
+        "net10.0-desktop"
+      ],
+      "packable": false,
+      "description": "",
+      "unoFeatures": [
+        "Skia",
+        "SkiaRenderer"
+      ],
+      "projectRefs": [
+        "NoteSpace.Controls",
+        "NoteSpace.Storage"
+      ],
+      "packageRefs": [
+        {
+          "id": "Uno.Fonts.OpenSans",
+          "version": "2.4.0"
+        }
+      ],
+      "files": 16,
+      "loc": 1199
+    },
+    {
+      "name": "NoteSpace.Benchmarks",
+      "path": "tests/NoteSpace.Benchmarks/NoteSpace.Benchmarks.csproj",
+      "kind": "test",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "",
+      "unoFeatures": [],
+      "projectRefs": [
+        "NoteSpace.Rendering.Skia",
+        "NoteSpace.Storage"
+      ],
+      "packageRefs": [
+        {
+          "id": "SkiaSharp.NativeAssets.Linux.NoDependencies",
+          "version": "3.119.2"
+        }
+      ],
+      "files": 1,
+      "loc": 85
+    },
+    {
+      "name": "NoteSpace.Controls",
+      "path": "src/NoteSpace.Controls/NoteSpace.Controls.csproj",
+      "kind": "library",
+      "sdk": "Uno.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": true,
+      "description": "Reusable Uno Platform notebook canvas, ribbon, navigation, and theme controls.",
+      "unoFeatures": [
+        "Skia",
+        "SkiaRenderer"
+      ],
+      "projectRefs": [
+        "NoteSpace.Core",
+        "NoteSpace.Editor",
+        "NoteSpace.Rendering.Skia"
+      ],
+      "packageRefs": [],
+      "files": 17,
+      "loc": 1479
+    },
+    {
+      "name": "NoteSpace.Core",
+      "path": "src/NoteSpace.Core/NoteSpace.Core.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": true,
+      "description": "Portable NoteSpace notebook document model and validated JSON interchange.",
+      "unoFeatures": [],
+      "projectRefs": [],
+      "packageRefs": [],
+      "files": 4,
+      "loc": 382
+    },
+    {
+      "name": "NoteSpace.Editor",
+      "path": "src/NoteSpace.Editor/NoteSpace.Editor.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": true,
+      "description": "Undoable NoteSpace document editing, search, and ink geometry.",
+      "unoFeatures": [],
+      "projectRefs": [
+        "NoteSpace.Core"
+      ],
+      "packageRefs": [],
+      "files": 13,
+      "loc": 1295
+    },
+    {
+      "name": "NoteSpace.Rendering.Skia",
+      "path": "src/NoteSpace.Rendering.Skia/NoteSpace.Rendering.Skia.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": true,
+      "description": "Independent SkiaSharp notebook rendering, layout, and image export.",
+      "unoFeatures": [],
+      "projectRefs": [
+        "NoteSpace.Core",
+        "NoteSpace.Editor"
+      ],
+      "packageRefs": [
+        {
+          "id": "SkiaSharp",
+          "version": "3.119.2"
+        }
+      ],
+      "files": 5,
+      "loc": 585
+    },
+    {
+      "name": "NoteSpace.Rendering.Tests",
+      "path": "tests/NoteSpace.Rendering.Tests/NoteSpace.Rendering.Tests.csproj",
+      "kind": "test",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "",
+      "unoFeatures": [],
+      "projectRefs": [
+        "NoteSpace.Rendering.Skia",
+        "NoteSpace.Storage"
+      ],
+      "packageRefs": [
+        {
+          "id": "SkiaSharp.NativeAssets.Linux.NoDependencies",
+          "version": "3.119.2"
+        }
+      ],
+      "files": 2,
+      "loc": 176
+    },
+    {
+      "name": "NoteSpace.Storage",
+      "path": "src/NoteSpace.Storage/NoteSpace.Storage.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": true,
+      "description": "NoteSpace persistence contracts, atomic file storage, and interchange.",
+      "unoFeatures": [],
+      "projectRefs": [
+        "NoteSpace.Core"
+      ],
+      "packageRefs": [],
+      "files": 3,
+      "loc": 172
+    },
+    {
+      "name": "NoteSpace.Tests",
+      "path": "tests/NoteSpace.Tests/NoteSpace.Tests.csproj",
+      "kind": "test",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "",
+      "unoFeatures": [],
+      "projectRefs": [
+        "NoteSpace.Core",
+        "NoteSpace.Editor",
+        "NoteSpace.Storage"
+      ],
+      "packageRefs": [],
+      "files": 7,
+      "loc": 873
+    }
+  ],
+  "nuget": [
+    {
+      "id": "SkiaSharp",
+      "version": "3.119.2"
+    },
+    {
+      "id": "SkiaSharp.NativeAssets.Linux.NoDependencies",
+      "version": "3.119.2"
+    },
+    {
+      "id": "Uno.Fonts.OpenSans",
+      "version": "2.4.0"
+    }
+  ],
+  "workflows": [
+    {
+      "file": "build.yml",
+      "name": "Build, test and deploy"
+    },
+    {
+      "file": "release.yml",
+      "name": "Release"
+    }
+  ],
+  "docs": [
+    "docs/architecture.md",
+    "docs/organization.md"
+  ],
+  "images": []
+}

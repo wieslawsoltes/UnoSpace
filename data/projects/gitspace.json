@@ -1,0 +1,332 @@
+{
+  "slug": "gitspace",
+  "name": "GitSpace",
+  "repo": "wieslawsoltes/GitSpace",
+  "tagline": "A familiar Git desktop workflow, running as one shared Uno app",
+  "summary": "GitSpace is an independent, MIT-licensed Git client with a GitHub Desktop-style interface, built in C# and Uno Platform. Review changes in unified or split diffs, stage individual lines, commit, browse history, manage branches and sync remotes. On desktop it drives your installed Git; in the browser, the same compiled Uno UI runs against a bundled Git worker that writes real repositories to IndexedDB.",
+  "category": "Developer",
+  "inspiredBy": "GitHub Desktop-style Git clients",
+  "version": "0.1.0",
+  "heroStats": [
+    {
+      "value": "8",
+      "label": "reusable libraries (7 NuGet + 1 npm)"
+    },
+    {
+      "value": "2",
+      "label": "real Git backends: system Git and browser worker"
+    },
+    {
+      "value": "2,000",
+      "label": "commits of paged history"
+    },
+    {
+      "value": "1,000",
+      "label": "randomized diff-oracle trials"
+    }
+  ],
+  "highlights": [
+    {
+      "title": "Same app on desktop and web",
+      "text": "The browser build is the actual compiled Uno application, sharing the workbench and custom controls with the Win32, macOS and X11 desktop hosts.",
+      "icon": "globe"
+    },
+    {
+      "title": "Real Git in the browser",
+      "text": "A bundled isomorphic-git worker writes genuine objects, refs and index to IndexedDB via LightningFS, off the UI thread. No in-memory simulation.",
+      "icon": "git"
+    },
+    {
+      "title": "Skia-rendered diff viewer",
+      "text": "Unified and split diffs with line gutters, intraline highlights, search, whitespace-ignore and text zoom, drawn viewport-only through SKCanvasElement.",
+      "icon": "code"
+    },
+    {
+      "title": "Line and hunk staging",
+      "text": "Select exact lines or hunks in Unstaged/Staged modes, update the index safely and make staged-only commits.",
+      "icon": "check"
+    },
+    {
+      "title": "Graphical conflict resolver",
+      "text": "On desktop, resolve conflicts in a current/incoming/result editor with stale-content guards and an explicit Mark resolved step.",
+      "icon": "branch"
+    },
+    {
+      "title": "GitHub pull requests",
+      "text": "List the first 100 open pull requests, create a new one, or open the repository or PR in the browser using a session-only token.",
+      "icon": "share"
+    },
+    {
+      "title": "Safety by design",
+      "text": "No force push, hooks disabled for GitSpace commands, confirmations for destructive actions and no simulated success behind unsupported menus.",
+      "icon": "shield"
+    },
+    {
+      "title": "Bounded, measurable limits",
+      "text": "Myers diff with an explicit work budget, 2 MiB preview limit, 16 MiB output caps and an LRU text-blob cache keep work predictable.",
+      "icon": "gauge"
+    }
+  ],
+  "featureGroups": [
+    {
+      "area": "Repository work",
+      "items": [
+        "Open, initialize and HTTPS-clone repositories; refresh and add HTTPS remotes",
+        "Real, editable tutorial repository with four commits opens on first launch",
+        "Recent repositories and persisted non-secret preferences",
+        "Browser repositories exported as ZIP (.git + working files, up to 64 MiB)"
+      ]
+    },
+    {
+      "area": "Review",
+      "items": [
+        "Changed-file list with inclusion checkboxes, stage and unstage",
+        "Unified and split diffs with line numbers and intraline split highlights",
+        "Diff search, whitespace-ignore view, copy and text zoom",
+        "Exact line/hunk selection in Unstaged and Staged review modes",
+        "Explicit unsupported preview for binary and image files"
+      ]
+    },
+    {
+      "area": "Editing and commits",
+      "items": [
+        "Bounded UTF-8 file editor with new files and an external-change check before saving",
+        "Tracked-file discard with confirmation; untracked files are never deleted by Discard",
+        "Commit composer with required summary, optional description and author identity",
+        "Selected-file commits and confirmed amend of the latest commit",
+        "Preserves BOMs and mixed newline conventions in unchanged content"
+      ]
+    },
+    {
+      "area": "History and branches",
+      "items": [
+        "Paged history in 200-commit pages up to 2,000 commits, with filter",
+        "Author, date, message and per-commit file changes with parent comparison",
+        "Create, switch and rename branches; safe merged-branch deletion",
+        "Lightweight tags"
+      ]
+    },
+    {
+      "area": "Sync and integration",
+      "items": [
+        "Fetch, fast-forward pull and non-force push",
+        "Desktop merge, rebase, revert and cherry-pick with continue/abort",
+        "Desktop current/incoming/result conflict editor with explicit Mark resolved",
+        "Tracked/untracked stash, apply without dropping and confirmed drop on desktop",
+        "Explicit, user-configured trusted CORS proxy for browser clone/fetch/push"
+      ]
+    },
+    {
+      "area": "GitHub",
+      "items": [
+        "List the first 100 open pull requests",
+        "Create a pull request from the app",
+        "Open the repository or a pull request in the browser",
+        "Session-only token authentication; tokens never persisted"
+      ]
+    },
+    {
+      "area": "Workspace",
+      "items": [
+        "Compact menu bar with repository, branch and sync tiles",
+        "Changes and History tabs with a resizable sidebar",
+        "Light and dark appearances",
+        "Keyboard shortcuts, explicit errors and busy state",
+        "Embedded Source Code Pro font for consistent monospace diff metrics"
+      ]
+    }
+  ],
+  "packages": [
+    {
+      "name": "GitSpace.Core",
+      "role": "Repository contracts, command/result models, JSON and path/ref validation",
+      "ui": "None",
+      "layer": "model"
+    },
+    {
+      "name": "GitSpace.Diff",
+      "role": "Bounded Myers line diff, split alignment, intraline spans and viewport arithmetic",
+      "ui": "None",
+      "layer": "engine"
+    },
+    {
+      "name": "GitSpace.Git",
+      "role": "Asynchronous, shell-free system Git process backend with status/history parsing",
+      "ui": "None",
+      "layer": "service"
+    },
+    {
+      "name": "GitSpace.BrowserGit",
+      "role": "npm package @gitspace/browser-git: worker-ready real Git backend over IndexedDB storage",
+      "ui": "None (JavaScript worker)",
+      "layer": "service"
+    },
+    {
+      "name": "GitSpace.Hosting.GitHub",
+      "role": "Bounded GitHub pull-request HTTP client with session-scoped credentials",
+      "ui": "None",
+      "layer": "service"
+    },
+    {
+      "name": "GitSpace.Rendering.Skia",
+      "role": "Framework-independent, viewport-virtualized unified and split diff renderer",
+      "ui": "SkiaSharp",
+      "layer": "rendering"
+    },
+    {
+      "name": "GitSpace.Controls.Uno",
+      "role": "Toolbar tiles, change and history lists, commit composer, diff viewer and splitter",
+      "ui": "Uno + Skia",
+      "layer": "controls"
+    },
+    {
+      "name": "GitSpace.Workbench.Uno",
+      "role": "Complete embeddable Git client workspace and dialogs with an injected backend",
+      "ui": "Uno",
+      "layer": "workbench"
+    }
+  ],
+  "codeSamples": [
+    {
+      "title": "Use the Git backend without Uno",
+      "lang": "csharp",
+      "code": "using GitSpace.Core;\nusing GitSpace.Git;\n\nawait using var git = new DesktopGitBackend();\nvar opened = await git.ExecuteAsync(new GitRequest(\"open\")\n{\n    Root = \"/absolute/path/to/repository\"\n});\n\nforeach (var file in opened.Snapshot!.Changes)\n    Console.WriteLine($\"{file.Status} {file.Path}\");\n\nvar diff = await git.ExecuteAsync(new GitRequest(\"diff\")\n{\n    Path = \"README.md\"\n});"
+    },
+    {
+      "title": "Run the desktop app from source",
+      "lang": "sh",
+      "code": "git clone https://github.com/wieslawsoltes/GitSpace.git\ncd GitSpace\ndotnet run --project src/GitSpace.App -f net10.0-desktop \\\n  -p:GitSpaceTargetFrameworks=net10.0-desktop"
+    }
+  ],
+  "shortcuts": [
+    {
+      "action": "Select a changed line for staging",
+      "keys": "Click"
+    },
+    {
+      "action": "Extend line selection to a range",
+      "keys": "Shift Click"
+    },
+    {
+      "action": "Toggle individual lines",
+      "keys": "Ctrl Click"
+    }
+  ],
+  "formats": [
+    {
+      "name": "Git repository (.git + working tree)",
+      "support": "read/write"
+    },
+    {
+      "name": "Repository ZIP (.git + working files, ≤ 64 MiB)",
+      "support": "export"
+    },
+    {
+      "name": "Preferences JSON (desktop) / LocalStorage (browser)",
+      "support": "read/write"
+    }
+  ],
+  "playground": {
+    "intro": "Open the live WebAssembly build and work in a real, persisted tutorial repository stored in your browser.",
+    "tour": [
+      {
+        "title": "Review the tutorial changes",
+        "text": "The tutorial repository opens on first launch with uncommitted changes. Select files in the Changes tab and inspect their diffs."
+      },
+      {
+        "title": "Switch diff views",
+        "text": "Toggle between unified and split diffs, search within the diff, and zoom the text."
+      },
+      {
+        "title": "Stage lines and commit",
+        "text": "Click, Shift-click or Ctrl-click changed lines to stage a selection, write a summary in the commit composer and commit to real Git history."
+      },
+      {
+        "title": "Browse history and branch",
+        "text": "Open the History tab to see per-commit file changes, then create and switch to a new branch."
+      },
+      {
+        "title": "Change appearance and identity",
+        "text": "Toggle light/dark appearance and set your Git author name and email in Preferences; reload to see everything persist."
+      },
+      {
+        "title": "Take your work with you",
+        "text": "Use File → Export repository ZIP to download the .git folder and working files."
+      }
+    ]
+  },
+  "architecture": [
+    {
+      "name": "Contracts and algorithms",
+      "text": "Portable repository contracts, validation and a bounded Myers diff with no UI or Skia dependency.",
+      "packages": [
+        "GitSpace.Core",
+        "GitSpace.Diff"
+      ]
+    },
+    {
+      "name": "Backends",
+      "text": "Interchangeable IGitBackend implementations for installed Git and a browser worker, plus a GitHub REST client.",
+      "packages": [
+        "GitSpace.Git",
+        "GitSpace.BrowserGit",
+        "GitSpace.Hosting.GitHub"
+      ]
+    },
+    {
+      "name": "Rendering",
+      "text": "Viewport-only Skia diff renderer with cached paints, fonts and split alignment.",
+      "packages": [
+        "GitSpace.Rendering.Skia"
+      ]
+    },
+    {
+      "name": "Controls",
+      "text": "Custom Uno controls that communicate through events and never touch repositories or the network.",
+      "packages": [
+        "GitSpace.Controls.Uno"
+      ]
+    },
+    {
+      "name": "Workbench",
+      "text": "Embeddable client workspace composed from the controls, driven by an injected platform and backend.",
+      "packages": [
+        "GitSpace.Workbench.Uno"
+      ]
+    }
+  ],
+  "boundaries": [
+    "0.1.0 development preview, not complete or pixel-qualified GitHub Desktop parity",
+    "Browser merge and pull are fast-forward only; rebase, revert, cherry-pick and conflict editor are desktop only",
+    "Browser clone/fetch/push to GitHub usually needs a CORS proxy you configure and trust",
+    "Browser storage can be evicted; export a ZIP or push to preserve important work",
+    "No OAuth/account switching, GitHub Enterprise, LFS/submodule/worktree UI or interactive rebase"
+  ],
+  "docs": [
+    {
+      "title": "Architecture and embedding",
+      "path": "docs/architecture.md",
+      "blurb": "Dependency direction, command contract, backends, rendering and embedding"
+    },
+    {
+      "title": "Compatibility matrix",
+      "path": "docs/compatibility.md",
+      "blurb": "Desktop vs browser capabilities and GitHub Desktop parity boundaries"
+    },
+    {
+      "title": "Build, test and release",
+      "path": "docs/development.md",
+      "blurb": "Toolchain, desktop and browser builds, tests, packages and workflows"
+    },
+    {
+      "title": "Diff rendering performance",
+      "path": "docs/rendering-performance.md",
+      "blurb": "Bounded prepared-text LRU cache and split-view drawing improvements"
+    },
+    {
+      "title": "Typography",
+      "path": "docs/typography.md",
+      "blurb": "Embedded Source Code Pro provenance and diff text rendering"
+    }
+  ]
+}

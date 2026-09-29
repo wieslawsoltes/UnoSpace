@@ -1,0 +1,322 @@
+{
+  "slug": "gridspace",
+  "name": "GridSpace",
+  "repo": "wieslawsoltes/GridSpace",
+  "tagline": "A local-first spreadsheet with a real C# engine and dynamic arrays",
+  "summary": "GridSpace is a local-first spreadsheet workbench that pairs an Excel-style ribbon, formula bar and worksheet tabs with a real C# workbook engine. The worksheet is drawn by SkiaSharp through Uno's SKCanvasElement—not an HTML table or a separate JavaScript spreadsheet—and desktop and browser hosts share the same model, calculations, transactions and controls. Version 0.3 adds spilling dynamic arrays and delta-based cell history.",
+  "category": "Data",
+  "inspiredBy": "Excel-style spreadsheets",
+  "version": "0.3.0-alpha.1",
+  "heroStats": [
+    {
+      "value": "8",
+      "label": "reusable, packable libraries"
+    },
+    {
+      "value": "12",
+      "label": "dynamic array functions"
+    },
+    {
+      "value": "11",
+      "label": "conditional formatting rule kinds"
+    },
+    {
+      "value": "XFD1048576",
+      "label": "sparse viewport reach"
+    }
+  ],
+  "highlights": [
+    {
+      "title": "A real workbook engine",
+      "text": "Parser, evaluator, transactions and history in C#, rendered by SkiaSharp through Uno's SKCanvasElement—no HTML table or JavaScript spreadsheet.",
+      "icon": "grid"
+    },
+    {
+      "title": "Spilling dynamic arrays",
+      "text": "SEQUENCE, FILTER, SORT, UNIQUE, stacking functions, LET, array constants, broadcasting and A1# references spill through the real worksheet.",
+      "icon": "formula"
+    },
+    {
+      "title": "Conditional formatting",
+      "text": "Eleven rule kinds with relative formulas, priorities and Stop If True, plus two/three-color scales and signed data bars.",
+      "icon": "palette"
+    },
+    {
+      "title": "Filter and sort",
+      "text": "A searchable value checklist, And/Or custom predicates with wildcards, and stable multi-level sorts with blank-last ordering.",
+      "icon": "filter"
+    },
+    {
+      "title": "Structural edits that follow",
+      "text": "Insert or delete rows and columns while formulas, names, merges, validation, charts and rules are rebased in one transaction.",
+      "icon": "table"
+    },
+    {
+      "title": "Sparse, fast viewport",
+      "text": "Render through XFD1048576 with frozen panes and hidden rows, and dependency-based recalculation that only touches affected cells.",
+      "icon": "gauge"
+    },
+    {
+      "title": "Charts",
+      "text": "Single-series column, bar, line and pie charts with bounded previews and XLSX chart interchange.",
+      "icon": "chart"
+    },
+    {
+      "title": "Honest XLSX interchange",
+      "text": "Native .gridspace, CSV/TSV and a documented XLSX subset, with import warnings and Open XML SDK schema validation in CI.",
+      "icon": "download"
+    }
+  ],
+  "featureGroups": [
+    {
+      "area": "Workbook editing",
+      "items": [
+        "Sparse worksheets with A1 navigation and rectangular selection",
+        "Direct cell and formula-bar editing with copy/paste",
+        "Bounded undo/redo using per-cell deltas",
+        "Fill down/right, formula translation and two-value series",
+        "Fonts, wrapping, alignment, borders, merges, row/column sizing and AutoFit"
+      ]
+    },
+    {
+      "area": "Formulas and arrays",
+      "items": [
+        "Relative, absolute, mixed and cross-sheet references plus names",
+        "Common aggregates, logic, math, text/date, conditional aggregates, lookups and PMT",
+        "SEQUENCE, FILTER, SORT, SORTBY, UNIQUE, TRANSPOSE, TAKE, DROP and more",
+        "LET, array constants, broadcasting and A1# spill references",
+        "#SPILL! and #CYCLE! errors with protected spill followers"
+      ]
+    },
+    {
+      "area": "Conditional formatting",
+      "items": [
+        "Cell comparisons, formula expressions, contains-text and duplicate/unique rules",
+        "Top/bottom and above/below-average rules",
+        "Two/three-color scales and signed data bars",
+        "Manage Rules to edit, delete and reorder with Stop If True"
+      ]
+    },
+    {
+      "area": "Filter and sort",
+      "items": [
+        "Searchable value checklist in the filter-header popup",
+        "One or two custom predicates with And/Or and * ? ~ wildcards",
+        "Manual hiding kept separate from filtered-out rows",
+        "Stable multi-level sorts with header and case options"
+      ]
+    },
+    {
+      "area": "Structure and navigation",
+      "items": [
+        "Multi-row/column insertion and deletion with transactional rebasing",
+        "Frozen panes, hidden-row/column geometry and zoom",
+        "Wheel scrolling, touch panning and keyboard navigation",
+        "Worksheet insert, copy, rename, delete and manual hide/unhide"
+      ]
+    },
+    {
+      "area": "Worksheet tools",
+      "items": [
+        "Find and replace",
+        "List validation and plain cell notes",
+        "Styled table ranges with AutoFilter metadata",
+        "Column, bar, line and pie charts"
+      ]
+    },
+    {
+      "area": "Files and recovery",
+      "items": [
+        "Native .gridspace JSON with conditional/filter/sort metadata",
+        "CSV/TSV with formula-injection guards on export",
+        "XLSX subset including dynamic-array metadata and chart interchange",
+        "Debounced IndexedDB recovery in the browser; atomic recovery file on desktop"
+      ]
+    }
+  ],
+  "packages": [
+    {
+      "name": "GridSpace.Core",
+      "role": "Workbook, cell, style and range contracts; conditional/filter/sort models",
+      "ui": "None",
+      "layer": "model"
+    },
+    {
+      "name": "GridSpace.Formulas",
+      "role": "Bounded non-eval parser, evaluator, reference rewriting and number formatting",
+      "ui": "None",
+      "layer": "engine"
+    },
+    {
+      "name": "GridSpace.Editing",
+      "role": "Sessions, transactions, bounded history, structural edits and data tools",
+      "ui": "None",
+      "layer": "engine"
+    },
+    {
+      "name": "GridSpace.IO",
+      "role": "Native, CSV/TSV and XLSX interchange with fidelity warnings",
+      "ui": "None",
+      "layer": "io"
+    },
+    {
+      "name": "GridSpace.Layout",
+      "role": "Sparse axis indexes, frozen panes, hit testing and viewport geometry",
+      "ui": "None",
+      "layer": "engine"
+    },
+    {
+      "name": "GridSpace.Skia",
+      "role": "Viewport-culled cell, conditional visual, chart and selection rendering",
+      "ui": "SkiaSharp",
+      "layer": "rendering"
+    },
+    {
+      "name": "GridSpace.Controls",
+      "role": "Embeddable grid, ribbon, formula bar, tabs, scrollbars and data-tool editors",
+      "ui": "Uno + Skia",
+      "layer": "controls"
+    },
+    {
+      "name": "GridSpace.Workbench",
+      "role": "Complete workbench, commands, dialogs, rule management and local recovery",
+      "ui": "Uno + Skia",
+      "layer": "workbench"
+    }
+  ],
+  "codeSamples": [
+    {
+      "title": "Use the engines without a UI",
+      "lang": "csharp",
+      "code": "using GridSpace.Core;\nusing GridSpace.Editing;\nusing GridSpace.Formulas;\n\nvar session = new SpreadsheetSession(new Workbook { Title = \"Example\" });\nsession.SetInput(\"21\", new CellAddress(0, 0));\nsession.SetInput(\"=A1*2\", new CellAddress(0, 1));\nConsole.WriteLine(session.Calculation.Evaluate(session.Sheet, \"B1\")); // 42\n\nsession.SetConditionalFormat(new ConditionalFormatRule\n{\n    Range = \"A1:B1\",\n    Kind = ConditionalFormatKind.CellValue,\n    Comparison = CellComparison.GreaterThan,\n    Operand = \"30\",\n    Style = new DifferentialStyle { Background = \"#C6EFCE\", Bold = true }\n});\nvar rules = new ConditionalFormattingEngine(session.Calculation);\nvar address = new CellAddress(0, 1);\nvar displayed = rules.Evaluate(session.Sheet, address,\n    session.Calculation.Evaluate(session.Sheet, address));\nConsole.WriteLine(displayed.Style.Background); // #C6EFCE\n\nsession.InsertRows(0, 2); // References and modeled metadata follow the insertion.\nsession.Undo();"
+    },
+    {
+      "title": "Embed the Uno control",
+      "lang": "csharp",
+      "code": "using GridSpace.Controls;\nusing GridSpace.Editing;\n\nvar session = new SpreadsheetSession(SampleWorkbook.Create());\nvar grid = new SpreadsheetGrid { Session = session };\nwindow.Content = grid;\nwindow.Closed += (_, _) => grid.Dispose();"
+    }
+  ],
+  "shortcuts": [],
+  "formats": [
+    {
+      "name": ".gridspace",
+      "support": "read/write"
+    },
+    {
+      "name": ".xlsx (supported subset)",
+      "support": "import/export"
+    },
+    {
+      "name": ".csv / .tsv",
+      "support": "import/export"
+    },
+    {
+      "name": ".txt (delimited)",
+      "support": "import"
+    }
+  ],
+  "playground": {
+    "intro": "The live browser build opens a sample model with Revenue, Assumptions and Read me sheets—edit inputs and watch the C# engine recalculate.",
+    "tour": [
+      {
+        "title": "Recalculate the model",
+        "text": "Change Revenue!D6 or a value on the Assumptions sheet and watch dependent cells update."
+      },
+      {
+        "title": "Add data bars",
+        "text": "Select D6:D17 and choose Data → Data Bars, then open Data → Manage Rules to edit or reorder the rule."
+      },
+      {
+        "title": "Filter a table",
+        "text": "Click a table's filter-header button to search the value checklist or build a custom And/Or condition."
+      },
+      {
+        "title": "Sort by several columns",
+        "text": "Select the data and choose Data → Custom Sort to add, reorder and remove sort levels."
+      },
+      {
+        "title": "Spill a dynamic array",
+        "text": "Type =SEQUENCE(4,2) into an empty cell, then sum its whole spilled output with a # reference to that cell, e.g. =SUM(A1#) for A1."
+      }
+    ]
+  },
+  "architecture": [
+    {
+      "name": "Workbook model",
+      "text": "Sparse worksheets, A1 addressing, styles and data-tool definitions with no UI dependency.",
+      "packages": [
+        "GridSpace.Core"
+      ]
+    },
+    {
+      "name": "Calculation",
+      "text": "Bounded, non-eval formula parser and evaluator with dependency-based invalidation and virtual spill output.",
+      "packages": [
+        "GridSpace.Formulas"
+      ]
+    },
+    {
+      "name": "Editing and interchange",
+      "text": "Transactional sessions, delta history and structural transforms, plus native/CSV/XLSX file handling.",
+      "packages": [
+        "GridSpace.Editing",
+        "GridSpace.IO"
+      ]
+    },
+    {
+      "name": "Geometry and rendering",
+      "text": "Sparse axis indexes and frozen-pane viewports feed viewport-culled SkiaSharp rendering.",
+      "packages": [
+        "GridSpace.Layout",
+        "GridSpace.Skia"
+      ]
+    },
+    {
+      "name": "Uno workbench",
+      "text": "The embeddable SKCanvasElement grid and Office-style controls composed into the complete workbench.",
+      "packages": [
+        "GridSpace.Controls",
+        "GridSpace.Workbench"
+      ]
+    }
+  ],
+  "boundaries": [
+    "No VBA, PivotTables, Power Query, external-data refresh, add-ins or multiplayer editing",
+    "XLSX is a supported subset, not package-preserving; .xls, .xlsb and .xlsm are not supported",
+    "Bulk edits, sorts and conditional ranges cap at 100,000 cells; imports at 256 sheets and 32 MB",
+    "No LAMBDA, structured references or full Excel function parity; not for safety-critical calculations",
+    "Browser recovery is a single local slot per origin and profile, not a cloud backup"
+  ],
+  "docs": [
+    {
+      "title": "Architecture",
+      "path": "docs/architecture.md",
+      "blurb": "Dependency direction, transactions, calculation and rendering"
+    },
+    {
+      "title": "Compatibility",
+      "path": "docs/compatibility.md",
+      "blurb": "Parity ledger, file interchange subset and bounds"
+    },
+    {
+      "title": "Dynamic arrays and performance",
+      "path": "docs/arrays-performance.md",
+      "blurb": "Spill semantics, XLSX metadata and measured 0.3 speedups"
+    },
+    {
+      "title": "Data tools",
+      "path": "docs/parity-data-tools.md",
+      "blurb": "Conditional formatting, filters, sorting and structural edits"
+    },
+    {
+      "title": "Shared formulas",
+      "path": "docs/shared-formulas.md",
+      "blurb": "Shared-formula XLSX imports and reusable choice controls"
+    },
+    {
+      "title": "Development",
+      "path": "docs/development.md",
+      "blurb": "Prerequisites, commands, tests and release workflow"
+    }
+  ]
+}

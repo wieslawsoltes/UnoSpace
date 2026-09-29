@@ -1,0 +1,43 @@
+name: CI
+on:
+  push:
+    branches-ignore: [gh-pages]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  build:
+    name: Validate & build site
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+      - name: Install
+        run: npm ci
+      - name: Syntax check scripts
+        run: for f in scripts/*.mjs scripts/lib/*.mjs site/assets/js/*.js; do node --check "$f"; done
+      - name: Build site from committed data
+        run: npm run build
+      - name: Validate data, links and anchors
+        run: npm test
+      - name: Smoke test local server
+        run: |
+          node scripts/serve.mjs &
+          for i in $(seq 1 20); do curl -fs http://localhost:4173/UnoSpace/ >/dev/null && break; sleep 0.5; done
+          for p in "" projects/vectorspace/ playground/ packages/ compare/ data/apps.json; do
+            curl -fsS -o /dev/null -w "%{http_code} /UnoSpace/$p\n" "http://localhost:4173/UnoSpace/$p"
+          done
+      - uses: actions/upload-artifact@v7
+        with:
+          name: unospace-site
+          path: dist
+          include-hidden-files: true
+          retention-days: 7

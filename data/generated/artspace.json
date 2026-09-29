@@ -1,0 +1,288 @@
+{
+  "slug": "artspace",
+  "repo": "wieslawsoltes/ArtSpace",
+  "version": "0.4.1-alpha.1",
+  "dotnetSdk": "10.0.401",
+  "unoSdk": "6.7.30",
+  "pinned": [],
+  "github": {
+    "stars": 1,
+    "forks": 0,
+    "openIssues": 0,
+    "createdAt": "2026-09-27T17:24:43Z",
+    "pushedAt": "2026-09-28T10:57:06Z",
+    "homepage": "https://wieslawsoltes.github.io/ArtSpace/",
+    "license": "MIT"
+  },
+  "lastCommit": {
+    "sha": "2dd5657",
+    "date": "2026-09-28T12:57:06+02:00",
+    "subject": "Optimize selection and inspector responsiveness with retained UI and lazy gestures (0.4.1-alpha.1)"
+  },
+  "loc": {
+    "total": 7942,
+    "src": 6842,
+    "tests": 1100
+  },
+  "projectCount": 11,
+  "libraryCount": 9,
+  "testProjectCount": 1,
+  "projects": [
+    {
+      "name": "ArtSpace.App",
+      "path": "src/ArtSpace.App/ArtSpace.App.csproj",
+      "kind": "app",
+      "sdk": "Uno.Sdk",
+      "targetFrameworks": [
+        "net10.0-browserwasm",
+        "net10.0-desktop"
+      ],
+      "packable": false,
+      "description": "Local-first vector illustration with Uno Platform and SkiaSharp.",
+      "unoFeatures": [
+        "SkiaRenderer"
+      ],
+      "projectRefs": [
+        "ArtSpace.Workbench"
+      ],
+      "packageRefs": [],
+      "files": 7,
+      "loc": 274
+    },
+    {
+      "name": "ArtSpace.Controls",
+      "path": "src/ArtSpace.Controls/ArtSpace.Controls.csproj",
+      "kind": "library",
+      "sdk": "Uno.Sdk",
+      "targetFrameworks": [
+        "net10.0-browserwasm",
+        "net10.0-desktop"
+      ],
+      "packable": true,
+      "description": "Compact, accessible Uno editor controls, original vector icons, numeric scrubbing, color spectrum and layer rows.",
+      "unoFeatures": [
+        "SkiaRenderer"
+      ],
+      "projectRefs": [],
+      "packageRefs": [],
+      "files": 11,
+      "loc": 1013
+    },
+    {
+      "name": "ArtSpace.Core",
+      "path": "src/ArtSpace.Core/ArtSpace.Core.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": true,
+      "description": "Platform-independent vector document, scene graph and geometry for ArtSpace.",
+      "unoFeatures": [],
+      "projectRefs": [],
+      "packageRefs": [],
+      "files": 6,
+      "loc": 665
+    },
+    {
+      "name": "ArtSpace.Documents",
+      "path": "src/ArtSpace.Documents/ArtSpace.Documents.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": true,
+      "description": "Versioned JSON documents, safe SVG interchange and workspace storage contracts.",
+      "unoFeatures": [],
+      "projectRefs": [
+        "ArtSpace.Core"
+      ],
+      "packageRefs": [],
+      "files": 5,
+      "loc": 621
+    },
+    {
+      "name": "ArtSpace.Editing",
+      "path": "src/ArtSpace.Editing/ArtSpace.Editing.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": true,
+      "description": "Transactional editing, selection, undo/redo, components and viewport services.",
+      "unoFeatures": [],
+      "projectRefs": [
+        "ArtSpace.Core",
+        "ArtSpace.Documents",
+        "ArtSpace.Layout"
+      ],
+      "packageRefs": [],
+      "files": 3,
+      "loc": 421
+    },
+    {
+      "name": "ArtSpace.Editor",
+      "path": "src/ArtSpace.Editor/ArtSpace.Editor.csproj",
+      "kind": "library",
+      "sdk": "Uno.Sdk",
+      "targetFrameworks": [
+        "net10.0-browserwasm",
+        "net10.0-desktop"
+      ],
+      "packable": true,
+      "description": "Embeddable Uno/Skia design surface with direct manipulation, vector tools, snapping, text editing and presentation.",
+      "unoFeatures": [
+        "SkiaRenderer"
+      ],
+      "projectRefs": [
+        "ArtSpace.Controls",
+        "ArtSpace.Skia"
+      ],
+      "packageRefs": [],
+      "files": 5,
+      "loc": 985
+    },
+    {
+      "name": "ArtSpace.Illustration",
+      "path": "src/ArtSpace.Illustration/ArtSpace.Illustration.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": true,
+      "description": "Transactional illustration operations: vector stroke expansion, path offsetting, blends, repeats and anchor editing.",
+      "unoFeatures": [],
+      "projectRefs": [
+        "ArtSpace.Skia"
+      ],
+      "packageRefs": [],
+      "files": 4,
+      "loc": 505
+    },
+    {
+      "name": "ArtSpace.Layout",
+      "path": "src/ArtSpace.Layout/ArtSpace.Layout.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": true,
+      "description": "Reusable auto-layout, constraints, alignment and snapping for vector scenes.",
+      "unoFeatures": [],
+      "projectRefs": [
+        "ArtSpace.Core"
+      ],
+      "packageRefs": [],
+      "files": 2,
+      "loc": 178
+    },
+    {
+      "name": "ArtSpace.Skia",
+      "path": "src/ArtSpace.Skia/ArtSpace.Skia.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": true,
+      "description": "SkiaSharp rendering, hit testing, vector Boolean operations and raster export for ArtSpace.",
+      "unoFeatures": [],
+      "projectRefs": [
+        "ArtSpace.Core",
+        "ArtSpace.Editing"
+      ],
+      "packageRefs": [
+        {
+          "id": "SkiaSharp",
+          "version": "3.119.2"
+        }
+      ],
+      "files": 7,
+      "loc": 692
+    },
+    {
+      "name": "ArtSpace.Tests",
+      "path": "tests/ArtSpace.Tests/ArtSpace.Tests.csproj",
+      "kind": "test",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "",
+      "unoFeatures": [],
+      "projectRefs": [
+        "ArtSpace.Skia",
+        "ArtSpace.Illustration"
+      ],
+      "packageRefs": [
+        {
+          "id": "SkiaSharp.NativeAssets.Linux",
+          "version": "3.119.2"
+        }
+      ],
+      "files": 8,
+      "loc": 1100
+    },
+    {
+      "name": "ArtSpace.Workbench",
+      "path": "src/ArtSpace.Workbench/ArtSpace.Workbench.csproj",
+      "kind": "library",
+      "sdk": "Uno.Sdk",
+      "targetFrameworks": [
+        "net10.0-browserwasm",
+        "net10.0-desktop"
+      ],
+      "packable": true,
+      "description": "Reusable ArtSpace workbench, layers, inspector, tool palette, prototype and document workflows.",
+      "unoFeatures": [
+        "SkiaRenderer"
+      ],
+      "projectRefs": [
+        "ArtSpace.Editor",
+        "ArtSpace.Illustration"
+      ],
+      "packageRefs": [],
+      "files": 8,
+      "loc": 1488
+    }
+  ],
+  "nuget": [
+    {
+      "id": "SkiaSharp",
+      "version": "3.119.2"
+    },
+    {
+      "id": "SkiaSharp.NativeAssets.Linux",
+      "version": "3.119.2"
+    }
+  ],
+  "workflows": [
+    {
+      "file": "build.yml",
+      "name": "Build"
+    },
+    {
+      "file": "pages.yml",
+      "name": "Pages"
+    },
+    {
+      "file": "release.yml",
+      "name": "Release"
+    }
+  ],
+  "docs": [
+    "docs/architecture.md",
+    "docs/clipping-and-performance.md",
+    "docs/feature-matrix.md",
+    "docs/getting-started.md",
+    "docs/opacity-masks-and-gradients.md",
+    "docs/path-editing.md",
+    "docs/ui-performance.md"
+  ],
+  "images": []
+}

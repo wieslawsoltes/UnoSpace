@@ -1,0 +1,117 @@
+{
+  "slug": "artspace",
+  "name": "ArtSpace",
+  "repo": "wieslawsoltes/ArtSpace",
+  "tagline": "Vector illustration from one C# engine, on desktop and in the browser",
+  "summary": "ArtSpace is a local-first vector illustration editor built with Uno Platform and SkiaSharp, with an Illustrator-style dark workspace. The document model, transaction engine, geometry, custom controls and workbench are shared C# running natively and on real Uno WebAssembly, with JavaScript confined to file transfer, recovery and input adaptation. It ships as nine reusable .NET libraries, six of which do not depend on Uno.",
+  "category": "Design",
+  "inspiredBy": "Adobe Illustrator-style vector illustration tools",
+  "version": "0.4.1-alpha.1",
+  "heroStats": [
+    { "value": "9", "label": "reusable .NET libraries" },
+    { "value": "211", "label": "registered engine test cases" },
+    { "value": "18", "label": "real browser scenarios" },
+    { "value": "3", "label": "artboards in the Alpine Echoes sample" }
+  ],
+  "highlights": [
+    { "title": "Pen, pencil and brush", "text": "Draw primitives, cubic pen paths, freehand pencil strokes, fixed-width brush strokes, text, artboards and slices.", "icon": "pen" },
+    { "title": "Direct contour editing", "text": "Edit anchors on native, imported SVG, compound, expanded and glyph paths with exact cubic insertion, reconnecting removal and segment cutting.", "icon": "canvas" },
+    { "title": "Pathfinder and compounds", "text": "Boolean union, subtract, intersect and exclude, plus compound paths with nonzero or even-odd fill rules.", "icon": "puzzle" },
+    { "title": "Editable opacity masks", "text": "Create, invert, disable and release alpha or luminance masks while keeping the mask source fully editable, including nested masks.", "icon": "mask" },
+    { "title": "Gradients and appearance", "text": "Multiple fills and strokes, linear and radial gradients with stop opacity, blends, shadows and on-canvas gradient editing.", "icon": "palette" },
+    { "title": "Text to outlines", "text": "Create Outlines converts text into editable glyph contours using the same glyph runs used for painting.", "icon": "text" },
+    { "title": "SVG and PNG interchange", "text": "Save native .artspace JSON, import and export a supported SVG subset, and export PNG pixels.", "icon": "share" },
+    { "title": "Local-first recovery", "text": "Autosave writes to IndexedDB in the browser or local app data on desktop; nothing is uploaded to a service.", "icon": "recovery" }
+  ],
+  "featureGroups": [
+    { "area": "Drawing", "items": ["Rectangles, ellipses, lines and cubic pen paths", "Freehand pencil and fixed-width paintbrush strokes", "Text with basic wrapping, tracking and alignment", "Multiple frame-based artboards and slices"] },
+    { "area": "Editing", "items": ["Selection, marquee, move, resize, rotate and flip", "Duplication, grouping, stacking order, alignment and distribution", "Clipboard and transactional undo/redo", "Linked local symbols/components and bounded editable blends/repeats"] },
+    { "area": "Contours", "items": ["Multi-anchor selection, marquee, drag and nudge", "Exact cubic anchor insertion and reconnecting removal", "Segment cutting and smooth/corner conversion with the Anchor Point tool", "Make and release compound paths with nonzero/even-odd rules"] },
+    { "area": "Geometry", "items": ["Shape and stroke expansion", "Positive and negative path offsets", "Boolean union, subtract, intersect and exclude", "Retained affine skew and nested group scaling"] },
+    { "area": "Appearance", "items": ["Multiple fills and strokes per object", "Linear and radial gradients with stop opacity, focus, radius and spread", "Opacity, blend modes and shadows", "Editable vector clipping and alpha/luminance opacity masks"] },
+    { "area": "Files and recovery", "items": ["Native versioned JSON (.artspace, schema 3; reads schemas 1–3)", "Supported SVG subset import and export, including gradients and masks", "PNG raster export", "IndexedDB (browser) and native local recovery"] },
+    { "area": "Performance", "items": ["Retained geometry, text and gradient shader caches", "Indexed stationary-target snapping", "Conservative nested-leaf culling", "Visible-panel-only refreshes and retained inspector sections"] }
+  ],
+  "packages": [
+    { "name": "ArtSpace.Core", "role": "Document, appearance, affine geometry and managed editable contours", "ui": "None", "layer": "model" },
+    { "name": "ArtSpace.Layout", "role": "Constraints, auto-layout, alignment and reference/indexed snapping", "ui": "None", "layer": "engine" },
+    { "name": "ArtSpace.Documents", "role": "Validated native JSON schemas, clipboard, SVG subset and storage contracts", "ui": "None", "layer": "io" },
+    { "name": "ArtSpace.Editing", "role": "Selection, transactions, undo/redo history, linked components and viewport services", "ui": "None", "layer": "engine" },
+    { "name": "ArtSpace.Skia", "role": "Cached paths/text/shaders, compositing, culling, hit testing, Boolean ops and raster export", "ui": "SkiaSharp", "layer": "rendering" },
+    { "name": "ArtSpace.Illustration", "role": "Expansion, offsets, compounds, clipping/opacity-mask commands, blends and repeats", "ui": "SkiaSharp", "layer": "engine" },
+    { "name": "ArtSpace.Controls", "role": "Custom menus, panels, numeric fields, color spectrum, vector icons and layer rows", "ui": "Uno", "layer": "controls" },
+    { "name": "ArtSpace.Editor", "role": "Embeddable drawing surface with direct manipulation, vector tools, snapping and text editing", "ui": "Uno + Skia", "layer": "editor" },
+    { "name": "ArtSpace.Workbench", "role": "Application workspace, layers, inspector, command routing and storage workflows", "ui": "Uno + Skia", "layer": "workbench" }
+  ],
+  "codeSamples": [
+    {
+      "title": "Embed the workbench",
+      "lang": "csharp",
+      "code": "using ArtSpace.Documents;\nusing ArtSpace.Editing;\nusing ArtSpace.Workbench;\n\nvar session = new EditorSession(IllustrationSample.Create());\nwindow.Content = new StudioWorkbench(session, storage);"
+    },
+    {
+      "title": "Build and run on desktop",
+      "lang": "bash",
+      "code": "git clone https://github.com/wieslawsoltes/ArtSpace.git\ncd ArtSpace\npython3 scripts/fetch-assets.py\n\ndotnet run --project tests/ArtSpace.Tests -c Release\ndotnet run --project src/ArtSpace.App -f net10.0-desktop \\\n  -p:ArtSpaceDesktopOnly=true"
+    },
+    {
+      "title": "Publish the browser app",
+      "lang": "bash",
+      "code": "dotnet workload install wasm-tools --skip-manifest-update\ndotnet publish src/ArtSpace.App -f net10.0-browserwasm -c Release \\\n  -o artifacts/publish -p:WasmShellWebAppBasePath=/ArtSpace/\npython3 scripts/collect-site.py artifacts/publish artifacts/site\npython3 scripts/serve-site.py --directory artifacts/site"
+    }
+  ],
+  "shortcuts": [
+    { "action": "Selection / direct selection", "keys": "V / A" },
+    { "action": "Rectangle / ellipse", "keys": "M / L" },
+    { "action": "Pen / pencil / paintbrush", "keys": "P / N / B" },
+    { "action": "Type / line segment", "keys": "T / Backslash" },
+    { "action": "Create text outlines", "keys": "Ctrl Shift O" },
+    { "action": "Gradient / eyedropper", "keys": "G / I" },
+    { "action": "Temporary pan / cursor zoom", "keys": "Space-drag / Ctrl-wheel" },
+    { "action": "Group / ungroup", "keys": "Ctrl G / Ctrl Shift G" },
+    { "action": "Undo / redo", "keys": "Ctrl Z / Ctrl Shift Z" },
+    { "action": "Outline preview", "keys": "Ctrl Y" },
+    { "action": "Fit all / fit selection", "keys": "Shift 1 / Shift 2" },
+    { "action": "Quick actions / panel visibility", "keys": "Ctrl K / Tab" }
+  ],
+  "formats": [
+    { "name": ".artspace (native JSON)", "support": "read/write" },
+    { "name": "SVG (supported subset)", "support": "import" },
+    { "name": "SVG", "support": "export" },
+    { "name": "PNG", "support": "export" }
+  ],
+  "playground": {
+    "intro": "The live browser build opens the editable Alpine Echoes illustration across three artboards, running the same C# engine as desktop.",
+    "tour": [
+      { "title": "Explore the sample", "text": "Use the Artboards panel to select and fit the poster, badge and curve/color study, and the Layers panel to inspect individual objects." },
+      { "title": "Draw a pen path", "text": "Press P, click to place anchors, drag to set tangents, then press Enter to finish or click the first anchor to close." },
+      { "title": "Edit anchors directly", "text": "Select a shape and press A, then marquee or Shift-click anchors and drag or nudge them with the arrow keys." },
+      { "title": "Combine shapes", "text": "Select overlapping shapes and use Pathfinder to union, subtract, intersect or exclude them." },
+      { "title": "Outline some text", "text": "Press T to add text, then Ctrl Shift O to convert it into editable glyph contours." },
+      { "title": "Save and export", "text": "Use Save a Copy to download an editable .artspace file, or export SVG or PNG." }
+    ]
+  },
+  "architecture": [
+    { "name": "Model and formats", "text": "Platform-independent document, geometry and editable contours, plus validated native JSON schemas and the SVG subset.", "packages": ["ArtSpace.Core", "ArtSpace.Documents"] },
+    { "name": "Engine", "text": "Constraints and snapping, transactional editing with undo, and reusable illustration commands, all without Uno.", "packages": ["ArtSpace.Layout", "ArtSpace.Editing", "ArtSpace.Illustration"] },
+    { "name": "Rendering", "text": "SkiaSharp painting with retained caches, compositing, culling, hit testing and raster export.", "packages": ["ArtSpace.Skia"] },
+    { "name": "Uno UI", "text": "Custom controls and an embeddable SKCanvasElement drawing surface with direct-manipulation gestures.", "packages": ["ArtSpace.Controls", "ArtSpace.Editor"] },
+    { "name": "Workbench", "text": "The full application workspace, which a thin host app supplies with storage, fonts and lifetime.", "packages": ["ArtSpace.Workbench"] }
+  ],
+  "boundaries": [
+    "Functional alpha, not complete or pixel-identical Adobe Illustrator parity",
+    "No AI/EPS/PDF interchange; SVG support is a documented subset, not lossless roundtripping",
+    "No CMYK/ICC/spot color, gradient meshes, image tracing or pressure/pattern brushes",
+    "One active document session; direct contour editing works on one object at a time",
+    "Autosave is local recovery, not durable backup; browser storage can be cleared or evicted"
+  ],
+  "docs": [
+    { "title": "Getting started", "path": "docs/getting-started.md", "blurb": "Workspace tour, drawing basics, files, recovery and keyboard shortcuts" },
+    { "title": "Feature matrix", "path": "docs/feature-matrix.md", "blurb": "Implemented features and explicit compatibility boundaries" },
+    { "title": "Architecture", "path": "docs/architecture.md", "blurb": "Packages, rendering, masks, transactions and file trust model" },
+    { "title": "Path editing and text outlines", "path": "docs/path-editing.md", "blurb": "Anchors, remove vs cut, compound paths and Create Outlines" },
+    { "title": "Clipping and performance", "path": "docs/clipping-and-performance.md", "blurb": "Vector clipping workflow and rendering performance work" },
+    { "title": "Opacity masks and gradients", "path": "docs/opacity-masks-and-gradients.md", "blurb": "Alpha/luminance masks, SVG paints and affine fidelity" },
+    { "title": "UI performance", "path": "docs/ui-performance.md", "blurb": "Retained inspector, selection pipeline and browser measurements" }
+  ]
+}

@@ -1,0 +1,365 @@
+{
+  "slug": "cadspace",
+  "name": "CadSpace",
+  "repo": "wieslawsoltes/CadSpace",
+  "tagline": "A modular CAD workspace for desktop and the browser",
+  "summary": "CadSpace is an independent C# CAD application built with Uno Platform, Skia and OpenGL/WebGL. It pairs a familiar dark ribbon workspace with double-precision drafting, layers, blocks, rational splines, triangle-mesh modeling and ASCII/binary DXF exchange, exposing 77 command workflows through six independently reusable libraries.",
+  "category": "Engineering",
+  "inspiredBy": "AutoCAD-style ribbon CAD workspaces",
+  "version": "0.1.0",
+  "heroStats": [
+    {
+      "value": "77",
+      "label": "command workflows"
+    },
+    {
+      "value": "6",
+      "label": "independently packable libraries"
+    },
+    {
+      "value": "334",
+      "label": "headless regression tests"
+    },
+    {
+      "value": "~124×",
+      "label": "faster indexed picking vs. linear scan on 100,000 lines"
+    }
+  ],
+  "highlights": [
+    {
+      "title": "Ribbon CAD workspace",
+      "text": "Application menu, Quick Access, command search, contextual ribbon tabs, document tabs and Model/Layout tabs wired to one session.",
+      "icon": "layout"
+    },
+    {
+      "title": "Precision drafting",
+      "text": "Double-precision lines, polylines, arcs, ellipses, splines, text, dimensions and hatches with absolute, relative and polar input.",
+      "icon": "ruler"
+    },
+    {
+      "title": "Command line",
+      "text": "Type commands and aliases with completion, resizable history and dynamic input driving the same command engine.",
+      "icon": "terminal"
+    },
+    {
+      "title": "Snaps and grips",
+      "text": "Indexed object snaps, grid, ortho and polar guidance, plus blue grips that preview and commit one undoable edit.",
+      "icon": "grid"
+    },
+    {
+      "title": "Mesh modeling",
+      "text": "Primitives, extrusion, revolve, loft, sweep and bounded closed-mesh UNION, SUBTRACT and INTERSECT.",
+      "icon": "cube"
+    },
+    {
+      "title": "GPU 3D viewport",
+      "text": "Depth-tested OpenGL/WebGL rendering with visual styles, perspective or orthographic cameras and a synchronized ViewCube.",
+      "icon": "eye"
+    },
+    {
+      "title": "Layers and linetypes",
+      "text": "Virtualized Layer Properties and Linetype managers with ByLayer/ByBlock styles and per-object or global scales.",
+      "icon": "layers"
+    },
+    {
+      "title": "DXF exchange and recovery",
+      "text": "ASCII/binary DXF with original-record provenance, plus checksummed recovery checkpoints every five seconds.",
+      "icon": "recovery"
+    }
+  ],
+  "featureGroups": [
+    {
+      "area": "Drafting",
+      "items": [
+        "Lines, 2D/3D polylines, rectangles, circles, arcs, ellipses and points",
+        "Control-point rational splines of degree up to 3",
+        "Plain text, aligned dimensions and supported hatches",
+        "Constant and tapered polyline widths with PLINEWID and PEDIT"
+      ]
+    },
+    {
+      "area": "Editing",
+      "items": [
+        "Move, copy, rotate, scale, mirror, offset, array and explode",
+        "Line-based trim, extend, fillet, chamfer, join and break",
+        "Crossing-window STRETCH and transactional grip editing",
+        "QSELECT and SELECTSIMILAR selection tools",
+        "Atomic, validated edits with undo/redo"
+      ]
+    },
+    {
+      "area": "Precision",
+      "items": [
+        "Absolute, relative (@x,y) and polar (@d<a) coordinate input",
+        "Endpoint, midpoint, center, quadrant, intersection, perpendicular and tangent snaps",
+        "Grid, ortho, polar guidance and dynamic input",
+        "DIST and AREA measurement commands"
+      ]
+    },
+    {
+      "area": "Organization",
+      "items": [
+        "Layers with color, visibility, locking, lineweight and linetype",
+        "Nested blocks with BLOCK and INSERT",
+        "Simple dash/gap/dot linetypes with ByLayer/ByBlock and scales",
+        "Model/paper-space separation with undoable layout create, rename and delete"
+      ]
+    },
+    {
+      "area": "Mesh modeling",
+      "items": [
+        "BOX, CYLINDER, SPHERE and CONE primitives",
+        "EXTRUDE, REVOLVE, capped LOFT and parallel-transport SWEEP",
+        "Bounded closed-mesh UNION, SUBTRACT and INTERSECT",
+        "ROTATE3D, MIRROR3D and ALIGN3D transforms"
+      ]
+    },
+    {
+      "area": "Viewport and rendering",
+      "items": [
+        "Wireframe, hidden-line, shaded and shaded-with-edges visual styles",
+        "Perspective and orthographic cameras with display-only clipping",
+        "ViewCube with face/edge/corner picking and drag-to-orbit",
+        "Navigation bar for pan, zoom, orbit and projection"
+      ]
+    },
+    {
+      "area": "Workspace",
+      "items": [
+        "Docked, floating and auto-hide palettes with Escape rollback",
+        "Searchable Tool Palettes for commands and drawing blocks",
+        "Optional classic File/Edit/View/Draw/Modify/Tools/Help menus",
+        "Staged Options dialog with three workspace presets"
+      ]
+    },
+    {
+      "area": "Files and recovery",
+      "items": [
+        "Native .cadspace projects preserving DXF provenance",
+        "ASCII and binary DXF open and interchange export with loss reports",
+        "Checksummed recovery checkpoints every five seconds for dirty drawings",
+        "Workspace preferences stored separately from drawings"
+      ]
+    }
+  ],
+  "packages": [
+    {
+      "name": "CadSpace.Geometry",
+      "role": "Double vectors/transforms, OCS, rays/planes, intersections, triangulation and spatial index",
+      "ui": "None",
+      "layer": "model"
+    },
+    {
+      "name": "CadSpace.Model",
+      "role": "Immutable geometry, styles and blocks, scene cache, spline/hatch and mesh algorithms",
+      "ui": "None",
+      "layer": "model"
+    },
+    {
+      "name": "CadSpace.Engine",
+      "role": "Sessions, commands, selection/grips/snapping, undoable editing and workspace preferences",
+      "ui": "None",
+      "layer": "engine"
+    },
+    {
+      "name": "CadSpace.Dxf",
+      "role": "DXF transport, interpreters and writers, native projects and recovery journal",
+      "ui": "None",
+      "layer": "io"
+    },
+    {
+      "name": "CadSpace.Rendering",
+      "role": "Cameras, Skia drafting and OpenGL geometry, text, pattern and selection passes",
+      "ui": "SkiaSharp + OpenGL",
+      "layer": "rendering"
+    },
+    {
+      "name": "CadSpace.Controls",
+      "role": "Public Uno workspace components, managers, palette host, ribbon and navigation",
+      "ui": "Uno + Skia + OpenGL",
+      "layer": "workbench"
+    }
+  ],
+  "codeSamples": [
+    {
+      "title": "Try it in the command line",
+      "lang": "text",
+      "code": "RECTANG\n0,0\n240,140\nCIRCLE\n120,70\n30\nZOOM"
+    },
+    {
+      "title": "Bind the reusable workspace",
+      "lang": "csharp",
+      "code": "var session = new CadSpace.Engine.CadSession();\nvar commands = new CadSpace.Engine.CommandEngine(session);\nvar workspace = new CadSpace.Controls.CadWorkspace();\nworkspace.Bind(session, commands);\n// Connect workspace.FileRequested and PreferencesChanged to your host."
+    },
+    {
+      "title": "Build and run",
+      "lang": "sh",
+      "code": "git clone https://github.com/wieslawsoltes/CadSpace.git\ncd CadSpace\ndotnet workload install wasm-tools\n\n# Windows, macOS or Linux/X11\ndotnet run --project src/CadSpace.App -f net10.0-desktop -p:CadSpaceDesktopOnly=true\n\n# Browser development host\ndotnet run --project src/CadSpace.App -f net10.0-browserwasm\n\n# Publish for this repository's GitHub Pages path\ndotnet publish src/CadSpace.App -c Release -f net10.0-browserwasm \\\n  -p:WasmShellWebAppBasePath=/CadSpace/"
+    }
+  ],
+  "shortcuts": [
+    {
+      "action": "New / open / native save",
+      "keys": "Ctrl N / Ctrl O / Ctrl S"
+    },
+    {
+      "action": "ASCII DXF export",
+      "keys": "Ctrl Shift E"
+    },
+    {
+      "action": "Undo / redo",
+      "keys": "Ctrl Z / Ctrl Y"
+    },
+    {
+      "action": "Select all",
+      "keys": "Ctrl A"
+    },
+    {
+      "action": "Properties / Tool Palettes / clean screen",
+      "keys": "Ctrl 1 / Ctrl 3 / Ctrl 0"
+    },
+    {
+      "action": "Command history / command focus / search focus",
+      "keys": "F2 / F6 / Ctrl K"
+    },
+    {
+      "action": "Object snap / grid",
+      "keys": "F3 / F7"
+    },
+    {
+      "action": "Ortho / grid snap",
+      "keys": "F8 / F9"
+    },
+    {
+      "action": "Polar / dynamic input",
+      "keys": "F10 / F12"
+    },
+    {
+      "action": "Accept command completion / cancel",
+      "keys": "Tab / Escape"
+    },
+    {
+      "action": "Open drawing recovery",
+      "keys": "Ctrl Shift R"
+    },
+    {
+      "action": "Keep a dragged palette floating near an edge",
+      "keys": "Hold Ctrl"
+    }
+  ],
+  "formats": [
+    {
+      "name": ".cadspace",
+      "support": "read/write"
+    },
+    {
+      "name": ".dxf (ASCII / binary)",
+      "support": "read/write"
+    }
+  ],
+  "playground": {
+    "intro": "The live build opens an editable studio floor plan, with a 3D model example available from the CS application menu.",
+    "tour": [
+      {
+        "title": "Draw from the command line",
+        "text": "Type RECTANG, 0,0 and 240,140, then CIRCLE, 120,70 and 30, and finish with ZOOM — one command or value per line."
+      },
+      {
+        "title": "Select and grip-edit",
+        "text": "Click or window-select objects (Shift removes, Ctrl toggles), then drag a blue grip and release to commit one undoable edit."
+      },
+      {
+        "title": "Manage layers",
+        "text": "Run LAYER to open the Layer Properties Manager and change a layer's color, visibility or lock state."
+      },
+      {
+        "title": "Extrude into 3D",
+        "text": "Select a closed XY profile, run EXTRUDE, then use 3DORBIT or the ViewCube to orbit and VSCURRENT to change the visual style."
+      },
+      {
+        "title": "Try mesh Booleans",
+        "text": "Create two overlapping BOX or SPHERE meshes, select both and run UNION, SUBTRACT or INTERSECT."
+      },
+      {
+        "title": "Customize the workspace",
+        "text": "Float or auto-hide palettes, open Tool Palettes with Ctrl+3, and use OPTIONS or MENUBAR 1 to adjust the chrome."
+      }
+    ]
+  },
+  "architecture": [
+    {
+      "name": "Geometry",
+      "text": "Double-precision math, intersections, triangulation and spatial indexing with no UI dependency.",
+      "packages": [
+        "CadSpace.Geometry"
+      ]
+    },
+    {
+      "name": "Model and exchange",
+      "text": "Immutable drawings, styles, blocks and mesh algorithms, plus DXF and native project I/O that depends on Model, not the UI.",
+      "packages": [
+        "CadSpace.Model",
+        "CadSpace.Dxf"
+      ]
+    },
+    {
+      "name": "Engine and rendering",
+      "text": "A command state machine with selection, snapping and undo, alongside Skia drafting and OpenGL 3D renderers.",
+      "packages": [
+        "CadSpace.Engine",
+        "CadSpace.Rendering"
+      ]
+    },
+    {
+      "name": "Controls",
+      "text": "Public Uno ribbon, palettes, managers, ViewCube and navigation components that expose events to the host app.",
+      "packages": [
+        "CadSpace.Controls"
+      ]
+    }
+  ],
+  "boundaries": [
+    "Development preview, not full AutoCAD parity or CUI/API compatibility",
+    "Mesh modeling is triangle-based, not an analytic ACIS/B-rep solid kernel",
+    "No DWG or ACIS decoding; arbitrary DXF editing is not universally lossless",
+    "Paper-space viewports, plotting, dynamic blocks and constraints remain unimplemented",
+    "3D requires an accelerated OpenGL/GLES/WebGL context; uses framebuffer readback, not zero-copy"
+  ],
+  "docs": [
+    {
+      "title": "Workspace guide",
+      "path": "docs/WORKSPACE.md",
+      "blurb": "Ribbon, palettes, ViewCube, preferences and reusable workspace controls"
+    },
+    {
+      "title": "Command reference",
+      "path": "docs/COMMANDS.md",
+      "blurb": "All 77 commands, aliases, inputs and behavior boundaries"
+    },
+    {
+      "title": "Coverage",
+      "path": "docs/FEATURES.md",
+      "blurb": "Implemented features versus remaining DXF, modeling and UI boundaries"
+    },
+    {
+      "title": "Architecture",
+      "path": "docs/ARCHITECTURE.md",
+      "blurb": "Documents, commands, scene caching, exchange and graphics design"
+    },
+    {
+      "title": "Line editing",
+      "path": "docs/LINE-EDITING.md",
+      "blurb": "TRIM, EXTEND, FILLET, CHAMFER, JOIN, BREAK and ELLIPSE workflows"
+    },
+    {
+      "title": "Wide polylines",
+      "path": "docs/WIDE-POLYLINES.md",
+      "blurb": "Native polyline width semantics, editing and rendering limits"
+    },
+    {
+      "title": "Performance",
+      "path": "docs/PERFORMANCE.md",
+      "blurb": "Measured indexed picking, caching paths and remaining costs"
+    }
+  ]
+}

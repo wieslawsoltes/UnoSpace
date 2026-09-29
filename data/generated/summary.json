@@ -1,0 +1,175 @@
+{
+  "generatedAt": "2026-09-29T08:16:34.478Z",
+  "projects": [
+    {
+      "slug": "vectorspace",
+      "repo": "VectorSpace",
+      "version": "0.6.0-alpha.1",
+      "loc": 12635,
+      "libraries": 10,
+      "projects": 15,
+      "workflows": 5,
+      "stars": 0
+    },
+    {
+      "slug": "artspace",
+      "repo": "ArtSpace",
+      "version": "0.4.1-alpha.1",
+      "loc": 7942,
+      "libraries": 9,
+      "projects": 11,
+      "workflows": 3,
+      "stars": 1
+    },
+    {
+      "slug": "textspace",
+      "repo": "TextSpace",
+      "version": "0.5.1-alpha.1",
+      "loc": 11795,
+      "libraries": 10,
+      "projects": 13,
+      "workflows": 4,
+      "stars": 6
+    },
+    {
+      "slug": "gridspace",
+      "repo": "GridSpace",
+      "version": "0.3.0-alpha.1",
+      "loc": 7671,
+      "libraries": 8,
+      "projects": 11,
+      "workflows": 4,
+      "stars": 3
+    },
+    {
+      "slug": "pdfspace",
+      "repo": "PdfSpace",
+      "version": "0.5.3-alpha.1",
+      "loc": 19284,
+      "libraries": 12,
+      "projects": 14,
+      "workflows": 4,
+      "stars": 2
+    },
+    {
+      "slug": "presentationspace",
+      "repo": "PresentationSpace",
+      "version": "0.6.0",
+      "loc": 7192,
+      "libraries": 6,
+      "projects": 9,
+      "workflows": 3,
+      "stars": 0
+    },
+    {
+      "slug": "imagespace",
+      "repo": "ImageSpace",
+      "version": "0.3.2-alpha.1",
+      "loc": 12516,
+      "libraries": 11,
+      "projects": 19,
+      "workflows": 6,
+      "stars": 1
+    },
+    {
+      "slug": "lightspace",
+      "repo": "LightSpace",
+      "version": "0.4.1-alpha.1",
+      "loc": 5881,
+      "libraries": 8,
+      "projects": 10,
+      "workflows": 5,
+      "stars": 1
+    },
+    {
+      "slug": "videospace",
+      "repo": "VideoSpace",
+      "version": "0.3.0-alpha.1",
+      "loc": 4292,
+      "libraries": 10,
+      "projects": 16,
+      "workflows": 6,
+      "stars": 1
+    },
+    {
+      "slug": "effectsspace",
+      "repo": "EffectsSpace",
+      "version": "0.1.0-alpha.1",
+      "loc": 6932,
+      "libraries": 11,
+      "projects": 19,
+      "workflows": 8,
+      "stars": 0
+    },
+    {
+      "slug": "cadspace",
+      "repo": "CadSpace",
+      "version": "0.1.0",
+      "loc": 9324,
+      "libraries": 6,
+      "projects": 12,
+      "workflows": 2,
+      "stars": 9
+    },
+    {
+      "slug": "labspace",
+      "repo": "LabSpace",
+      "version": "0.2.0-alpha.1",
+      "loc": 3778,
+      "libraries": 9,
+      "projects": 12,
+      "workflows": 4,
+      "stars": 1
+    },
+    {
+      "slug": "controlspace",
+      "repo": "ControlSpace",
+      "version": "0.1.0",
+      "loc": 3209,
+      "libraries": 8,
+      "projects": 12,
+      "workflows": 3,
+      "stars": 0
+    },
+    {
+      "slug": "codespace",
+      "repo": "CodeSpace",
+      "version": "0.1.0",
+      "loc": 3842,
+      "libraries": 8,
+      "projects": 12,
+      "workflows": 3,
+      "stars": 0
+    },
+    {
+      "slug": "gitspace",
+      "repo": "GitSpace",
+      "version": "0.1.0",
+      "loc": 3124,
+      "libraries": 7,
+      "projects": 10,
+      "workflows": 3,
+      "stars": 2
+    },
+    {
+      "slug": "dataspace",
+      "repo": "DataSpace",
+      "version": "0.2.0-preview.3",
+      "loc": 8841,
+      "libraries": 5,
+      "projects": 8,
+      "workflows": 2,
+      "stars": 1
+    },
+    {
+      "slug": "notespace",
+      "repo": "NoteSpace",
+      "version": "0.1.0",
+      "loc": 6246,
+      "libraries": 5,
+      "projects": 9,
+      "workflows": 2,
+      "stars": 2
+    }
+  ]
+}

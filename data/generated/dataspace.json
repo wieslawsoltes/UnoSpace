@@ -1,0 +1,248 @@
+{
+  "slug": "dataspace",
+  "repo": "wieslawsoltes/DataSpace",
+  "version": "0.2.0-preview.3",
+  "dotnetSdk": "10.0.100",
+  "unoSdk": "6.7.30",
+  "pinned": [],
+  "github": {
+    "stars": 1,
+    "forks": 0,
+    "openIssues": 0,
+    "createdAt": "2026-09-27T10:05:56Z",
+    "pushedAt": "2026-09-28T09:16:34Z",
+    "homepage": "https://wieslawsoltes.github.io/DataSpace/",
+    "license": "MIT"
+  },
+  "lastCommit": {
+    "sha": "af65811",
+    "date": "2026-09-28T11:16:34+02:00",
+    "subject": "Merge completed subquery, Find-builder and performance work (#4)"
+  },
+  "loc": {
+    "total": 8841,
+    "src": 6619,
+    "tests": 2049
+  },
+  "projectCount": 8,
+  "libraryCount": 5,
+  "testProjectCount": 2,
+  "projects": [
+    {
+      "name": "DataSpace.App",
+      "path": "src/DataSpace.App/DataSpace.App.csproj",
+      "kind": "app",
+      "sdk": "Uno.Sdk",
+      "targetFrameworks": [
+        "net10.0-browserwasm",
+        "net10.0-desktop"
+      ],
+      "packable": false,
+      "description": "",
+      "unoFeatures": [
+        "SkiaRenderer"
+      ],
+      "projectRefs": [
+        "DataSpace.Controls"
+      ],
+      "packageRefs": [],
+      "files": 6,
+      "loc": 170
+    },
+    {
+      "name": "DataSpace.Benchmarks",
+      "path": "benchmarks/DataSpace.Benchmarks/DataSpace.Benchmarks.csproj",
+      "kind": "test",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "",
+      "unoFeatures": [],
+      "projectRefs": [
+        "DataSpace.Core",
+        "DataSpace.Query"
+      ],
+      "packageRefs": [],
+      "files": 1,
+      "loc": 173
+    },
+    {
+      "name": "DataSpace.Controls",
+      "path": "src/DataSpace.Controls/DataSpace.Controls.csproj",
+      "kind": "library",
+      "sdk": "Uno.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": true,
+      "description": "Reusable Office-style Uno ribbon, navigation, datasheet and database designer controls.",
+      "unoFeatures": [
+        "SkiaRenderer"
+      ],
+      "projectRefs": [
+        "DataSpace.Core",
+        "DataSpace.Query",
+        "DataSpace.Storage",
+        "DataSpace.Rendering"
+      ],
+      "packageRefs": [
+        {
+          "id": "SkiaSharp.Views.Uno.WinUI",
+          "version": "4.152.1"
+        }
+      ],
+      "files": 25,
+      "loc": 2342
+    },
+    {
+      "name": "DataSpace.Core",
+      "path": "src/DataSpace.Core/DataSpace.Core.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "DataSpace typed document model, validation, relational constraints and transactional workspace.",
+      "unoFeatures": [],
+      "projectRefs": [],
+      "packageRefs": [],
+      "files": 14,
+      "loc": 935
+    },
+    {
+      "name": "DataSpace.Query",
+      "path": "src/DataSpace.Query/DataSpace.Query.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "Managed SQL parser, expression evaluation and relational query execution for DataSpace.",
+      "unoFeatures": [],
+      "projectRefs": [
+        "DataSpace.Core"
+      ],
+      "packageRefs": [],
+      "files": 21,
+      "loc": 2450
+    },
+    {
+      "name": "DataSpace.Rendering",
+      "path": "src/DataSpace.Rendering/DataSpace.Rendering.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "UI-independent SkiaSharp datasheet, relationship, form, report and icon renderers.",
+      "unoFeatures": [],
+      "projectRefs": [
+        "DataSpace.Core"
+      ],
+      "packageRefs": [
+        {
+          "id": "SkiaSharp",
+          "version": "4.152.1"
+        }
+      ],
+      "files": 6,
+      "loc": 509
+    },
+    {
+      "name": "DataSpace.Storage",
+      "path": "src/DataSpace.Storage/DataSpace.Storage.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "CSV interchange, versioned persistence contracts and atomic file storage for DataSpace.",
+      "unoFeatures": [],
+      "projectRefs": [
+        "DataSpace.Core"
+      ],
+      "packageRefs": [],
+      "files": 3,
+      "loc": 213
+    },
+    {
+      "name": "DataSpace.Tests",
+      "path": "tests/DataSpace.Tests/DataSpace.Tests.csproj",
+      "kind": "test",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "",
+      "unoFeatures": [],
+      "projectRefs": [
+        "DataSpace.Core",
+        "DataSpace.Query",
+        "DataSpace.Storage"
+      ],
+      "packageRefs": [
+        {
+          "id": "Microsoft.NET.Test.Sdk",
+          "version": "17.12.0"
+        },
+        {
+          "id": "xunit",
+          "version": "2.9.2"
+        },
+        {
+          "id": "xunit.runner.visualstudio",
+          "version": "2.8.2"
+        }
+      ],
+      "files": 23,
+      "loc": 2049
+    }
+  ],
+  "nuget": [
+    {
+      "id": "Microsoft.NET.Test.Sdk",
+      "version": "17.12.0"
+    },
+    {
+      "id": "SkiaSharp",
+      "version": "4.152.1"
+    },
+    {
+      "id": "SkiaSharp.Views.Uno.WinUI",
+      "version": "4.152.1"
+    },
+    {
+      "id": "xunit",
+      "version": "2.9.2"
+    },
+    {
+      "id": "xunit.runner.visualstudio",
+      "version": "2.8.2"
+    }
+  ],
+  "workflows": [
+    {
+      "file": "build.yml",
+      "name": "Build, test and deploy"
+    },
+    {
+      "file": "release.yml",
+      "name": "Release packages and application"
+    }
+  ],
+  "docs": [
+    "docs/ARCHITECTURE.md",
+    "docs/COMPATIBILITY.md",
+    "docs/PERFORMANCE.md",
+    "docs/QUERY-ANALYTICS.md",
+    "docs/SUBQUERIES.md"
+  ],
+  "images": []
+}

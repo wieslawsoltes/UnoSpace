@@ -1,0 +1,476 @@
+{
+  "slug": "effectsspace",
+  "repo": "wieslawsoltes/EffectsSpace",
+  "version": "0.1.0-alpha.1",
+  "dotnetSdk": "10.0.401",
+  "unoSdk": "6.7.30",
+  "pinned": [],
+  "github": {
+    "stars": 0,
+    "forks": 0,
+    "openIssues": 0,
+    "createdAt": "2026-09-27T17:25:31Z",
+    "pushedAt": "2026-09-28T08:51:59Z",
+    "homepage": "https://wieslawsoltes.github.io/EffectsSpace/",
+    "license": "MIT"
+  },
+  "lastCommit": {
+    "sha": "5e336b8",
+    "date": "2026-09-28T10:51:59+02:00",
+    "subject": "Merge audio fidelity, precision WAVE delivery and bounded PCM decoding (#3)"
+  },
+  "loc": {
+    "total": 6932,
+    "src": 6210,
+    "tests": 722
+  },
+  "projectCount": 19,
+  "libraryCount": 11,
+  "testProjectCount": 7,
+  "projects": [
+    {
+      "name": "EffectsSpace.Animation",
+      "path": "src/EffectsSpace.Animation/EffectsSpace.Animation.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "Deterministic keyframes, temporal easing, transform evaluation and bounded scalar expressions.",
+      "unoFeatures": [],
+      "projectRefs": [
+        "EffectsSpace.Core"
+      ],
+      "packageRefs": [],
+      "files": 5,
+      "loc": 254
+    },
+    {
+      "name": "EffectsSpace.Animation.Tests",
+      "path": "tests/EffectsSpace.Animation.Tests/EffectsSpace.Animation.Tests.csproj",
+      "kind": "test",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "",
+      "unoFeatures": [],
+      "projectRefs": [
+        "EffectsSpace.Editing"
+      ],
+      "packageRefs": [],
+      "files": 1,
+      "loc": 51
+    },
+    {
+      "name": "EffectsSpace.App",
+      "path": "src/EffectsSpace.App/EffectsSpace.App.csproj",
+      "kind": "app",
+      "sdk": "Uno.Sdk",
+      "targetFrameworks": [
+        "net10.0-browserwasm",
+        "net10.0-desktop"
+      ],
+      "packable": false,
+      "description": "Independent motion-design and compositing workbench.",
+      "unoFeatures": [
+        "SkiaRenderer"
+      ],
+      "projectRefs": [
+        "EffectsSpace.Workbench"
+      ],
+      "packageRefs": [],
+      "files": 9,
+      "loc": 286
+    },
+    {
+      "name": "EffectsSpace.Audio.Tests",
+      "path": "tests/EffectsSpace.Audio.Tests/EffectsSpace.Audio.Tests.csproj",
+      "kind": "test",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "",
+      "unoFeatures": [],
+      "projectRefs": [
+        "EffectsSpace.Media"
+      ],
+      "packageRefs": [],
+      "files": 1,
+      "loc": 254
+    },
+    {
+      "name": "EffectsSpace.Compositing.Tests",
+      "path": "tests/EffectsSpace.Compositing.Tests/EffectsSpace.Compositing.Tests.csproj",
+      "kind": "test",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "",
+      "unoFeatures": [],
+      "projectRefs": [
+        "EffectsSpace.Skia",
+        "EffectsSpace.Editing"
+      ],
+      "packageRefs": [
+        {
+          "id": "SkiaSharp.NativeAssets.Linux.NoDependencies",
+          "version": "3.119.2"
+        }
+      ],
+      "files": 1,
+      "loc": 123
+    },
+    {
+      "name": "EffectsSpace.Controls",
+      "path": "src/EffectsSpace.Controls/EffectsSpace.Controls.csproj",
+      "kind": "library",
+      "sdk": "Uno.Sdk",
+      "targetFrameworks": [
+        "net10.0-browserwasm",
+        "net10.0-desktop"
+      ],
+      "packable": true,
+      "description": "Original compact studio controls, iconography, panel chrome, numeric scrubbing and splitters for Uno.",
+      "unoFeatures": [
+        "SkiaRenderer"
+      ],
+      "projectRefs": [
+        "EffectsSpace.Core"
+      ],
+      "packageRefs": [],
+      "files": 7,
+      "loc": 314
+    },
+    {
+      "name": "EffectsSpace.Core",
+      "path": "src/EffectsSpace.Core/EffectsSpace.Core.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "Composition, layer, keyframe and geometry models for motion-design applications.",
+      "unoFeatures": [],
+      "projectRefs": [],
+      "packageRefs": [],
+      "files": 18,
+      "loc": 321
+    },
+    {
+      "name": "EffectsSpace.Documents",
+      "path": "src/EffectsSpace.Documents/EffectsSpace.Documents.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "Versioned, validated EffectsSpace documents and platform-neutral storage contracts.",
+      "unoFeatures": [],
+      "projectRefs": [
+        "EffectsSpace.Core"
+      ],
+      "packageRefs": [],
+      "files": 4,
+      "loc": 170
+    },
+    {
+      "name": "EffectsSpace.Editing",
+      "path": "src/EffectsSpace.Editing/EffectsSpace.Editing.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "Atomic editing transactions, undo/redo, layer operations, keyframe edits and sample compositions.",
+      "unoFeatures": [],
+      "projectRefs": [
+        "EffectsSpace.Animation",
+        "EffectsSpace.Documents"
+      ],
+      "packageRefs": [],
+      "files": 8,
+      "loc": 679
+    },
+    {
+      "name": "EffectsSpace.Media",
+      "path": "src/EffectsSpace.Media/EffectsSpace.Media.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "Portable bounded RIFF/WAVE and Motion JPEG AVI containers, sample-accurate audio mixing and media indexing.",
+      "unoFeatures": [],
+      "projectRefs": [
+        "EffectsSpace.Animation"
+      ],
+      "packageRefs": [],
+      "files": 14,
+      "loc": 970
+    },
+    {
+      "name": "EffectsSpace.Media.Skia.Tests",
+      "path": "tests/EffectsSpace.Media.Skia.Tests/EffectsSpace.Media.Skia.Tests.csproj",
+      "kind": "test",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "",
+      "unoFeatures": [],
+      "projectRefs": [
+        "EffectsSpace.Skia",
+        "EffectsSpace.Editing"
+      ],
+      "packageRefs": [
+        {
+          "id": "SkiaSharp.NativeAssets.Linux.NoDependencies",
+          "version": "3.119.2"
+        }
+      ],
+      "files": 1,
+      "loc": 55
+    },
+    {
+      "name": "EffectsSpace.Media.Tests",
+      "path": "tests/EffectsSpace.Media.Tests/EffectsSpace.Media.Tests.csproj",
+      "kind": "test",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "",
+      "unoFeatures": [],
+      "projectRefs": [
+        "EffectsSpace.Media"
+      ],
+      "packageRefs": [],
+      "files": 1,
+      "loc": 104
+    },
+    {
+      "name": "EffectsSpace.Rendering",
+      "path": "src/EffectsSpace.Rendering/EffectsSpace.Rendering.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "Renderer-neutral composition plans, hit testing, budgets and deterministic export frame schedules.",
+      "unoFeatures": [],
+      "projectRefs": [
+        "EffectsSpace.Animation"
+      ],
+      "packageRefs": [],
+      "files": 3,
+      "loc": 110
+    },
+    {
+      "name": "EffectsSpace.Skia",
+      "path": "src/EffectsSpace.Skia/EffectsSpace.Skia.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "Direct-canvas Skia compositing, effects, masks, image caching and deterministic PNG sequence export.",
+      "unoFeatures": [],
+      "projectRefs": [
+        "EffectsSpace.Rendering",
+        "EffectsSpace.Media"
+      ],
+      "packageRefs": [
+        {
+          "id": "SkiaSharp",
+          "version": "3.119.2"
+        }
+      ],
+      "files": 10,
+      "loc": 715
+    },
+    {
+      "name": "EffectsSpace.Skia.Tests",
+      "path": "tests/EffectsSpace.Skia.Tests/EffectsSpace.Skia.Tests.csproj",
+      "kind": "test",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "",
+      "unoFeatures": [],
+      "projectRefs": [
+        "EffectsSpace.Skia",
+        "EffectsSpace.Editing"
+      ],
+      "packageRefs": [
+        {
+          "id": "SkiaSharp.NativeAssets.Linux.NoDependencies",
+          "version": "3.119.2"
+        }
+      ],
+      "files": 1,
+      "loc": 43
+    },
+    {
+      "name": "EffectsSpace.Tests",
+      "path": "tests/EffectsSpace.Tests/EffectsSpace.Tests.csproj",
+      "kind": "test",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "",
+      "unoFeatures": [],
+      "projectRefs": [
+        "EffectsSpace.Editing",
+        "EffectsSpace.Rendering"
+      ],
+      "packageRefs": [],
+      "files": 1,
+      "loc": 92
+    },
+    {
+      "name": "EffectsSpace.Timeline",
+      "path": "src/EffectsSpace.Timeline/EffectsSpace.Timeline.csproj",
+      "kind": "library",
+      "sdk": "Uno.Sdk",
+      "targetFrameworks": [
+        "net10.0-browserwasm",
+        "net10.0-desktop"
+      ],
+      "packable": true,
+      "description": "Custom virtualized composition timeline, clip trimming, keyframe editing and value graph for Uno Platform.",
+      "unoFeatures": [
+        "SkiaRenderer"
+      ],
+      "projectRefs": [
+        "EffectsSpace.Controls",
+        "EffectsSpace.Editing",
+        "EffectsSpace.Rendering"
+      ],
+      "packageRefs": [],
+      "files": 5,
+      "loc": 595
+    },
+    {
+      "name": "EffectsSpace.Viewer",
+      "path": "src/EffectsSpace.Viewer/EffectsSpace.Viewer.csproj",
+      "kind": "library",
+      "sdk": "Uno.Sdk",
+      "targetFrameworks": [
+        "net10.0-browserwasm",
+        "net10.0-desktop"
+      ],
+      "packable": true,
+      "description": "Direct GPU-canvas composition viewing, camera navigation, WYSIWYG layer transforms, shape paths and text editing.",
+      "unoFeatures": [
+        "SkiaRenderer"
+      ],
+      "projectRefs": [
+        "EffectsSpace.Controls",
+        "EffectsSpace.Editing",
+        "EffectsSpace.Skia"
+      ],
+      "packageRefs": [],
+      "files": 5,
+      "loc": 628
+    },
+    {
+      "name": "EffectsSpace.Workbench",
+      "path": "src/EffectsSpace.Workbench/EffectsSpace.Workbench.csproj",
+      "kind": "library",
+      "sdk": "Uno.Sdk",
+      "targetFrameworks": [
+        "net10.0-browserwasm",
+        "net10.0-desktop"
+      ],
+      "packable": true,
+      "description": "Composable motion-design workbench, project bins, inspectors, effect panels, transport, render queue and document workflows.",
+      "unoFeatures": [
+        "SkiaRenderer"
+      ],
+      "projectRefs": [
+        "EffectsSpace.Viewer",
+        "EffectsSpace.Timeline"
+      ],
+      "packageRefs": [],
+      "files": 13,
+      "loc": 1168
+    }
+  ],
+  "nuget": [
+    {
+      "id": "SkiaSharp",
+      "version": "3.119.2"
+    },
+    {
+      "id": "SkiaSharp.NativeAssets.Linux.NoDependencies",
+      "version": "3.119.2"
+    }
+  ],
+  "workflows": [
+    {
+      "file": "animation.yml",
+      "name": "Animation"
+    },
+    {
+      "file": "audio.yml",
+      "name": "Audio Fidelity"
+    },
+    {
+      "file": "build.yml",
+      "name": "Build"
+    },
+    {
+      "file": "desktop.yml",
+      "name": "Desktop"
+    },
+    {
+      "file": "media.yml",
+      "name": "Portable Media"
+    },
+    {
+      "file": "nuget.yml",
+      "name": "Publish NuGet"
+    },
+    {
+      "file": "pages.yml",
+      "name": "Pages"
+    },
+    {
+      "file": "release.yml",
+      "name": "Release"
+    }
+  ],
+  "docs": [
+    "docs/ANIMATION-EDITING.md",
+    "docs/ARCHITECTURE.md",
+    "docs/AUDIO-FIDELITY.md",
+    "docs/AUDIO-UPDATE-2026-09-28.md",
+    "docs/COMPOSITING.md",
+    "docs/DEPLOYMENT.md",
+    "docs/EMBEDDING.md",
+    "docs/FEATURES.md",
+    "docs/MEDIA.md",
+    "docs/USER-GUIDE.md",
+    "docs/VALIDATION.md"
+  ],
+  "images": []
+}

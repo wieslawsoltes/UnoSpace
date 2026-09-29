@@ -1,0 +1,361 @@
+{
+  "slug": "codespace",
+  "name": "CodeSpace",
+  "repo": "wieslawsoltes/CodeSpace",
+  "tagline": "A VS Code-style developer workbench, custom-built in C# on Uno",
+  "summary": "CodeSpace brings a familiar activity bar, explorer, command center, editor groups and bottom panel to a native Uno Platform / C# application. The editor, highlighting, file tree, icons, docking model and composition are all custom-built, with no Monaco, Electron or embedded VS Code workbench. A persistent AVL-rope text engine, Skia renderer and experimental VSIX extension host are packaged as independently reusable libraries.",
+  "category": "Developer",
+  "inspiredBy": "Visual Studio Code-style workbenches",
+  "version": "0.1.0",
+  "heroStats": [
+    {
+      "value": "12",
+      "label": "lexical language profiles"
+    },
+    {
+      "value": "9",
+      "label": "reusable packages (8 NuGet + 1 npm)"
+    },
+    {
+      "value": "9.74×",
+      "label": "less raster time in the CPU text fixture"
+    },
+    {
+      "value": "74.3%",
+      "label": "fewer text draw calls"
+    }
+  ],
+  "highlights": [
+    {
+      "title": "Custom editor, no Monaco",
+      "text": "The editor, highlighting, file tree, icons and docking are custom-built in C#. No Monaco, Electron, embedded VS Code or screenshot-based UI is used.",
+      "icon": "code"
+    },
+    {
+      "title": "Persistent rope text engine",
+      "text": "A persistent AVL rope with indexed line navigation and structurally shared undo/redo, gated on two-million-character documents.",
+      "icon": "database"
+    },
+    {
+      "title": "Multi-cursor editing",
+      "text": "Multiple selections, Ctrl+D next-occurrence selection, Alt+Shift rectangular pointer selection, grapheme-aware deletion and literal/regex find and replace.",
+      "icon": "pen"
+    },
+    {
+      "title": "Folding and minimap",
+      "text": "Folding with indexed visual rows, a minimap, whitespace visualization, line numbers and Ctrl+wheel font zoom.",
+      "icon": "eye"
+    },
+    {
+      "title": "Docked editor groups",
+      "text": "Draggable tabs, nested horizontal/vertical editor splits and resizable side and bottom panels, backed by an immutable layout model.",
+      "icon": "layout"
+    },
+    {
+      "title": "Command palette and quick-open",
+      "text": "Fuzzy commands with Ctrl+Shift+P, Go to file with Ctrl+P, breadcrumbs and workspace search.",
+      "icon": "search"
+    },
+    {
+      "title": "VSIX extension host",
+      "text": "Bounded VSIX inspection, explicit activation trust, browser worker and Node process hosts, with completion, hover, definition, symbol and format providers.",
+      "icon": "plug"
+    },
+    {
+      "title": "Batched Skia rendering",
+      "text": "SKCanvasElement draws into Uno's Skia composition canvas with a 512-entry line layout cache and positioned-text batches.",
+      "icon": "gauge"
+    }
+  ],
+  "featureGroups": [
+    {
+      "area": "Editing",
+      "items": [
+        "Folding/unfolding with indexed visual rows",
+        "Multiple selections, next-occurrence selection and Alt+Shift rectangular pointer selection",
+        "Structurally shared undo/redo and version-checked atomic multi-document edits",
+        "Literal and regex find and replace, comments, autoindent and duplicate line",
+        "Suggestions, symbol navigation and Go to line/column",
+        "Minimap, line numbers, whitespace visualization, scrolling and zoom"
+      ]
+    },
+    {
+      "area": "Workbench",
+      "items": [
+        "Custom vector activity icons and a virtualized explorer",
+        "File create, import, rename, delete and export with dirty tab markers",
+        "Draggable tab reordering and moves across nested editor splits",
+        "Resizable side and bottom panels with Ctrl+B / Ctrl+J toggles",
+        "Fuzzy commands, quick-open, breadcrumbs, document status and workspace search"
+      ]
+    },
+    {
+      "area": "Languages",
+      "items": [
+        "C#, JavaScript, TypeScript, JSON, Python, HTML and XML/XAML",
+        "CSS, Markdown, YAML, shell scripts and plain text",
+        "Stateful tokens, bracket diagnostics, folding ranges and declaration extraction",
+        "Incremental re-tokenization that stops once lexer state converges"
+      ]
+    },
+    {
+      "area": "Extensions",
+      "items": [
+        "Bounded, non-executing VSIX inspection with manifest/host classification",
+        "Explicit activation trust before any extension code runs",
+        "Bundled CommonJS loading in a browser module worker or an optional Node.js 22+ process",
+        "Completion, hover, definition, symbol and format providers bridged to the editor",
+        "Diagnostic collections with Problems entries and editor squiggles"
+      ]
+    },
+    {
+      "area": "Files and settings",
+      "items": [
+        "Import UTF-8 text into a virtual workspace via File → Open / Import Files",
+        "Save/export the active file through a picker or download",
+        "Workspace: Export Backup writes a portable .codespace.json file",
+        "Local recovery of dirty baselines, selections, viewport and fold state",
+        "Live JSONC settings for font size, tab size, minimap, whitespace and line numbers"
+      ]
+    },
+    {
+      "area": "Rendering and performance",
+      "items": [
+        "Draws into Uno's Skia composition canvas without a per-frame CPU bitmap upload",
+        "Up to 512 cached line layouts with positioned-text batches",
+        "Zero-allocation indexed line navigation on two-million-character documents",
+        "Fold mapping stored in proportion to collapsed intervals, not total lines"
+      ]
+    }
+  ],
+  "packages": [
+    {
+      "name": "CodeSpace.Core",
+      "role": "Persistent text, virtual workspace, commands and configuration",
+      "ui": "None",
+      "layer": "model"
+    },
+    {
+      "name": "CodeSpace.Editor",
+      "role": "Transactions, selections, history and folding indexes",
+      "ui": "None",
+      "layer": "editor"
+    },
+    {
+      "name": "CodeSpace.Docking",
+      "role": "Immutable split/tab layouts and persistence",
+      "ui": "None",
+      "layer": "model"
+    },
+    {
+      "name": "CodeSpace.Languages",
+      "role": "Tokenizer and lexical language services",
+      "ui": "None",
+      "layer": "engine"
+    },
+    {
+      "name": "CodeSpace.Extensions",
+      "role": "VSIX inspection, compatibility reports and RPC framing",
+      "ui": "None",
+      "layer": "service"
+    },
+    {
+      "name": "CodeSpace.ExtensionHost",
+      "role": "@codespace/extension-host: browser/Node extension runtime and provider adapters",
+      "ui": "None (JavaScript)",
+      "layer": "service"
+    },
+    {
+      "name": "CodeSpace.Rendering.Skia",
+      "role": "Editor renderer and viewport on a caller-owned SKCanvas",
+      "ui": "SkiaSharp",
+      "layer": "rendering"
+    },
+    {
+      "name": "CodeSpace.Controls.Uno",
+      "role": "Editor, input bridge, tree, tabs, splitter, activity bar and quick pick controls",
+      "ui": "Uno + Skia",
+      "layer": "controls"
+    },
+    {
+      "name": "CodeSpace.Workbench.Uno",
+      "role": "Composable workbench and IWorkbenchPlatform adapter contract",
+      "ui": "Uno + Skia",
+      "layer": "workbench"
+    }
+  ],
+  "codeSamples": [
+    {
+      "title": "Edit text without any UI",
+      "lang": "csharp",
+      "code": "using CodeSpace.Core;\nusing CodeSpace.Editor;\n\nvar workspace = new Workspace { Name = \"example\" };\nvar file = workspace.Add(\"src/hello.cs\", \"class Hello {}\\n\");\nvar editor = new EditorSession(file);\neditor.Select(6, 11);\neditor.Insert(\"World\");\neditor.Undo();"
+    }
+  ],
+  "shortcuts": [
+    {
+      "action": "Go to file",
+      "keys": "Ctrl P"
+    },
+    {
+      "action": "Commands",
+      "keys": "Ctrl Shift P / F1"
+    },
+    {
+      "action": "Save/export active file",
+      "keys": "Ctrl S"
+    },
+    {
+      "action": "Find / replace",
+      "keys": "Ctrl F / Ctrl H"
+    },
+    {
+      "action": "Add next matching selection",
+      "keys": "Ctrl D"
+    },
+    {
+      "action": "Extension and document completions",
+      "keys": "Ctrl Space"
+    },
+    {
+      "action": "Go to line/column",
+      "keys": "Ctrl G"
+    },
+    {
+      "action": "Extension definition / document formatting",
+      "keys": "F12 / Shift Alt F"
+    },
+    {
+      "action": "Split right",
+      "keys": "Ctrl \\"
+    },
+    {
+      "action": "Toggle side bar / panel",
+      "keys": "Ctrl B / Ctrl J"
+    },
+    {
+      "action": "Font size",
+      "keys": "Ctrl mouse wheel"
+    },
+    {
+      "action": "Horizontal scrolling",
+      "keys": "Shift mouse wheel"
+    }
+  ],
+  "formats": [
+    {
+      "name": "UTF-8 text files",
+      "support": "import"
+    },
+    {
+      "name": ".codespace.json (workspace backup)",
+      "support": "export"
+    },
+    {
+      "name": ".vscode/settings.json (JSONC)",
+      "support": "read/write"
+    },
+    {
+      "name": ".vsix",
+      "support": "import"
+    }
+  ],
+  "playground": {
+    "intro": "The live build is the full C# workbench compiled to WebAssembly: import some files and try the editor, docking and command palette in your browser.",
+    "tour": [
+      {
+        "title": "Import a few files",
+        "text": "Use File → Open / Import Files to load UTF-8 text into the virtual workspace, then press Ctrl+P to jump between them."
+      },
+      {
+        "title": "Drive it from the palette",
+        "text": "Press Ctrl+Shift+P (or F1) and run Fold All or Unfold All to collapse and reveal regions."
+      },
+      {
+        "title": "Edit with multiple cursors",
+        "text": "Press Ctrl+D to add the next matching selection, or hold Alt+Shift and drag for a rectangular selection. Ctrl+H opens regex find and replace."
+      },
+      {
+        "title": "Split the editor",
+        "text": "Press Ctrl+\\ to split right, drag tabs between groups, and toggle the side bar and panel with Ctrl+B and Ctrl+J."
+      },
+      {
+        "title": "Tweak settings live",
+        "text": "Edit the JSONC .vscode/settings.json to change font size, tab size, minimap or whitespace and see the editor update immediately."
+      },
+      {
+        "title": "Back up your workspace",
+        "text": "Run Workspace: Export Backup to download everything as a portable .codespace.json file."
+      }
+    ]
+  },
+  "architecture": [
+    {
+      "name": "Text and workspace",
+      "text": "Persistent AVL-rope text, a virtual workspace and transactional editor sessions with folding indexes.",
+      "packages": [
+        "CodeSpace.Core",
+        "CodeSpace.Editor"
+      ]
+    },
+    {
+      "name": "Services",
+      "text": "Lexical language services and an immutable split/tab docking model, all free of UI dependencies.",
+      "packages": [
+        "CodeSpace.Languages",
+        "CodeSpace.Docking"
+      ]
+    },
+    {
+      "name": "Extensions",
+      "text": "Non-executing VSIX inspection and RPC framing in .NET, plus an independent JavaScript host for workers and Node.",
+      "packages": [
+        "CodeSpace.Extensions",
+        "CodeSpace.ExtensionHost"
+      ]
+    },
+    {
+      "name": "Rendering",
+      "text": "A SkiaSharp editor renderer that paints onto any caller-owned SKCanvas.",
+      "packages": [
+        "CodeSpace.Rendering.Skia"
+      ]
+    },
+    {
+      "name": "Uno workbench",
+      "text": "Custom Uno controls composed into the embeddable WorkbenchView behind an IWorkbenchPlatform adapter.",
+      "packages": [
+        "CodeSpace.Controls.Uno",
+        "CodeSpace.Workbench.Uno"
+      ]
+    }
+  ],
+  "boundaries": [
+    "Development preview: not a complete or pixel-exact clone of Visual Studio Code",
+    "No LSP client, TextMate grammars, Git operations, real process terminal or debugger integration yet",
+    "Extensions are trusted executable code, not sandboxed; existing extensions work only within the API subset",
+    "Files live in a virtual workspace, not a watched disk folder; local recovery is not a backup",
+    "Full IME, bidi, contextual shaping, font fallback and screen-reader navigation remain open"
+  ],
+  "docs": [
+    {
+      "title": "Architecture",
+      "path": "docs/architecture.md",
+      "blurb": "Rope text, transactions, rendering, docking, recovery and the extension boundary"
+    },
+    {
+      "title": "Compatibility",
+      "path": "docs/compatibility.md",
+      "blurb": "Implemented workbench features, extension host matrix and vscode API subset"
+    },
+    {
+      "title": "Performance measurements",
+      "path": "docs/performance.md",
+      "blurb": "Methodology and results for the CPU/raster and incremental typing fixtures"
+    },
+    {
+      "title": "Build and release",
+      "path": "docs/building.md",
+      "blurb": "Build, test, browser publishing, packaging and release automation"
+    }
+  ]
+}

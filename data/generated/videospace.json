@@ -1,0 +1,403 @@
+{
+  "slug": "videospace",
+  "repo": "wieslawsoltes/VideoSpace",
+  "version": "0.3.0-alpha.1",
+  "dotnetSdk": "10.0.401",
+  "unoSdk": "6.7.30",
+  "pinned": [],
+  "github": {
+    "stars": 1,
+    "forks": 0,
+    "openIssues": 0,
+    "createdAt": "2026-09-27T17:25:09Z",
+    "pushedAt": "2026-09-28T06:29:36Z",
+    "homepage": "https://wieslawsoltes.github.io/VideoSpace/",
+    "license": "MIT"
+  },
+  "lastCommit": {
+    "sha": "dc87731",
+    "date": "2026-09-28T08:29:35+02:00",
+    "subject": "Merge VideoSpace 0.3 indexed source decoding and validated compatibility fixes"
+  },
+  "loc": {
+    "total": 4292,
+    "src": 3742,
+    "tests": 550
+  },
+  "projectCount": 16,
+  "libraryCount": 10,
+  "testProjectCount": 5,
+  "projects": [
+    {
+      "name": "VideoSpace.App",
+      "path": "src/VideoSpace.App/VideoSpace.App.csproj",
+      "kind": "app",
+      "sdk": "Uno.Sdk",
+      "targetFrameworks": [
+        "net10.0-browserwasm",
+        "net10.0-desktop"
+      ],
+      "packable": false,
+      "description": "Local-first nonlinear video editing with Uno Platform and GPU composition.",
+      "unoFeatures": [
+        "SkiaRenderer"
+      ],
+      "projectRefs": [
+        "VideoSpace.Workbench"
+      ],
+      "packageRefs": [],
+      "files": 4,
+      "loc": 67
+    },
+    {
+      "name": "VideoSpace.Audio",
+      "path": "src/VideoSpace.Audio/VideoSpace.Audio.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "PCM mixing, waveform reduction, metering and WAV export without native codec dependencies.",
+      "unoFeatures": [],
+      "projectRefs": [
+        "VideoSpace.Effects"
+      ],
+      "packageRefs": [],
+      "files": 5,
+      "loc": 190
+    },
+    {
+      "name": "VideoSpace.Controls",
+      "path": "src/VideoSpace.Controls/VideoSpace.Controls.csproj",
+      "kind": "library",
+      "sdk": "Uno.Sdk",
+      "targetFrameworks": [
+        "net10.0-browserwasm",
+        "net10.0-desktop"
+      ],
+      "packable": true,
+      "description": "Reusable custom Uno timeline, monitors, bins, panels, icons and editing controls.",
+      "unoFeatures": [
+        "SkiaRenderer"
+      ],
+      "projectRefs": [
+        "VideoSpace.Editing",
+        "VideoSpace.Timeline",
+        "VideoSpace.Rendering",
+        "VideoSpace.Media"
+      ],
+      "packageRefs": [],
+      "files": 17,
+      "loc": 771
+    },
+    {
+      "name": "VideoSpace.Core",
+      "path": "src/VideoSpace.Core/VideoSpace.Core.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "Frame-based nonlinear video project model, rational time and validation.",
+      "unoFeatures": [],
+      "projectRefs": [],
+      "packageRefs": [],
+      "files": 13,
+      "loc": 511
+    },
+    {
+      "name": "VideoSpace.Documents",
+      "path": "src/VideoSpace.Documents/VideoSpace.Documents.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "Validated project manifests, SRT captions and CMX3600 edit-decision interchange.",
+      "unoFeatures": [],
+      "projectRefs": [
+        "VideoSpace.Core"
+      ],
+      "packageRefs": [],
+      "files": 3,
+      "loc": 78
+    },
+    {
+      "name": "VideoSpace.Editing",
+      "path": "src/VideoSpace.Editing/VideoSpace.Editing.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "Transactional nonlinear editing, undo/redo and linked-track operations.",
+      "unoFeatures": [],
+      "projectRefs": [
+        "VideoSpace.Core"
+      ],
+      "packageRefs": [],
+      "files": 5,
+      "loc": 516
+    },
+    {
+      "name": "VideoSpace.Editing.Tests",
+      "path": "tests/VideoSpace.Editing.Tests/VideoSpace.Editing.Tests.csproj",
+      "kind": "test",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "",
+      "unoFeatures": [],
+      "projectRefs": [
+        "VideoSpace.Editing"
+      ],
+      "packageRefs": [],
+      "files": 1,
+      "loc": 111
+    },
+    {
+      "name": "VideoSpace.Effects",
+      "path": "src/VideoSpace.Effects/VideoSpace.Effects.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "Keyframed video/audio evaluation and backend-independent composition plans.",
+      "unoFeatures": [],
+      "projectRefs": [
+        "VideoSpace.Core"
+      ],
+      "packageRefs": [],
+      "files": 5,
+      "loc": 180
+    },
+    {
+      "name": "VideoSpace.Fixtures",
+      "path": "tests/VideoSpace.Fixtures/VideoSpace.Fixtures.csproj",
+      "kind": "test",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "",
+      "unoFeatures": [],
+      "projectRefs": [
+        "VideoSpace.Effects",
+        "VideoSpace.Editing",
+        "VideoSpace.Audio"
+      ],
+      "packageRefs": [],
+      "files": 1,
+      "loc": 54
+    },
+    {
+      "name": "VideoSpace.Media",
+      "path": "src/VideoSpace.Media/VideoSpace.Media.csproj",
+      "kind": "library",
+      "sdk": "Uno.Sdk",
+      "targetFrameworks": [
+        "net10.0-browserwasm",
+        "net10.0-desktop"
+      ],
+      "packable": true,
+      "description": "Local media, browser GPU presentation, audio routing and platform storage adapters.",
+      "unoFeatures": [
+        "SkiaRenderer"
+      ],
+      "projectRefs": [
+        "VideoSpace.Effects"
+      ],
+      "packageRefs": [],
+      "files": 4,
+      "loc": 203
+    },
+    {
+      "name": "VideoSpace.Parity.Tests",
+      "path": "tests/VideoSpace.Parity.Tests/VideoSpace.Parity.Tests.csproj",
+      "kind": "test",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "",
+      "unoFeatures": [],
+      "projectRefs": [
+        "VideoSpace.Editing",
+        "VideoSpace.Audio",
+        "VideoSpace.Timeline"
+      ],
+      "packageRefs": [],
+      "files": 1,
+      "loc": 271
+    },
+    {
+      "name": "VideoSpace.Rendering",
+      "path": "src/VideoSpace.Rendering/VideoSpace.Rendering.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "Skia GPU-compatible video frame composition, procedural footage and portable image export.",
+      "unoFeatures": [],
+      "projectRefs": [
+        "VideoSpace.Effects"
+      ],
+      "packageRefs": [
+        {
+          "id": "SkiaSharp",
+          "version": "3.119.2"
+        }
+      ],
+      "files": 3,
+      "loc": 170
+    },
+    {
+      "name": "VideoSpace.Rendering.Tests",
+      "path": "tests/VideoSpace.Rendering.Tests/VideoSpace.Rendering.Tests.csproj",
+      "kind": "test",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "",
+      "unoFeatures": [],
+      "projectRefs": [
+        "VideoSpace.Rendering"
+      ],
+      "packageRefs": [
+        {
+          "id": "SkiaSharp.NativeAssets.Linux.NoDependencies",
+          "version": "3.119.2"
+        }
+      ],
+      "files": 1,
+      "loc": 38
+    },
+    {
+      "name": "VideoSpace.Tests",
+      "path": "tests/VideoSpace.Tests/VideoSpace.Tests.csproj",
+      "kind": "test",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "",
+      "unoFeatures": [],
+      "projectRefs": [
+        "VideoSpace.Editing",
+        "VideoSpace.Timeline",
+        "VideoSpace.Documents",
+        "VideoSpace.Audio",
+        "VideoSpace.Rendering"
+      ],
+      "packageRefs": [
+        {
+          "id": "SkiaSharp.NativeAssets.Linux.NoDependencies",
+          "version": "3.119.2"
+        }
+      ],
+      "files": 1,
+      "loc": 76
+    },
+    {
+      "name": "VideoSpace.Timeline",
+      "path": "src/VideoSpace.Timeline/VideoSpace.Timeline.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "Virtualized timeline geometry, hit testing and frame snapping.",
+      "unoFeatures": [],
+      "projectRefs": [
+        "VideoSpace.Core"
+      ],
+      "packageRefs": [],
+      "files": 1,
+      "loc": 73
+    },
+    {
+      "name": "VideoSpace.Workbench",
+      "path": "src/VideoSpace.Workbench/VideoSpace.Workbench.csproj",
+      "kind": "library",
+      "sdk": "Uno.Sdk",
+      "targetFrameworks": [
+        "net10.0-browserwasm",
+        "net10.0-desktop"
+      ],
+      "packable": true,
+      "description": "Embeddable Uno nonlinear editing workspace, effects inspector and project workflows.",
+      "unoFeatures": [
+        "SkiaRenderer"
+      ],
+      "projectRefs": [
+        "VideoSpace.Controls",
+        "VideoSpace.Documents",
+        "VideoSpace.Audio"
+      ],
+      "packageRefs": [],
+      "files": 7,
+      "loc": 983
+    }
+  ],
+  "nuget": [
+    {
+      "id": "SkiaSharp",
+      "version": "3.119.2"
+    },
+    {
+      "id": "SkiaSharp.NativeAssets.Linux.NoDependencies",
+      "version": "3.119.2"
+    }
+  ],
+  "workflows": [
+    {
+      "file": "build.yml",
+      "name": "Build"
+    },
+    {
+      "file": "desktop.yml",
+      "name": "Desktop"
+    },
+    {
+      "file": "engine.yml",
+      "name": "Engine"
+    },
+    {
+      "file": "gpu-probe.yml",
+      "name": "GPU diagnosis"
+    },
+    {
+      "file": "media.yml",
+      "name": "Media"
+    },
+    {
+      "file": "release.yml",
+      "name": "Release"
+    }
+  ],
+  "docs": [
+    "docs/architecture.md",
+    "docs/development.md",
+    "docs/libraries.md",
+    "docs/limitations.md",
+    "docs/performance.md",
+    "docs/user-guide.md"
+  ],
+  "images": []
+}

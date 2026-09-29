@@ -1,0 +1,397 @@
+{
+  "slug": "textspace",
+  "repo": "wieslawsoltes/TextSpace",
+  "version": "0.5.1-alpha.1",
+  "dotnetSdk": "10.0.401",
+  "unoSdk": "6.7.30",
+  "pinned": [],
+  "github": {
+    "stars": 6,
+    "forks": 1,
+    "openIssues": 0,
+    "createdAt": "2026-09-27T09:48:19Z",
+    "pushedAt": "2026-09-28T17:01:30Z",
+    "homepage": "https://wieslawsoltes.github.io/TextSpace/",
+    "license": "MIT"
+  },
+  "lastCommit": {
+    "sha": "3138923",
+    "date": "2026-09-28T19:01:30+02:00",
+    "subject": "fix: ship protected startup recovery and native tab compatibility"
+  },
+  "loc": {
+    "total": 11795,
+    "src": 8721,
+    "tests": 2811
+  },
+  "projectCount": 13,
+  "libraryCount": 10,
+  "testProjectCount": 1,
+  "projects": [
+    {
+      "name": "TextSpace.App",
+      "path": "src/TextSpace.App/TextSpace.App.csproj",
+      "kind": "app",
+      "sdk": "Uno.Sdk",
+      "targetFrameworks": [
+        "net10.0-browserwasm",
+        "net10.0-desktop"
+      ],
+      "packable": false,
+      "description": "Local-first word processing with Uno Platform and SkiaSharp.",
+      "unoFeatures": [
+        "SkiaRenderer"
+      ],
+      "projectRefs": [
+        "TextSpace.Workbench"
+      ],
+      "packageRefs": [],
+      "files": 12,
+      "loc": 609
+    },
+    {
+      "name": "TextSpace.Controls",
+      "path": "src/TextSpace.Controls/TextSpace.Controls.csproj",
+      "kind": "library",
+      "sdk": "Uno.Sdk",
+      "targetFrameworks": [
+        "net10.0-browserwasm",
+        "net10.0-desktop"
+      ],
+      "packable": true,
+      "description": "Custom Uno office ribbon, iconography, galleries, fields, palettes, dialogs and scrolling controls.",
+      "unoFeatures": [
+        "SkiaRenderer"
+      ],
+      "projectRefs": [
+        "TextSpace.Core"
+      ],
+      "packageRefs": [],
+      "files": 19,
+      "loc": 680
+    },
+    {
+      "name": "TextSpace.Core",
+      "path": "src/TextSpace.Core/TextSpace.Core.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "UI-independent rich document model, typography, tables, selections and text indexing.",
+      "unoFeatures": [],
+      "projectRefs": [],
+      "packageRefs": [],
+      "files": 20,
+      "loc": 728
+    },
+    {
+      "name": "TextSpace.Documents",
+      "path": "src/TextSpace.Documents/TextSpace.Documents.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "Validated native document serialization, templates and HTML/text interchange.",
+      "unoFeatures": [],
+      "projectRefs": [
+        "TextSpace.Core"
+      ],
+      "packageRefs": [],
+      "files": 10,
+      "loc": 725
+    },
+    {
+      "name": "TextSpace.Editing",
+      "path": "src/TextSpace.Editing/TextSpace.Editing.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "Transactional rich-text editing, Unicode selection, history, formatting and document commands.",
+      "unoFeatures": [],
+      "projectRefs": [
+        "TextSpace.Documents"
+      ],
+      "packageRefs": [],
+      "files": 12,
+      "loc": 1089
+    },
+    {
+      "name": "TextSpace.Editor",
+      "path": "src/TextSpace.Editor/TextSpace.Editor.csproj",
+      "kind": "library",
+      "sdk": "Uno.Sdk",
+      "targetFrameworks": [
+        "net10.0-browserwasm",
+        "net10.0-desktop"
+      ],
+      "packable": true,
+      "description": "Embeddable Uno Skia paginated document editor, native text input bridge, rulers and direct manipulation.",
+      "unoFeatures": [
+        "SkiaRenderer"
+      ],
+      "projectRefs": [
+        "TextSpace.Controls",
+        "TextSpace.Editing",
+        "TextSpace.Skia"
+      ],
+      "packageRefs": [],
+      "files": 7,
+      "loc": 481
+    },
+    {
+      "name": "TextSpace.Layout",
+      "path": "src/TextSpace.Layout/TextSpace.Layout.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "Deterministic point-based pagination, line breaking, tables, columns and caret hit testing.",
+      "unoFeatures": [],
+      "projectRefs": [
+        "TextSpace.Core"
+      ],
+      "packageRefs": [],
+      "files": 13,
+      "loc": 1149
+    },
+    {
+      "name": "TextSpace.OpenXml",
+      "path": "src/TextSpace.OpenXml/TextSpace.OpenXml.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "Dependency-light, bounded OOXML DOCX import/export for rich paragraphs, tables, pictures, comments, headers and footers.",
+      "unoFeatures": [],
+      "projectRefs": [
+        "TextSpace.Documents"
+      ],
+      "packageRefs": [],
+      "files": 12,
+      "loc": 1023
+    },
+    {
+      "name": "TextSpace.Performance",
+      "path": "benchmarks/TextSpace.Performance/TextSpace.Performance.csproj",
+      "kind": "tool",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "",
+      "unoFeatures": [],
+      "projectRefs": [
+        "TextSpace.Editing",
+        "TextSpace.Skia",
+        "TextSpace.Documents"
+      ],
+      "packageRefs": [
+        {
+          "id": "SkiaSharp.NativeAssets.Linux.NoDependencies",
+          "version": "3.119.2"
+        },
+        {
+          "id": "HarfBuzzSharp.NativeAssets.Linux",
+          "version": "8.3.1.2"
+        }
+      ],
+      "files": 5,
+      "loc": 263
+    },
+    {
+      "name": "TextSpace.Skia",
+      "path": "src/TextSpace.Skia/TextSpace.Skia.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "SkiaSharp and HarfBuzz text metrics, paginated rendering, selection painting and PDF/PNG export.",
+      "unoFeatures": [],
+      "projectRefs": [
+        "TextSpace.Layout"
+      ],
+      "packageRefs": [
+        {
+          "id": "SkiaSharp",
+          "version": "3.119.2"
+        },
+        {
+          "id": "SkiaSharp.HarfBuzz",
+          "version": "3.119.2"
+        }
+      ],
+      "files": 4,
+      "loc": 349
+    },
+    {
+      "name": "TextSpace.Storage",
+      "path": "src/TextSpace.Storage/TextSpace.Storage.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "Local recovery contracts, atomic desktop storage and bounded recovery history for document applications.",
+      "unoFeatures": [],
+      "projectRefs": [],
+      "packageRefs": [],
+      "files": 5,
+      "loc": 221
+    },
+    {
+      "name": "TextSpace.Tests",
+      "path": "tests/TextSpace.Tests/TextSpace.Tests.csproj",
+      "kind": "test",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "",
+      "unoFeatures": [],
+      "projectRefs": [
+        "TextSpace.Editing",
+        "TextSpace.Skia",
+        "TextSpace.OpenXml",
+        "TextSpace.Storage"
+      ],
+      "packageRefs": [
+        {
+          "id": "Microsoft.NET.Test.Sdk",
+          "version": "18.10.1"
+        },
+        {
+          "id": "xunit",
+          "version": "2.9.3"
+        },
+        {
+          "id": "xunit.runner.visualstudio",
+          "version": "4.0.0"
+        },
+        {
+          "id": "DocumentFormat.OpenXml",
+          "version": "3.5.1"
+        },
+        {
+          "id": "SkiaSharp.NativeAssets.Linux.NoDependencies",
+          "version": "3.119.2"
+        },
+        {
+          "id": "HarfBuzzSharp.NativeAssets.Linux",
+          "version": "8.3.1.2"
+        }
+      ],
+      "files": 29,
+      "loc": 2811
+    },
+    {
+      "name": "TextSpace.Workbench",
+      "path": "src/TextSpace.Workbench/TextSpace.Workbench.csproj",
+      "kind": "library",
+      "sdk": "Uno.Sdk",
+      "targetFrameworks": [
+        "net10.0-browserwasm",
+        "net10.0-desktop"
+      ],
+      "packable": true,
+      "description": "Composable Word-style Uno workbench, ribbon commands, backstage, navigation and review workflows.",
+      "unoFeatures": [
+        "SkiaRenderer"
+      ],
+      "projectRefs": [
+        "TextSpace.Editor",
+        "TextSpace.OpenXml",
+        "TextSpace.Storage"
+      ],
+      "packageRefs": [],
+      "files": 15,
+      "loc": 1667
+    }
+  ],
+  "nuget": [
+    {
+      "id": "DocumentFormat.OpenXml",
+      "version": "3.5.1"
+    },
+    {
+      "id": "HarfBuzzSharp.NativeAssets.Linux",
+      "version": "8.3.1.2"
+    },
+    {
+      "id": "Microsoft.NET.Test.Sdk",
+      "version": "18.10.1"
+    },
+    {
+      "id": "SkiaSharp",
+      "version": "3.119.2"
+    },
+    {
+      "id": "SkiaSharp.HarfBuzz",
+      "version": "3.119.2"
+    },
+    {
+      "id": "SkiaSharp.NativeAssets.Linux.NoDependencies",
+      "version": "3.119.2"
+    },
+    {
+      "id": "xunit",
+      "version": "2.9.3"
+    },
+    {
+      "id": "xunit.runner.visualstudio",
+      "version": "4.0.0"
+    }
+  ],
+  "workflows": [
+    {
+      "file": "build.yml",
+      "name": "Build"
+    },
+    {
+      "file": "dependencies.yml",
+      "name": "Dependency audit"
+    },
+    {
+      "file": "pages.yml",
+      "name": "Pages"
+    },
+    {
+      "file": "release.yml",
+      "name": "Release"
+    }
+  ],
+  "docs": [
+    "docs/ARCHITECTURE.md",
+    "docs/BOOKMARKS.md",
+    "docs/BROWSER-VALIDATION.md",
+    "docs/COMPATIBILITY.md",
+    "docs/CONTINUOUS-SECTIONS.md",
+    "docs/NATIVE-CI.md",
+    "docs/PERFORMANCE-RECOVERY.md",
+    "docs/PERFORMANCE.md",
+    "docs/PUBLISHING.md",
+    "docs/RECOVERY-BYTE-EVIDENCE.md",
+    "docs/RECOVERY-TRANSPORT.md",
+    "docs/RECOVERY-VALIDATION.md",
+    "docs/RECOVERY.md",
+    "docs/SECTIONS-AND-FIELDS.md",
+    "docs/TABLES.md",
+    "docs/TYPOGRAPHY.md"
+  ],
+  "images": []
+}

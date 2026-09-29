@@ -1,0 +1,423 @@
+{
+  "slug": "pdfspace",
+  "repo": "wieslawsoltes/PdfSpace",
+  "version": "0.5.3-alpha.1",
+  "dotnetSdk": "10.0.401",
+  "unoSdk": "6.7.30",
+  "pinned": [],
+  "github": {
+    "stars": 2,
+    "forks": 0,
+    "openIssues": 1,
+    "createdAt": "2026-09-27T09:53:21Z",
+    "pushedAt": "2026-09-29T08:01:35Z",
+    "homepage": "https://wieslawsoltes.github.io/PdfSpace/",
+    "license": "MIT"
+  },
+  "lastCommit": {
+    "sha": "a54fe85",
+    "date": "2026-09-28T23:38:11+02:00",
+    "subject": "test: observe real pointer-enter state in hover-guard regression"
+  },
+  "loc": {
+    "total": 19284,
+    "src": 17319,
+    "tests": 1965
+  },
+  "projectCount": 14,
+  "libraryCount": 12,
+  "testProjectCount": 1,
+  "projects": [
+    {
+      "name": "PdfSpace.App",
+      "path": "src/PdfSpace.App/PdfSpace.App.csproj",
+      "kind": "app",
+      "sdk": "Uno.Sdk",
+      "targetFrameworks": [
+        "net10.0-browserwasm",
+        "net10.0-desktop"
+      ],
+      "packable": false,
+      "description": "Local-first PDF reading, review and editing with Uno Platform and SkiaSharp.",
+      "unoFeatures": [
+        "SkiaRenderer"
+      ],
+      "projectRefs": [
+        "PdfSpace.Workbench"
+      ],
+      "packageRefs": [],
+      "files": 8,
+      "loc": 277
+    },
+    {
+      "name": "PdfSpace.Controls",
+      "path": "src/PdfSpace.Controls/PdfSpace.Controls.csproj",
+      "kind": "library",
+      "sdk": "Uno.Sdk",
+      "targetFrameworks": [
+        "net10.0-browserwasm",
+        "net10.0-desktop"
+      ],
+      "packable": true,
+      "description": "Custom Uno PDF-workspace controls, original vector iconography, command buttons, panels, tabs, dialogs and palettes.",
+      "unoFeatures": [
+        "SkiaRenderer"
+      ],
+      "projectRefs": [],
+      "packageRefs": [],
+      "files": 11,
+      "loc": 297
+    },
+    {
+      "name": "PdfSpace.Core",
+      "path": "src/PdfSpace.Core/PdfSpace.Core.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "Immutable PDF workspace, annotation, and geometry models.",
+      "unoFeatures": [],
+      "projectRefs": [],
+      "packageRefs": [],
+      "files": 12,
+      "loc": 362
+    },
+    {
+      "name": "PdfSpace.Documents",
+      "path": "src/PdfSpace.Documents/PdfSpace.Documents.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "PDF import, metadata, text extraction and search powered by PdfPig.",
+      "unoFeatures": [],
+      "projectRefs": [
+        "PdfSpace.Core"
+      ],
+      "packageRefs": [
+        {
+          "id": "PdfPig",
+          "version": "0.1.16"
+        }
+      ],
+      "files": 5,
+      "loc": 347
+    },
+    {
+      "name": "PdfSpace.Editing",
+      "path": "src/PdfSpace.Editing/PdfSpace.Editing.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "Transactional PDF annotation and page editing with bounded immutable undo/redo history.",
+      "unoFeatures": [],
+      "projectRefs": [
+        "PdfSpace.Core"
+      ],
+      "packageRefs": [],
+      "files": 7,
+      "loc": 385
+    },
+    {
+      "name": "PdfSpace.Layout",
+      "path": "src/PdfSpace.Layout/PdfSpace.Layout.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "PDF page layout, crop, rotation and viewport geometry without UI dependencies.",
+      "unoFeatures": [],
+      "projectRefs": [
+        "PdfSpace.Core"
+      ],
+      "packageRefs": [],
+      "files": 6,
+      "loc": 495
+    },
+    {
+      "name": "PdfSpace.Ocr",
+      "path": "src/PdfSpace.Ocr/PdfSpace.Ocr.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "Local OCR contracts, bounded Tesseract TSV decoding, cancellable snapshot recognition and searchable scan workflows.",
+      "unoFeatures": [],
+      "projectRefs": [
+        "PdfSpace.Skia"
+      ],
+      "packageRefs": [],
+      "files": 4,
+      "loc": 165
+    },
+    {
+      "name": "PdfSpace.Pdf",
+      "path": "src/PdfSpace.Pdf/PdfSpace.Pdf.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "Structured PDF editing, interoperable annotations, AcroForms, source text operations, and password protection.",
+      "unoFeatures": [],
+      "projectRefs": [
+        "PdfSpace.Skia"
+      ],
+      "packageRefs": [
+        {
+          "id": "PDFsharp",
+          "version": "6.2.4"
+        }
+      ],
+      "files": 27,
+      "loc": 3300
+    },
+    {
+      "name": "PdfSpace.Rendering.Skia",
+      "path": "src/PdfSpace.Rendering.Skia/PdfSpace.Rendering.Skia.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "Source-pinned PdfPig Skia renderer with PdfSpace interoperability fixes. Apache-2.0 derivative; see UPSTREAM.json.",
+      "unoFeatures": [],
+      "projectRefs": [],
+      "packageRefs": [
+        {
+          "id": "PdfPig",
+          "version": "0.1.16"
+        },
+        {
+          "id": "PdfPig.Filters.Dct.JpegLibrary",
+          "version": "0.1.16.1"
+        },
+        {
+          "id": "PdfPig.Filters.Jbig2.PdfboxJbig2",
+          "version": "0.1.16.1"
+        },
+        {
+          "id": "PdfPig.Filters.Jpx.OpenJpeg",
+          "version": "0.1.16"
+        },
+        {
+          "id": "SkiaSharp",
+          "version": "3.119.4"
+        },
+        {
+          "id": "SkiaSharp.HarfBuzz",
+          "version": "3.119.4"
+        }
+      ],
+      "files": 32,
+      "loc": 8056
+    },
+    {
+      "name": "PdfSpace.Skia",
+      "path": "src/PdfSpace.Skia/PdfSpace.Skia.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "Cached SkiaSharp PDF renderer, vector PDF export, PNG export, annotation drawing and original sample documents.",
+      "unoFeatures": [],
+      "projectRefs": [
+        "PdfSpace.Documents",
+        "PdfSpace.Layout",
+        "PdfSpace.Rendering.Skia"
+      ],
+      "packageRefs": [
+        {
+          "id": "SkiaSharp",
+          "version": "3.119.4"
+        },
+        {
+          "id": "SkiaSharp.HarfBuzz",
+          "version": "3.119.4"
+        }
+      ],
+      "files": 6,
+      "loc": 371
+    },
+    {
+      "name": "PdfSpace.Storage",
+      "path": "src/PdfSpace.Storage/PdfSpace.Storage.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "Platform-neutral file, recovery, clipboard and print contracts for PDF workspaces.",
+      "unoFeatures": [],
+      "projectRefs": [],
+      "packageRefs": [],
+      "files": 1,
+      "loc": 15
+    },
+    {
+      "name": "PdfSpace.Tests",
+      "path": "tests/PdfSpace.Tests/PdfSpace.Tests.csproj",
+      "kind": "test",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "",
+      "unoFeatures": [],
+      "projectRefs": [
+        "PdfSpace.Pdf",
+        "PdfSpace.Editing",
+        "PdfSpace.Skia",
+        "PdfSpace.Ocr"
+      ],
+      "packageRefs": [
+        {
+          "id": "SkiaSharp.NativeAssets.Linux.NoDependencies",
+          "version": "3.119.4"
+        },
+        {
+          "id": "HarfBuzzSharp.NativeAssets.Linux",
+          "version": "8.3.1.5"
+        }
+      ],
+      "files": 26,
+      "loc": 1965
+    },
+    {
+      "name": "PdfSpace.Viewer",
+      "path": "src/PdfSpace.Viewer/PdfSpace.Viewer.csproj",
+      "kind": "library",
+      "sdk": "Uno.Sdk",
+      "targetFrameworks": [
+        "net10.0-browserwasm",
+        "net10.0-desktop"
+      ],
+      "packable": true,
+      "description": "Embeddable Uno/Skia PDF viewport with direct annotation editing, text selection, zoom, pan, page layouts and virtualized thumbnails.",
+      "unoFeatures": [
+        "SkiaRenderer"
+      ],
+      "projectRefs": [
+        "PdfSpace.Controls",
+        "PdfSpace.Editing",
+        "PdfSpace.Skia"
+      ],
+      "packageRefs": [],
+      "files": 9,
+      "loc": 1125
+    },
+    {
+      "name": "PdfSpace.Workbench",
+      "path": "src/PdfSpace.Workbench/PdfSpace.Workbench.csproj",
+      "kind": "library",
+      "sdk": "Uno.Sdk",
+      "targetFrameworks": [
+        "net10.0-browserwasm",
+        "net10.0-desktop"
+      ],
+      "packable": true,
+      "description": "Composable Acrobat-style PDF workbench: multi-document shell, tools, review, organization, search, export and recovery.",
+      "unoFeatures": [
+        "SkiaRenderer"
+      ],
+      "projectRefs": [
+        "PdfSpace.Pdf",
+        "PdfSpace.Viewer",
+        "PdfSpace.Storage",
+        "PdfSpace.Ocr"
+      ],
+      "packageRefs": [],
+      "files": 14,
+      "loc": 2124
+    }
+  ],
+  "nuget": [
+    {
+      "id": "HarfBuzzSharp.NativeAssets.Linux",
+      "version": "8.3.1.5"
+    },
+    {
+      "id": "PdfPig",
+      "version": "0.1.16"
+    },
+    {
+      "id": "PdfPig.Filters.Dct.JpegLibrary",
+      "version": "0.1.16.1"
+    },
+    {
+      "id": "PdfPig.Filters.Jbig2.PdfboxJbig2",
+      "version": "0.1.16.1"
+    },
+    {
+      "id": "PdfPig.Filters.Jpx.OpenJpeg",
+      "version": "0.1.16"
+    },
+    {
+      "id": "PDFsharp",
+      "version": "6.2.4"
+    },
+    {
+      "id": "SkiaSharp",
+      "version": "3.119.4"
+    },
+    {
+      "id": "SkiaSharp.HarfBuzz",
+      "version": "3.119.4"
+    },
+    {
+      "id": "SkiaSharp.NativeAssets.Linux.NoDependencies",
+      "version": "3.119.4"
+    }
+  ],
+  "workflows": [
+    {
+      "file": "build.yml",
+      "name": "Build"
+    },
+    {
+      "file": "desktop.yml",
+      "name": "Desktop"
+    },
+    {
+      "file": "pages.yml",
+      "name": "Pages"
+    },
+    {
+      "file": "release.yml",
+      "name": "Release"
+    }
+  ],
+  "docs": [
+    "docs/architecture.md",
+    "docs/compatibility.md",
+    "docs/components.md",
+    "docs/form-data-and-navigation.md",
+    "docs/interaction-editing.md",
+    "docs/native-object-editing.md",
+    "docs/object-appearance.md",
+    "docs/object-editing.md",
+    "docs/object-validation.md",
+    "docs/ocr.md",
+    "docs/performance.md",
+    "docs/photo-import.md",
+    "docs/shortcuts.md"
+  ],
+  "images": []
+}

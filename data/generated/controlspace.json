@@ -1,0 +1,308 @@
+{
+  "slug": "controlspace",
+  "repo": "wieslawsoltes/ControlSpace",
+  "version": "0.1.0",
+  "dotnetSdk": "10.0.100",
+  "unoSdk": "6.7.30",
+  "pinned": [],
+  "github": {
+    "stars": 0,
+    "forks": 1,
+    "openIssues": 6,
+    "createdAt": "2026-09-28T18:20:59Z",
+    "pushedAt": "2026-09-29T07:09:20Z",
+    "homepage": "https://wieslawsoltes.github.io/ControlSpace/",
+    "license": "MIT"
+  },
+  "lastCommit": {
+    "sha": "4b77f7d",
+    "date": "2026-09-29T09:07:17+02:00",
+    "subject": "Merge pull request #8: editable virtualized Uno PLC tag tables"
+  },
+  "loc": {
+    "total": 3209,
+    "src": 3006,
+    "tests": 203
+  },
+  "projectCount": 12,
+  "libraryCount": 8,
+  "testProjectCount": 3,
+  "projects": [
+    {
+      "name": "ControlSpace.App",
+      "path": "src/ControlSpace.App/ControlSpace.App.csproj",
+      "kind": "app",
+      "sdk": "Uno.Sdk",
+      "targetFrameworks": [
+        "net10.0-browserwasm",
+        "net10.0-desktop"
+      ],
+      "packable": false,
+      "description": "",
+      "unoFeatures": [
+        "SkiaRenderer"
+      ],
+      "projectRefs": [
+        "ControlSpace.Workbench.Uno"
+      ],
+      "packageRefs": [],
+      "files": 5,
+      "loc": 122
+    },
+    {
+      "name": "ControlSpace.Controls.Uno",
+      "path": "src/ControlSpace.Controls.Uno/ControlSpace.Controls.Uno.csproj",
+      "kind": "library",
+      "sdk": "Uno.Sdk",
+      "targetFrameworks": [
+        "net10.0-browserwasm",
+        "net10.0-desktop"
+      ],
+      "packable": true,
+      "description": "",
+      "unoFeatures": [
+        "SkiaRenderer"
+      ],
+      "projectRefs": [
+        "ControlSpace.Rendering.Skia",
+        "ControlSpace.Engineering"
+      ],
+      "packageRefs": [
+        {
+          "id": "Uno.WinUI.Graphics2DSK",
+          "version": "6.7.135"
+        }
+      ],
+      "files": 6,
+      "loc": 800
+    },
+    {
+      "name": "ControlSpace.Core",
+      "path": "src/ControlSpace.Core/ControlSpace.Core.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": true,
+      "description": "",
+      "unoFeatures": [],
+      "projectRefs": [],
+      "packageRefs": [],
+      "files": 4,
+      "loc": 226
+    },
+    {
+      "name": "ControlSpace.Engineering",
+      "path": "src/ControlSpace.Engineering/ControlSpace.Engineering.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": true,
+      "description": "",
+      "unoFeatures": [],
+      "projectRefs": [
+        "ControlSpace.Core",
+        "ControlSpace.Languages",
+        "ControlSpace.Storage",
+        "ControlSpace.Simulation"
+      ],
+      "packageRefs": [],
+      "files": 4,
+      "loc": 447
+    },
+    {
+      "name": "ControlSpace.Languages",
+      "path": "src/ControlSpace.Languages/ControlSpace.Languages.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": true,
+      "description": "",
+      "unoFeatures": [],
+      "projectRefs": [
+        "ControlSpace.Core"
+      ],
+      "packageRefs": [],
+      "files": 3,
+      "loc": 284
+    },
+    {
+      "name": "ControlSpace.Rendering.Skia",
+      "path": "src/ControlSpace.Rendering.Skia/ControlSpace.Rendering.Skia.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": true,
+      "description": "",
+      "unoFeatures": [],
+      "projectRefs": [
+        "ControlSpace.Core",
+        "ControlSpace.Simulation"
+      ],
+      "packageRefs": [
+        {
+          "id": "SkiaSharp",
+          "version": "3.119.2"
+        }
+      ],
+      "files": 1,
+      "loc": 192
+    },
+    {
+      "name": "ControlSpace.Simulation",
+      "path": "src/ControlSpace.Simulation/ControlSpace.Simulation.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": true,
+      "description": "",
+      "unoFeatures": [],
+      "projectRefs": [
+        "ControlSpace.Core",
+        "ControlSpace.Languages"
+      ],
+      "packageRefs": [],
+      "files": 2,
+      "loc": 202
+    },
+    {
+      "name": "ControlSpace.Storage",
+      "path": "src/ControlSpace.Storage/ControlSpace.Storage.csproj",
+      "kind": "library",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": true,
+      "description": "",
+      "unoFeatures": [],
+      "projectRefs": [
+        "ControlSpace.Core"
+      ],
+      "packageRefs": [],
+      "files": 1,
+      "loc": 95
+    },
+    {
+      "name": "ControlSpace.Table.Tests",
+      "path": "tests/ControlSpace.Table.Tests/ControlSpace.Table.Tests.csproj",
+      "kind": "test",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "",
+      "unoFeatures": [],
+      "projectRefs": [
+        "ControlSpace.Engineering"
+      ],
+      "packageRefs": [],
+      "files": 1,
+      "loc": 50
+    },
+    {
+      "name": "ControlSpace.Tests",
+      "path": "tests/ControlSpace.Tests/ControlSpace.Tests.csproj",
+      "kind": "test",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "",
+      "unoFeatures": [],
+      "projectRefs": [
+        "ControlSpace.Engineering"
+      ],
+      "packageRefs": [],
+      "files": 1,
+      "loc": 102
+    },
+    {
+      "name": "ControlSpace.Workbench.Tests",
+      "path": "tests/ControlSpace.Workbench.Tests/ControlSpace.Workbench.Tests.csproj",
+      "kind": "test",
+      "sdk": "Microsoft.NET.Sdk",
+      "targetFrameworks": [
+        "net10.0"
+      ],
+      "packable": false,
+      "description": "",
+      "unoFeatures": [],
+      "projectRefs": [
+        "ControlSpace.Engineering"
+      ],
+      "packageRefs": [],
+      "files": 1,
+      "loc": 51
+    },
+    {
+      "name": "ControlSpace.Workbench.Uno",
+      "path": "src/ControlSpace.Workbench.Uno/ControlSpace.Workbench.Uno.csproj",
+      "kind": "library",
+      "sdk": "Uno.Sdk",
+      "targetFrameworks": [
+        "net10.0-browserwasm",
+        "net10.0-desktop"
+      ],
+      "packable": true,
+      "description": "",
+      "unoFeatures": [
+        "SkiaRenderer"
+      ],
+      "projectRefs": [
+        "ControlSpace.Controls.Uno"
+      ],
+      "packageRefs": [],
+      "files": 5,
+      "loc": 638
+    }
+  ],
+  "nuget": [
+    {
+      "id": "SkiaSharp",
+      "version": "3.119.2"
+    },
+    {
+      "id": "Uno.WinUI.Graphics2DSK",
+      "version": "6.7.135"
+    }
+  ],
+  "workflows": [
+    {
+      "file": "build.yml",
+      "name": "Build and test"
+    },
+    {
+      "file": "pages.yml",
+      "name": "Uno browser and GitHub Pages"
+    },
+    {
+      "file": "release.yml",
+      "name": "Release"
+    }
+  ],
+  "docs": [
+    "docs/architecture.md",
+    "docs/capabilities.md",
+    "docs/deployment.md",
+    "docs/tag-tables.md",
+    "docs/verification.md",
+    "docs/workbench.md"
+  ],
+  "images": [
+    "shots/controlspace/prototype-devices.png",
+    "shots/controlspace/prototype-hmi.png",
+    "shots/controlspace/prototype-ladder.png"
+  ]
+}

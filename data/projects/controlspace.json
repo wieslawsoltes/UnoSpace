@@ -1,0 +1,371 @@
+{
+  "slug": "controlspace",
+  "name": "ControlSpace",
+  "repo": "wieslawsoltes/ControlSpace",
+  "tagline": "A PLC engineering workspace with a virtual controller, in your browser",
+  "summary": "ControlSpace is an independent automation-engineering workspace that implements a TIA Portal-style workflow in C#, .NET 10 and Uno Platform with shared Skia rendering. Edit PLC tag tables, ladder logic, an SCL subset, hardware topology and HMI screens, then compile and run them on a deterministic virtual PLC. The engineering model, compiler, simulator, persistence, rendering, controls and workbench ship as eight reusable libraries.",
+  "category": "Engineering",
+  "inspiredBy": "Siemens TIA Portal-style PLC engineering suites",
+  "version": "0.1.0",
+  "heroStats": [
+    {
+      "value": "8",
+      "label": "reusable libraries"
+    },
+    {
+      "value": "5",
+      "label": "PLC data types: BOOL, INT, DINT, REAL, TIME"
+    },
+    {
+      "value": "10,000",
+      "label": "tag project verified in the virtualized grid"
+    },
+    {
+      "value": "2,048",
+      "label": "trace snapshots of bounded history"
+    }
+  ],
+  "highlights": [
+    {
+      "title": "TIA Portal-style project view",
+      "text": "Compact menus and toolbars, a project tree, central editors, task cards, a Properties/Info/Diagnostics inspector and an open-editor bar.",
+      "icon": "layout"
+    },
+    {
+      "title": "Ladder logic editor",
+      "text": "Series contacts and parallel paths, NO/NC and edge contacts, comparisons, set/reset coils, TON/TOF/TP timers, CTU counters and MOVE.",
+      "icon": "cad"
+    },
+    {
+      "title": "Typed SCL subset",
+      "text": "A bounded parser for assignments, IF/THEN/ELSE, arithmetic, comparisons and Boolean logic. Unsupported syntax is rejected, never evaluated.",
+      "icon": "code"
+    },
+    {
+      "title": "Deterministic virtual PLC",
+      "text": "Run, stop, reset and single-scan with input images, virtual forcing, scan-order execution, rollback on faults and a bounded trace.",
+      "icon": "chip"
+    },
+    {
+      "title": "Editable tag tables",
+      "text": "A virtualized grid with inline editing, rectangular clipboard paste, validation, undo/redo, filtering, sorting and reference-safe renaming.",
+      "icon": "table"
+    },
+    {
+      "title": "HMI screens",
+      "text": "Labels, lamps, buttons, numeric displays, tanks and gauges bound to tags, with per-screen navigation and virtual-input buttons.",
+      "icon": "gauge"
+    },
+    {
+      "title": "Shared Skia rendering",
+      "text": "Editors draw into the host canvas via SKCanvasElement, cull offscreen ladder networks and return hit regions for interaction.",
+      "icon": "brush"
+    },
+    {
+      "title": "Simulation only, by design",
+      "text": "No controller transport or hardware communication. Every execution runs in-process against a virtual controller.",
+      "icon": "shield"
+    }
+  ],
+  "featureGroups": [
+    {
+      "area": "PLC tags",
+      "items": [
+        "BOOL, INT, DINT, REAL and TIME tags with %I, %Q and %M addressing",
+        "Overlap and value validation, comments and retain metadata",
+        "Add and Duplicate allocate unique names and unoccupied marker addresses",
+        "Delete rejects tags still referenced by LAD, SCL or HMI objects",
+        "Renaming rewrites symbols across LAD, SCL and HMI sources"
+      ]
+    },
+    {
+      "area": "Tag-table grid",
+      "items": [
+        "Viewport-recycled grid that only realizes visible rows",
+        "Inline editing with F2, Enter, Tab and Escape",
+        "Rectangular tab-separated copy/paste committed as one transaction",
+        "Column sort, resize, reorder and visibility; filter by name, address, type or comment",
+        "Optional read-only monitor values from the virtual controller"
+      ]
+    },
+    {
+      "area": "Ladder and SCL",
+      "items": [
+        "LAD networks of series contacts and parallel paths feeding one output",
+        "NO/NC and edge contacts, comparisons, assignment/set/reset coils",
+        "TON/TOF/TP timers, CTU counters and constant MOVE",
+        "SCL typed assignments, IF/THEN/ELSE/END_IF, arithmetic and Boolean expressions",
+        "Bounded parser: 1,000,000 characters, 100,000 tokens, nesting depth 64"
+      ]
+    },
+    {
+      "area": "Virtual PLC",
+      "items": [
+        "Run, stop, reset and single-scan execution",
+        "Input image and virtual forcing",
+        "Faults roll back the scan, clear outputs and require explicit reset",
+        "Cold and warm (retain-aware) reset",
+        "Bounded trace history with a speed plot"
+      ]
+    },
+    {
+      "area": "Hardware and HMI",
+      "items": [
+        "Generic controller, panel and remote-I/O views",
+        "Editable addresses, modules and topology metadata",
+        "HMI labels, lamps, buttons, numeric displays, tanks and gauges",
+        "Per-screen navigation, tag bindings, dragging and virtual-input buttons"
+      ]
+    },
+    {
+      "area": "Workbench",
+      "items": [
+        "Portal view grouping Start, Devices & networks, PLC programming, Visualization and diagnostics",
+        "Project search that keeps matching ancestors visible",
+        "Unique editor tabs that can be closed, cycled and reordered",
+        "Pointer and keyboard pane resizing, collapsible panes and Reset window layout",
+        "Compact windows switch task cards and project tree to overlay drawers",
+        "Clicking a compile diagnostic navigates to its source block and position"
+      ]
+    },
+    {
+      "area": "Projects and persistence",
+      "items": [
+        "Versioned ControlSpace JSON with duplicate-key rejection and import limits",
+        "CSV tag-table interchange",
+        "Draft recovery that preserves SCL drafts without compiling them",
+        "Validated editing transactions with undo/redo",
+        "Layout preferences stored separately from project files"
+      ]
+    }
+  ],
+  "packages": [
+    {
+      "name": "ControlSpace.Core",
+      "role": "Typed engineering model, validation and detached snapshots",
+      "ui": "None",
+      "layer": "model"
+    },
+    {
+      "name": "ControlSpace.Languages",
+      "role": "Bounded SCL parser, LAD compiler and typed intermediate representation",
+      "ui": "None",
+      "layer": "engine"
+    },
+    {
+      "name": "ControlSpace.Simulation",
+      "role": "Deterministic virtual scans, inputs, forcing and trace",
+      "ui": "None",
+      "layer": "engine"
+    },
+    {
+      "name": "ControlSpace.Storage",
+      "role": "JSON, CSV and atomic filesystem persistence",
+      "ui": "None",
+      "layer": "io"
+    },
+    {
+      "name": "ControlSpace.Engineering",
+      "role": "Editing transactions, references, tag-table editing, WorkbenchLayout and EditorSession",
+      "ui": "None",
+      "layer": "editor"
+    },
+    {
+      "name": "ControlSpace.Rendering.Skia",
+      "role": "Shared vector drawing and hit regions for engineering editors",
+      "ui": "SkiaSharp",
+      "layer": "rendering"
+    },
+    {
+      "name": "ControlSpace.Controls.Uno",
+      "role": "Canvas, table, project tree, theme, pane chrome, splitters and editor bar",
+      "ui": "Uno + Skia",
+      "layer": "controls"
+    },
+    {
+      "name": "ControlSpace.Workbench.Uno",
+      "role": "Composable engineering workbench with IProjectFiles and IWorkbenchPreferences",
+      "ui": "Uno",
+      "layer": "workbench"
+    }
+  ],
+  "codeSamples": [
+    {
+      "title": "Compile and simulate without the UI",
+      "lang": "csharp",
+      "code": "using ControlSpace.Core;\nusing ControlSpace.Languages;\nusing ControlSpace.Simulation;\n\nvar compilation = ProjectCompiler.Compile(DemoProject.Create());\nif (!compilation.Success)\n    throw new InvalidOperationException(string.Join(\"\\n\", compilation.Diagnostics));\n\nvar plc = new VirtualPlc(compilation.Program!);\nplc.SetInput(\"Start_PB\", 1);\nplc.Run();\nplc.Step(TimeSpan.FromMilliseconds(100));\nConsole.WriteLine(plc.Read(\"Motor_Run\")); // 1 in the sample simulation\nplc.Stop();"
+    }
+  ],
+  "shortcuts": [
+    {
+      "action": "Next / previous workbench pane",
+      "keys": "F6 / Shift F6"
+    },
+    {
+      "action": "Next / previous editor",
+      "keys": "Ctrl F6 / Ctrl Shift F6"
+    },
+    {
+      "action": "Next / previous editor (alternate)",
+      "keys": "Ctrl Alt Right / Ctrl Alt Left"
+    },
+    {
+      "action": "Close active editor",
+      "keys": "Ctrl W"
+    },
+    {
+      "action": "Project tree / inspector / task cards",
+      "keys": "Ctrl 1 / Ctrl 2 / Ctrl 3"
+    },
+    {
+      "action": "Focus project search",
+      "keys": "Ctrl Shift F"
+    },
+    {
+      "action": "Open / export project",
+      "keys": "Ctrl O / Ctrl S"
+    },
+    {
+      "action": "Project undo / redo",
+      "keys": "Ctrl Z / Ctrl Y"
+    },
+    {
+      "action": "Compile / start / stop simulation",
+      "keys": "F7 / F5 / Esc"
+    },
+    {
+      "action": "Edit tag-table cell",
+      "keys": "F2"
+    },
+    {
+      "action": "Apply and move down / right",
+      "keys": "Enter / Tab"
+    },
+    {
+      "action": "Resize focused pane divider / reset",
+      "keys": "Arrow keys / Home"
+    }
+  ],
+  "formats": [
+    {
+      "name": "ControlSpace JSON v1 (.json)",
+      "support": "read/write"
+    },
+    {
+      "name": "Tag table CSV (.csv)",
+      "support": "export"
+    },
+    {
+      "name": "Tab-separated tag clipboard",
+      "support": "read/write"
+    }
+  ],
+  "playground": {
+    "intro": "Open the compiled Uno WebAssembly build and program, compile and simulate PLC logic entirely in your browser.",
+    "tour": [
+      {
+        "title": "Start in Portal view",
+        "text": "Browse tasks grouped by Start, Devices & networks, PLC programming, Visualization and Online & diagnostics, then return to Project view."
+      },
+      {
+        "title": "Explore the project tree",
+        "text": "Use Ctrl+Shift+F to search the project and open program blocks, tag tables, the device network and HMI screens as editor tabs."
+      },
+      {
+        "title": "Edit the tag table",
+        "text": "Select a cell and press F2 to edit, sort or filter columns, and paste a rectangular block from a spreadsheet."
+      },
+      {
+        "title": "Compile and run",
+        "text": "Press F7 to compile, F5 to start the virtual PLC, and click a diagnostic in the Info tab to jump to its source."
+      },
+      {
+        "title": "Drive the simulation",
+        "text": "Use the virtual inputs task card or HMI runtime buttons, and watch monitor values and the Diagnostics inspector update. Press Esc to stop."
+      },
+      {
+        "title": "Rearrange the workbench",
+        "text": "Drag or keyboard-resize pane dividers, collapse panes, and use Window > Reset window layout to restore defaults."
+      }
+    ]
+  },
+  "architecture": [
+    {
+      "name": "Model",
+      "text": "Typed project records with validation and detached snapshots.",
+      "packages": [
+        "ControlSpace.Core"
+      ]
+    },
+    {
+      "name": "Compiler and runtime",
+      "text": "SCL parser and LAD compiler feed a deterministic, fault-rollback virtual scan engine.",
+      "packages": [
+        "ControlSpace.Languages",
+        "ControlSpace.Simulation"
+      ]
+    },
+    {
+      "name": "Persistence and editing",
+      "text": "JSON/CSV storage plus validated transactions, symbol renaming, layout and editor-session state.",
+      "packages": [
+        "ControlSpace.Storage",
+        "ControlSpace.Engineering"
+      ]
+    },
+    {
+      "name": "Rendering and controls",
+      "text": "Shared Skia drawing with hit regions, wrapped in public Uno canvas, table, tree and pane controls.",
+      "packages": [
+        "ControlSpace.Rendering.Skia",
+        "ControlSpace.Controls.Uno"
+      ]
+    },
+    {
+      "name": "Workbench",
+      "text": "Composable engineering shell with host-supplied project-file and preference adapters.",
+      "packages": [
+        "ControlSpace.Workbench.Uno"
+      ]
+    }
+  ],
+  "boundaries": [
+    "Simulation only: never use it to operate or commission real machinery",
+    "0.1.0 preview, not a feature-complete or pixel-exact replacement for Siemens TIA Portal",
+    "No FBD/STL/GRAPH, full SCL, arrays/UDTs or native Siemens project files",
+    "No S7/PROFINET/OPC UA communication, WinCC compatibility, safety, drives or motion",
+    "Floating/split editor windows and drag-and-drop tab docking are not implemented"
+  ],
+  "docs": [
+    {
+      "title": "Workbench guide",
+      "path": "docs/workbench.md",
+      "blurb": "Navigation, window layout, editors, inspector and keyboard shortcuts"
+    },
+    {
+      "title": "Tag tables",
+      "path": "docs/tag-tables.md",
+      "blurb": "Grid interactions, clipboard paste, renaming and compatibility limits"
+    },
+    {
+      "title": "Capability matrix",
+      "path": "docs/capabilities.md",
+      "blurb": "Supported subsets versus unimplemented areas, Uno and prototype"
+    },
+    {
+      "title": "Architecture and runtime",
+      "path": "docs/architecture.md",
+      "blurb": "Dependency direction, PLC language subset, virtual scan and rendering"
+    },
+    {
+      "title": "Verification",
+      "path": "docs/verification.md",
+      "blurb": "Test gates, browser interaction coverage and what checks don't establish"
+    },
+    {
+      "title": "Deployment",
+      "path": "docs/deployment.md",
+      "blurb": "Local browser staging, Pages publishing and release archives"
+    }
+  ]
+}
