@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 // Clones (or reuses) every Uno Space repository and extracts computed facts:
 // project graph, NuGet dependencies, lines of code, toolchain, CI workflows,
-// docs and screenshots. Output: data/generated/<slug>.json + summary.json.
+// docs, screenshots, the README "NuGet packages" docs, nuget.org statistics and the
+// latest GitHub release. Output: data/generated/<slug>.json + summary.json.
 //
 //   node scripts/sync.mjs              # clone into .cache/repos if missing
 //   REPOS_DIR=/path node scripts/sync.mjs
@@ -10,6 +11,7 @@ import { execFileSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { parseNugetSection } from './lib/nuget-readme.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const catalog = JSON.parse(fs.readFileSync(path.join(root, 'data/catalog.json'), 'utf8'));
@@ -72,11 +74,11 @@ function classify(rel, name) {
   return 'tool';
 }
 
+const ghHeaders = { 'User-Agent': 'unospace-sync', Accept: 'application/vnd.github+json', ...(token ? { Authorization: `Bearer ${token}` } : {}) };
+
 async function githubMeta(full) {
   try {
-    const res = await fetch(`https://api.github.com/repos/${full}`, {
-      headers: { 'User-Agent': 'unospace-sync', Accept: 'application/vnd.github+json', ...(token ? { Authorization: `Bearer ${token}` } : {}) },
-    });
+    const res = await fetch(`https://api.github.com/repos/${full}`, { headers: ghHeaders });
     if (!res.ok) return null;
     const j = await res.json();
     return { stars: j.stargazers_count, forks: j.forks_count, openIssues: j.open_issues_count, createdAt: j.created_at, pushedAt: j.pushed_at, homepage: j.homepage || '', license: j.license?.spdx_id || '' };
@@ -84,6 +86,38 @@ async function githubMeta(full) {
     return null;
   }
 }
+
+// Newest GitHub release (pre-releases included).
+async function latestRelease(full) {
+  try {
+    const res = await fetch(`https://api.github.com/repos/${full}/releases?per_page=1`, { headers: ghHeaders });
+    if (!res.ok) return null;
+    const [r] = await res.json();
+    return r ? { tag: r.tag_name, url: r.html_url, prerelease: r.prerelease, publishedAt: r.published_at } : null;
+  } catch {
+    return null;
+  }
+}
+
+// Every package owned by the nuget.org account: latest version (pre-releases included) and downloads.
+async function nugetStats(nugetOwner) {
+  const stats = new Map();
+  try {
+    const index = await (await fetch('https://api.nuget.org/v3/index.json')).json();
+    const search = index.resources.find((r) => r['@type'].startsWith('SearchQueryService'))['@id'];
+    for (let skip = 0; ; skip += 100) {
+      const j = await (await fetch(`${search}?q=owner:${encodeURIComponent(nugetOwner)}&prerelease=true&semVerLevel=2.0.0&take=100&skip=${skip}`)).json();
+      for (const d of j.data) stats.set(d.id.toLowerCase(), { id: d.id, version: d.version, downloads: d.totalDownloads, verified: !!d.verified });
+      if (j.data.length < 100) break;
+    }
+  } catch (e) {
+    console.warn(`  nuget.org query failed: ${e.message}`);
+  }
+  return stats;
+}
+
+const nugetIndex = await nugetStats(catalog.nugetOwner || catalog.owner);
+console.log(`nuget.org: ${nugetIndex.size} packages owned by ${catalog.nugetOwner || catalog.owner}`);
 
 const summary = [];
 for (const entry of catalog.projects) {
@@ -115,6 +149,7 @@ for (const entry of catalog.projects) {
       sdk: (xml.match(/<Project\s+Sdk="([^"]+)"/) || [])[1] || '',
       targetFrameworks: tfms.split(';').map((s) => s.trim()).filter(Boolean),
       packable: /<IsPackable>\s*true/i.test(xml),
+      packageId: resolve(tag(xml, 'PackageId'), props) || name,
       description: resolve(tag(xml, 'Description'), props),
       unoFeatures: resolve(tag(xml, 'UnoFeatures'), props).split(';').map((s) => s.trim()).filter(Boolean),
       projectRefs: [...xml.matchAll(/<ProjectReference\s+Include="([^"]+)"/g)].map((m) => path.basename(m[1].replace(/\\/g, '/'), '.csproj')),
@@ -174,6 +209,18 @@ for (const entry of catalog.projects) {
     }
   }
 
+  // Published packages: README docs merged with nuget.org statistics, keyed by package ID.
+  const docs0 = parseNugetSection(readme, `https://github.com/${full}`);
+  const packages = (docs0?.packages || []).map((d) => {
+    const project = projects.find((p) => p.packageId === d.id) || null;
+    return { ...d, project: project?.name || null, nuget: nugetIndex.get(d.id.toLowerCase()) || null };
+  });
+  const nugetDocs = docs0 ? { intro: docs0.intro, install: docs0.install, notes: docs0.notes, packages } : null;
+  if (nugetDocs) {
+    const unpublished = packages.filter((x) => !x.nuget).map((x) => x.id);
+    if (unpublished.length) console.warn(`  ${repo}: documented but not found on nuget.org: ${unpublished.join(', ')}`);
+  }
+
   const libraries = projects.filter((p) => p.kind === 'library');
   const nuget = new Map();
   for (const p of projects) for (const r of p.packageRefs) if (r.version) nuget.set(r.id, r.version);
@@ -186,6 +233,7 @@ for (const entry of catalog.projects) {
     unoSdk: globalJson['msbuild-sdks']?.['Uno.Sdk'] || '',
     pinned,
     github: await githubMeta(full),
+    release: await latestRelease(full),
     lastCommit,
     loc,
     projectCount: projects.length,
@@ -196,10 +244,13 @@ for (const entry of catalog.projects) {
     workflows,
     docs,
     images,
+    nugetDocs,
   };
   fs.writeFileSync(path.join(outDir, `${slug}.json`), JSON.stringify(data, null, 2) + '\n');
-  summary.push({ slug, repo, version: data.version, loc: loc.total, libraries: libraries.length, projects: projects.length, workflows: workflows.length, stars: data.github?.stars ?? null });
-  console.log(`  ${repo.padEnd(18)} ${String(projects.length).padStart(2)} projects  ${String(loc.total).padStart(7)} LOC  ${workflows.length} workflows`);
+  const published = packages.filter((x) => x.nuget);
+  const downloads = published.reduce((n, x) => n + x.nuget.downloads, 0);
+  summary.push({ slug, repo, version: data.version, loc: loc.total, libraries: libraries.length, projects: projects.length, workflows: workflows.length, stars: data.github?.stars ?? null, nugetPackages: published.length, nugetDownloads: downloads });
+  console.log(`  ${repo.padEnd(18)} ${String(projects.length).padStart(2)} projects  ${String(loc.total).padStart(7)} LOC  ${workflows.length} workflows  ${published.length} on NuGet (${downloads} downloads)`);
 }
 
 fs.writeFileSync(path.join(outDir, 'summary.json'), JSON.stringify({ generatedAt: new Date().toISOString(), projects: summary }, null, 2) + '\n');

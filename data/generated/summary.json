@@ -1,15 +1,17 @@
 {
-  "generatedAt": "2026-09-29T08:16:34.478Z",
+  "generatedAt": "2026-09-29T17:28:21.579Z",
   "projects": [
     {
       "slug": "vectorspace",
       "repo": "VectorSpace",
-      "version": "0.6.0-alpha.1",
-      "loc": 12635,
+      "version": "0.7.0-alpha.1",
+      "loc": 13700,
       "libraries": 10,
       "projects": 15,
       "workflows": 5,
-      "stars": 0
+      "stars": 2,
+      "nugetPackages": 10,
+      "nugetDownloads": 0
     },
     {
       "slug": "artspace",
@@ -19,7 +21,9 @@
       "libraries": 9,
       "projects": 11,
       "workflows": 3,
-      "stars": 1
+      "stars": 2,
+      "nugetPackages": 9,
+      "nugetDownloads": 0
     },
     {
       "slug": "textspace",
@@ -29,7 +33,9 @@
       "libraries": 10,
       "projects": 13,
       "workflows": 4,
-      "stars": 6
+      "stars": 6,
+      "nugetPackages": 10,
+      "nugetDownloads": 0
     },
     {
       "slug": "gridspace",
@@ -39,17 +45,21 @@
       "libraries": 8,
       "projects": 11,
       "workflows": 4,
-      "stars": 3
+      "stars": 3,
+      "nugetPackages": 8,
+      "nugetDownloads": 0
     },
     {
       "slug": "pdfspace",
       "repo": "PdfSpace",
-      "version": "0.5.3-alpha.1",
-      "loc": 19284,
+      "version": "0.5.5-alpha.1",
+      "loc": 20410,
       "libraries": 12,
       "projects": 14,
       "workflows": 4,
-      "stars": 2
+      "stars": 2,
+      "nugetPackages": 12,
+      "nugetDownloads": 0
     },
     {
       "slug": "presentationspace",
@@ -59,7 +69,9 @@
       "libraries": 6,
       "projects": 9,
       "workflows": 3,
-      "stars": 0
+      "stars": 0,
+      "nugetPackages": 6,
+      "nugetDownloads": 0
     },
     {
       "slug": "imagespace",
@@ -69,17 +81,21 @@
       "libraries": 11,
       "projects": 19,
       "workflows": 6,
-      "stars": 1
+      "stars": 2,
+      "nugetPackages": 11,
+      "nugetDownloads": 0
     },
     {
       "slug": "lightspace",
       "repo": "LightSpace",
-      "version": "0.4.1-alpha.1",
-      "loc": 5881,
+      "version": "0.5.0-alpha.1",
+      "loc": 6783,
       "libraries": 8,
       "projects": 10,
       "workflows": 5,
-      "stars": 1
+      "stars": 2,
+      "nugetPackages": 8,
+      "nugetDownloads": 0
     },
     {
       "slug": "videospace",
@@ -89,7 +105,9 @@
       "libraries": 10,
       "projects": 16,
       "workflows": 6,
-      "stars": 1
+      "stars": 1,
+      "nugetPackages": 10,
+      "nugetDownloads": 0
     },
     {
       "slug": "effectsspace",
@@ -98,8 +116,10 @@
       "loc": 6932,
       "libraries": 11,
       "projects": 19,
-      "workflows": 8,
-      "stars": 0
+      "workflows": 7,
+      "stars": 0,
+      "nugetPackages": 11,
+      "nugetDownloads": 0
     },
     {
       "slug": "cadspace",
@@ -109,27 +129,33 @@
       "libraries": 6,
       "projects": 12,
       "workflows": 2,
-      "stars": 9
+      "stars": 11,
+      "nugetPackages": 6,
+      "nugetDownloads": 0
     },
     {
       "slug": "labspace",
       "repo": "LabSpace",
-      "version": "0.2.0-alpha.1",
-      "loc": 3778,
+      "version": "0.3.0-alpha.1",
+      "loc": 6159,
       "libraries": 9,
       "projects": 12,
       "workflows": 4,
-      "stars": 1
+      "stars": 1,
+      "nugetPackages": 9,
+      "nugetDownloads": 0
     },
     {
       "slug": "controlspace",
       "repo": "ControlSpace",
       "version": "0.1.0",
-      "loc": 3209,
+      "loc": 4812,
       "libraries": 8,
-      "projects": 12,
+      "projects": 15,
       "workflows": 3,
-      "stars": 0
+      "stars": 0,
+      "nugetPackages": 8,
+      "nugetDownloads": 0
     },
     {
       "slug": "codespace",
@@ -139,7 +165,9 @@
       "libraries": 8,
       "projects": 12,
       "workflows": 3,
-      "stars": 0
+      "stars": 1,
+      "nugetPackages": 8,
+      "nugetDownloads": 0
     },
     {
       "slug": "gitspace",
@@ -149,7 +177,9 @@
       "libraries": 7,
       "projects": 10,
       "workflows": 3,
-      "stars": 2
+      "stars": 3,
+      "nugetPackages": 7,
+      "nugetDownloads": 0
     },
     {
       "slug": "dataspace",
@@ -159,7 +189,9 @@
       "libraries": 5,
       "projects": 8,
       "workflows": 2,
-      "stars": 1
+      "stars": 1,
+      "nugetPackages": 5,
+      "nugetDownloads": 0
     },
     {
       "slug": "notespace",
@@ -169,7 +201,9 @@
       "libraries": 5,
       "projects": 9,
       "workflows": 2,
-      "stars": 2
+      "stars": 3,
+      "nugetPackages": 5,
+      "nugetDownloads": 0
     }
   ]
 }

@@ -6,18 +6,24 @@
   "unoSdk": "6.7.30",
   "pinned": [],
   "github": {
-    "stars": 1,
+    "stars": 2,
     "forks": 0,
-    "openIssues": 0,
+    "openIssues": 1,
     "createdAt": "2026-09-27T17:24:26Z",
-    "pushedAt": "2026-09-28T14:54:22Z",
+    "pushedAt": "2026-09-29T17:20:47Z",
     "homepage": "https://wieslawsoltes.github.io/ImageSpace/",
     "license": "MIT"
   },
+  "release": {
+    "tag": "v0.3.2-alpha.1",
+    "url": "https://github.com/wieslawsoltes/ImageSpace/releases/tag/v0.3.2-alpha.1",
+    "prerelease": true,
+    "publishedAt": "2026-09-29T14:43:58Z"
+  },
   "lastCommit": {
-    "sha": "baff3e0",
-    "date": "2026-09-28T16:54:22+02:00",
-    "subject": "Merge ImageSpace 0.3.2 retained selection UI and overlay performance improvements"
+    "sha": "08ae621",
+    "date": "2026-09-29T18:57:02+02:00",
+    "subject": "Document NuGet packages with badges and usage"
   },
   "loc": {
     "total": 12516,
@@ -38,6 +44,7 @@
         "net10.0-desktop"
       ],
       "packable": false,
+      "packageId": "ImageSpace.App",
       "description": "Local-first layered image editing with Uno Platform, Skia and WebGPU.",
       "unoFeatures": [
         "SkiaRenderer"
@@ -59,6 +66,7 @@
         "net10.0"
       ],
       "packable": false,
+      "packageId": "ImageSpace.Benchmarks",
       "description": "",
       "unoFeatures": [],
       "projectRefs": [
@@ -77,6 +85,7 @@
         "net10.0"
       ],
       "packable": false,
+      "packageId": "ImageSpace.CompatibilityTests",
       "description": "",
       "unoFeatures": [],
       "projectRefs": [
@@ -103,6 +112,7 @@
         "net10.0-desktop"
       ],
       "packable": true,
+      "packageId": "ImageSpace.Controls",
       "description": "Custom dark editor buttons, icons, panels, color spectrum, numeric controls and histograms.",
       "unoFeatures": [
         "SkiaRenderer"
@@ -123,6 +133,7 @@
         "net10.0"
       ],
       "packable": true,
+      "packageId": "ImageSpace.Core",
       "description": "Copy-on-write raster tiles, layer document model, color and selection primitives.",
       "unoFeatures": [],
       "projectRefs": [],
@@ -139,6 +150,7 @@
         "net10.0"
       ],
       "packable": true,
+      "packageId": "ImageSpace.Documents",
       "description": "Versioned native document archives and bounded 8-bit RGB PSD interchange.",
       "unoFeatures": [],
       "projectRefs": [
@@ -157,6 +169,7 @@
         "net10.0"
       ],
       "packable": true,
+      "packageId": "ImageSpace.Editing",
       "description": "Transactional editor session, bounded tile history and image-editing commands.",
       "unoFeatures": [],
       "projectRefs": [
@@ -177,6 +190,7 @@
         "net10.0-desktop"
       ],
       "packable": true,
+      "packageId": "ImageSpace.Editor",
       "description": "Embeddable Uno image viewport with paint, selection, transform, crop and navigation gestures.",
       "unoFeatures": [
         "SkiaRenderer"
@@ -199,6 +213,7 @@
         "net10.0"
       ],
       "packable": true,
+      "packageId": "ImageSpace.Filters",
       "description": "Deterministic selection-aware color, convolution, blur and stylization kernels.",
       "unoFeatures": [],
       "projectRefs": [
@@ -217,6 +232,7 @@
         "net10.0"
       ],
       "packable": true,
+      "packageId": "ImageSpace.Imaging",
       "description": "Pressure-aware brush engine, selections, flood fill and raster transforms.",
       "unoFeatures": [],
       "projectRefs": [
@@ -235,6 +251,7 @@
         "net10.0"
       ],
       "packable": false,
+      "packageId": "ImageSpace.LayerTests",
       "description": "",
       "unoFeatures": [],
       "projectRefs": [
@@ -260,6 +277,7 @@
         "net10.0"
       ],
       "packable": false,
+      "packageId": "ImageSpace.MaskEditingTests",
       "description": "",
       "unoFeatures": [],
       "projectRefs": [
@@ -285,6 +303,7 @@
         "net10.0"
       ],
       "packable": false,
+      "packageId": "ImageSpace.MaskTests",
       "description": "",
       "unoFeatures": [],
       "projectRefs": [
@@ -310,6 +329,7 @@
         "net10.0"
       ],
       "packable": false,
+      "packageId": "ImageSpace.RegressionTests",
       "description": "",
       "unoFeatures": [],
       "projectRefs": [
@@ -335,6 +355,7 @@
         "net10.0"
       ],
       "packable": true,
+      "packageId": "ImageSpace.Skia",
       "description": "GPU-capable Skia compositor, revision-cached tile images, live adjustments and image codecs.",
       "unoFeatures": [],
       "projectRefs": [
@@ -358,6 +379,7 @@
         "net10.0"
       ],
       "packable": true,
+      "packageId": "ImageSpace.Storage",
       "description": "Host-independent file and recovery contracts for image editor applications.",
       "unoFeatures": [],
       "projectRefs": [],
@@ -374,6 +396,7 @@
         "net10.0"
       ],
       "packable": false,
+      "packageId": "ImageSpace.Tests",
       "description": "",
       "unoFeatures": [],
       "projectRefs": [
@@ -399,6 +422,7 @@
         "net10.0"
       ],
       "packable": true,
+      "packageId": "ImageSpace.WebGpu",
       "description": "Permissively licensed WebGPU RGBA compute kernels and host-independent capability contracts.",
       "unoFeatures": [],
       "projectRefs": [
@@ -418,6 +442,7 @@
         "net10.0-desktop"
       ],
       "packable": true,
+      "packageId": "ImageSpace.Workbench",
       "description": "Reusable professional photo-editing workspace, panels, menus, multi-document tabs and file commands.",
       "unoFeatures": [
         "SkiaRenderer"
@@ -481,5 +506,339 @@
     "docs/ui-responsiveness.md",
     "docs/user-guide.md"
   ],
-  "images": []
+  "images": [],
+  "nugetDocs": {
+    "intro": [
+      "All eleven libraries are MIT-licensed and published on [NuGet.org](https://www.nuget.org/packages?q=ImageSpace). The first eight (Core, Storage, Imaging, Filters, WebGpu, Editing, Documents, Skia) target `net10.0` and have no Uno dependency; only `ImageSpace.Skia` needs SkiaSharp. `ImageSpace.Controls`, `ImageSpace.Editor` and `ImageSpace.Workbench` target `net10.0-desktop` and `net10.0-browserwasm` on Uno Platform with the Skia renderer. All packages are versioned together (currently prereleases), and symbols ship on NuGet.org as `.snupkg` with SourceLink."
+    ],
+    "install": "dotnet add package ImageSpace.Core --prerelease",
+    "notes": [
+      {
+        "type": "paragraph",
+        "text": "Dependencies: `Core ← Imaging, Filters, Documents, Skia, Controls`; `Filters ← WebGpu`; `Imaging + Filters ← Editing`; `Editing + Skia + Controls ← Editor`; `Editor + Documents + Storage ← Workbench`. `Storage` has no dependencies. CI also produces the standalone npm tarball `@wieslawsoltes/imagespace-webgpu` (from `packages/webgpu`); it is not a NuGet package, and its npm publication is separate."
+      }
+    ],
+    "packages": [
+      {
+        "id": "ImageSpace.Core",
+        "description": "Copy-on-write raster tiles, layer document model, colors, masks and immutable Curves/Levels math",
+        "summary": [
+          "The document model shared by every other package: `ImageDocument` with raster, text, shape and adjustment `Layer`s, sparse copy-on-write `PixelSurface` tiles (128×128, straight-alpha RGBA), masks with affine placement, and immutable Curves/Levels settings with lookup-table math. Use it standalone for headless image generation or processing. No dependencies and no UI."
+        ],
+        "install": "dotnet add package ImageSpace.Core --prerelease",
+        "keyTypes": [
+          "`ImageDocument`: size, DPI, ordered `Layers`, `ActiveLayerId`, optional `Selection` coverage, `Snapshot()` and `Validate()`.",
+          "`Layer`: kind, blend, opacity, transform, `Pixels`, `Mask` and mask placement, `Curves`/`Levels`; `Layer.Raster(...)` factory.",
+          "`PixelSurface`: tiled pixels with `Get`/`Set`/`Fill`, row copies, `FromRgba`/`ToRgba` and per-tile revisions (limit 8192 px per side, 16 MP).",
+          "`Rgba32`: 8-bit sRGB color with `Parse`, `Lerp` and `Over`.",
+          "`ToneCurve`, `CurvesAdjustment`, `LevelsChannel`, `LevelsAdjustment`: immutable, validated tone settings.",
+          "`RgbLookupTables`: `FromCurves`/`FromLevels` (with strength) and `Map(Rgba32)`."
+        ],
+        "content": [
+          {
+            "type": "code",
+            "lang": "csharp",
+            "code": "using ImageSpace.Core;\n\nvar document = new ImageDocument(1600, 1000, \"Poster\");\nvar paint = Layer.Raster(\"Paint\", document.Width, document.Height);\npaint.Pixels!.Fill(Rgba32.Parse(\"#1E2A3A\"));\npaint.Pixels.Set(10, 10, new Rgba32(255, 128, 0));\ndocument.Layers.Add(paint);\ndocument.ActiveLayerId = paint.Id;\ndocument.Validate();\n\n// Pure tone math: immutable settings become 8-bit lookup tables.\nvar curves = new CurvesAdjustment\n{\n    Rgb = new ToneCurve { Points = [new(0, 0), new(64, 38), new(192, 218), new(255, 255)] }\n};\nRgba32 mapped = RgbLookupTables.FromCurves(curves).Map(paint.Pixels.Get(10, 10));"
+          },
+          {
+            "type": "paragraph",
+            "text": "See the [Curves/Levels reuse guide](https://github.com/wieslawsoltes/ImageSpace/blob/main/docs/tonal-adjustments.md#reuse-from-c) for interpolation and compatibility details."
+          }
+        ],
+        "project": "ImageSpace.Core",
+        "nuget": {
+          "id": "ImageSpace.Core",
+          "version": "0.3.2-alpha.1",
+          "downloads": 0,
+          "verified": false
+        }
+      },
+      {
+        "id": "ImageSpace.Storage",
+        "description": "Host-independent file and recovery contracts for image editor applications",
+        "summary": [
+          "The contract a host implements so the workbench can open, save and recover files without knowing about browsers, pickers or file systems. No dependencies and no UI."
+        ],
+        "install": "dotnet add package ImageSpace.Storage --prerelease",
+        "keyTypes": [
+          "`IEditorStorage`: `OpenAsync`, `SaveAsync` (return `false` on cancel), `ReadRecoveryAsync`, `WriteRecoveryAsync`, `ClearRecoveryAsync`.",
+          "`OpenedFile(Name, Bytes)`: a file chosen by the user."
+        ],
+        "content": [
+          {
+            "type": "code",
+            "lang": "csharp",
+            "code": "using ImageSpace.Storage;\n\nsealed class FolderStorage(string folder) : IEditorStorage\n{\n    private string Recovery => Path.Combine(folder, \"recovery.imagespace\");\n\n    public Task<OpenedFile?> OpenAsync(CancellationToken cancellationToken = default) =>\n        Task.FromResult<OpenedFile?>(null); // show a host file picker here\n\n    public async Task<bool> SaveAsync(string name, byte[] bytes, string contentType, CancellationToken cancellationToken = default)\n    {\n        await File.WriteAllBytesAsync(Path.Combine(folder, name), bytes, cancellationToken);\n        return true; // return false when the user cancels\n    }\n\n    public async Task<byte[]?> ReadRecoveryAsync(CancellationToken cancellationToken = default) =>\n        File.Exists(Recovery) ? await File.ReadAllBytesAsync(Recovery, cancellationToken) : null;\n\n    public Task WriteRecoveryAsync(byte[] bytes, CancellationToken cancellationToken = default) =>\n        File.WriteAllBytesAsync(Recovery, bytes, cancellationToken);\n\n    public Task ClearRecoveryAsync(CancellationToken cancellationToken = default)\n    {\n        File.Delete(Recovery);\n        return Task.CompletedTask;\n    }\n}"
+          }
+        ],
+        "project": "ImageSpace.Storage",
+        "nuget": {
+          "id": "ImageSpace.Storage",
+          "version": "0.3.2-alpha.1",
+          "downloads": 0,
+          "verified": false
+        }
+      },
+      {
+        "id": "ImageSpace.Imaging",
+        "description": "Pressure-aware brush engine, selections and morphology, fills, histograms and raster transforms",
+        "summary": [
+          "Raster editing primitives: a pressure-aware brush engine (brush, pencil, eraser, clone, dodge, burn, smudge), rectangle/ellipse/polygon/contiguous selections with add/subtract/intersect, O(n) selection morphology, fills and gradients that honor selection coverage, histograms, resize/crop/rotate/flip and the original sample document. Depends on Core; no UI."
+        ],
+        "install": "dotnet add package ImageSpace.Imaging --prerelease",
+        "keyTypes": [
+          "`BrushEngine` with `BrushSettings(Size, Hardness, Opacity, Flow, Spacing, Pressure)` and `PaintMode`.",
+          "`Selections`: `Rectangle`, `Polygon`, `Contiguous`, `Combine`, `Invert`, `Bounds`.",
+          "`SelectionMorphology.Apply(...)`: expand, contract, border and smooth; `SelectionContours.Trace` for exact outlines.",
+          "`PixelEdits`: `Fill`, `Gradient`, `Clear`; `MaskOperations` for mask/selection conversion.",
+          "`RasterOperations`: `Resize`, `Crop`, `Rotate90`, `Flip`, `Histogram`, `Sample`."
+        ],
+        "content": [
+          {
+            "type": "code",
+            "lang": "csharp",
+            "code": "using System.Numerics;\nusing ImageSpace.Core;\nusing ImageSpace.Imaging;\n\nvar document = new ImageDocument(800, 600);\nvar layer = Layer.Raster(\"Paint\", 800, 600);\ndocument.Layers.Add(layer);\ndocument.ActiveLayerId = layer.Id;\n\n// Edits respect the document selection's coverage.\nvar ellipse = Selections.Rectangle(800, 600, new Vector2(100, 100), new Vector2(500, 400), ellipse: true);\ndocument.Selection = SelectionMorphology.Apply(ellipse, SelectionModification.Smooth, radius: 4);\nPixelEdits.Gradient(document, layer, new(100, 100), new(500, 400), Rgba32.Parse(\"#FF8A3D\"), Rgba32.Parse(\"#3D7BFF\"));\n\nvar brush = new BrushEngine();\nbrush.Begin(layer.Pixels!, Vector2.Zero);\nforeach (var x in new[] { 150f, 250f, 350f })\n    brush.Paint(document, layer, new Vector2(x, 250), 0.8f, new BrushSettings(Size: 24), Rgba32.White, PaintMode.Brush);\nbrush.End();\n\nint[] histogram = RasterOperations.Histogram(layer.Pixels!);"
+          }
+        ],
+        "project": "ImageSpace.Imaging",
+        "nuget": {
+          "id": "ImageSpace.Imaging",
+          "version": "0.3.2-alpha.1",
+          "downloads": 0,
+          "verified": false
+        }
+      },
+      {
+        "id": "ImageSpace.Filters",
+        "description": "Deterministic color, convolution, blur and stylization kernels plus sparse tone-lookup processing",
+        "summary": [
+          "Deterministic, allocation-conscious pixel filters on `PixelSurface`: invert, grayscale, sepia, brightness/contrast, saturation, gamma, threshold, posterize, Gaussian blur, sharpen, emboss, edges, pixelate and noise, plus sparse tone-lookup processing for Curves/Levels. Source surfaces are never modified. Depends on Core; no UI."
+        ],
+        "install": "dotnet add package ImageSpace.Filters --prerelease",
+        "keyTypes": [
+          "`FilterEngine.Apply(source, kind, amount, secondary, seed)` and `FilterEngine.Blur(source, sigma)`.",
+          "`FilterKind`: the fourteen supported kernels.",
+          "`ToneFilterEngine.Apply(source, RgbLookupTables, cancellationToken)`: cancellable lookup-table processing that preserves alpha."
+        ],
+        "content": [
+          {
+            "type": "code",
+            "lang": "csharp",
+            "code": "using ImageSpace.Core;\nusing ImageSpace.Filters;\n\nPixelSurface blurred = FilterEngine.Blur(source, sigma: 3);\nPixelSurface sepia = FilterEngine.Apply(source, FilterKind.Sepia);\nPixelSurface punchy = FilterEngine.Apply(source, FilterKind.BrightnessContrast, amount: 10, secondary: 20);\n\nvar levels = new LevelsAdjustment\n{\n    Rgb = new LevelsChannel { InputBlack = 16, InputWhite = 240, Gamma = 1.2 },\n    Blue = new LevelsChannel { Gamma = 0.95 }\n};\nPixelSurface toned = ToneFilterEngine.Apply(source, RgbLookupTables.FromLevels(levels), cancellationToken);"
+          }
+        ],
+        "project": "ImageSpace.Filters",
+        "nuget": {
+          "id": "ImageSpace.Filters",
+          "version": "0.3.2-alpha.1",
+          "downloads": 0,
+          "verified": false
+        }
+      },
+      {
+        "id": "ImageSpace.WebGpu",
+        "description": "WebGPU RGBA compute kernels (JavaScript/WGSL) and host-independent capability contracts",
+        "summary": [
+          "Contracts for optional GPU compute plus the standalone WebGPU JavaScript/WGSL kernels (`WebGpu.js`, shipped as an embedded resource and as `contentFiles/any/any/ImageSpace/WebGpu.js`). Eight color kernels are accelerated (invert, grayscale, sepia, brightness/contrast, saturation, gamma, threshold, posterize); everything else, and any unavailable adapter, falls back to the CPU. Depends on Filters; no UI. The host (for example a browser interop layer) implements `IComputeFilterBackend`."
+        ],
+        "install": "dotnet add package ImageSpace.WebGpu --prerelease",
+        "keyTypes": [
+          "`IComputeFilterBackend`: `GetCapabilitiesAsync` and `ApplyAsync` (returns `null` for unsupported kernels; never mutates the source).",
+          "`GpuCapabilities(Available, Backend, MaximumBufferSize, Reason)`.",
+          "`GpuKernels.Supports(FilterKind)`: which kernels have a GPU implementation."
+        ],
+        "content": [
+          {
+            "type": "code",
+            "lang": "csharp",
+            "code": "using ImageSpace.Core;\nusing ImageSpace.Filters;\nusing ImageSpace.WebGpu;\n\nstatic async Task<PixelSurface> ApplyAsync(IComputeFilterBackend gpu, PixelSurface source, FilterKind kind, float amount)\n{\n    if (GpuKernels.Supports(kind))\n    {\n        GpuCapabilities caps = await gpu.GetCapabilitiesAsync();\n        if (caps.Available && await gpu.ApplyAsync(source, kind, amount, 0) is { } output)\n            return output;\n    }\n    return FilterEngine.Apply(source, kind, amount); // deterministic CPU fallback\n}"
+          }
+        ],
+        "project": "ImageSpace.WebGpu",
+        "nuget": {
+          "id": "ImageSpace.WebGpu",
+          "version": "0.3.2-alpha.1",
+          "downloads": 0,
+          "verified": false
+        }
+      },
+      {
+        "id": "ImageSpace.Editing",
+        "description": "Transactional editor session, bounded history, rollback, mask application and editing commands",
+        "summary": [
+          "The transactional `EditorSession`: every edit runs against a snapshot, commits as one history entry or rolls back on failure, and undo/redo stays within a memory budget. It also hosts layer, mask, selection, filter and canvas commands. Depends on Imaging and Filters; no UI."
+        ],
+        "install": "dotnet add package ImageSpace.Editing --prerelease",
+        "keyTypes": [
+          "`EditorSession`: `Document`, `Execute(name, action)`, `Begin`/`Commit`/`Cancel`, `Undo`/`Redo`, `History`, `HistoryBudget`, `Changed`.",
+          "Layer and canvas commands: `AddLayer`, `DuplicateLayer`, `MoveLayer`, `AddMask`, `ApplyFilter`, `Crop`, `ResizeImage`, `RotateCanvas`.",
+          "Mask commands: `SetMaskProperties`, `SetMaskLinked`, `InvertMask`, `ApplyLayerMask` / `CanApplyLayerMask`.",
+          "`PixelFilterPipeline` and `HistoryEntry`."
+        ],
+        "content": [
+          {
+            "type": "code",
+            "lang": "csharp",
+            "code": "using ImageSpace.Core;\nusing ImageSpace.Editing;\nusing ImageSpace.Filters;\n\nvar session = new EditorSession(new ImageDocument(1600, 1000, \"Untitled\"));\nsession.Changed += (_, _) => Console.WriteLine($\"Revision {session.Revision}\");\n\nsession.AddLayer(\"Paint\");                             // one history entry\nsession.FillPixels(new Rgba32(54, 145, 230));\nsession.ApplyFilter(FilterKind.GaussianBlur, amount: 4);\n\nsession.Execute(\"Add Curves\", document =>              // arbitrary edit, one undo step\n{\n    var adjustment = new Layer\n    {\n        Name = \"Contrast\", Kind = LayerKind.Adjustment, Adjustment = AdjustmentKind.Curves,\n        Width = document.Width, Height = document.Height,\n        Curves = new CurvesAdjustment { Rgb = new ToneCurve { Points = [new(0, 0), new(64, 38), new(192, 218), new(255, 255)] } }\n    };\n    document.Layers.Add(adjustment);\n    document.ActiveLayerId = adjustment.Id;\n});\nsession.Undo();"
+          }
+        ],
+        "project": "ImageSpace.Editing",
+        "nuget": {
+          "id": "ImageSpace.Editing",
+          "version": "0.3.2-alpha.1",
+          "downloads": 0,
+          "verified": false
+        }
+      },
+      {
+        "id": "ImageSpace.Documents",
+        "description": "Versioned native `.imagespace` archives and bounded 8-bit RGB PSD interchange",
+        "summary": [
+          "File formats: the versioned native `.imagespace` archive (manifest versions 1–4, minimal version written) for lossless roundtrips, and bounded RGB/8 PSD import/export (raw, PackBits, ZIP and predicted ZIP channels, Unicode names, resolution and user masks). Archive size, dimensions and layer counts are bounded. Depends on Core; no UI."
+        ],
+        "install": "dotnet add package ImageSpace.Documents --prerelease",
+        "keyTypes": [
+          "`DocumentArchive.Save(ImageDocument)` / `DocumentArchive.Load(ReadOnlyMemory<byte>)`.",
+          "`PsdCodec.Load(bytes, name)`: returns `PsdCodec.ImportResult(Document, Warnings)`.",
+          "`PsdCodec.Save(document, rasterize, composite, compression)` with `PsdCompression`."
+        ],
+        "content": [
+          {
+            "type": "code",
+            "lang": "csharp",
+            "code": "using ImageSpace.Core;\nusing ImageSpace.Documents;\nusing ImageSpace.Skia;\n\nPsdCodec.ImportResult imported = PsdCodec.Load(File.ReadAllBytes(\"artwork.psd\"), \"artwork\");\nforeach (var warning in imported.Warnings)\n    Console.WriteLine(warning);\n\n// Lossless native archive (.imagespace) roundtrip.\nbyte[] archive = DocumentArchive.Save(imported.Document);\nImageDocument reopened = DocumentArchive.Load(archive);\n\n// PSD export needs rasterized layers and a composite, e.g. from ImageSpace.Skia.\nusing var renderer = new ImageRenderer();\nbyte[] psd = PsdCodec.Save(reopened, layer => renderer.RasterizeLayer(reopened, layer),\n    renderer.Rasterize(reopened), PsdCompression.Zip);"
+          },
+          {
+            "type": "paragraph",
+            "text": "PSD is bounded raster interchange, not lossless Photoshop editing; see [Files and limits](https://github.com/wieslawsoltes/ImageSpace#files-and-limits)."
+          }
+        ],
+        "project": "ImageSpace.Documents",
+        "nuget": {
+          "id": "ImageSpace.Documents",
+          "version": "0.3.2-alpha.1",
+          "downloads": 0,
+          "verified": false
+        }
+      },
+      {
+        "id": "ImageSpace.Skia",
+        "description": "GPU-capable Skia compositor, revision-cached tiles, live adjustments, mask baking and image codecs",
+        "summary": [
+          "The shared compositor: draws revision-cached tiles, text, shapes, sixteen blend modes, masks and live adjustments (including Curves/Levels lookup filters) into any `SKCanvas`, rasterizes and exports PNG/JPEG/WebP, decodes images and bakes masks. The host picks the Skia backend (GPU or software). Depends on Core and SkiaSharp 3.119; no UI framework."
+        ],
+        "install": "dotnet add package ImageSpace.Skia --prerelease",
+        "keyTypes": [
+          "`ImageRenderer`: `Draw`, `DrawLayer`, `Rasterize`, `RasterizePreview`, `RasterizeLayer`, `Export`, `Decode`, `SetTypeface`, `BakeLayerMask`.",
+          "`MaskPreviewRenderer` with `MaskPreviewMode` (composite, grayscale, red overlay).",
+          "`DocumentPreviewCache`: bounded, reusable document previews for thumbnails and histograms."
+        ],
+        "content": [
+          {
+            "type": "code",
+            "lang": "csharp",
+            "code": "using ImageSpace.Core;\nusing ImageSpace.Skia;\nusing SkiaSharp;\n\nusing var renderer = new ImageRenderer();\n\n// Composite into any SKCanvas (an Uno SKCanvasElement, an SKSurface, ...).\nusing var surface = SKSurface.Create(new SKImageInfo(document.Width, document.Height));\nrenderer.Draw(surface.Canvas, document);\n\nFile.WriteAllBytes(\"poster.webp\", renderer.Export(document, SKEncodedImageFormat.Webp, quality: 90));\nPixelSurface preview = renderer.RasterizePreview(document, maximumEdge: 256);\nPixelSurface decoded = ImageRenderer.Decode(File.ReadAllBytes(\"photo.jpg\"));"
+          },
+          {
+            "type": "paragraph",
+            "text": "Use a renderer on its owning thread. To apply a layer mask destructively, pass the renderer to the session: `if (session.CanApplyLayerMask) session.ApplyLayerMask(renderer.BakeLayerMask);`. See the [rendering guide](https://github.com/wieslawsoltes/ImageSpace/blob/main/docs/mask-application-and-rendering.md) for ownership rules."
+          }
+        ],
+        "project": "ImageSpace.Skia",
+        "nuget": {
+          "id": "ImageSpace.Skia",
+          "version": "0.3.2-alpha.1",
+          "downloads": 0,
+          "verified": false
+        }
+      },
+      {
+        "id": "ImageSpace.Controls",
+        "description": "Dark editor buttons, icons, menus, numeric fields, color spectrum, histograms, curve and levels editors for Uno",
+        "summary": [
+          "Self-contained, dark-themed Uno controls used by the workbench and reusable without it: Skia-drawn icons, buttons and menus, numeric fields, an HSV color spectrum, histograms, and the Curves/Levels graph editors with begin/change/complete/cancel semantics. Depends on Core; requires Uno Platform (Skia renderer)."
+        ],
+        "install": "dotnet add package ImageSpace.Controls --prerelease",
+        "keyTypes": [
+          "`CurveEditor`: `Curve` (`ToneCurve`), `CurveChanged`, `EditCompleted`, `EditCanceled`, `SetHistogram`, `TryBeginEdit`.",
+          "`LevelsControl`: `Value` (`LevelsChannel`), `ValueChanged`, `EditCompleted`, `EditCanceled`, `SetHistogram`.",
+          "`NumericField(label, value, minimum, maximum)`, `ColorSpectrum` (`ColorChanged`), `HistogramView` (`Values`).",
+          "`StudioButton(text, action, icon)`, `IconView(icon)`, `Studio` (theme brushes, `Font`, `Menu`), `AdaptivePanelGrid`."
+        ],
+        "content": [
+          {
+            "type": "code",
+            "lang": "csharp",
+            "code": "using ImageSpace.Controls;\nusing ImageSpace.Core;\nusing Microsoft.UI.Xaml.Controls;\n\nvar curve = new CurveEditor { Curve = new ToneCurve { Points = [new(0, 0), new(128, 150), new(255, 255)] } };\ncurve.CurveChanged += value => ShowPreview(value);     // live, uncommitted\ncurve.EditCompleted += () => Commit(curve.Curve);\ncurve.EditCanceled += RevertPreview;\n\nvar levels = new LevelsControl { Value = new LevelsChannel { InputBlack = 12, Gamma = 1.1 } };\nlevels.ValueChanged += channel => ShowPreview(channel);\n\nvar opacity = new NumericField(\"Opacity\", 100, 0, 100);\nopacity.ValueChanged += value => SetOpacity((float)(value / 100));\n\nwindow.Content = new StackPanel\n{\n    Spacing = 8,\n    Children = { curve, levels, opacity, new StudioButton(\"Reset\", ResetAll, icon: \"undo\") }\n};"
+          }
+        ],
+        "project": "ImageSpace.Controls",
+        "nuget": {
+          "id": "ImageSpace.Controls",
+          "version": "0.3.2-alpha.1",
+          "downloads": 0,
+          "verified": false
+        }
+      },
+      {
+        "id": "ImageSpace.Editor",
+        "description": "Embeddable Uno image viewport with paint, selection, transform, crop and navigation gestures",
+        "summary": [
+          "`ImageViewport`, the embeddable canvas: Skia compositing with a separate overlay layer, rulers, grid, transform handles, pan/zoom, and pointer gestures for every tool (move, marquee, lasso, wand, crop, brushes, gradient, fill, text, shapes, eyedropper). Each gesture becomes one `EditorSession` transaction. Depends on Editing, Skia and Controls; requires Uno Platform."
+        ],
+        "install": "dotnet add package ImageSpace.Editor --prerelease",
+        "keyTypes": [
+          "`ImageViewport(EditorSession)`: `Tool`, `Brush`, `Foreground`, `BackgroundColor`, `Tolerance`, `ShowRulers`, `ShowGrid`, `Renderer`.",
+          "Navigation: `Fit`, `SetZoom`, `Zoom`, `Pan`, `ToDocument`/`ToScreen`.",
+          "Events: `Status`, `ColorPicked`, `TextEditRequested`, `ViewChanged`; `SetMaskPreview(MaskPreviewMode)`.",
+          "`EditorTool`: the 21 tools."
+        ],
+        "content": [
+          {
+            "type": "code",
+            "lang": "csharp",
+            "code": "using ImageSpace.Core;\nusing ImageSpace.Editing;\nusing ImageSpace.Editor;\nusing ImageSpace.Imaging;\n\nvar session = new EditorSession(new ImageDocument(1600, 1000, \"Untitled\"));\nsession.AddLayer(\"Paint\");\nvar viewport = new ImageViewport(session)\n{\n    Tool = EditorTool.Brush,\n    Brush = new BrushSettings(Size: 24, Hardness: 0.9f),\n    Foreground = new Rgba32(54, 145, 230)\n};\nviewport.ColorPicked += color => viewport.Foreground = color;\nwindow.Content = viewport;"
+          },
+          {
+            "type": "paragraph",
+            "text": "Dispose the viewport when its window closes."
+          }
+        ],
+        "project": "ImageSpace.Editor",
+        "nuget": {
+          "id": "ImageSpace.Editor",
+          "version": "0.3.2-alpha.1",
+          "downloads": 0,
+          "verified": false
+        }
+      },
+      {
+        "id": "ImageSpace.Workbench",
+        "description": "Complete photo-editing workspace: panels, tonal inspector, menus, multi-document tabs and file commands",
+        "summary": [
+          "The complete ImageSpace workspace as one control: menus, tool bar and options, layers/channels/history/properties panels, the tonal inspector, mask editing, multi-document tabs, filter dialogs and open/save/export commands through `IEditorStorage`. Depends on Editor, Documents and Storage; requires Uno Platform."
+        ],
+        "install": "dotnet add package ImageSpace.Workbench --prerelease",
+        "keyTypes": [
+          "`StudioWorkbench(EditorSession, IEditorStorage)`: `Session`, `Surface` (the `ImageViewport`), `Documents`, `AddDocument`, `SelectTool`, `OpenAsync`, `SaveAsync`, `ShowStatus`.",
+          "`StudioWorkbench.GpuFilter`: optional GPU filter delegate (for example an `IComputeFilterBackend.ApplyAsync`); CPU kernels are used otherwise.",
+          "Reusable panels: `LayerPanel`, `PropertyPanel`, `ToneAdjustmentEditor`, `MaskPropertiesEditor`."
+        ],
+        "content": [
+          {
+            "type": "code",
+            "lang": "csharp",
+            "code": "using ImageSpace.Documents;\nusing ImageSpace.Editing;\nusing ImageSpace.Imaging;\nusing ImageSpace.Storage;\nusing ImageSpace.Workbench;\n\nIEditorStorage storage = new FolderStorage(dataFolder); // see ImageSpace.Storage\nvar document = await storage.ReadRecoveryAsync() is { } saved\n    ? DocumentArchive.Load(saved)\n    : SampleDocument.Create();\n\nvar workbench = new StudioWorkbench(new EditorSession(document), storage);\nwindow.Content = workbench;\nwindow.Closed += (_, _) => workbench.Dispose();"
+          }
+        ],
+        "project": "ImageSpace.Workbench",
+        "nuget": {
+          "id": "ImageSpace.Workbench",
+          "version": "0.3.2-alpha.1",
+          "downloads": 0,
+          "verified": false
+        }
+      }
+    ]
+  }
 }

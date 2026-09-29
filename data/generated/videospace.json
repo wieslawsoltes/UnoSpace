@@ -10,14 +10,20 @@
     "forks": 0,
     "openIssues": 0,
     "createdAt": "2026-09-27T17:25:09Z",
-    "pushedAt": "2026-09-28T06:29:36Z",
+    "pushedAt": "2026-09-29T16:52:38Z",
     "homepage": "https://wieslawsoltes.github.io/VideoSpace/",
     "license": "MIT"
   },
+  "release": {
+    "tag": "v0.3.0-alpha.1",
+    "url": "https://github.com/wieslawsoltes/VideoSpace/releases/tag/v0.3.0-alpha.1",
+    "prerelease": true,
+    "publishedAt": "2026-09-29T14:36:01Z"
+  },
   "lastCommit": {
-    "sha": "dc87731",
-    "date": "2026-09-28T08:29:35+02:00",
-    "subject": "Merge VideoSpace 0.3 indexed source decoding and validated compatibility fixes"
+    "sha": "1a585a3",
+    "date": "2026-09-29T18:52:36+02:00",
+    "subject": "Document NuGet packages with badges and usage"
   },
   "loc": {
     "total": 4292,
@@ -38,6 +44,7 @@
         "net10.0-desktop"
       ],
       "packable": false,
+      "packageId": "VideoSpace.App",
       "description": "Local-first nonlinear video editing with Uno Platform and GPU composition.",
       "unoFeatures": [
         "SkiaRenderer"
@@ -58,6 +65,7 @@
         "net10.0"
       ],
       "packable": false,
+      "packageId": "VideoSpace.Audio",
       "description": "PCM mixing, waveform reduction, metering and WAV export without native codec dependencies.",
       "unoFeatures": [],
       "projectRefs": [
@@ -77,6 +85,7 @@
         "net10.0-desktop"
       ],
       "packable": true,
+      "packageId": "VideoSpace.Controls",
       "description": "Reusable custom Uno timeline, monitors, bins, panels, icons and editing controls.",
       "unoFeatures": [
         "SkiaRenderer"
@@ -100,6 +109,7 @@
         "net10.0"
       ],
       "packable": false,
+      "packageId": "VideoSpace.Core",
       "description": "Frame-based nonlinear video project model, rational time and validation.",
       "unoFeatures": [],
       "projectRefs": [],
@@ -116,6 +126,7 @@
         "net10.0"
       ],
       "packable": false,
+      "packageId": "VideoSpace.Documents",
       "description": "Validated project manifests, SRT captions and CMX3600 edit-decision interchange.",
       "unoFeatures": [],
       "projectRefs": [
@@ -134,6 +145,7 @@
         "net10.0"
       ],
       "packable": false,
+      "packageId": "VideoSpace.Editing",
       "description": "Transactional nonlinear editing, undo/redo and linked-track operations.",
       "unoFeatures": [],
       "projectRefs": [
@@ -152,6 +164,7 @@
         "net10.0"
       ],
       "packable": false,
+      "packageId": "VideoSpace.Editing.Tests",
       "description": "",
       "unoFeatures": [],
       "projectRefs": [
@@ -170,6 +183,7 @@
         "net10.0"
       ],
       "packable": false,
+      "packageId": "VideoSpace.Effects",
       "description": "Keyframed video/audio evaluation and backend-independent composition plans.",
       "unoFeatures": [],
       "projectRefs": [
@@ -188,6 +202,7 @@
         "net10.0"
       ],
       "packable": false,
+      "packageId": "VideoSpace.Fixtures",
       "description": "",
       "unoFeatures": [],
       "projectRefs": [
@@ -209,6 +224,7 @@
         "net10.0-desktop"
       ],
       "packable": true,
+      "packageId": "VideoSpace.Media",
       "description": "Local media, browser GPU presentation, audio routing and platform storage adapters.",
       "unoFeatures": [
         "SkiaRenderer"
@@ -229,6 +245,7 @@
         "net10.0"
       ],
       "packable": false,
+      "packageId": "VideoSpace.Parity.Tests",
       "description": "",
       "unoFeatures": [],
       "projectRefs": [
@@ -249,6 +266,7 @@
         "net10.0"
       ],
       "packable": false,
+      "packageId": "VideoSpace.Rendering",
       "description": "Skia GPU-compatible video frame composition, procedural footage and portable image export.",
       "unoFeatures": [],
       "projectRefs": [
@@ -272,6 +290,7 @@
         "net10.0"
       ],
       "packable": false,
+      "packageId": "VideoSpace.Rendering.Tests",
       "description": "",
       "unoFeatures": [],
       "projectRefs": [
@@ -295,6 +314,7 @@
         "net10.0"
       ],
       "packable": false,
+      "packageId": "VideoSpace.Tests",
       "description": "",
       "unoFeatures": [],
       "projectRefs": [
@@ -322,6 +342,7 @@
         "net10.0"
       ],
       "packable": false,
+      "packageId": "VideoSpace.Timeline",
       "description": "Virtualized timeline geometry, hit testing and frame snapping.",
       "unoFeatures": [],
       "projectRefs": [
@@ -341,6 +362,7 @@
         "net10.0-desktop"
       ],
       "packable": true,
+      "packageId": "VideoSpace.Workbench",
       "description": "Embeddable Uno nonlinear editing workspace, effects inspector and project workflows.",
       "unoFeatures": [
         "SkiaRenderer"
@@ -399,5 +421,321 @@
     "docs/performance.md",
     "docs/user-guide.md"
   ],
-  "images": []
+  "images": [],
+  "nugetDocs": {
+    "intro": [
+      "The editor is built from ten MIT-licensed packages that are versioned and released together. Seven of them (`Core` through `Rendering`) target plain `net10.0` and have no UI dependency; only `VideoSpace.Rendering` pulls in SkiaSharp. `Media`, `Controls` and `Workbench` are Uno Platform libraries targeting `net10.0-desktop` and `net10.0-browserwasm`. Every package ships symbols to NuGet.org (`.snupkg`) with SourceLink."
+    ],
+    "install": "dotnet add package VideoSpace.Core --prerelease",
+    "notes": [
+      {
+        "type": "paragraph",
+        "text": "Dependencies (from project references):"
+      },
+      {
+        "type": "code",
+        "lang": "text",
+        "code": "Core ← Editing, Timeline, Documents, Effects\nEffects ← Audio, Rendering (+ SkiaSharp), Media (Uno)\nEditing + Timeline + Rendering + Media ← Controls\nControls + Documents + Audio ← Workbench"
+      },
+      {
+        "type": "paragraph",
+        "text": "The browser media pipeline also contains standalone JavaScript modules (packet indexing, decoding, GPU compositing) that are not NuGet packages; [docs/libraries.md](https://github.com/wieslawsoltes/VideoSpace/blob/main/docs/libraries.md) explains their ownership and revision boundaries."
+      }
+    ],
+    "packages": [
+      {
+        "id": "VideoSpace.Core",
+        "description": "Frame-based project model, rational time, timecode, validation and prepared indexes",
+        "summary": [
+          "The document model every other package builds on: `VideoProject`, assets, tracks, clips, transitions, keyframes and captions, with exact rational frame rates and SMPTE timecode. Use it alone to generate, inspect or validate projects. No dependencies beyond .NET; no UI."
+        ],
+        "install": "dotnet add package VideoSpace.Core --prerelease",
+        "keyTypes": [
+          "`VideoProject` / `Track` / `TimelineClip` / `MediaAsset` — the serializable sequence model (timeline coordinates are integer frames).",
+          "`FrameRate` — exact `Numerator/Denominator` rate with `Seconds`/`Frames` conversion.",
+          "`Timecode` — `Format`/`Parse`, including 29.97/59.94 drop-frame.",
+          "`ProjectIndex` / `TrackIndex` — prepared per-revision indexes for `At`, `TransitionAt` and `Visible` queries.",
+          "`ProjectValidation.Validate`, `ProjectSnapshot.Write/Read/Clone` — limits, invariants and JSON manifests."
+        ],
+        "content": [
+          {
+            "type": "code",
+            "lang": "csharp",
+            "code": "using VideoSpace.Core;\n\nvar project = SampleProject.Create();                 // validated NORTH sample, 24 fps\nFrameRate rate = project.FrameRate;\nstring tc = Timecode.Format(240, rate);               // \"00:00:10:00\"\nlong frame = Timecode.Parse(\"00:00:10:00\", rate);     // 240\n\nvar index = new ProjectIndex(project);                // read index for this revision\nTimelineClip? clip = index.Tracks[0].At(300);         // O(log n) active clip on V1\nConsole.WriteLine($\"{tc}: {clip?.Name}, sequence ends at frame {index.Duration}\");\n\nproject.Markers.Add(new Marker(frame, \"Coast\"));       // mutate, then re-validate\nProjectValidation.Validate(project);                  // throws InvalidDataException\nstring json = ProjectSnapshot.Write(project);"
+          }
+        ],
+        "project": "VideoSpace.Core",
+        "nuget": {
+          "id": "VideoSpace.Core",
+          "version": "0.3.0-alpha.1",
+          "downloads": 0,
+          "verified": false
+        }
+      },
+      {
+        "id": "VideoSpace.Editing",
+        "description": "Transactional edits, transitions, nesting, camera cuts, clipboard and undo/redo",
+        "summary": [
+          "Atomic editing on top of Core: every `EditorSession.Execute` call validates the whole document and either commits one undo step or restores the previous state. Includes insert/overwrite, razor, ripple, roll, slip, rate stretch, transitions, nesting and multicamera cuts. Depends on `VideoSpace.Core`; no UI."
+        ],
+        "install": "dotnet add package VideoSpace.Editing --prerelease",
+        "keyTypes": [
+          "`EditorSession` — `Execute`, `Undo`/`Redo`, `Selection`, `Playhead`, `Index`, `OpenSequence`/`NavigateUp`, `Changed` event.",
+          "`TimelineEdits` — `Insert`, `Split`, `Move`, `Trim`, `Delete`, `Slip`, `Roll`, `RateStretch`, `Link`.",
+          "`TransitionEdits` — `Add`/`Remove` two-sided transitions with `TransitionAlignment`.",
+          "`SequenceEdits` — `Nest`/`Unnest`, `CreateMulticam`, `SwitchCamera`.",
+          "`TimelineClipboard` — value-owned `Copy`/`Paste` preserving gaps, links and transitions."
+        ],
+        "content": [
+          {
+            "type": "code",
+            "lang": "csharp",
+            "code": "using VideoSpace.Core;\nusing VideoSpace.Editing;\n\nvar session = new EditorSession(SampleProject.Create());\nsession.Execute(\"Dissolve\", p => TransitionEdits.Add(p, \"ridge-cut\", TransitionKind.CrossDissolve, 48));\nsession.Execute(\"Razor\", p => TimelineEdits.Split(p, [\"dunes-cut\"], 540));\n\nstring[] nested = [];\nsession.Execute(\"Nest\", p => nested = SequenceEdits.Nest(\n    p, p.Tracks.SelectMany(t => t.Clips).Select(c => c.Id), \"Main edit\"));\nsession.OpenSequence(session.Project.Clip(nested[0]).AssetId); // edits now target the child\nsession.NavigateUp();                                          // RootProject stays authoritative\n\nsession.Undo();\nConsole.WriteLine(string.Join(\", \", session.History));         // Dissolve, Razor"
+          }
+        ],
+        "project": "VideoSpace.Editing",
+        "nuget": {
+          "id": "VideoSpace.Editing",
+          "version": "0.3.0-alpha.1",
+          "downloads": 0,
+          "verified": false
+        }
+      },
+      {
+        "id": "VideoSpace.Timeline",
+        "description": "Indexed timeline geometry, hit testing, frame snapping and anchored zoom",
+        "summary": [
+          "Pixel/frame mapping for building your own timeline UI: indexed hit testing of heads, tails and bodies, snapping to edit points and markers, and zoom anchored under the pointer. Depends on `VideoSpace.Core`; renderer-agnostic, no UI."
+        ],
+        "install": "dotnet add package VideoSpace.Timeline --prerelease",
+        "keyTypes": [
+          "`TimelineGeometry` — `X`/`Frame`/`Y` mapping, `PixelsPerFrame`, `ScrollFrame`, `HeaderWidth`, `TrackHeight`.",
+          "`TimelineGeometry.Prepared` — attach a `ProjectIndex` for logarithmic hit tests and snapping.",
+          "`TimelineGeometry.Hit`, `Snap`, `ZoomAt`, `DisplayTracks`.",
+          "`TimelineHit` / `HitPart` — `Ruler`, `Track`, `Body`, `Head`, `Tail` results with frame, track and clip IDs."
+        ],
+        "content": [
+          {
+            "type": "code",
+            "lang": "csharp",
+            "code": "using VideoSpace.Core;\nusing VideoSpace.Timeline;\n\nvar project = SampleProject.Create();\nvar geometry = new TimelineGeometry { PixelsPerFrame = 2, HeaderWidth = 148, TrackHeight = 52 };\ngeometry.Prepared = new ProjectIndex(project);\n\nTimelineHit hit = geometry.Hit(project, x: 700, y: 90);\nif (hit.Part is HitPart.Head or HitPart.Tail)\n    Console.WriteLine($\"Trim handle of {hit.ClipId} on {hit.TrackId}\");\n\nlong snapped = geometry.Snap(project, geometry.Frame(705), exclude: [], playhead: 96);\ngeometry.ZoomAt(1.25, anchorX: 705);   // keeps the frame under the pointer fixed\ndouble x = geometry.X(snapped);"
+          }
+        ],
+        "project": "VideoSpace.Timeline",
+        "nuget": {
+          "id": "VideoSpace.Timeline",
+          "version": "0.3.0-alpha.1",
+          "downloads": 0,
+          "verified": false
+        }
+      },
+      {
+        "id": "VideoSpace.Effects",
+        "description": "Keyframed evaluation and backend-independent frame/audio composition plans",
+        "summary": [
+          "Evaluates a project at a frame into a `FramePlan`: resolved layer transforms, color, crop, opacity envelopes, transitions, nested-sequence subplans and audio voices. Plans are plain records, so any backend (Skia, WebGPU, WebGL2) can draw them. Depends on `VideoSpace.Core`; no UI."
+        ],
+        "install": "dotnet add package VideoSpace.Effects --prerelease",
+        "keyTypes": [
+          "`PreparedFramePlanner` — per-revision planner with a memoized last frame; `Evaluate(frame)`.",
+          "`FramePlanner.Evaluate` — one-shot convenience wrapper.",
+          "`FramePlan`, `LayerPlan`, `TransitionPlan`, `AudioPlan` — the backend-independent plan records.",
+          "`EffectPresets` — `Names` and `Apply` for built-in looks and animations.",
+          "`FramePlanBudget` — bounds expanded graphs before serialization or GPU allocation."
+        ],
+        "content": [
+          {
+            "type": "code",
+            "lang": "csharp",
+            "code": "using VideoSpace.Core;\nusing VideoSpace.Effects;\n\nvar project = SampleProject.Create();\nvar clip = project.Clip(\"coast-cut\");\nEffectPresets.Apply(clip, \"Golden hour\", project.FrameRate);\nclip.Effects.Opacity.SetKey(0, 0);\nclip.Effects.Opacity.SetKey(24, 1, Interpolation.Smooth);\n\nvar planner = new PreparedFramePlanner(project);   // reuse until the project changes\nFramePlan plan = planner.Evaluate(250);\nforeach (LayerPlan layer in plan.Layers)\n    Console.WriteLine($\"{layer.ClipId}: {layer.Kind} at {layer.SourceTime:0.00}s, opacity {layer.Opacity:0.00}\");\nforeach (AudioPlan voice in plan.Audio)\n    Console.WriteLine($\"{voice.ClipId}: gain {voice.Gain:0.00}\");"
+          }
+        ],
+        "project": "VideoSpace.Effects",
+        "nuget": {
+          "id": "VideoSpace.Effects",
+          "version": "0.3.0-alpha.1",
+          "downloads": 0,
+          "verified": false
+        }
+      },
+      {
+        "id": "VideoSpace.Audio",
+        "description": "Sample-clock PCM mixing, waveform reduction, metering and WAV export",
+        "summary": [
+          "A deterministic stereo mixer that compiles gain, pan, fades, transitions, nesting and camera audio into an interval-indexed graph, then mixes arbitrary sample blocks. The host supplies decoded PCM, so no codec is pulled in. Depends on `VideoSpace.Effects`; no UI."
+        ],
+        "install": "dotnet add package VideoSpace.Audio --prerelease",
+        "keyTypes": [
+          "`PreparedAudioMixer` — compile once per revision; `Mix(sources, firstSample, sampleRate, stereo)`.",
+          "`PcmAudio` — caller-owned interleaved float samples with interpolated `At`.",
+          "`Waveform` — `Reduce` to peaks, `Rms`, `Decibels`.",
+          "`WavWriter.Write` — 16-bit PCM WAV bytes."
+        ],
+        "content": [
+          {
+            "type": "code",
+            "lang": "csharp",
+            "code": "using VideoSpace.Audio;\nusing VideoSpace.Core;\n\nvar project = SampleProject.Create();\nvar mixer = new PreparedAudioMixer(project);\nconst int rate = 48000;\nvar stereo = new float[rate * 2 * 5];              // five seconds, interleaved L/R\n\n// The sample score is a generated tone. For imported media, pass decoded PcmAudio keyed by asset ID.\nmixer.Mix(new Dictionary<string, PcmAudio>(), firstSample: 0, sampleRate: rate, stereo);\n\nvar pcm = new PcmAudio(rate, 2, stereo);\nfloat[] peaks = Waveform.Reduce(pcm, buckets: 512);\ndouble level = Waveform.Decibels(Waveform.Rms(stereo));\nFile.WriteAllBytes(\"mix.wav\", WavWriter.Write(pcm));"
+          }
+        ],
+        "project": "VideoSpace.Audio",
+        "nuget": {
+          "id": "VideoSpace.Audio",
+          "version": "0.3.0-alpha.1",
+          "downloads": 0,
+          "verified": false
+        }
+      },
+      {
+        "id": "VideoSpace.Documents",
+        "description": "Validated `.videospace` manifests, SRT captions and cuts-only CMX3600 EDL",
+        "summary": [
+          "File interchange: validated `.videospace` manifests, SubRip captions and a guarded cuts-only CMX3600 EDL writer that rejects what it cannot represent (transitions, nests, multicam, speed changes). Depends on `VideoSpace.Core`; no UI."
+        ],
+        "install": "dotnet add package VideoSpace.Documents --prerelease",
+        "keyTypes": [
+          "`ProjectFile` — `Save`/`Open` and the `.videospace` `Extension`.",
+          "`SubRip` — `Read`/`Write` SRT captions at a `FrameRate`.",
+          "`EdlWriter.Write` — CMX3600 export of one video track."
+        ],
+        "content": [
+          {
+            "type": "code",
+            "lang": "csharp",
+            "code": "using VideoSpace.Core;\nusing VideoSpace.Documents;\n\nvar project = SampleProject.Create();\nstring manifest = ProjectFile.Save(project);             // validates before writing\nFile.WriteAllText(\"north\" + ProjectFile.Extension, manifest);\nVideoProject reopened = ProjectFile.Open(manifest);     // validates on read\n\nstring srt = SubRip.Write(project.Captions, project.FrameRate);\nList<Caption> captions = SubRip.Read(srt, project.FrameRate);\nstring edl = EdlWriter.Write(project, trackId: \"v1\");"
+          }
+        ],
+        "project": "VideoSpace.Documents",
+        "nuget": {
+          "id": "VideoSpace.Documents",
+          "version": "0.3.0-alpha.1",
+          "downloads": 0,
+          "verified": false
+        }
+      },
+      {
+        "id": "VideoSpace.Rendering",
+        "description": "Skia frame composition, transitions, procedural footage and PNG export",
+        "summary": [
+          "Draws a `FramePlan` into a host-owned `SKCanvas` (GPU or raster): transforms, color matrix, crop, vignette, dissolves/dips/wipes, nested plans, titles, captions and the procedural sample footage. Use it for native previews, thumbnails or PNG stills. Depends on `VideoSpace.Effects` and SkiaSharp; no UI framework."
+        ],
+        "install": "dotnet add package VideoSpace.Rendering --prerelease",
+        "keyTypes": [
+          "`FrameRenderer` — `Draw(canvas, area, plan, safeAreas)`, `Png(plan)`, `SetImage`, `SetTypeface`; `IDisposable`.",
+          "`ProceduralFootage.Draw` — the deterministic NORTH landscape generator.",
+          "`Palette` — hex color parsing and paint helpers."
+        ],
+        "content": [
+          {
+            "type": "code",
+            "lang": "csharp",
+            "code": "using SkiaSharp;\nusing VideoSpace.Core;\nusing VideoSpace.Effects;\nusing VideoSpace.Rendering;\n\nFramePlan plan = FramePlanner.Evaluate(SampleProject.Create(), frame: 96);\n\nusing var renderer = new FrameRenderer();\n// renderer.SetImage(assetId, File.ReadAllBytes(\"still.png\")) supplies image assets.\nFile.WriteAllBytes(\"frame-96.png\", renderer.Png(plan));\n\nusing var surface = SKSurface.Create(new SKImageInfo(1280, 720));\nrenderer.Draw(surface.Canvas, new SKRect(0, 0, 1280, 720), plan, safeAreas: true);"
+          }
+        ],
+        "project": "VideoSpace.Rendering",
+        "nuget": {
+          "id": "VideoSpace.Rendering",
+          "version": "0.3.0-alpha.1",
+          "downloads": 0,
+          "verified": false
+        }
+      },
+      {
+        "id": "VideoSpace.Media",
+        "description": "Uno platform boundary: local media, browser GPU presentation, audio and storage",
+        "summary": [
+          "The platform boundary used by the controls: local import and project pickers, recovery storage, browser GPU presentation, Web Audio output and WebM export. In the browser it drives the bundled JavaScript modules; on desktop it provides image import, file pickers and recovery in application storage. Depends on `VideoSpace.Effects`; requires Uno Platform."
+        ],
+        "install": "dotnet add package VideoSpace.Media --prerelease",
+        "keyTypes": [
+          "`MediaServices` — `InitializeAsync`, `Poll`, `ImportAsync`, `OpenAsync`, `SaveTextAsync`, `ExportVideo`, `SetProject`; `IDisposable`.",
+          "`MediaMessage` — queued host events (`Type`, `Text`, `Asset`, `Bytes`).",
+          "`BrowserState` — browser meter levels and monitor visibility."
+        ],
+        "content": [
+          {
+            "type": "code",
+            "lang": "csharp",
+            "code": "using VideoSpace.Core;\nusing VideoSpace.Media;\n\nvar project = SampleProject.Create();\nvar media = new MediaServices();\nawait media.InitializeAsync();          // restores recovery and starts browser services\nawait media.ImportAsync();              // opens the platform picker\n\n// Results arrive asynchronously; poll from a DispatcherTimer tick.\nforeach (MediaMessage message in media.Poll())\n{\n    if (message.Type == \"asset\" && message.Asset is { } asset) project.Assets.Add(asset);\n    else if (message.Type == \"error\") Console.Error.WriteLine(message.Text);\n}\nmedia.SetProject(project);              // browser: keep the media pipeline in sync"
+          },
+          {
+            "type": "paragraph",
+            "text": "In a browser head, include every `VideoSpace.Media/Web/*.js` file as an embedded `WasmScripts` resource, as `src/VideoSpace.App/VideoSpace.App.csproj` does."
+          }
+        ],
+        "project": "VideoSpace.Media",
+        "nuget": {
+          "id": "VideoSpace.Media",
+          "version": "0.3.0-alpha.1",
+          "downloads": 0,
+          "verified": false
+        }
+      },
+      {
+        "id": "VideoSpace.Controls",
+        "description": "Custom Uno timeline, monitors, bins, panels, icons and editing fields",
+        "summary": [
+          "The custom editing controls — timeline, Source/Program monitors, project bin, dockable panels, split handles, timecode/value fields, meters and vector icons — usable individually in any Uno app. Depends on `Editing`, `Timeline`, `Rendering` and `Media`; requires Uno Platform (Skia renderer)."
+        ],
+        "install": "dotnet add package VideoSpace.Controls --prerelease",
+        "keyTypes": [
+          "`StudioTheme` — resource dictionary to merge after `XamlControlsResources`.",
+          "`TimelineView` — multitrack timeline bound to an `EditorSession`; `Geometry`, `Fit`, `Zoom`, `AssetDropped`.",
+          "`MonitorView` — frame monitor; `Update(plan, total, rate, playing, playbackRate)`, `Seek`, `Command`.",
+          "`ProjectBinView` — asset bin; `Update(project)`, `AssetSelected`, `ImportRequested`.",
+          "`PanelHost`, `SplitHandle`, `TimecodeField`, `AudioMeterView`, `Studio` layout/brush helpers."
+        ],
+        "content": [
+          {
+            "type": "code",
+            "lang": "xml",
+            "code": "<ResourceDictionary.MergedDictionaries>\n  <XamlControlsResources xmlns=\"using:Microsoft.UI.Xaml.Controls\" />\n  <studio:StudioTheme xmlns:studio=\"using:VideoSpace.Controls\" />\n</ResourceDictionary.MergedDictionaries>"
+          },
+          {
+            "type": "code",
+            "lang": "csharp",
+            "code": "using VideoSpace.Controls;\nusing VideoSpace.Core;\nusing VideoSpace.Editing;\nusing VideoSpace.Effects;\nusing VideoSpace.Media;\nusing VideoSpace.Rendering;\n\nvar session = new EditorSession(SampleProject.Create());\nvar timeline = new TimelineView(session);\nvar program = new MonitorView(\"program\", new MediaServices(), new FrameRenderer());\nvar planner = new PreparedFramePlanner(session.Index);\n\nvar layout = Studio.Rows(Studio.Star(), Studio.Star());\nStudio.At(layout, program);\nStudio.At(layout, timeline, row: 1);\nwindow.Content = layout;                 // your Uno Window\n\nprogram.Update(planner.Evaluate(session.Playhead), session.Index.Duration,\n    session.Project.FrameRate, playing: false, playbackRate: 1);"
+          }
+        ],
+        "project": "VideoSpace.Controls",
+        "nuget": {
+          "id": "VideoSpace.Controls",
+          "version": "0.3.0-alpha.1",
+          "downloads": 0,
+          "verified": false
+        }
+      },
+      {
+        "id": "VideoSpace.Workbench",
+        "description": "Embeddable Uno editing workspace, effects inspector and project workflows",
+        "summary": [
+          "The complete embeddable editor — menus, workspaces, Source/Program monitors, bins, timeline, Effect Controls, captions, history, playback and project/export workflows — as one `UserControl`. Depends on `Controls`, `Documents` and `Audio`; requires Uno Platform (Skia renderer)."
+        ],
+        "install": "dotnet add package VideoSpace.Workbench --prerelease",
+        "keyTypes": [
+          "`StudioWorkbench(EditorSession, MediaServices)` — the workspace control; `IDisposable`.",
+          "`StudioWorkbench.Session` / `Timeline` — the shared session and timeline control.",
+          "`SetTypeface`, `ShowStatus` — host customization."
+        ],
+        "content": [
+          {
+            "type": "code",
+            "lang": "csharp",
+            "code": "using VideoSpace.Core;\nusing VideoSpace.Editing;\nusing VideoSpace.Media;\nusing VideoSpace.Workbench;\n\nprotected override void OnLaunched(LaunchActivatedEventArgs args)\n{\n    var window = new Window { Title = \"VideoSpace\" };\n    var workbench = new StudioWorkbench(new EditorSession(SampleProject.Create()), new MediaServices());\n    window.Content = workbench;\n    window.Closed += (_, _) => workbench.Dispose();\n    window.Activate();\n}"
+          },
+          {
+            "type": "paragraph",
+            "text": "Merge `StudioTheme` into the application resources as shown for Controls, and embed the Media scripts in the browser head."
+          }
+        ],
+        "project": "VideoSpace.Workbench",
+        "nuget": {
+          "id": "VideoSpace.Workbench",
+          "version": "0.3.0-alpha.1",
+          "downloads": 0,
+          "verified": false
+        }
+      }
+    ]
+  }
 }

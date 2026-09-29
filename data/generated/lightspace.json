@@ -1,28 +1,34 @@
 {
   "slug": "lightspace",
   "repo": "wieslawsoltes/LightSpace",
-  "version": "0.4.1-alpha.1",
+  "version": "0.5.0-alpha.1",
   "dotnetSdk": "10.0.401",
   "unoSdk": "6.7.30",
   "pinned": [],
   "github": {
-    "stars": 1,
+    "stars": 2,
     "forks": 0,
     "openIssues": 0,
     "createdAt": "2026-09-27T17:25:48Z",
-    "pushedAt": "2026-09-28T14:27:32Z",
+    "pushedAt": "2026-09-29T17:07:08Z",
     "homepage": "https://wieslawsoltes.github.io/LightSpace/",
     "license": "MIT"
   },
+  "release": {
+    "tag": "v0.4.1-alpha.1",
+    "url": "https://github.com/wieslawsoltes/LightSpace/releases/tag/v0.4.1-alpha.1",
+    "prerelease": true,
+    "publishedAt": "2026-09-29T14:32:34Z"
+  },
   "lastCommit": {
-    "sha": "d858d08",
-    "date": "2026-09-28T16:27:11+02:00",
-    "subject": "release: finalize 0.4.1 slider-crash hotfix and verify saved adjustment values"
+    "sha": "d43ee78",
+    "date": "2026-09-29T19:06:46+02:00",
+    "subject": "docs: finalize 0.5 photography release while preserving package guides and publishing workflow"
   },
   "loc": {
-    "total": 5881,
-    "src": 4802,
-    "tests": 1079
+    "total": 6783,
+    "src": 5485,
+    "tests": 1298
   },
   "projectCount": 10,
   "libraryCount": 8,
@@ -38,6 +44,7 @@
         "net10.0-desktop"
       ],
       "packable": false,
+      "packageId": "LightSpace.App",
       "description": "Local-first non-destructive photo editing with Uno Platform.",
       "unoFeatures": [
         "SkiaRenderer"
@@ -58,6 +65,7 @@
         "net10.0"
       ],
       "packable": false,
+      "packageId": "LightSpace.Catalog",
       "description": "Versioned catalog serialization and photo search, filtering, sorting and album queries.",
       "unoFeatures": [],
       "projectRefs": [
@@ -65,7 +73,7 @@
       ],
       "packageRefs": [],
       "files": 6,
-      "loc": 325
+      "loc": 324
     },
     {
       "name": "LightSpace.Controls",
@@ -77,6 +85,7 @@
         "net10.0-desktop"
       ],
       "packable": true,
+      "packageId": "LightSpace.Controls",
       "description": "Original Uno photography controls: chrome, iconography, sliders, curves, histograms, thumbnails and interactive photo canvas.",
       "unoFeatures": [
         "SkiaRenderer"
@@ -86,8 +95,8 @@
         "LightSpace.Rendering.Skia"
       ],
       "packageRefs": [],
-      "files": 21,
-      "loc": 1403
+      "files": 25,
+      "loc": 1683
     },
     {
       "name": "LightSpace.Core",
@@ -98,12 +107,13 @@
         "net10.0"
       ],
       "packable": false,
+      "packageId": "LightSpace.Core",
       "description": "Immutable photography adjustments, geometry, local masks and versioned catalog models.",
       "unoFeatures": [],
       "projectRefs": [],
       "packageRefs": [],
-      "files": 8,
-      "loc": 724
+      "files": 12,
+      "loc": 907
     },
     {
       "name": "LightSpace.Editing",
@@ -114,6 +124,7 @@
         "net10.0"
       ],
       "packable": false,
+      "packageId": "LightSpace.Editing",
       "description": "Non-destructive editing sessions, gesture transactions, batch synchronization, undo and named versions.",
       "unoFeatures": [],
       "projectRefs": [
@@ -122,7 +133,7 @@
       ],
       "packageRefs": [],
       "files": 5,
-      "loc": 319
+      "loc": 313
     },
     {
       "name": "LightSpace.Engine.Tests",
@@ -133,6 +144,7 @@
         "net10.0"
       ],
       "packable": false,
+      "packageId": "LightSpace.Engine.Tests",
       "description": "",
       "unoFeatures": [],
       "projectRefs": [
@@ -145,8 +157,8 @@
           "version": "3.119.4"
         }
       ],
-      "files": 11,
-      "loc": 1079
+      "files": 12,
+      "loc": 1298
     },
     {
       "name": "LightSpace.Imaging",
@@ -157,6 +169,7 @@
         "net10.0"
       ],
       "packable": false,
+      "packageId": "LightSpace.Imaging",
       "description": "Bounded image decoding, EXIF orientation, sRGB conversion and original procedural sample images.",
       "unoFeatures": [],
       "projectRefs": [
@@ -180,14 +193,15 @@
         "net10.0"
       ],
       "packable": false,
-      "description": "GPU-capable SkSL photo development, masks, clone spots, histogram and crop-aware export.",
+      "packageId": "LightSpace.Rendering.Skia",
+      "description": "Composed GPU-capable photo development, optics and geometry, masks, histogram and export.",
       "unoFeatures": [],
       "projectRefs": [
         "LightSpace.Imaging"
       ],
       "packageRefs": [],
-      "files": 9,
-      "loc": 548
+      "files": 11,
+      "loc": 650
     },
     {
       "name": "LightSpace.Storage",
@@ -198,6 +212,7 @@
         "net10.0"
       ],
       "packable": false,
+      "packageId": "LightSpace.Storage",
       "description": "Platform-independent import, export and recovery storage contracts.",
       "unoFeatures": [],
       "projectRefs": [],
@@ -215,6 +230,7 @@
         "net10.0-desktop"
       ],
       "packable": true,
+      "packageId": "LightSpace.Workbench",
       "description": "Composable Lightroom-style photography workspace with a local catalog, non-destructive editor and platform storage services.",
       "unoFeatures": [
         "SkiaRenderer"
@@ -224,8 +240,8 @@
         "LightSpace.Storage"
       ],
       "packageRefs": [],
-      "files": 15,
-      "loc": 1000
+      "files": 17,
+      "loc": 1125
     }
   ],
   "nuget": [
@@ -266,12 +282,260 @@
     "docs/COLOR-AND-MASKS.md",
     "docs/FEATURE-COVERAGE.md",
     "docs/GETTING-STARTED.md",
+    "docs/OPTICS-GEOMETRY.md",
     "docs/PERFORMANCE.md",
     "docs/RECOVERY-PUBLICATION.md",
     "docs/RECOVERY.md",
     "docs/RELEASE-NOTES.md",
+    "docs/RELEASES.md",
     "docs/VALIDATION.md",
     "docs/WASM-SLIDER-FIX.md"
   ],
-  "images": []
+  "images": [],
+  "nugetDocs": {
+    "intro": [
+      "All eight libraries are MIT-licensed. The badges below show the versions and downloads on [NuGet.org](https://www.nuget.org/packages?q=LightSpace), independently of the current source version. The six engine packages (Core, Storage, Catalog, Imaging, Rendering.Skia, Editing) target `net10.0` without Uno; Imaging and Rendering.Skia use SkiaSharp 3.119. Controls and Workbench target `net10.0-desktop` and `net10.0-browserwasm` with the Uno Skia renderer. Packages are versioned together, with `.snupkg` symbols and SourceLink. Build artifacts alone do not imply that a new version has been published."
+    ],
+    "install": "dotnet add package LightSpace.Core --prerelease",
+    "notes": [
+      {
+        "type": "paragraph",
+        "text": "Dependencies: `Core ← Catalog, Imaging`; `Imaging ← Rendering.Skia`; `Catalog + Storage ← Editing`; `Editing + Rendering.Skia ← Controls`; `Controls + Storage ← Workbench`. Storage has no project dependencies. The host supplies startup and platform storage. Standard Uno input, scrolling and accessibility primitives remain in use where appropriate."
+      },
+      {
+        "type": "paragraph",
+        "text": "Dispose workspaces and native-resource caches (`PhotoRenderer`, `ThumbnailCache`, `PhotoViewport`, `StudioView`). Treat snapshot arrays as copy-on-write and originals as read-only. Objects have one logical owner, normally the UI synchronization context. [Component API](https://github.com/wieslawsoltes/LightSpace/blob/main/docs/ADVANCED-EDITING.md) · [Recovery invariants](https://github.com/wieslawsoltes/LightSpace/blob/main/docs/RECOVERY.md)"
+      }
+    ],
+    "packages": [
+      {
+        "id": "LightSpace.Core",
+        "description": "Photo state, development, grading, curves, masks/brush strokes, optical/projective geometry, presets and catalog models",
+        "summary": [
+          "The editing model includes `PhotoState`, development/crop/optics/geometry, local masks, clone spots, ratings, flags and keywords. Point curves support linear or shape-preserving interpolation; grading, sampled color ranges, brush strokes and built-in presets are UI-independent. Settings normalize values to their supported ranges. No dependencies and no UI."
+        ],
+        "install": "dotnet add package LightSpace.Core --prerelease",
+        "keyTypes": [
+          "`PhotoState`, `DevelopSettings` (17 adjustments and named Get/Set), `CropSettings`, `CloneSpot`.",
+          "`GeometrySettings`, `LensCorrectionSettings`, `GeometryProjection`, `ProjectiveTransform`, `LensMapping`, `WhiteBalanceEstimator`.",
+          "`PointCurve`, `ChannelCurves`, `CompiledPointCurve`, `ColorGradingSettings`, `GradingTone`, `ColorBand`.",
+          "`LocalMask`, `ColorRangeSettings`, `BrushStroke`, `BrushStrokeBuilder`.",
+          "`CatalogDocument`, `PhotoDocument`, `Album`, `NamedVersion`, `BuiltInPresets`."
+        ],
+        "content": [
+          {
+            "type": "code",
+            "lang": "csharp",
+            "code": "using LightSpace.Core;\n\nvar state = new PhotoState\n{\n    Develop = BuiltInPresets.All.First(p => p.Name == \"Golden hour\").Settings with { Exposure = .3f },\n    Crop = new CropSettings(Left: .05f, Top: .05f, Right: .95f, Bottom: .9f),\n    Geometry = new GeometrySettings { Rotate = 1.5f, ConstrainCrop = true },\n    Optics = new LensCorrectionSettings(Distortion: 12),\n    Masks = [new LocalMask { Name = \"Sky\", Kind = MaskKind.Linear, Y = .2f, Exposure = -.4f }],\n    Rating = 4, Flag = PhotoFlag.Pick, Keywords = [\"alps\", \"sunset\"]\n}.Normalize();\nvar develop = state.Develop.Set(nameof(DevelopSettings.Contrast), 20);\nvar curve = new PointCurve { Points = [new(0, 0), new(.25f, .18f), new(.75f, .82f), new(1, 1)] };\nfloat midtone = curve.Compile().Evaluate(.5f);\n(int width, int height) = state.Crop.OutputSize(6000, 4000);"
+          }
+        ],
+        "project": "LightSpace.Core",
+        "nuget": {
+          "id": "LightSpace.Core",
+          "version": "0.4.1-alpha.1",
+          "downloads": 0,
+          "verified": false
+        }
+      },
+      {
+        "id": "LightSpace.Storage",
+        "description": "Import/export contracts, atomic content-addressed recovery and optional sidecar picking",
+        "summary": [
+          "Host contracts for pickers, downloads and recovery. `FileRecoveryStore` stages immutable originals under SHA-256 keys and atomically replaces the manifest after required sources exist. No project dependencies or UI."
+        ],
+        "install": "dotnet add package LightSpace.Storage --prerelease",
+        "keyTypes": [
+          "`IWorkspaceStorage`: OpenImagesAsync, OpenCatalogAsync, SaveAsync, ReadRecoveryAsync, WriteRecoveryAsync; `WorkspaceFile(Name, Bytes)`.",
+          "`IRecoveryStore`: ReadManifestAsync, ReadBlobAsync, CommitAsync; `FileRecoveryStore(directory)`.",
+          "`RecoveryWrite(Manifest, References, Blobs)`, `RecoveryBlob(Key, Bytes)`, `RecoveryKeys`.",
+          "`ISidecarStorage`: optional user-authorized XMP picker."
+        ],
+        "content": [
+          {
+            "type": "code",
+            "lang": "csharp",
+            "code": "using LightSpace.Storage;\n\nIRecoveryStore store = new FileRecoveryStore(Path.Combine(\n    Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), \"MyApp\", \"recovery\"));\n\n// manifestJson must describe these sources using the recovery manifest contract.\nbyte[] original = File.ReadAllBytes(\"mountains.jpg\");\nstring key = RecoveryKeys.Hash(original);\nawait store.CommitAsync(new RecoveryWrite(manifestJson, [key], [new RecoveryBlob(key, original)]));\nstring? manifest = await store.ReadManifestAsync();\nbyte[]? restored = await store.ReadBlobAsync(key);"
+          },
+          {
+            "type": "paragraph",
+            "text": "Normally `RecoveryPersistence` in LightSpace.Editing builds these writes for the host."
+          }
+        ],
+        "project": "LightSpace.Storage",
+        "nuget": {
+          "id": "LightSpace.Storage",
+          "version": "0.4.1-alpha.1",
+          "downloads": 0,
+          "verified": false
+        }
+      },
+      {
+        "id": "LightSpace.Catalog",
+        "description": "Versioned catalog serialization/migration, queries, recovery manifests and XMP interchange",
+        "summary": [
+          "Validated catalog serialization, migration, search/filter/sort, recovery manifests and XMP metadata/settings interchange. Current schema 5 accepts catalogs 1–4 with neutral missing fields. The Camera Raw subset is reported explicitly; native extensions retain complete LightSpace state. Depends on Core; no UI."
+        ],
+        "install": "dotnet add package LightSpace.Catalog --prerelease",
+        "keyTypes": [
+          "`CatalogSerializer`: Serialize, Deserialize, Validate, SerializeSettings, DeserializeSettings.",
+          "`PhotoQuery(Text, MinimumRating, Flag, Album, Sort).Execute(catalog)` and `PhotoSort`.",
+          "`XmpSidecar`, `XmpImportResult`, `XmpExportResult`, `RecoveryManifest`, `RecoverySourceReference`."
+        ],
+        "content": [
+          {
+            "type": "code",
+            "lang": "csharp",
+            "code": "using LightSpace.Catalog;\nusing LightSpace.Core;\n\nCatalogDocument catalog = CatalogSerializer.Deserialize(File.ReadAllText(\"catalog.json\"));\nvar picks = new PhotoQuery(Text: \"alps\", MinimumRating: 3,\n    Flag: PhotoFlag.Pick, Sort: PhotoSort.Rating).Execute(catalog);\nif (picks.Count > 0)\n{\n    var photo = picks[0];\n    XmpImportResult imported = XmpSidecar.Import(File.ReadAllText(\"IMG_0042.xmp\"), photo.State);\n    foreach (var warning in imported.Warnings) Console.WriteLine(warning);\n    // An interactive host should present warnings before applying this state.\n    photo.State = imported.State;\n    File.WriteAllText(\"IMG_0042.xmp\", XmpSidecar.Export(photo.State).Xml);\n}\nFile.WriteAllText(\"catalog.json\", CatalogSerializer.Serialize(catalog));"
+          }
+        ],
+        "project": "LightSpace.Catalog",
+        "nuget": {
+          "id": "LightSpace.Catalog",
+          "version": "0.4.1-alpha.1",
+          "downloads": 0,
+          "verified": false
+        }
+      },
+      {
+        "id": "LightSpace.Imaging",
+        "description": "Bounded image decoding, EXIF orientation, sRGB conversion and procedural samples",
+        "summary": [
+          "Bounded decoding for JPEG, PNG, WebP, BMP and GIF sources, EXIF orientation, downscaled sRGB previews and procedural sample landscapes. Limits are 64 MiB encoded and 100 megapixels decoded. Depends on Core and SkiaSharp; no UI."
+        ],
+        "install": "dotnet add package LightSpace.Imaging --prerelease",
+        "keyTypes": [
+          "`PhotoCodec.Import(name, bytes)` validates source metadata and retains original bytes.",
+          "`PhotoCodec.Decode(bytes, maxDimension)` returns an oriented sRGB `SKImage`.",
+          "`SamplePhotos.CreateCatalog()` and `SamplePhotos.Create(seed)` provide generated content."
+        ],
+        "content": [
+          {
+            "type": "code",
+            "lang": "csharp",
+            "code": "using LightSpace.Core;\nusing LightSpace.Imaging;\nusing SkiaSharp;\n\nPhotoDocument photo = PhotoCodec.Import(\"mountains.jpg\", File.ReadAllBytes(\"mountains.jpg\"));\nusing SKImage preview = PhotoCodec.Decode(photo.Original, maxDimension: 1024);\nCatalogDocument samples = SamplePhotos.CreateCatalog();"
+          }
+        ],
+        "project": "LightSpace.Imaging",
+        "nuget": {
+          "id": "LightSpace.Imaging",
+          "version": "0.4.1-alpha.1",
+          "downloads": 0,
+          "verified": false
+        }
+      },
+      {
+        "id": "LightSpace.Rendering.Skia",
+        "description": "Composed development/optical effects, projective drawing, masks, curve tables, histogram and export",
+        "summary": [
+          "Development, curves, grading, masks, clone spots and color ranges run as SkSL runtime effects. A separate optical effect composes with development; projective geometry is a draw matrix. The backend is selected by the host and may be GPU or software. Histograms, Auto settings, source sampling and JPEG/PNG/WebP export are also provided. Depends on Imaging; no UI framework."
+        ],
+        "install": "dotnet add package LightSpace.Rendering.Skia --prerelease",
+        "keyTypes": [
+          "`PhotoRenderer`: Draw, CreateShader, Export, CalculateHistogram, Auto, SampleSource, Statistics and Presentation.",
+          "`Histogram`, `PhotoTransform`, `GeometryMapping`, `ClippingIndicators`.",
+          "`ToneLookupCache`, `BrushCoverageCache` and their construction/work statistics."
+        ],
+        "content": [
+          {
+            "type": "code",
+            "lang": "csharp",
+            "code": "using LightSpace.Core;\nusing LightSpace.Editing;\nusing LightSpace.Imaging;\nusing LightSpace.Rendering.Skia;\nusing SkiaSharp;\n\nvar photo = PhotoCodec.Import(\"architecture.jpg\", File.ReadAllBytes(\"architecture.jpg\"));\nvar session = new EditorSession(new CatalogDocument { Photos = [photo], ActivePhoto = photo.Id });\nsession.Edit(\"Correct perspective and contrast\", state => state with\n{\n    Develop = state.Develop with\n    {\n        Exposure = .3f,\n        Channels = new ChannelCurves\n        {\n            Master = new PointCurve { Points = [new(0, 0), new(.25f, .18f), new(.75f, .82f), new(1, 1)] }\n        }\n    },\n    Geometry = new GeometrySettings { Vertical = -18, Rotate = 1.5f, ConstrainCrop = true },\n    Optics = new LensCorrectionSettings(Distortion: 12, Vignetting: 8)\n});\nusing var renderer = new PhotoRenderer();\nFile.WriteAllBytes(\"architecture-edited.jpg\",\n    renderer.Export(photo, SKEncodedImageFormat.Jpeg, quality: 92, maxDimension: 4096));\nsession.Undo(); // Original encoded bytes are untouched."
+          }
+        ],
+        "project": "LightSpace.Rendering.Skia",
+        "nuget": {
+          "id": "LightSpace.Rendering.Skia",
+          "version": "0.4.1-alpha.1",
+          "downloads": 0,
+          "verified": false
+        }
+      },
+      {
+        "id": "LightSpace.Editing",
+        "description": "Editing sessions, gesture transactions, undo/redo, versions, synchronization and revision-aware recovery",
+        "summary": [
+          "`EditorSession` makes each completed gesture one transaction. Previews update the visible state without adding history; commit adds a step and cancel restores the opening state. Named versions, selection synchronization, albums and committed-revision recovery are included. Depends on Catalog and Storage; no UI."
+        ],
+        "install": "dotnet add package LightSpace.Editing --prerelease",
+        "keyTypes": [
+          "`EditorSession`: Catalog, Active, Selection, Edit, BeginGesture/Preview/CommitGesture/CancelGesture, Undo/Redo, SaveVersion, SyncSelected, CreateAlbum, Changed.",
+          "`RecoveryPersistence(IRecoveryStore)`: Capture, CommitAsync, RestoreAsync.",
+          "`RecoveryCoordinator`: FlushAsync, Status and StatusChanged; overlapping flush calls share one writer."
+        ],
+        "content": [
+          {
+            "type": "code",
+            "lang": "csharp",
+            "code": "using LightSpace.Core;\nusing LightSpace.Editing;\nusing LightSpace.Storage;\n\nvar session = new EditorSession(catalog);\nsession.Changed += () => Console.WriteLine($\"Revision {session.Revision}\");\nsession.BeginGesture();\nforeach (var value in new[] { .1f, .2f, .35f })\n    session.Preview(state => state with { Develop = state.Develop with { Exposure = value } });\nsession.CommitGesture(\"Exposure\");\nsession.SaveVersion(\"Bright\");\nsession.SyncSelected(); // Includes crop, geometry, optics and masks; retains target metadata.\nsession.Undo();\n\nvar persistence = new RecoveryPersistence(new FileRecoveryStore(\"recovery\"));\nusing var recovery = RecoveryCoordinator.Incremental(session, persistence, initiallySaved: false);\nawait recovery.FlushAsync();"
+          }
+        ],
+        "project": "LightSpace.Editing",
+        "nuget": {
+          "id": "LightSpace.Editing",
+          "version": "0.4.1-alpha.1",
+          "downloads": 0,
+          "verified": false
+        }
+      },
+      {
+        "id": "LightSpace.Controls",
+        "description": "Original Uno sliders, grading/curve/mask/optics/geometry editors, histogram, thumbnails and viewport",
+        "summary": [
+          "Original dark Uno photography controls include the corrected-coordinate viewport, adjustment sliders, curves, grading/mixer/range/mask editors, optics/geometry, interactive histogram, panel-resize grips, thumbnails and chrome. Editors expose preview/commit/cancel events without owning the host's transaction policy. Brush settings affect new strokes. Depends on Editing and Rendering.Skia; requires the Uno Skia renderer."
+        ],
+        "install": "dotnet add package LightSpace.Controls --prerelease",
+        "keyTypes": [
+          "`PhotoViewport(EditorSession, PhotoRenderer)`: SetTool, Fit, Compare, Before, Clipping, MaskOverlay, SetActiveMask, BrushSettings.",
+          "`AdjustmentSlider`: ValueChanged, ValueCommitted, GestureCanceled.",
+          "`PointCurveEditor`, `ColorGradingEditor`, `ColorMixerEditor`, `ColorRangeEditor`, `MaskSettingsEditor`, `GeometryEditor`, `OpticsEditor`: Value and preview/commit/cancel contracts.",
+          "`BrushSettingsEditor`, `HistogramView`, `PanelResizeGrip`, `PhotoCard`, `PhotoThumbnail`, `ThumbnailCache`, `PanelSection`, `LightButton`, `Theme`."
+        ],
+        "content": [
+          {
+            "type": "code",
+            "lang": "csharp",
+            "code": "using LightSpace.Controls;\nusing LightSpace.Editing;\nusing LightSpace.Rendering.Skia;\nusing Microsoft.UI.Xaml;\nusing Microsoft.UI.Xaml.Controls;\n\nvar session = new EditorSession(catalog);\nvar renderer = new PhotoRenderer();\nvar viewport = new PhotoViewport(session, renderer);\nvar exposure = new AdjustmentSlider(\"Exposure\", -5, 5, 0, .01);\nexposure.ValueChanged += value => session.Preview(s => s with { Develop = s.Develop with { Exposure = value } });\nexposure.ValueCommitted += () => session.CommitGesture(\"Exposure\");\nexposure.GestureCanceled += session.CancelGesture;\nvar curves = new PointCurveEditor { Value = session.Active!.State.Develop.Channels };\ncurves.Previewed += value => session.Preview(s => s with { Develop = s.Develop with { Channels = value } });\ncurves.Committed += () => session.CommitGesture(\"RGB point curve\");\ncurves.Canceled += session.CancelGesture;\nvar geometry = new GeometryEditor { Value = session.Active.State.Geometry };\ngeometry.Previewed += value => session.Preview(s => s with { Geometry = value });\ngeometry.Committed += () => session.CommitGesture(\"Geometry\");\ngeometry.Canceled += session.CancelGesture;\n\n// Keep values synchronized after undo, cancellation and external edits.\nsession.ViewChanged += () =>\n{\n    if (session.Active is not { } active) return;\n    exposure.Value = active.State.Develop.Exposure;\n    curves.Value = active.State.Develop.Channels;\n    geometry.Value = active.State.Geometry;\n};\nvar inspector = new StackPanel { Width = 300, Children = { exposure, curves, geometry } };\nvar root = new Grid { Background = Theme.Background };\nroot.ColumnDefinitions.Add(new ColumnDefinition());\nroot.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });\nGrid.SetColumn(inspector, 1);\nroot.Children.Add(viewport); root.Children.Add(new ScrollViewer { Content = inspector });\nGrid.SetColumn(root.Children[1], 1);\nwindow.Content = root;\nwindow.Closed += (_, _) => { viewport.Dispose(); renderer.Dispose(); };"
+          }
+        ],
+        "project": "LightSpace.Controls",
+        "nuget": {
+          "id": "LightSpace.Controls",
+          "version": "0.4.1-alpha.1",
+          "downloads": 0,
+          "verified": false
+        }
+      },
+      {
+        "id": "LightSpace.Workbench",
+        "description": "Composable photography workspace, catalog UI, inspectors, commands, dialogs and recovery UX",
+        "summary": [
+          "The complete application workspace as one control: library/grid, filmstrip, interactive histogram, development/optics/geometry inspectors, tools, presets, versions, sidecar/export dialogs, shortcuts, resizable panels and recovery status. Depends on Controls and Storage; requires Uno. `ISidecarStorage` remains optional."
+        ],
+        "install": "dotnet add package LightSpace.Workbench --prerelease",
+        "keyTypes": [
+          "`StudioView(EditorSession, IWorkspaceStorage, recoveryLoaded, RecoveryPersistence?)`: Session, Viewport, Recovery, SetGrid, ChooseTool, SetStatus, SaveRecoveryAsync.",
+          "UnsavedChangesChanged and opt-in DiagnosticsChanged events.",
+          "ProtectExistingRecovery preserves unreadable prior data until explicit replacement."
+        ],
+        "content": [
+          {
+            "type": "code",
+            "lang": "csharp",
+            "code": "using LightSpace.Editing;\nusing LightSpace.Imaging;\nusing LightSpace.Storage;\nusing LightSpace.Workbench;\n\nIWorkspaceStorage storage = new MyWorkspaceStorage(); // Your picker/export/recovery implementation.\nvar persistence = storage is IRecoveryStore store ? new RecoveryPersistence(store) : null;\nvar catalog = persistence is null ? null : await persistence.RestoreAsync();\nvar studio = new StudioView(new EditorSession(catalog ?? SamplePhotos.CreateCatalog()),\n    storage, recoveryLoaded: catalog is not null, persistence: persistence);\nwindow.Content = studio;\nwindow.Closed += (_, _) => studio.Dispose();"
+          },
+          {
+            "type": "paragraph",
+            "text": "A production host should catch restore failures and protect unreadable existing recovery rather than automatically replacing it; the supplied application host implements that behavior."
+          }
+        ],
+        "project": "LightSpace.Workbench",
+        "nuget": {
+          "id": "LightSpace.Workbench",
+          "version": "0.4.1-alpha.1",
+          "downloads": 0,
+          "verified": false
+        }
+      }
+    ]
+  }
 }

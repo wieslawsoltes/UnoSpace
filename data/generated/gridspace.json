@@ -10,14 +10,20 @@
     "forks": 0,
     "openIssues": 0,
     "createdAt": "2026-09-27T09:50:15Z",
-    "pushedAt": "2026-09-28T06:39:49Z",
+    "pushedAt": "2026-09-29T16:56:23Z",
     "homepage": "https://wieslawsoltes.github.io/GridSpace/",
     "license": "MIT"
   },
+  "release": {
+    "tag": "v0.3.0-alpha.1",
+    "url": "https://github.com/wieslawsoltes/GridSpace/releases/tag/v0.3.0-alpha.1",
+    "prerelease": true,
+    "publishedAt": "2026-09-29T14:35:01Z"
+  },
   "lastCommit": {
-    "sha": "682798b",
-    "date": "2026-09-28T08:39:38+02:00",
-    "subject": "fix: transform spill references safely across structural edits and out-of-bounds copies"
+    "sha": "1d7fa7b",
+    "date": "2026-09-29T18:56:21+02:00",
+    "subject": "Document NuGet packages with badges and usage"
   },
   "loc": {
     "total": 7671,
@@ -38,6 +44,7 @@
         "net10.0-desktop"
       ],
       "packable": false,
+      "packageId": "GridSpace.App",
       "description": "Local-first spreadsheet built with Uno Platform and SkiaSharp.",
       "unoFeatures": [
         "SkiaRenderer"
@@ -58,6 +65,7 @@
         "net10.0"
       ],
       "packable": false,
+      "packageId": "GridSpace.Benchmarks",
       "description": "",
       "unoFeatures": [],
       "projectRefs": [
@@ -77,6 +85,7 @@
         "net10.0-desktop"
       ],
       "packable": true,
+      "packageId": "GridSpace.Controls",
       "description": "Custom Uno spreadsheet surface, ribbon, formula bar, sheet tabs, scrollbars and Office-style controls.",
       "unoFeatures": [
         "SkiaRenderer"
@@ -97,6 +106,7 @@
         "net10.0"
       ],
       "packable": true,
+      "packageId": "GridSpace.Core",
       "description": "Sparse spreadsheet document model, A1 addressing, styles and workbook persistence contracts.",
       "unoFeatures": [],
       "projectRefs": [],
@@ -113,6 +123,7 @@
         "net10.0"
       ],
       "packable": true,
+      "packageId": "GridSpace.Editing",
       "description": "Transactional spreadsheet editing, bounded undo/redo, fill, clipboard, filtering and sheet operations.",
       "unoFeatures": [],
       "projectRefs": [
@@ -131,6 +142,7 @@
         "net10.0"
       ],
       "packable": true,
+      "packageId": "GridSpace.Formulas",
       "description": "Bounded, non-eval spreadsheet formula parser and calculation engine.",
       "unoFeatures": [],
       "projectRefs": [
@@ -149,6 +161,7 @@
         "net10.0"
       ],
       "packable": true,
+      "packageId": "GridSpace.IO",
       "description": "Bounded XLSX, CSV, TSV and native workbook interchange with explicit fidelity warnings.",
       "unoFeatures": [],
       "projectRefs": [
@@ -167,6 +180,7 @@
         "net10.0"
       ],
       "packable": true,
+      "packageId": "GridSpace.Layout",
       "description": "Sparse spreadsheet axis indexing, viewport geometry and frozen-pane hit testing.",
       "unoFeatures": [],
       "projectRefs": [
@@ -185,6 +199,7 @@
         "net10.0"
       ],
       "packable": true,
+      "packageId": "GridSpace.Skia",
       "description": "Viewport-culled SkiaSharp spreadsheet, selection and chart rendering.",
       "unoFeatures": [],
       "projectRefs": [
@@ -209,6 +224,7 @@
         "net10.0"
       ],
       "packable": false,
+      "packageId": "GridSpace.Tests",
       "description": "",
       "unoFeatures": [],
       "projectRefs": [
@@ -250,6 +266,7 @@
         "net10.0-desktop"
       ],
       "packable": true,
+      "packageId": "GridSpace.Workbench",
       "description": "Composable Excel-style spreadsheet workbench, commands, dialogs and local recovery orchestration.",
       "unoFeatures": [
         "SkiaRenderer"
@@ -315,5 +332,241 @@
     "docs/parity-data-tools.md",
     "docs/shared-formulas.md"
   ],
-  "images": []
+  "images": [],
+  "nugetDocs": {
+    "intro": [
+      "GridSpace ships as eight MIT-licensed packages, all versioned together. Six target plain `net10.0` and have no UI dependency: `GridSpace.Core`, `Formulas`, `Editing`, `IO` and `Layout` are pure .NET, and `GridSpace.Skia` adds only SkiaSharp. The two Uno Platform packages (`Controls`, `Workbench`) target `net10.0-desktop` and `net10.0-browserwasm`. Symbols are published to nuget.org as `.snupkg` with SourceLink. `GridSpace.App` is the platform composition root and is not packaged."
+    ],
+    "install": "dotnet add package GridSpace.Core --prerelease",
+    "notes": [
+      {
+        "type": "paragraph",
+        "text": "Dependencies (from project references): `Core ← Formulas ← Editing ← IO`, `Core ← Layout`, `Layout + Editing ← Skia ← Controls`, `Controls + IO ← Workbench`. A mutable `SpreadsheetSession` has one owning thread; use snapshots (for example `Workbook.ToJson`/`FromJson`) for background processing."
+      }
+    ],
+    "packages": [
+      {
+        "id": "GridSpace.Core",
+        "description": "Sparse workbook/cell/style/range model, A1 addressing, axis edits and conditional/filter/sort models",
+        "summary": [
+          "The sparse spreadsheet document model: workbooks, worksheets keyed by A1 address, immutable cell records and styles, ranges, merges, charts, validation lists, frozen panes, and the models for conditional formats, column filters and sort levels. It also owns JSON persistence. No dependencies and no UI."
+        ],
+        "install": "dotnet add package GridSpace.Core --prerelease",
+        "keyTypes": [
+          "`Workbook` – `Sheets`, `Names`, `ActiveSheet`, `FindSheet`, `ToJson` / `FromJson`",
+          "`Worksheet` – `Get`/`Set`, `UsedRange`, `Merges`, `FrozenRows`/`FrozenColumns`, `ConditionalFormats`, `Filters`",
+          "`Cell`, `CellStyle` – immutable input + style records (`Cell.IsFormula`)",
+          "`CellAddress` / `CellRange` – A1 parsing and formatting up to `XFD1048576`",
+          "`ConditionalFormatRule`, `DifferentialStyle`, `ColumnFilter`, `SortLevel`, `ChartSpec` – data-tool models"
+        ],
+        "content": [
+          {
+            "type": "code",
+            "lang": "csharp",
+            "code": "using GridSpace.Core;\n\nvar book = new Workbook { Title = \"Budget\" };\nvar sheet = book.ActiveSheet;\nsheet.Set(\"A1\", \"Item\");\nsheet.Set(\"B1\", \"Cost\");\nsheet.Set(\"A2\", \"Rent\");\nsheet.Set(\"B2\", \"1200\");\nsheet.Set(\"B3\", \"=SUM(B2:B2)\");\nsheet.Set(CellAddress.Parse(\"A1\"), sheet.Get(\"A1\") with { Style = CellStyle.Default with { Bold = true } });\nsheet.Merges.Add(CellRange.Parse(\"C1:D1\"));\nsheet.FrozenRows = 1;\n\nCellRange used = sheet.UsedRange;\nConsole.WriteLine($\"{used} ({used.Count} cells); B3 is a formula: {sheet.Get(\"B3\").IsFormula}\");\nvar copy = Workbook.FromJson(book.ToJson());   // native .gridspace JSON"
+          }
+        ],
+        "project": "GridSpace.Core",
+        "nuget": {
+          "id": "GridSpace.Core",
+          "version": "0.3.0-alpha.1",
+          "downloads": 0,
+          "verified": false
+        }
+      },
+      {
+        "id": "GridSpace.Formulas",
+        "description": "Bounded, non-eval formula parser and calculation engine with dynamic arrays, reference rewriting, number formats, conditional formatting and filter predicates",
+        "summary": [
+          "A bounded, non-eval formula engine: parser, evaluator with revision-based caching and dependency invalidation, common functions, dynamic arrays that spill (`SEQUENCE`, `FILTER`, `SORT`, `UNIQUE`, `LET`, `A1#`…), cross-sheet references and names, reference rewriting for fills and structural edits, Excel-style number formatting, conditional-format evaluation and filter predicates. Depends on `GridSpace.Core`; no UI."
+        ],
+        "install": "dotnet add package GridSpace.Formulas --prerelease",
+        "keyTypes": [
+          "`CalculationEngine` – `Evaluate`, `EvaluateFormula`, `Register` (custom functions), `GetSpill`, `Invalidate`, `BuiltInFunctions`",
+          "`CalcValue` – number/text/boolean/error/array result (`Num`, `Str`, `Error`, `Array`, `TryNumber`)",
+          "`FormulaReferences` – `Translate`, `RenameSheet`, `Insert`/`Delete` reference rewriting",
+          "`NumberFormatter.Format` – format codes such as `0.00`, `#,##0`, `0%`",
+          "`ConditionalFormattingEngine`, `WorksheetFilterEngine` – rule and filter evaluation"
+        ],
+        "content": [
+          {
+            "type": "code",
+            "lang": "csharp",
+            "code": "using GridSpace.Core;\nusing GridSpace.Formulas;\n\nvar book = new Workbook();\nvar sheet = book.ActiveSheet;\nsheet.Set(\"A1\", \"21\");\nsheet.Set(\"A2\", \"=A1*2\");\nsheet.Set(\"B1\", \"=SEQUENCE(3)\");                 // spills into B1:B3\n\nvar calc = new CalculationEngine(book);\ncalc.Register(\"DOUBLE\", args => args[0].TryNumber(out var n) ? CalcValue.Num(n * 2) : CalcValue.Error(\"#VALUE!\"));\n\nConsole.WriteLine(NumberFormatter.Format(calc.Evaluate(sheet, \"A2\"), \"0.00\"));   // 42.00\nConsole.WriteLine(calc.EvaluateFormula(sheet, \"=DOUBLE(A1)+SUM(B1#)\"));          // 48\nConsole.WriteLine(calc.GetSpill(sheet, CellAddress.Parse(\"B1\"))?.Range);          // B1:B3\nConsole.WriteLine(FormulaReferences.Translate(\"=A1*$B$2\", rows: 1, columns: 0)); // =A2*$B$2"
+          }
+        ],
+        "project": "GridSpace.Formulas",
+        "nuget": {
+          "id": "GridSpace.Formulas",
+          "version": "0.3.0-alpha.1",
+          "downloads": 0,
+          "verified": false
+        }
+      },
+      {
+        "id": "GridSpace.Editing",
+        "description": "Transactional sessions, bounded undo/redo, fill, clipboard, structural edits and data tools",
+        "summary": [
+          "The UI-independent editing session. Every command runs as a transaction with delta-based, bounded undo/redo; structural row/column edits rebase formulas, names, merges, validation, charts, conditional rules and freeze boundaries. It also provides clipboard blocks, fill/series, find/replace, sheet operations, filtering, multi-level sorting and a sample workbook. Depends on `GridSpace.Formulas`; no UI."
+        ],
+        "install": "dotnet add package GridSpace.Editing --prerelease",
+        "keyTypes": [
+          "`SpreadsheetSession` – `Book`, `Sheet`, `Calculation`, `Selection`, `SetInput`, `ApplyStyle`, `Undo`/`Redo`, `Changed`",
+          "Structure and tools – `InsertRows`/`DeleteColumns`, `Fill`, `Paste`, `Sort`, `SetFilter`, `SetConditionalFormat`, `AddChart`",
+          "`DelimitedText` – bounded TSV/CSV `Parse`/`Write`",
+          "`SampleWorkbook.Create()` – the demo Revenue/Assumptions workbook"
+        ],
+        "content": [
+          {
+            "type": "code",
+            "lang": "csharp",
+            "code": "using GridSpace.Core;\nusing GridSpace.Editing;\nusing GridSpace.Formulas;\n\nvar session = new SpreadsheetSession(new Workbook { Title = \"Example\" });\nsession.SetInput(\"21\", new CellAddress(0, 0));\nsession.SetInput(\"=A1*2\", new CellAddress(0, 1));\nConsole.WriteLine(session.Calculation.Evaluate(session.Sheet, \"B1\")); // 42\n\nsession.SetConditionalFormat(new ConditionalFormatRule\n{\n    Range = \"A1:B1\",\n    Kind = ConditionalFormatKind.CellValue,\n    Comparison = CellComparison.GreaterThan,\n    Operand = \"30\",\n    Style = new DifferentialStyle { Background = \"#C6EFCE\", Bold = true }\n});\nvar rules = new ConditionalFormattingEngine(session.Calculation);\nvar address = new CellAddress(0, 1);\nvar displayed = rules.Evaluate(session.Sheet, address,\n    session.Calculation.Evaluate(session.Sheet, address));\nConsole.WriteLine(displayed.Style.Background); // #C6EFCE\n\nsession.InsertRows(0, 2); // References and modeled metadata follow the insertion.\nsession.Undo();"
+          }
+        ],
+        "project": "GridSpace.Editing",
+        "nuget": {
+          "id": "GridSpace.Editing",
+          "version": "0.3.0-alpha.1",
+          "downloads": 0,
+          "verified": false
+        }
+      },
+      {
+        "id": "GridSpace.IO",
+        "description": "Bounded XLSX, CSV/TSV and native interchange with fidelity warnings; host storage contract",
+        "summary": [
+          "File interchange: native `.gridspace` JSON, CSV/TSV (values only; formula-looking text is neutralized) and a documented XLSX subset including styles, merges, shared and dynamic-array formulas, conditional formatting, filters and charts. Imports are size-bounded and return warnings for anything not preserved. `IWorkbookStorage` is the host contract used by the workbench. Depends on `GridSpace.Editing`; no UI."
+        ],
+        "install": "dotnet add package GridSpace.IO --prerelease",
+        "keyTypes": [
+          "`WorkbookFiles` – `Import(name, bytes)` by extension, `Native`, `Csv`",
+          "`XlsxWorkbook` – `Read(bytes)` / `Write(book)`",
+          "`ImportResult` – imported `Workbook` plus `Warnings`",
+          "`IWorkbookStorage`, `OpenedFile` – open/save pickers and recovery persistence for hosts"
+        ],
+        "content": [
+          {
+            "type": "code",
+            "lang": "csharp",
+            "code": "using GridSpace.Core;\nusing GridSpace.Editing;\nusing GridSpace.IO;\n\nImportResult imported = WorkbookFiles.Import(\"sales.xlsx\", File.ReadAllBytes(\"sales.xlsx\"));\nforeach (var warning in imported.Warnings) Console.WriteLine(warning);\n\nvar session = new SpreadsheetSession(imported.Workbook);\nsession.SetInput(\"=SUM(B2:B13)\", CellAddress.Parse(\"B14\"));\n\nFile.WriteAllBytes(\"sales-out.xlsx\", XlsxWorkbook.Write(session.Book));\nFile.WriteAllBytes(\"sales.csv\", WorkbookFiles.Csv(session.Book));        // active sheet, calculated values\nFile.WriteAllBytes(\"sales.gridspace\", WorkbookFiles.Native(session.Book));"
+          }
+        ],
+        "project": "GridSpace.IO",
+        "nuget": {
+          "id": "GridSpace.IO",
+          "version": "0.3.0-alpha.1",
+          "downloads": 0,
+          "verified": false
+        }
+      },
+      {
+        "id": "GridSpace.Layout",
+        "description": "Sparse axis indexes, viewport geometry, frozen panes and hit testing",
+        "summary": [
+          "Renderer-independent grid geometry for a 1,048,576 × 16,384 sheet: sparse axis indexes over custom sizes and hidden rows/columns, zoom and scrolling, frozen-pane splitting, cell/range bounds and hit testing of cells and headers. Use it to build your own grid view on any surface. Depends on `GridSpace.Core`; no UI."
+        ],
+        "install": "dotnet add package GridSpace.Layout --prerelease",
+        "keyTypes": [
+          "`GridViewport` – `Refresh(sheet)`, `ScrollTo`, `Zoom`, `Panes()`, `CellBounds`, `HitTest`, `EnsureVisible`",
+          "`AxisLayout` – `Position`, `Size`, `IndexAt`, `Visible` over sparse sizes",
+          "`GridPane`, `GridRect`, `GridHit` / `GridHitKind` – geometry results"
+        ],
+        "content": [
+          {
+            "type": "code",
+            "lang": "csharp",
+            "code": "using GridSpace.Core;\nusing GridSpace.Layout;\n\nvar sheet = new Worksheet { FrozenRows = 1, FrozenColumns = 1 };\nsheet.ColumnWidths[0] = 160;\nsheet.HiddenRows.Add(4);\n\nvar viewport = new GridViewport { Width = 1280, Height = 720, Zoom = 1.25 };\nviewport.Refresh(sheet);                       // rebuild axis indexes from sizes/hidden/frozen state\nviewport.ScrollTo(0, 2_000);\nforeach (GridPane pane in viewport.Panes())\n    Console.WriteLine($\"rows {pane.FirstRow}-{pane.LastRow}, columns {pane.FirstColumn}-{pane.LastColumn}\");\n\nGridHit hit = viewport.HitTest(300, 200);      // Cell, ColumnHeader, RowHeader or Corner\nGridRect bounds = viewport.CellBounds(new CellAddress(hit.Row, hit.Column));"
+          }
+        ],
+        "project": "GridSpace.Layout",
+        "nuget": {
+          "id": "GridSpace.Layout",
+          "version": "0.3.0-alpha.1",
+          "downloads": 0,
+          "verified": false
+        }
+      },
+      {
+        "id": "GridSpace.Skia",
+        "description": "Viewport-culled SkiaSharp cell, conditional style, data-bar, chart and selection rendering; owned font resources",
+        "summary": [
+          "Draws a session's visible cells onto any `SKCanvas`: values and number formats, fonts, wrapping, alignment, borders, merges, conditional styles, data bars, headers, frozen panes, selection and charts, culled to the viewport. `TypefaceCatalog` owns registered font data so hosts (especially WebAssembly) render consistently. Depends on `GridSpace.Layout`, `GridSpace.Editing` and SkiaSharp; no UI framework."
+        ],
+        "install": "dotnet add package GridSpace.Skia --prerelease",
+        "keyTypes": [
+          "`SpreadsheetRenderer` – `Render(canvas, session, viewport)`, `MeasureColumn` (AutoFit), `Fonts`",
+          "`TypefaceCatalog` – `Register(family, regular, bold, italic, boldItalic, aliases)`, `Resolve(style)`"
+        ],
+        "content": [
+          {
+            "type": "code",
+            "lang": "csharp",
+            "code": "using GridSpace.Editing;\nusing GridSpace.Layout;\nusing GridSpace.Skia;\nusing SkiaSharp;\n\nvar session = new SpreadsheetSession(SampleWorkbook.Create());\nusing var renderer = new SpreadsheetRenderer();\nrenderer.Fonts.Register(\"Carlito\", regular, bold, italic, boldItalic, \"Arial\", \"Calibri\"); // font file bytes\n\nvar viewport = new GridViewport { Width = 1200, Height = 800 };\nviewport.Refresh(session.Sheet);\n\nusing var surface = SKSurface.Create(new SKImageInfo(1200, 800));\nrenderer.Render(surface.Canvas, session, viewport);\nusing var png = surface.Snapshot().Encode(SKEncodedImageFormat.Png, 100);\nFile.WriteAllBytes(\"sheet.png\", png.ToArray());"
+          }
+        ],
+        "project": "GridSpace.Skia",
+        "nuget": {
+          "id": "GridSpace.Skia",
+          "version": "0.3.0-alpha.1",
+          "downloads": 0,
+          "verified": false
+        }
+      },
+      {
+        "id": "GridSpace.Controls",
+        "description": "Embeddable Uno spreadsheet grid, ribbon, formula bar, sheet tabs, scrollbars and filter/sort/conditional editors",
+        "summary": [
+          "Uno Platform building blocks: `SpreadsheetGrid` (Skia-drawn through `SKCanvasElement`, with in-cell editing, selection, clipboard, zoom, touch panning and keyboard navigation), a data-driven `RibbonControl`, formula bar, sheet tabs, status bar, scroll bars, vector icons, and the filter, sort and conditional-format editors. Compose them with your own command routing. Depends on `GridSpace.Skia` and Uno Platform (Skia renderer)."
+        ],
+        "install": "dotnet add package GridSpace.Controls --prerelease",
+        "keyTypes": [
+          "`SpreadsheetGrid` – `Session`, `Renderer`, `Viewport`, `BeginEdit`, `CopyAsync`/`PasteAsync`, `SetZoom`, `EnableDataToolInteractions`",
+          "`RibbonControl` – `SetTabs(RibbonTab[])`, `CommandRequested`; `RibbonTab`/`RibbonGroup`/`RibbonCommand` records",
+          "`FormulaBarControl`, `WorksheetTabsControl`, `SpreadsheetStatusBar`, `SheetScrollBar`",
+          "`FilterEditorControl`, `SortEditorControl`, `ConditionalFormatEditorControl` – `BuildFilter`/`BuildLevels`/`BuildRule`"
+        ],
+        "content": [
+          {
+            "type": "code",
+            "lang": "csharp",
+            "code": "using GridSpace.Controls;\nusing GridSpace.Editing;\nusing Microsoft.UI.Xaml;\nusing Microsoft.UI.Xaml.Controls;\n\nvar session = new SpreadsheetSession(SampleWorkbook.Create());\nvar sheetView = new SpreadsheetGrid { Session = session };\n\nvar ribbon = new RibbonControl();\nribbon.SetTabs([new RibbonTab(\"Home\", [new RibbonGroup(\"Font\", [new RibbonCommand(\"bold\", \"Bold\", OfficeIconKind.Bold)])])]);\nribbon.CommandRequested += id =>\n{\n    if (id != \"bold\") return;\n    var bold = !session.SelectedStyle.Bold;\n    session.ApplyStyle(style => style with { Bold = bold });\n};\n\nvar root = new Grid { RowDefinitions = { new RowDefinition { Height = GridLength.Auto }, new RowDefinition() } };\nGrid.SetRow(sheetView, 1);\nroot.Children.Add(ribbon);\nroot.Children.Add(sheetView);\nwindow.Content = root;\nwindow.Closed += (_, _) => sheetView.Dispose();"
+          }
+        ],
+        "project": "GridSpace.Controls",
+        "nuget": {
+          "id": "GridSpace.Controls",
+          "version": "0.3.0-alpha.1",
+          "downloads": 0,
+          "verified": false
+        }
+      },
+      {
+        "id": "GridSpace.Workbench",
+        "description": "Complete Excel-style workbench: commands, dialogs, filter popup, rule management and local recovery",
+        "summary": [
+          "The complete Excel-style shell used by the app: ribbon (`WorkbookRibbon.Create()`), formula bar, grid, sheet tabs, status bar, context menus, dialogs, filter popup, conditional-rule manager, custom sort and debounced local recovery. Platform file pickers and recovery persistence come from your `IWorkbookStorage` implementation. Web hosts should register font bytes with `Surface.Renderer.Fonts`. Depends on `GridSpace.Controls`, `GridSpace.IO` and Uno Platform."
+        ],
+        "install": "dotnet add package GridSpace.Workbench --prerelease",
+        "keyTypes": [
+          "`SpreadsheetWorkbench` – `SpreadsheetWorkbench(session, storage)`, `Session`, `Surface`, `ExecuteAsync(commandId)`, `ShowStatus`",
+          "`WorkbookRibbon.Create()` – the default tab/group/command set",
+          "`GridSpace.IO.IWorkbookStorage` – host services the workbench calls"
+        ],
+        "content": [
+          {
+            "type": "code",
+            "lang": "csharp",
+            "code": "using GridSpace.Core;\nusing GridSpace.Editing;\nusing GridSpace.IO;\nusing GridSpace.Workbench;\n\nIWorkbookStorage storage = new MyWorkbookStorage(); // OpenAsync, SaveAsync, Read/WriteRecoveryAsync\nvar recovery = await storage.ReadRecoveryAsync();\nvar book = string.IsNullOrWhiteSpace(recovery) ? SampleWorkbook.Create() : Workbook.FromJson(recovery);\n\nvar workbench = new SpreadsheetWorkbench(new SpreadsheetSession(book), storage);\nworkbench.Surface.Renderer.Fonts.Register(\"Carlito\", regular, bold, italic, boldItalic, \"Arial\", \"Calibri\", \"Aptos\");\nwindow.Content = workbench;\nwindow.Closed += (_, _) => workbench.Dispose();"
+          }
+        ],
+        "project": "GridSpace.Workbench",
+        "nuget": {
+          "id": "GridSpace.Workbench",
+          "version": "0.3.0-alpha.1",
+          "downloads": 0,
+          "verified": false
+        }
+      }
+    ]
+  }
 }

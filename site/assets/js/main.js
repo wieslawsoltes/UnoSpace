@@ -62,7 +62,7 @@
   $$('[data-reveal], [data-count], .reveal-group').forEach((el) => io.observe(el));
 
   /* ---------------- Reveal light (pointer-following highlight on materials) ---------------- */
-  const REVEAL = '.card, .app-card, .fact, .f-list li, .pat, .target, .format, .doc, .stage, .pager a, .list-clean li, .arch-layer, .btn, .chip, .pkg';
+  const REVEAL = '.card, .app-card, .fact, .f-list li, .pat, .target, .format, .doc, .stage, .pager a, .list-clean li, .arch-layer, .btn, .chip, .pkg, .ng-hero, .ng-panel, .ng-notes, .ng-strip';
   if (matchMedia('(pointer: fine)').matches) {
     let lit = null, px = 0, py = 0, queued = false;
     const paint = () => {
@@ -280,6 +280,32 @@
       $$('[data-pane]', group).forEach((p) => p.classList.toggle('on', p.dataset.pane === t.dataset.tab));
     }));
   });
+
+  /* ---------------- NuGet package browser: #nuget-<PackageId> deep links ---------------- */
+  const ngBrowser = $('.ng-browser');
+  if (ngBrowser) {
+    const openPkg = (hash, scroll) => {
+      if (!hash.startsWith('#nuget-')) return false;
+      const pane = document.getElementById(decodeURIComponent(hash.slice(1)));
+      if (!pane || !ngBrowser.contains(pane)) return false;
+      const tab = $(`[data-tab="${pane.dataset.pane}"]`, ngBrowser);
+      if (tab && !tab.classList.contains('on')) tab.click();
+      const list = tab?.parentElement; // horizontal strip on narrow screens
+      if (list && list.scrollWidth > list.clientWidth) list.scrollTo({ left: tab.offsetLeft - 12 });
+      if (scroll) pane.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+      return true;
+    };
+    $$('[data-tab]', ngBrowser).forEach((t) => t.addEventListener('click', () => {
+      const pane = $(`[data-pane="${t.dataset.tab}"]`, ngBrowser);
+      if (pane) history.replaceState(null, '', `#${pane.id}`);
+    }));
+    document.addEventListener('click', (e) => {
+      const a = e.target.closest?.('a[href^="#nuget-"]');
+      if (a && openPkg(a.getAttribute('href'), true)) { e.preventDefault(); history.replaceState(null, '', a.getAttribute('href')); }
+    });
+    addEventListener('hashchange', () => openPkg(location.hash, true));
+    if (location.hash) requestAnimationFrame(() => openPkg(location.hash, true));
+  }
 
   /* ---------------- Copy buttons ---------------- */
   $$('[data-copy]').forEach((b) => b.addEventListener('click', async () => {

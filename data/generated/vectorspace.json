@@ -1,7 +1,7 @@
 {
   "slug": "vectorspace",
   "repo": "wieslawsoltes/VectorSpace",
-  "version": "0.6.0-alpha.1",
+  "version": "0.7.0-alpha.1",
   "dotnetSdk": "10.0.401",
   "unoSdk": "6.7.30",
   "pinned": [
@@ -27,23 +27,29 @@
     }
   ],
   "github": {
-    "stars": 0,
+    "stars": 2,
     "forks": 0,
-    "openIssues": 1,
+    "openIssues": 0,
     "createdAt": "2026-09-27T07:27:33Z",
-    "pushedAt": "2026-09-29T07:01:49Z",
+    "pushedAt": "2026-09-29T16:54:09Z",
     "homepage": "https://wieslawsoltes.github.io/VectorSpace/",
     "license": "MIT"
   },
+  "release": {
+    "tag": "v0.7.0-alpha.1",
+    "url": "https://github.com/wieslawsoltes/VectorSpace/releases/tag/v0.7.0-alpha.1",
+    "prerelease": true,
+    "publishedAt": "2026-09-29T14:53:34Z"
+  },
   "lastCommit": {
-    "sha": "9531fb4",
-    "date": "2026-09-29T00:46:50+02:00",
-    "subject": "Merge pull request #13: complete collaboration 0.6"
+    "sha": "5c15de7",
+    "date": "2026-09-29T18:54:07+02:00",
+    "subject": "Document NuGet packages with badges and usage"
   },
   "loc": {
-    "total": 12635,
-    "src": 9742,
-    "tests": 2473
+    "total": 13700,
+    "src": 10484,
+    "tests": 2768
   },
   "projectCount": 15,
   "libraryCount": 10,
@@ -59,6 +65,7 @@
         "net10.0-desktop"
       ],
       "packable": false,
+      "packageId": "VectorSpace.App",
       "description": "Local-first vector design with Uno Platform and SkiaSharp.",
       "unoFeatures": [
         "SkiaRenderer"
@@ -79,6 +86,7 @@
         "net10.0"
       ],
       "packable": true,
+      "packageId": "VectorSpace.Collaboration",
       "description": "Versioned collaboration transactions, conditional history, presence and transport for VectorSpace.",
       "unoFeatures": [],
       "projectRefs": [
@@ -97,6 +105,7 @@
         "net10.0"
       ],
       "packable": false,
+      "packageId": "VectorSpace.Collaboration.EditorTests",
       "description": "",
       "unoFeatures": [],
       "projectRefs": [
@@ -116,6 +125,7 @@
         "net10.0"
       ],
       "packable": false,
+      "packageId": "VectorSpace.Collaboration.Tests",
       "description": "",
       "unoFeatures": [],
       "projectRefs": [
@@ -135,14 +145,15 @@
         "net10.0-desktop"
       ],
       "packable": true,
+      "packageId": "VectorSpace.Controls",
       "description": "Compact, accessible Uno editor controls, original vector icons, numeric scrubbing, color spectrum and layer rows.",
       "unoFeatures": [
         "SkiaRenderer"
       ],
       "projectRefs": [],
       "packageRefs": [],
-      "files": 10,
-      "loc": 535
+      "files": 12,
+      "loc": 638
     },
     {
       "name": "VectorSpace.Core",
@@ -153,12 +164,13 @@
         "net10.0"
       ],
       "packable": true,
+      "packageId": "VectorSpace.Model",
       "description": "Platform-independent vector document, scene graph and geometry for VectorSpace.",
       "unoFeatures": [],
       "projectRefs": [],
       "packageRefs": [],
-      "files": 8,
-      "loc": 769
+      "files": 10,
+      "loc": 914
     },
     {
       "name": "VectorSpace.Documents",
@@ -169,14 +181,15 @@
         "net10.0"
       ],
       "packable": true,
+      "packageId": "VectorSpace.Documents",
       "description": "Versioned JSON documents, safe SVG interchange and workspace storage contracts.",
       "unoFeatures": [],
       "projectRefs": [
         "VectorSpace.Core"
       ],
       "packageRefs": [],
-      "files": 11,
-      "loc": 799
+      "files": 12,
+      "loc": 871
     },
     {
       "name": "VectorSpace.Editing",
@@ -187,6 +200,7 @@
         "net10.0"
       ],
       "packable": true,
+      "packageId": "VectorSpace.Editing",
       "description": "Transactional editing, selection, undo/redo, components and viewport services.",
       "unoFeatures": [],
       "projectRefs": [
@@ -195,8 +209,8 @@
         "VectorSpace.Layout"
       ],
       "packageRefs": [],
-      "files": 14,
-      "loc": 1452
+      "files": 19,
+      "loc": 1739
     },
     {
       "name": "VectorSpace.Editor",
@@ -208,6 +222,7 @@
         "net10.0-desktop"
       ],
       "packable": true,
+      "packageId": "VectorSpace.Editor",
       "description": "Embeddable Uno/Skia design surface with direct manipulation, vector tools, snapping, text editing and presentation.",
       "unoFeatures": [
         "SkiaRenderer"
@@ -217,8 +232,8 @@
         "VectorSpace.Skia"
       ],
       "packageRefs": [],
-      "files": 11,
-      "loc": 1491
+      "files": 12,
+      "loc": 1498
     },
     {
       "name": "VectorSpace.Layout",
@@ -229,6 +244,7 @@
         "net10.0"
       ],
       "packable": true,
+      "packageId": "VectorSpace.Layout",
       "description": "Reusable auto-layout, constraints, alignment and snapping for vector scenes.",
       "unoFeatures": [],
       "projectRefs": [
@@ -247,6 +263,7 @@
         "net10.0"
       ],
       "packable": true,
+      "packageId": "VectorSpace.Prototyping",
       "description": "Deterministic isolated prototype playback, overlays, navigation, transitions and declarative interactions for VectorSpace.",
       "unoFeatures": [],
       "projectRefs": [
@@ -265,6 +282,7 @@
         "net10.0"
       ],
       "packable": false,
+      "packageId": "VectorSpace.Server",
       "description": "Persistent collaboration service for VectorSpace.",
       "unoFeatures": [],
       "projectRefs": [
@@ -272,8 +290,8 @@
         "VectorSpace.Editing"
       ],
       "packageRefs": [],
-      "files": 8,
-      "loc": 420
+      "files": 9,
+      "loc": 448
     },
     {
       "name": "VectorSpace.Skia",
@@ -284,6 +302,7 @@
         "net10.0"
       ],
       "packable": true,
+      "packageId": "VectorSpace.Skia",
       "description": "SkiaSharp rendering, hit testing, vector Boolean operations and raster export for VectorSpace.",
       "unoFeatures": [],
       "projectRefs": [
@@ -309,6 +328,7 @@
         "net10.0"
       ],
       "packable": false,
+      "packageId": "VectorSpace.Tests",
       "description": "",
       "unoFeatures": [],
       "projectRefs": [
@@ -320,8 +340,8 @@
           "version": "3.119.2"
         }
       ],
-      "files": 13,
-      "loc": 2000
+      "files": 15,
+      "loc": 2295
     },
     {
       "name": "VectorSpace.Workbench",
@@ -333,6 +353,7 @@
         "net10.0-desktop"
       ],
       "packable": true,
+      "packageId": "VectorSpace.Workbench",
       "description": "Reusable VectorSpace workbench, layers, inspector, tool palette, prototype and document workflows.",
       "unoFeatures": [
         "SkiaRenderer"
@@ -342,8 +363,8 @@
         "VectorSpace.Collaboration"
       ],
       "packageRefs": [],
-      "files": 14,
-      "loc": 1920
+      "files": 16,
+      "loc": 2048
     }
   ],
   "nuget": [
@@ -381,9 +402,11 @@
   "docs": [
     "docs/APPEARANCE.md",
     "docs/ARCHITECTURE.md",
+    "docs/BROWSER_INPUT_READINESS.md",
     "docs/COLLABORATION.md",
     "docs/DESIGN_SYSTEMS.md",
     "docs/EDITING.md",
+    "docs/EDITING_WORKFLOWS.md",
     "docs/FEATURES.md",
     "docs/HOSTING.md",
     "docs/PERFORMANCE.md",
@@ -394,5 +417,303 @@
   ],
   "images": [
     "shots/vectorspace/workbench.png"
-  ]
+  ],
+  "nugetDocs": {
+    "intro": [
+      "All ten libraries are MIT-licensed, versioned together with the app and published to [NuGet.org](https://www.nuget.org/packages?q=VectorSpace) on tagged releases, with symbol packages (`.snupkg`) and SourceLink. The seven engine packages target `net10.0` and have no UI dependency (only `VectorSpace.Skia` needs SkiaSharp); `VectorSpace.Controls`, `VectorSpace.Editor` and `VectorSpace.Workbench` are Uno Platform libraries targeting `net10.0-desktop` and `net10.0-browserwasm`. The core model package is `VectorSpace.Model` because the `VectorSpace.Core` ID on NuGet.org belongs to another owner; its assembly and namespaces remain `VectorSpace.Core`. The separate ASP.NET collaboration host lives under `server/` and is not a package."
+    ],
+    "install": "dotnet add package VectorSpace.Model --prerelease",
+    "notes": [
+      {
+        "type": "paragraph",
+        "text": "Dependencies follow the project references: `Layout` and `Documents` → `Model`; `Editing` → `Layout` + `Documents`; `Prototyping` → `Editing`; `Collaboration` → `Documents`; `Skia` → `Prototyping` + SkiaSharp; `Controls` is standalone Uno; `Editor` → `Controls` + `Skia`; `Workbench` → `Editor` + `Collaboration`."
+      }
+    ],
+    "packages": [
+      {
+        "id": "VectorSpace.Model",
+        "description": "Scene graph, typed styles, variables, prototype reactions and affine/path geometry (assembly `VectorSpace.Core`).",
+        "summary": [
+          "The serializable document model: pages, nodes, fills/strokes/effects, auto-layout settings, components, variables and prototype reactions, plus double-precision `Vec2`/`RectD`/`Matrix2D` geometry. Use it on its own to generate or inspect designs in any .NET app. No dependencies and no UI."
+        ],
+        "install": "dotnet add package VectorSpace.Model --prerelease",
+        "keyTypes": [
+          "`DesignDocument` – pages, comments, variable collections; `AllNodes()`, `Find(id)`, `RebuildParents()`.",
+          "`DesignPage` / `DesignNode` – node tree with `Kind`, bounds, `Fills`, `Strokes`, `Shadows`, `Layout`, `Children`, `Add(child)`.",
+          "`DesignNode.WorldMatrix` / `WorldBounds` – parent-relative transforms resolved to canvas space.",
+          "`FillStyle`, `StrokeStyle`, `ShadowStyle`, `AutoLayout` – typed appearance and layout settings.",
+          "`Vec2`, `RectD`, `Matrix2D` – immutable geometry with `Map`, `Inverse`, `Union` and friends."
+        ],
+        "content": [
+          {
+            "type": "code",
+            "lang": "csharp",
+            "code": "using VectorSpace.Core;\n\nvar document = new DesignDocument { Name = \"Landing page\" };\nvar frame = new DesignNode { Kind = NodeKind.Frame, Name = \"Hero\", Width = 1280, Height = 720, Fill = \"#FFFFFF\" };\ndocument.Pages[0].Nodes.Add(frame);\n\nvar button = frame.Add(new DesignNode { Name = \"CTA\", X = 80, Y = 520, Width = 200, Height = 56, CornerRadius = 12 });\nbutton.Fills[0] = new FillStyle { Kind = FillKind.LinearGradient };\nbutton.Strokes.Add(new StrokeStyle { Color = \"#1E1E1E\", Width = 2 });\nbutton.Rotation = 15;\n\nRectD world = button.WorldBounds;            // rotated, in canvas coordinates\nVec2 local = button.WorldMatrix.Inverse.Map(world.Center);\nConsole.WriteLine($\"{document.AllNodes().Count()} nodes, CTA at {world}\");"
+          }
+        ],
+        "keyTypesNote": "namespace `VectorSpace.Core`",
+        "project": "VectorSpace.Core",
+        "nuget": {
+          "id": "VectorSpace.Model",
+          "version": "0.7.0-alpha.1",
+          "downloads": 0,
+          "verified": false
+        }
+      },
+      {
+        "id": "VectorSpace.Layout",
+        "description": "Flow/grid auto-layout, constraints and indexed snapping.",
+        "summary": [
+          "Horizontal/vertical/grid auto-layout with wrap, padding, gaps, hug/fill sizing and edge/scale constraints, plus an indexed snap engine for gesture alignment. Depends on `VectorSpace.Model`; no UI."
+        ],
+        "install": "dotnet add package VectorSpace.Layout --prerelease",
+        "keyTypes": [
+          "`LayoutEngine.Arrange(node)` / `Arrange(roots)` – lays out auto-layout frames recursively.",
+          "`LayoutEngine.Resize(node, width, height)` – resizes and applies child constraints.",
+          "`SnapIndex` – prebuilt, sorted snap targets (bounds and guides) with `Snap(moving, tolerance)`.",
+          "`SnapEngine.Snap(...)` – one-shot snapping; `SnapResult` holds the `Correction` and `SnapLine`s to draw."
+        ],
+        "content": [
+          {
+            "type": "code",
+            "lang": "csharp",
+            "code": "using VectorSpace.Core;\nusing VectorSpace.Layout;\n\nvar row = new DesignNode { Kind = NodeKind.Frame, Name = \"Toolbar\" };\nrow.Layout = new AutoLayout { Direction = LayoutDirection.Horizontal, Gap = 8, HugWidth = true, HugHeight = true };\nfor (var i = 0; i < 3; i++) row.Add(new DesignNode { Name = $\"Item {i}\", Width = 40, Height = 40 });\n\nLayoutEngine.Arrange(row);                    // positions children, hugs the frame\nConsole.WriteLine($\"{row.Width} x {row.Height}\");\n\nvar index = new SnapIndex(row.Children.Select(c => c.WorldBounds));\nSnapResult snap = index.Snap(new RectD(62, 18, 40, 40), tolerance: 4);\nConsole.WriteLine($\"Correction {snap.Correction}, {snap.Lines.Count} guide lines\");"
+          }
+        ],
+        "project": "VectorSpace.Layout",
+        "nuget": {
+          "id": "VectorSpace.Layout",
+          "version": "0.7.0-alpha.1",
+          "downloads": 0,
+          "verified": false
+        }
+      },
+      {
+        "id": "VectorSpace.Documents",
+        "description": "Versioned native JSON, validation, safe SVG interchange, property clipboard, samples and storage contracts.",
+        "summary": [
+          "Reading, writing and validating native `.vectorspace` JSON (schema 5, migrating 1–4), safe SVG import/export (no scripts, external resources or DTDs), the style-only property clipboard, sample documents and the storage interfaces hosts implement. Depends on `VectorSpace.Model`; no UI."
+        ],
+        "install": "dotnet add package VectorSpace.Documents --prerelease",
+        "keyTypes": [
+          "`DocumentJson` – `Load`, `Save`, `Validate`, `CloneNode`, `SaveNodes`/`LoadNodes`.",
+          "`SvgFormat` – `Export(roots, bounds)` and `Import(svg)` returning `SvgImportResult` (document + warnings).",
+          "`PropertyClipboard` – portable fill/stroke/effect/typography transfer packets.",
+          "`IWorkspaceStorage` / `ISharedRecoveryStorage` – autosave, open/save and recovery contracts for hosts.",
+          "`SampleDocument`, `PrototypeSample`, `AppearanceSample` – original editable samples."
+        ],
+        "content": [
+          {
+            "type": "code",
+            "lang": "csharp",
+            "code": "using VectorSpace.Core;\nusing VectorSpace.Documents;\n\nDesignDocument document = DocumentJson.Load(File.ReadAllText(\"design.vectorspace\")); // validates and migrates\nFile.WriteAllText(\"copy.vectorspace\", DocumentJson.Save(document));\n\nvar frame = document.Pages[0].Nodes[0];\nFile.WriteAllText(\"frame.svg\", SvgFormat.Export([frame], frame.WorldBounds));\n\nSvgImportResult imported = SvgFormat.Import(File.ReadAllText(\"icon.svg\"));\nforeach (var warning in imported.Warnings) Console.WriteLine(warning);\n\nstring clipboard = PropertyClipboard.Copy(frame, PropertyGroups.Fills | PropertyGroups.Strokes);\nPropertyClipboardPacket packet = PropertyClipboard.Read(clipboard);"
+          }
+        ],
+        "project": "VectorSpace.Documents",
+        "nuget": {
+          "id": "VectorSpace.Documents",
+          "version": "0.7.0-alpha.1",
+          "downloads": 0,
+          "verified": false
+        }
+      },
+      {
+        "id": "VectorSpace.Editing",
+        "description": "Selection, transactions, undo/redo, property transfer, batch naming, components and viewport.",
+        "summary": [
+          "The headless editor: selection, transactional edits with undo/redo, moving/grouping/aligning, clipboard, components and variants, property transfer, batch rename and a viewport. Build your own UI or automation on it. Depends on `Model`, `Layout` and `Documents`; no UI."
+        ],
+        "install": "dotnet add package VectorSpace.Editing --prerelease",
+        "keyTypes": [
+          "`EditorSession` – `Document`, `Page`, `Selection`, `Tool`, `Edit(label, action)`, `Undo()`/`Redo()`, `Changed` event.",
+          "`EditorSession.MoveSelection`, `GroupSelection`, `Align`, `CopySelection`/`Paste` – common commands.",
+          "`ComponentService` – `MakeComponent`, `InsertInstance`, `Synchronize(document)`.",
+          "`PropertyTransfer.Paste` and `LayerRename.Plan`/`Apply` – property paste and previewed batch rename.",
+          "`Viewport` – zoom/pan with `WorldToScreen`, `ScreenToWorld`, `ZoomAt`, `Fit`."
+        ],
+        "content": [
+          {
+            "type": "code",
+            "lang": "csharp",
+            "code": "using VectorSpace.Core;\nusing VectorSpace.Documents;\nusing VectorSpace.Editing;\n\nvar session = new EditorSession(SampleDocument.Create());\nsession.Changed += (_, e) => Console.WriteLine($\"{e.Kind}: {e.Label}\");\n\nvar card = new DesignNode { Name = \"Card\", Width = 320, Height = 200, CornerRadius = 16 };\nsession.Edit(\"Add card\", () => session.AddNode(card));   // one undoable transaction\nsession.Select(card);\nsession.MoveSelection(24, 0);\nsession.UpdateSelection(\"Tint\", node => node.Fill = \"#0D99FF\");\n\nConsole.WriteLine($\"{session.UndoLabel} (dirty: {session.IsDirty})\");\nsession.Undo();"
+          }
+        ],
+        "project": "VectorSpace.Editing",
+        "nuget": {
+          "id": "VectorSpace.Editing",
+          "version": "0.7.0-alpha.1",
+          "downloads": 0,
+          "verified": false
+        }
+      },
+      {
+        "id": "VectorSpace.Prototyping",
+        "description": "Deterministic, isolated prototype playback, navigation, overlays and interpolation.",
+        "summary": [
+          "A private, deterministic prototype runtime: it plays a copy of the document (the source is never mutated), evaluates triggers, conditions and runtime variables, and drives navigation, Back, overlays, scrolling and transitions from an explicit clock. Depends on `VectorSpace.Editing`; no UI."
+        ],
+        "install": "dotnet add package VectorSpace.Prototyping --prerelease",
+        "keyTypes": [
+          "`PrototypeSession` – `View`, `Dispatch(trigger, hitId)`, `DispatchKey`, `Back()`, `ScrollBy`, `AdvanceTo(ms)`.",
+          "`PrototypeView` – current frame, scroll and overlay stack (`InputRoot` receives input).",
+          "`PrototypeAnimation` / `PrototypeTween` – eased transitions and smart-animate interpolation.",
+          "`PrototypeGeometry` – overlay placement and scroll clamping."
+        ],
+        "content": [
+          {
+            "type": "code",
+            "lang": "csharp",
+            "code": "using VectorSpace.Core;\nusing VectorSpace.Documents;\nusing VectorSpace.Prototyping;\n\nvar player = new PrototypeSession(PrototypeSample.Create());\nConsole.WriteLine($\"Starting frame: {player.View.Frame.Name}\");\n\nvar hit = player.View.InputRoot.Children.FirstOrDefault();\nif (player.Dispatch(PrototypeTrigger.Click, hit?.Id, userInitiated: true))\n{\n    player.AdvanceTo(player.ClockMilliseconds + 300);        // deterministic clock drives transitions\n    Console.WriteLine($\"Now on {player.View.Frame.Name}, animating: {player.IsAnimating}\");\n}\nif (player.CanGoBack) player.Back();"
+          }
+        ],
+        "project": "VectorSpace.Prototyping",
+        "nuget": {
+          "id": "VectorSpace.Prototyping",
+          "version": "0.7.0-alpha.1",
+          "downloads": 0,
+          "verified": false
+        }
+      },
+      {
+        "id": "VectorSpace.Collaboration",
+        "description": "Identity-addressed transactions, conditional undo, replicas, presence and HTTP room transport.",
+        "summary": [
+          "Client-side collaboration: projects documents into identity-addressed, versioned property cells, diffs and rebases them, keeps guarded shared undo, and talks to a `VectorSpace.Server` room over HTTPS with presence and invitations. Depends on `VectorSpace.Documents`; no UI. See [Collaboration](https://github.com/wieslawsoltes/VectorSpace/blob/main/docs/COLLABORATION.md) for semantics."
+        ],
+        "install": "dotnet add package VectorSpace.Collaboration --prerelease",
+        "keyTypes": [
+          "`DocumentProjection` – `FromDocument`, `ToDocument`, `Diff`, `Apply` over `SharedSnapshot` cells.",
+          "`SharedReplica` – confirmed/visible state, pending batches, conditional undo/redo and recovery copies.",
+          "`CollaborationConnection` – `JoinAsync`, `Start`, `Submit`, `Undo`/`Redo`, `SetPresence`, `Participants`.",
+          "`RoomTransport` / `RoomAddress` – room creation, invitations, history and invitation-link parsing."
+        ],
+        "content": [
+          {
+            "type": "code",
+            "lang": "csharp",
+            "code": "using VectorSpace.Collaboration;\nusing VectorSpace.Documents;\n\n// Pure projection: documents become versioned property cells that can be diffed.\nvar before = DocumentProjection.FromDocument(SampleDocument.Create());\nvar edited = DocumentProjection.ToDocument(before);\nedited.Pages[0].Nodes[0].Name = \"Renamed\";\nList<CellChange> changes = DocumentProjection.Diff(before, DocumentProjection.FromDocument(edited));\n\n// Live room (the dispatcher marshals callbacks onto your UI thread).\nvar address = RoomAddress.Parse(invitationLink);\nusing var room = await CollaborationConnection.JoinAsync(address, action => { action(); return Task.CompletedTask; });\nroom.Changed += remote => Console.WriteLine($\"{room.Status} ({room.Participants.Count} online)\");\nroom.Start();\nif (room.CanEdit) room.Submit(DocumentJson.Save(edited), \"Rename frame\");"
+          }
+        ],
+        "project": "VectorSpace.Collaboration",
+        "nuget": {
+          "id": "VectorSpace.Collaboration",
+          "version": "0.7.0-alpha.1",
+          "downloads": 0,
+          "verified": false
+        }
+      },
+      {
+        "id": "VectorSpace.Skia",
+        "description": "SkiaSharp design/prototype rendering, hit testing, Boolean paths and PNG export.",
+        "summary": [
+          "The SkiaSharp renderer shared by the editor and headless tools: design and prototype drawing with retained geometry/gradient/effect/image caches, hit testing, Boolean path operations, editable path conversion and PNG export. Depends on `Prototyping`/`Editing` and SkiaSharp; no Uno dependency."
+        ],
+        "install": "dotnet add package VectorSpace.Skia --prerelease",
+        "keyTypes": [
+          "`SceneRenderer` – `Draw(canvas, nodes)`, `HitTest(roots, point)`, `Geometry(node)`, `ExportPng(nodes, bounds, scale)`.",
+          "`PrototypeSceneRenderer` – draws and hit-tests a `PrototypeSession`, including overlays.",
+          "`BooleanOperations.Apply(editor, renderer, BooleanOperation.Union)` – Boolean path editing.",
+          "`RasterImageCodec` / `ImageAssetCache` – bounded image import, decode and caching."
+        ],
+        "content": [
+          {
+            "type": "code",
+            "lang": "csharp",
+            "code": "using VectorSpace.Core;\nusing VectorSpace.Documents;\nusing VectorSpace.Skia;\n\nvar document = DocumentJson.Load(File.ReadAllText(\"design.vectorspace\"));\nvar frame = document.Pages[0].Nodes[0];\nusing var renderer = new SceneRenderer();\nFile.WriteAllBytes(\"frame.png\", renderer.ExportPng([frame], frame.WorldBounds, 2));\n\nDesignNode? hit = renderer.HitTest(document.Pages[0].Nodes, new Vec2(120, 80), deep: true);\nusing var surface = SkiaSharp.SKSurface.Create(new SkiaSharp.SKImageInfo(800, 600));\nrenderer.Draw(surface.Canvas, document.Pages[0].Nodes);"
+          }
+        ],
+        "project": "VectorSpace.Skia",
+        "nuget": {
+          "id": "VectorSpace.Skia",
+          "version": "0.7.0-alpha.1",
+          "downloads": 0,
+          "verified": false
+        }
+      },
+      {
+        "id": "VectorSpace.Controls",
+        "description": "Compact Uno editor controls, vector icons, numeric scrubbing, color input, rename/property panels and avatars.",
+        "summary": [
+          "Dense, accessible Uno Platform controls with shared design tokens: icon buttons with original vector glyphs, scrubbable numeric fields, color fields with a spectrum picker, inspector sections, layer rows, rename and property-transfer panels and participant avatars. It has no document or editor dependency; requires Uno Platform (Skia renderer)."
+        ],
+        "install": "dotnet add package VectorSpace.Controls --prerelease",
+        "keyTypes": [
+          "`Studio` – tokens (`Accent`, `Ink`, `Font`) and helpers such as `Brush`, `Text`, `Input`, `Columns`.",
+          "`NumericField` – labelled numeric input with scrubbing, `Minimum`/`Maximum`/`Step` and `ValueCommitted`.",
+          "`ColorField` / `ColorSpectrum` – hex color input and Skia spectrum picker.",
+          "`IconButton`, `InspectorSection`, `LayerRow`, `ParticipantStrip`, `BatchRenamePanel`."
+        ],
+        "content": [
+          {
+            "type": "code",
+            "lang": "csharp",
+            "code": "using Microsoft.UI.Xaml.Controls;\nusing VectorSpace.Controls;\n\nvar size = new InspectorSection(\"Size\");\nsize.Body.Children.Add(Studio.Columns(\n    (new NumericField(\"W\", 320, w => Console.WriteLine($\"Width {w}\")) { Minimum = 1 }, -1),\n    (new NumericField(\"H\", 200, h => Console.WriteLine($\"Height {h}\")) { Minimum = 1 }, -1)));\nsize.Body.Children.Add(new ColorField(\"#0D99FF\", hex => Console.WriteLine(hex)));\n\nvar panel = new StackPanel { Width = 260 };\npanel.Children.Add(new IconButton(\"undo\", \"Undo\", () => { }));\npanel.Children.Add(size);\nwindow.Content = panel;"
+          }
+        ],
+        "project": "VectorSpace.Controls",
+        "nuget": {
+          "id": "VectorSpace.Controls",
+          "version": "0.7.0-alpha.1",
+          "downloads": 0,
+          "verified": false
+        }
+      },
+      {
+        "id": "VectorSpace.Editor",
+        "description": "Embeddable Uno/Skia design surface, prototype player and remote-presence overlay.",
+        "summary": [
+          "The embeddable design surface: an Uno `SKCanvasElement`-based canvas with direct manipulation, vector and text tools, snapping, image crop, comments, a full-screen `PrototypePlayer` and a retained remote-presence overlay. Bind it to an `EditorSession` and add your own chrome. Depends on `VectorSpace.Controls` and `VectorSpace.Skia`; requires Uno Platform."
+        ],
+        "install": "dotnet add package VectorSpace.Editor --prerelease",
+        "keyTypes": [
+          "`DesignSurface` – `Session`, `Renderer`, `Fit()`, `Invalidate()`, `Present()`, vector-edit commands, `StatusChanged`.",
+          "`PrototypePlayer` – standalone prototype playback control over a `PrototypeSession` (`Playback`).",
+          "`RemotePresenceLayer` / `RemotePeer` – collaborator cursors and selections drawn above the canvas.",
+          "`Keyboard` – current modifier-key state (`Control`, `Shift`, `Alt`) shared with the workbench."
+        ],
+        "content": [
+          {
+            "type": "code",
+            "lang": "csharp",
+            "code": "using VectorSpace.Documents;\nusing VectorSpace.Editing;\nusing VectorSpace.Editor;\n\nvar session = new EditorSession(SampleDocument.Create());\nvar surface = new DesignSurface { Session = session };\nsurface.StatusChanged += message => Console.WriteLine(message);\nsession.Tool = EditorTool.Rectangle;\nwindow.Content = surface;\n\n// Or play a prototype without the editor:\nwindow.Content = new PrototypePlayer(PrototypeSample.Create());"
+          }
+        ],
+        "project": "VectorSpace.Editor",
+        "nuget": {
+          "id": "VectorSpace.Editor",
+          "version": "0.7.0-alpha.1",
+          "downloads": 0,
+          "verified": false
+        }
+      },
+      {
+        "id": "VectorSpace.Workbench",
+        "description": "Complete authoring workbench: layers, inspector, tools, clipboard, sharing, recovery and history.",
+        "summary": [
+          "The complete VectorSpace authoring experience as one control: toolbar and tool palette, layers, inspector, design systems, prototype editing, clipboard, sharing and collaboration, recovery and history. The host supplies an `EditorSession` and an `IWorkspaceStorage` (browser, desktop or your own). Depends on `VectorSpace.Editor` and `VectorSpace.Collaboration`; requires Uno Platform."
+        ],
+        "install": "dotnet add package VectorSpace.Workbench --prerelease",
+        "keyTypes": [
+          "`StudioWorkbench(EditorSession session, IWorkspaceStorage storage)` – the workbench `UserControl`.",
+          "`StudioWorkbench.Surface` – the hosted `DesignSurface` (renderer, typeface, focus).",
+          "`StudioWorkbench.ShowStatus(message, error)` and `OpenCollaborationInvitation(link)`.",
+          "`IWorkspaceStorage` / `ISharedRecoveryStorage` – implement for autosave, open/save and shared recovery."
+        ],
+        "content": [
+          {
+            "type": "code",
+            "lang": "csharp",
+            "code": "using VectorSpace.Documents;\nusing VectorSpace.Editing;\nusing VectorSpace.Workbench;\n\nvar session = new EditorSession(SampleDocument.Create());\n// Supply IWorkspaceStorage; optionally implement ISharedRecoveryStorage.\nvar workbench = new StudioWorkbench(session, storage);\nwindow.Content = workbench;\nwindow.Closed += (_, _) => workbench.Dispose();\nwindow.Activate();"
+          }
+        ],
+        "project": "VectorSpace.Workbench",
+        "nuget": {
+          "id": "VectorSpace.Workbench",
+          "version": "0.7.0-alpha.1",
+          "downloads": 0,
+          "verified": false
+        }
+      }
+    ]
+  }
 }

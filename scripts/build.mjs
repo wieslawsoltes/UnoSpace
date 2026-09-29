@@ -36,10 +36,15 @@ const projects = catalog.projects.map((entry, index) => {
   const cur = read(`data/projects/${slug}.json`);
   const gen = fs.existsSync(path.join(root, `data/generated/${slug}.json`)) ? read(`data/generated/${slug}.json`) : { projects: [], loc: { total: 0 }, workflows: [], docs: [], images: [], nuget: [] };
   const byName = new Map(gen.projects.map((p) => [p.name, p]));
+  const docs = gen.nugetDocs || null;
+  const docById = new Map((docs?.packages || []).map((d) => [d.id, d]));
   const packages = cur.packages.map((p) => {
     const g = byName.get(p.name);
-    return { ...p, gen: g || null, npm: !g };
+    const doc = docById.get(g?.packageId || p.name) || null;
+    return { ...p, gen: g || null, npm: !g, doc, nugetId: doc?.id || null };
   });
+  // Published packages ordered as the README documents them (lowest layer first).
+  const nugetPkgs = (docs?.packages || []).map((d) => ({ doc: d, pk: packages.find((x) => x.doc === d) || null }));
   const live = fs.existsSync(path.join(shotsRoot, slug, 'live.jpg')) ? `static/shots/${slug}/live.jpg` : null;
   const docShot = (gen.images || [])[0] ? `static/${gen.images[0]}` : null;
   return {
@@ -56,6 +61,10 @@ const projects = catalog.projects.map((entry, index) => {
     extraShots: (gen.images || []).map((i) => `static/${i}`),
     gen,
     packages,
+    nugetDocs: docs,
+    nugetPkgs,
+    nugetDownloads: nugetPkgs.reduce((m, x) => m + (x.doc.nuget?.downloads || 0), 0),
+    release: gen.release || null,
     app: gen.projects.find((p) => p.kind === 'app') || null,
     // Third-party packages shipped by libraries/app (test-only dependencies excluded).
     nuget: [...new Map(gen.projects.filter((x) => x.kind !== 'test').flatMap((x) => x.packageRefs).filter((r) => r.version).map((r) => [r.id, r])).values()].sort((a, b) => a.id.localeCompare(b.id)),
@@ -71,6 +80,8 @@ const totals = {
   docs: projects.reduce((n, p) => n + (p.gen.docs?.length || 0), 0),
   features: projects.reduce((n, p) => n + p.featureGroups.reduce((m, g) => m + g.items.length, 0), 0),
   tests: projects.reduce((n, p) => n + (p.gen.testProjectCount || 0), 0),
+  nuget: projects.reduce((n, p) => n + p.nugetPkgs.length, 0),
+  downloads: projects.reduce((n, p) => n + p.nugetDownloads, 0),
 };
 
 /* --------------------------------------------------------------- helpers */
@@ -81,6 +92,24 @@ const shortName = (full, prefix) => (full.startsWith(prefix + '.') ? full.slice(
 const md = (s = '') => esc(s).replace(/`([^`]+)`/g, '<code>$1</code>').replace(/\*\*([^*]+)\*\*/g, '<b>$1</b>');
 const keys = (s = '') => esc(s).split(/\s*\/\s*/).map((part) => part.split(/\s+|\+/).filter(Boolean).map((k) => `<kbd>${k}</kbd>`).join(' ')).join(' <span class="dim">/</span> ');
 const ghBlob = (p, file) => `${p.repoUrl}/blob/main/${file}`;
+// Inline markdown from READMEs: code spans, links, bold and italics.
+function inline(s = '') {
+  let out = '', last = 0;
+  const re = /`([^`]+)`|\[((?:[^\]]|\][^(])+)\]\((https?:[^)\s]+)\)|\*\*([^*]+)\*\*|(?<![\w*])\*([^*\s][^*]*?)\*(?![\w*])/g;
+  for (let m; (m = re.exec(s)); last = re.lastIndex) {
+    out += esc(s.slice(last, m.index));
+    if (m[1] !== undefined) out += `<code>${esc(m[1])}</code>`;
+    else if (m[2] !== undefined) out += `<a href="${esc(m[3])}" target="_blank" rel="noopener">${inline(m[2])}</a>`;
+    else if (m[4] !== undefined) out += `<b>${inline(m[4])}</b>`;
+    else out += `<i>${inline(m[5])}</i>`;
+  }
+  return out + esc(s.slice(last));
+}
+const compact = (v) => (v >= 1e6 ? `${(v / 1e6).toFixed(1).replace(/\.0$/, '')}M` : v >= 1e3 ? `${(v / 1e3).toFixed(1).replace(/\.0$/, '')}K` : String(v));
+const nugetUrl = (id) => `https://www.nuget.org/packages/${id}`;
+const isPre = (v = '') => v.includes('-');
+const copyBtn = (id) => `<button class="btn btn-sm" data-copy="${id}">${icon('copy', { size: 14 })} Copy</button>`;
+const codeBox = (id, code, lang, title) => `<div class="code"><div class="code-head"><span class="badge">${esc(lang)}</span>${title ? esc(title) : ''}${copyBtn(id)}</div><pre><code id="${id}">${highlight(code, lang)}</code></pre></div>`;
 const ghTree = (p, dir) => `${p.repoUrl}/tree/main/${dir}`;
 
 function writeFile(rel, content) {
@@ -312,24 +341,101 @@ function depGraph(p) {
 ${levelLines}${edges}${nodeSvg}</svg>`;
 }
 
-function pkgCard(pk, p) {
+// `page` is the relative URL of the app's project page ('' when rendering on that page).
+function pkgCard(pk, p, page = '') {
   const L = layerOf(pk.layer);
   const g = pk.gen;
+  const id = pk.nugetId || pk.name;
   const prefix = p.repo + '.';
-  const nm = pk.name.startsWith(prefix) ? `<span class="ns">${esc(prefix)}</span>${esc(pk.name.slice(prefix.length))}` : esc(pk.name);
+  const nm = id.startsWith(prefix) ? `<span class="ns">${esc(prefix)}</span>${esc(id.slice(prefix.length))}` : esc(id);
   const nuget = g ? g.packageRefs.filter((r) => r.version).map((r) => r.id) : [];
   const deps = g ? g.projectRefs : [];
-  const search = [pk.name, pk.role, pk.ui, pk.layer, p.name, ...nuget].join(' ').toLowerCase();
-  const href = g ? ghTree(p, path.posix.dirname(g.path)) : ghTree(p, `src/${pk.name}`);
-  return `<a class="card pkg" id="pkg-${esc(pk.name)}" href="${href}" target="_blank" rel="noopener" style="${vars(p)};--lc:${L.color}" data-layer="${pk.layer}" data-proj="${p.slug}" data-search="${esc(search)}">
-  <div class="row"><span class="layer-pill">${L.label}</span><span class="badge">${pk.npm ? 'npm' : g?.packable ? 'packable' : 'library'}</span></div>
+  const pub = pk.doc?.nuget;
+  const search = [pk.name, id, pk.role, pk.ui, pk.layer, p.name, ...nuget, ...(pk.doc?.keyTypes || [])].join(' ').toLowerCase();
+  const link = pk.doc
+    ? `href="${page}#nuget-${esc(id)}"`
+    : `href="${g ? ghTree(p, path.posix.dirname(g.path)) : ghTree(p, `src/${pk.name}`)}" target="_blank" rel="noopener"`;
+  return `<a class="card pkg" id="pkg-${esc(pk.name)}" ${link} style="${vars(p)};--lc:${L.color}" data-layer="${pk.layer}" data-proj="${p.slug}" data-search="${esc(search)}">
+  <div class="row"><span class="layer-pill">${L.label}</span>${pub ? `<span class="badge nuget-badge" title="Published on NuGet.org">${icon('package', { size: 12, stroke: 2 })} ${esc(pub.version)}</span>` : `<span class="badge">${pk.npm ? 'npm' : g?.packable ? 'packable' : 'library'}</span>`}</div>
   <h3>${nm}</h3>
   <p>${md(pk.role)}</p>
   <div class="tags"><span class="badge">${esc(pk.ui === 'None' ? 'No UI deps' : pk.ui)}</span>${g ? g.targetFrameworks.map((t) => `<span class="badge">${esc(t)}</span>`).join('') : ''}</div>
   ${deps.length ? `<div class="deps">refs → <span>${deps.map((d) => esc(shortName(d, p.repo))).join(', ')}</span></div>` : ''}
   ${nuget.length ? `<div class="deps">nuget → <span>${nuget.map(esc).join(', ')}</span></div>` : ''}
-  ${g ? `<div class="nums"><span><b>${n(g.loc)}</b> lines</span><span><b>${g.files}</b> files</span><span><b>${deps.length}</b> refs</span></div>` : ''}
+  ${g ? `<div class="nums"><span><b>${n(g.loc)}</b> lines</span><span><b>${g.files}</b> files</span><span><b>${deps.length}</b> refs</span>${pub?.downloads ? `<span><b>${compact(pub.downloads)}</b> downloads</span>` : ''}${pk.doc ? `<span class="go">Usage ${icon('arrow', { size: 13 })}</span>` : ''}</div>` : ''}
 </a>`;
+}
+
+// "Install from NuGet" section: install card, how packages fit together, and a package
+// browser with each package's summary, install line, key types and usage code (from the README).
+function nugetSection(p) {
+  const docs = p.nugetDocs;
+  if (!docs || !p.nugetPkgs.length) return '';
+  const list = p.nugetPkgs;
+  const main = list[0].doc;
+  const version = main.nuget?.version || p.gen.version || '';
+  const pre = isPre(version);
+  const rel = p.release;
+  const install = docs.install || main.install || `dotnet add package ${main.id}${pre ? ' --prerelease' : ''}`;
+  const noUno = list.filter(({ pk }) => pk && !/Uno/i.test(pk.ui)).length;
+  const refIds = (pk) => (pk?.gen?.projectRefs || []).map((r) => p.packages.find((x) => x.name === r)?.nugetId).filter(Boolean);
+  const short = (id) => shortName(id, p.repo);
+  const block = (b, key) => b.type === 'code' ? codeBox(key, b.code, b.lang === 'text' ? 'text' : b.lang, b.lang === 'xml' ? 'XAML resources' : 'Usage')
+    : b.type === 'list' ? `<${b.ordered ? 'ol' : 'ul'} class="ng-ul">${b.items.map((i) => `<li>${inline(i)}</li>`).join('')}</${b.ordered ? 'ol' : 'ul'}>`
+    : b.type === 'label' ? `<h4>${inline(b.text)}</h4>` : `<p>${inline(b.text)}</p>`;
+  const notes = docs.notes.map((b) => (b.type === 'code' ? `<pre class="ng-chain">${esc(b.code)}</pre>` : block(b))).join('');
+  const panel = ({ doc, pk }, i) => {
+    const L = layerOf(pk?.layer);
+    const pub = doc.nuget;
+    const tfms = pk?.gen?.targetFrameworks || [];
+    const deps = refIds(pk);
+    const usedBy = list.filter((x) => refIds(x.pk).includes(doc.id)).map((x) => x.doc.id);
+    const src = pk?.gen ? ghTree(p, path.posix.dirname(pk.gen.path)) : p.repoUrl;
+    const k = `ng-${p.slug}-${i}`;
+    const prefix = p.repo + '.';
+    return `<div class="ng-panel${i ? '' : ' on'}" data-pane="n${i}" id="nuget-${esc(doc.id)}" role="tabpanel" style="--lc:${L.color}">
+  <div class="ng-top">
+    <span class="ng-ico">${icon('package', { size: 22, stroke: 1.8 })}</span>
+    <div><h3>${doc.id.startsWith(prefix) ? `<span class="ns">${esc(prefix)}</span>${esc(doc.id.slice(prefix.length))}` : esc(doc.id)}</h3>
+    <div class="ng-tags"><span class="layer-pill">${L.label}</span>${pk ? `<span class="badge">${esc(pk.ui === 'None' ? 'No UI deps' : pk.ui)}</span>` : ''}${tfms.map((t) => `<span class="badge">${esc(t)}</span>`).join('')}${pub ? `<span class="badge">v${esc(pub.version)}</span>` : ''}${pub?.downloads ? `<span class="badge">${compact(pub.downloads)} downloads</span>` : ''}${/Apache/i.test(doc.description + doc.summary.join(' ')) ? '<span class="badge warn">Apache-2.0</span>' : ''}</div></div>
+    <div class="ng-links"><a class="btn btn-sm" href="${nugetUrl(doc.id)}" target="_blank" rel="noopener">${icon('external', { size: 14 })} NuGet.org</a><a class="btn btn-sm" href="${src}" target="_blank" rel="noopener">${icon('github', { size: 14 })} Source</a></div>
+  </div>
+  ${doc.summary.map((t) => `<p class="ng-sum">${inline(t)}</p>`).join('')}
+  <div class="ng-install">${codeBox(`${k}-i`, doc.install || `dotnet add package ${doc.id}${pre ? ' --prerelease' : ''}`, 'bash', 'Install')}</div>
+  ${deps.length || usedBy.length ? `<div class="ng-rel">${deps.length ? `<span><small>Depends on</small>${deps.map((d) => `<a href="#nuget-${esc(d)}">${esc(short(d))}</a>`).join('')}</span>` : '<span><small>Depends on</small><em>no other ' + esc(p.name) + ' package</em></span>'}${usedBy.length ? `<span><small>Used by</small>${usedBy.map((d) => `<a href="#nuget-${esc(d)}">${esc(short(d))}</a>`).join('')}</span>` : ''}</div>` : ''}
+  ${doc.keyTypes.length ? `<h4>Key types${doc.keyTypesNote ? ` <small>${inline(doc.keyTypesNote)}</small>` : ''}</h4><ul class="ng-keys">${doc.keyTypes.map((t) => `<li>${inline(t)}</li>`).join('')}</ul>` : ''}
+  ${doc.content.length ? `<h4>Basic usage</h4><div class="ng-content">${doc.content.map((b, j) => block(b, `${k}-c${j}`)).join('')}</div>` : ''}
+</div>`;
+  };
+  return `<section class="section" id="nuget" style="padding-top:40px">
+  <div class="wrap">
+    <div class="section-head" data-reveal>
+      <div class="eyebrow">Install from NuGet</div>
+      <h2>${list.length} packages <span class="accent-text">on NuGet.org</span></h2>
+      ${docs.intro.map((t) => `<p>${inline(t)}</p>`).join('')}
+    </div>
+    <div class="ng-hero" data-reveal>
+      <div class="ng-facts">
+        <div><b>${list.length}</b><span>packages</span></div>
+        <div><b class="mono">${esc(version)}</b><span>${pre ? 'pre-release' : 'stable'}${rel?.publishedAt ? ` · ${new Date(rel.publishedAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}` : ''}</span></div>
+        <div><b>${noUno}</b><span>plain .NET — no UI framework</span></div>
+        <div><b>${p.nugetDownloads ? compact(p.nugetDownloads) : 'New'}</b><span>${p.nugetDownloads ? 'downloads' : 'just published'}</span></div>
+      </div>
+      <div class="ng-cmds" data-tabs>
+        <div class="code-tabs"><button class="chip is-on" data-tab="cli">.NET CLI</button><button class="chip" data-tab="ref">PackageReference</button><button class="chip" data-tab="cpm">Central versions</button></div>
+        <div class="code-pane on" data-pane="cli">${codeBox(`ng-${p.slug}-cli`, install, 'bash', 'Start with the foundation package')}</div>
+        <div class="code-pane" data-pane="ref">${codeBox(`ng-${p.slug}-ref`, list.map(({ doc }) => `<PackageReference Include="${doc.id}" Version="${doc.nuget?.version || version}" />`).join('\n'), 'xml', 'Every package — keep only what you need')}</div>
+        <div class="code-pane" data-pane="cpm">${codeBox(`ng-${p.slug}-cpm`, `<!-- Directory.Packages.props -->\n<ItemGroup>\n${list.map(({ doc }) => `  <PackageVersion Include="${doc.id}" Version="${doc.nuget?.version || version}" />`).join('\n')}\n</ItemGroup>`, 'xml', 'Central package management')}</div>
+        <p class="ng-foot">${icon('shield', { size: 14 })} Published with NuGet Trusted Publishing from GitHub Actions, with symbols (<code>.snupkg</code>) and SourceLink.${rel ? ` <a href="${rel.url}" target="_blank" rel="noopener">Release ${esc(rel.tag)} ↗</a>` : ''}</p>
+      </div>
+    </div>
+    ${notes ? `<div class="ng-notes" data-reveal>${notes}</div>` : ''}
+    <div class="ng-browser" data-tabs data-reveal>
+      <div class="ng-list" role="tablist" aria-label="${esc(p.name)} packages">${list.map(({ doc, pk }, i) => `<button class="ng-item${i ? '' : ' on'}" role="tab" aria-selected="${!i}" data-tab="n${i}" style="--lc:${layerOf(pk?.layer).color}"><i></i><span><b>${esc(short(doc.id))}</b><small>${esc(pk ? layerOf(pk.layer).label : '')}${pk && /^None/.test(pk.ui) ? ' · no UI' : pk ? ` · ${esc(pk.ui)}` : ''}</small></span></button>`).join('')}</div>
+      <div class="ng-panels">${list.map(panel).join('')}</div>
+    </div>
+  </div>
+</section>`;
 }
 
 /* ================================================================= HOME */
@@ -393,7 +499,7 @@ function homePage() {
     <div class="orbit-stage" data-bloom-focus aria-label="Interactive orbit of all Uno Space apps">
       <canvas id="orbit" role="img" aria-label="Orbit visualization: hover an app tile to see the app, click to open it"></canvas>
       <div class="orbit-label"></div>
-      <div class="float-card fc1" data-depth="18" aria-hidden="true"><span class="fc-ico" style="--a1:#0f6cbd;--a2:#62abf5">${icon('package', { size: 18, stroke: 2 })}</span><span><b>${n(totals.libraries)} libraries</b><small>reusable .NET packages</small></span></div>
+      <div class="float-card fc1" data-depth="18" aria-hidden="true"><span class="fc-ico" style="--a1:#0f6cbd;--a2:#62abf5">${icon('package', { size: 18, stroke: 2 })}</span><span><b>${n(totals.libraries)} libraries</b><small>${totals.nuget} on NuGet.org</small></span></div>
       <div class="float-card fc2" data-depth="30" aria-hidden="true"><span class="fc-ico" style="--a1:#107c41;--a2:#4cb87a">${icon('globe', { size: 18, stroke: 2 })}</span><span><b>WebAssembly</b><small>Windows · macOS · Linux</small></span></div>
       <div class="float-card fc3" data-depth="24" aria-hidden="true"><span class="fc-ico" style="--a1:#8764b8;--a2:#c3a8f0">${icon('bolt', { size: 18, stroke: 2 })}</span><span><b>Uno + SkiaSharp</b><small>one C# codebase</small></span></div>
     </div>
@@ -523,7 +629,7 @@ function homePage() {
     <div class="cta" data-reveal="zoom">
       <div class="eyebrow">Build with the parts</div>
       <h2>${n(totals.libraries)} libraries.<br><span class="grad-text">Embed any of them.</span></h2>
-      <p>Spreadsheet engines, PDF renderers, timeline editors, CAD geometry, diff algorithms, PLC simulation — browse every reusable package, its layer, dependencies and UI requirements.</p>
+      <p>Spreadsheet engines, PDF renderers, timeline editors, CAD geometry, diff algorithms, PLC simulation — browse every reusable package, its layer, dependencies and UI requirements. ${totals.nuget} of them are on NuGet.org, each with install and usage docs.</p>
       <div class="actions"><a class="btn btn-primary" href="packages/index.html">${icon('package', { size: 18 })} Package explorer</a><a class="btn" href="compare/index.html">${icon('chart', { size: 16 })} Compare apps</a></div>
     </div>
   </div>
@@ -545,7 +651,7 @@ function projectPage(p) {
   }).join('');
   const featureCount = p.featureGroups.reduce((m, x) => m + x.items.length, 0);
   const sections = [
-    ['overview', 'Overview'], ['features', 'Features'], ['playground', 'Playground'], ['packages', 'Packages'], ['architecture', 'Architecture'],
+    ['overview', 'Overview'], ['features', 'Features'], ['playground', 'Playground'], ['packages', 'Packages'], ...(p.nugetPkgs.length ? [['nuget', 'NuGet']] : []), ['architecture', 'Architecture'],
     ...(p.codeSamples?.length ? [['code', 'Code']] : []), ...(p.formats?.length || p.shortcuts?.length ? [['formats', 'Formats & keys']] : []), ['build', 'Build & CI'], ['boundaries', 'Boundaries'], ...(p.docs?.length ? [['docs', 'Docs']] : []),
   ];
   const nugetAll = p.nuget;
@@ -632,12 +738,14 @@ function projectPage(p) {
     <div class="section-head" data-reveal>
       <div class="eyebrow">Reusable packages</div>
       <h2>${p.packages.length} libraries <span class="accent-text">you can embed</span></h2>
-      <p>${p.name} is assembled from independently reusable libraries. Hover the graph to trace dependencies; click a node to jump to its package.</p>
+      <p>${p.name} is assembled from independently reusable libraries${p.nugetPkgs.length ? ', each published on NuGet.org' : ''}. Hover the graph to trace dependencies; click a node to jump to its package${p.nugetPkgs.length ? ', and open a card for install and usage' : ''}.</p>
     </div>
     <div class="card graph-card" data-reveal>${depGraph(p)}<div class="graph-hint">${icon('info', { size: 14 })} Arrows point from a project to what it references. Bars show relative size. <span style="display:flex;gap:12px;flex-wrap:wrap;margin-left:auto">${[...new Set(p.packages.map((x) => x.layer))].map((l) => `<span style="display:inline-flex;gap:6px;align-items:center"><i style="width:8px;height:8px;border-radius:50%;background:${layerOf(l).color}"></i>${layerOf(l).label}</span>`).join('')}</span></div></div>
     <div class="pkg-grid" style="margin-top:22px">${p.packages.map((pk) => pkgCard(pk, p)).join('')}</div>
   </div>
 </section>
+
+${nugetSection(p)}
 
 <section class="section" id="architecture" style="padding-top:40px">
   <div class="wrap">
@@ -751,11 +859,17 @@ function packagesPage() {
   <div class="wrap">
     <div class="eyebrow">Package explorer</div>
     <h1><span class="grad-text">${all.length}</span> reusable libraries</h1>
-    <p>Every app is decomposed into packages you can reference on their own — ${noUi} of them have no UI dependency at all. Filter by architectural layer or app, or search by capability.</p>
+    <p>Every app is decomposed into packages you can reference on their own — ${noUi} of them have no UI dependency at all, and ${totals.nuget} are published on NuGet.org. Filter by architectural layer or app, search by capability or type name, and open any package for install and usage.</p>
   </div>
 </section>
 <section class="section-sm" style="padding-top:0" id="pkg-explorer">
   <div class="wrap">
+    <div class="ng-strip" data-reveal>
+      <span class="ng-ico">${icon('package', { size: 22, stroke: 1.8 })}</span>
+      <div><b>${totals.nuget} packages on NuGet.org</b><span>${totals.downloads ? `${compact(totals.downloads)} downloads · ` : ''}Trusted Publishing from GitHub Actions · symbols and SourceLink</span></div>
+      <code class="ng-strip-cmd">dotnet add package &lt;App&gt;.Core</code>
+      <a class="btn btn-sm" href="https://www.nuget.org/profiles/${catalog.nugetOwner || owner}" target="_blank" rel="noopener">${icon('external', { size: 14 })} NuGet profile</a>
+    </div>
     <div class="stats" data-reveal style="grid-template-columns:repeat(auto-fit,minmax(130px,1fr));margin-bottom:30px">${layerCounts.map(({ L, n: c }) => `<div class="stat"><b data-count="${c}" style="color:${L.color}">0</b><span>${L.label}<br><small class="dim">${esc(L.text)}</small></span></div>`).join('')}</div>
     <div class="toolbar">
       <button class="chip is-on" data-layer-filter="all">All layers</button>
@@ -765,12 +879,12 @@ function packagesPage() {
     </div>
     <p class="dim mono" style="font-size:13px"><span id="pkg-count">${all.length}</span> packages shown</p>
     ${projects.map((p) => `<div class="pkg-section" style="margin-top:34px">
-      <h2 style="display:flex;align-items:center;gap:14px;font-size:26px">${planet(p, '', 20)}<a href="${R}projects/${p.slug}/index.html#packages">${p.name}</a><span class="dim" style="font:500 13px var(--mono)">${p.packages.length} packages</span></h2>
-      <div class="pkg-grid">${p.packages.map((pk) => pkgCard(pk, p)).join('')}</div>
+      <h2 style="display:flex;align-items:center;gap:14px;font-size:26px;flex-wrap:wrap">${planet(p, '', 20)}<a href="${R}projects/${p.slug}/index.html#packages">${p.name}</a><span class="dim" style="font:500 13px var(--mono)">${p.packages.length} packages${p.nugetPkgs.length ? ` · v${esc(p.nugetPkgs[0].doc.nuget?.version || p.gen.version)}` : ''}</span>${p.nugetPkgs.length ? `<a class="btn btn-sm" style="margin-left:auto" href="${R}projects/${p.slug}/index.html#nuget">${icon('package', { size: 14 })} Install &amp; usage</a>` : ''}</h2>
+      <div class="pkg-grid">${p.packages.map((pk) => pkgCard(pk, p, `${R}projects/${p.slug}/index.html`)).join('')}</div>
     </div>`).join('')}
   </div>
 </section>`;
-  return layout({ R, title: 'Package explorer', description: `Browse ${all.length} reusable .NET libraries across ${projects.length} Uno Platform apps, by layer and dependency.`, body, active: 'packages', canonical: 'packages/' });
+  return layout({ R, title: 'Package explorer', description: `Browse ${all.length} reusable .NET libraries across ${projects.length} Uno Platform apps — ${totals.nuget} on NuGet.org — by layer, dependency and usage.`, body, active: 'packages', canonical: 'packages/' });
 }
 
 /* ============================================================== COMPARE */
@@ -787,9 +901,10 @@ function comparePage() {
     features: p.featureGroups.reduce((m, g) => m + g.items.length, 0),
     formats: p.formats?.length || 0,
     docs: p.gen.docs?.length || 0,
+    nuget: p.nugetPkgs.length,
   }));
   const max = (k) => Math.max(1, ...rows.map((r) => r[k]));
-  const cols = [['loc', 'Lines'], ['tests', 'Test lines'], ['libs', 'Libraries'], ['features', 'Features'], ['projects', 'Projects'], ['workflows', 'CI'], ['formats', 'Formats'], ['docs', 'Docs']];
+  const cols = [['loc', 'Lines'], ['tests', 'Test lines'], ['libs', 'Libraries'], ['nuget', 'NuGet'], ['features', 'Features'], ['projects', 'Projects'], ['workflows', 'CI'], ['formats', 'Formats'], ['docs', 'Docs']];
   // bubble chart: x = codebase size, y = catalogued features, r = libraries
   const W = 1000, H = 540, pad = 64;
   const ext = (k, padFrac) => { const v = rows.map((r) => r[k]); const lo = Math.min(...v), hi = Math.max(...v); const d = (hi - lo) * padFrac; return [Math.max(0, lo - d), hi + d]; };
@@ -876,7 +991,7 @@ writeFile('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns=
 writeFile('data/apps.json', JSON.stringify({
   generatedAt: buildTime.toISOString(),
   totals,
-  apps: projects.map((p) => ({ name: p.name, slug: p.slug, category: p.category, tagline: p.tagline, url: p.url, repo: p.repoUrl, version: p.gen.version, loc: p.gen.loc, packages: p.packages.map((x) => ({ name: x.name, layer: x.layer, ui: x.ui, role: x.role })) })),
+  apps: projects.map((p) => ({ name: p.name, slug: p.slug, category: p.category, tagline: p.tagline, url: p.url, repo: p.repoUrl, version: p.gen.version, loc: p.gen.loc, packages: p.packages.map((x) => ({ name: x.name, layer: x.layer, ui: x.ui, role: x.role, nuget: x.nugetId ? { id: x.nugetId, version: x.doc.nuget?.version || null, url: nugetUrl(x.nugetId), install: x.doc.install } : null })) })),
 }, null, 2));
 writeFile('build-info.json', JSON.stringify({ builtAt: buildTime.toISOString(), commit: process.env.GITHUB_SHA || null, run: process.env.GITHUB_RUN_ID || null }, null, 2));
 console.log(`built ${urls.length} pages → ${path.relative(root, out)} (${totals.apps} apps, ${totals.libraries} libraries, ${n(totals.loc)} lines)`);

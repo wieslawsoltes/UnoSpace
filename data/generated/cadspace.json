@@ -6,18 +6,24 @@
   "unoSdk": "6.7.30",
   "pinned": [],
   "github": {
-    "stars": 9,
+    "stars": 11,
     "forks": 4,
     "openIssues": 0,
     "createdAt": "2026-09-27T10:14:48Z",
-    "pushedAt": "2026-09-28T19:43:26Z",
+    "pushedAt": "2026-09-29T17:06:26Z",
     "homepage": "https://wieslawsoltes.github.io/CadSpace/",
     "license": "MIT"
   },
+  "release": {
+    "tag": "v0.1.0",
+    "url": "https://github.com/wieslawsoltes/CadSpace/releases/tag/v0.1.0",
+    "prerelease": false,
+    "publishedAt": "2026-09-29T14:38:10Z"
+  },
   "lastCommit": {
-    "sha": "59f3943",
-    "date": "2026-09-28T21:43:26+02:00",
-    "subject": "Merge pull request #7 from sasakrsmanovic/patch-1"
+    "sha": "c82634a",
+    "date": "2026-09-29T19:00:00+02:00",
+    "subject": "Document NuGet packages with badges and usage"
   },
   "loc": {
     "total": 9324,
@@ -37,6 +43,7 @@
         "net10.0"
       ],
       "packable": false,
+      "packageId": "CadSpace.Advanced.Tests",
       "description": "",
       "unoFeatures": [],
       "projectRefs": [
@@ -57,6 +64,7 @@
         "net10.0-browserwasm"
       ],
       "packable": false,
+      "packageId": "CadSpace.App",
       "description": "",
       "unoFeatures": [
         "SkiaRenderer",
@@ -85,7 +93,8 @@
         "net10.0-browserwasm"
       ],
       "packable": true,
-      "description": "",
+      "packageId": "CadSpace.Controls",
+      "description": "Uno Platform CAD workspace controls for CadSpace: viewport, ribbon, palettes, managers, command console and navigation.",
       "unoFeatures": [
         "SkiaRenderer",
         "GLCanvas"
@@ -112,7 +121,8 @@
         "net10.0"
       ],
       "packable": false,
-      "description": "",
+      "packageId": "CadSpace.Dxf",
+      "description": "DXF reading and writing (ASCII and binary), native CadSpace projects and a checksummed recovery journal.",
       "unoFeatures": [],
       "projectRefs": [
         "CadSpace.Model"
@@ -130,7 +140,8 @@
         "net10.0"
       ],
       "packable": false,
-      "description": "",
+      "packageId": "CadSpace.Engine",
+      "description": "CadSpace editing engine: sessions, commands, selection, grips, snapping, undoable edits and workspace preferences.",
       "unoFeatures": [],
       "projectRefs": [
         "CadSpace.Model"
@@ -148,6 +159,7 @@
         "net10.0"
       ],
       "packable": false,
+      "packageId": "CadSpace.Exchange.Tests",
       "description": "",
       "unoFeatures": [],
       "projectRefs": [
@@ -167,7 +179,8 @@
         "net10.0"
       ],
       "packable": false,
-      "description": "",
+      "packageId": "CadSpace.Geometry",
+      "description": "Double-precision CAD geometry for CadSpace: vectors, transforms, OCS, rays/planes, intersections, triangulation and spatial indexing.",
       "unoFeatures": [],
       "projectRefs": [],
       "packageRefs": [],
@@ -183,7 +196,8 @@
         "net10.0"
       ],
       "packable": false,
-      "description": "",
+      "packageId": "CadSpace.Model",
+      "description": "Immutable CadSpace drawing model: geometry, styles, blocks, scene cache, spline, hatch and mesh algorithms.",
       "unoFeatures": [],
       "projectRefs": [
         "CadSpace.Geometry"
@@ -201,6 +215,7 @@
         "net10.0"
       ],
       "packable": false,
+      "packageId": "CadSpace.Performance.Tests",
       "description": "",
       "unoFeatures": [],
       "projectRefs": [
@@ -220,6 +235,7 @@
         "net10.0"
       ],
       "packable": false,
+      "packageId": "CadSpace.Persistence.Tests",
       "description": "",
       "unoFeatures": [],
       "projectRefs": [
@@ -239,7 +255,8 @@
         "net10.0"
       ],
       "packable": false,
-      "description": "",
+      "packageId": "CadSpace.Rendering",
+      "description": "CadSpace rendering: cameras, SkiaSharp 2D drafting and OpenGL geometry, text, pattern and selection passes.",
       "unoFeatures": [],
       "projectRefs": [
         "CadSpace.Model"
@@ -266,6 +283,7 @@
         "net10.0"
       ],
       "packable": false,
+      "packageId": "CadSpace.Tests",
       "description": "",
       "unoFeatures": [],
       "projectRefs": [
@@ -309,5 +327,197 @@
     "docs/WIDE-POLYLINES.md",
     "docs/WORKSPACE.md"
   ],
-  "images": []
+  "images": [],
+  "nugetDocs": {
+    "intro": [
+      "All six libraries are MIT-licensed, versioned together with the app and published to [NuGet.org](https://www.nuget.org/packages?q=CadSpace) on tagged releases, with symbol packages (`.snupkg`) and SourceLink. The first five target `net10.0`: geometry, model, editing and exchange require neither Uno nor a graphics context, and only `CadSpace.Rendering` brings SkiaSharp and Silk.NET OpenGL. `CadSpace.Controls` is the Uno Platform package (`net10.0-desktop` and `net10.0-browserwasm`) and ships every workspace component in one package, not one package per widget. The app owns file dialogs and document lifetime."
+    ],
+    "install": "dotnet add package CadSpace.Geometry",
+    "notes": [
+      {
+        "type": "paragraph",
+        "text": "Dependencies follow the project references: `Model` → `Geometry`; `Engine`, `Dxf` and `Rendering` → `Model` (`Rendering` adds SkiaSharp and Silk.NET.OpenGL); `Controls` → `Engine` + `Rendering`."
+      }
+    ],
+    "packages": [
+      {
+        "id": "CadSpace.Geometry",
+        "description": "Double-precision vectors/transforms, OCS, rays/planes, intersections, triangulation and spatial index.",
+        "summary": [
+          "The dependency-free math layer: `Vec3`, affine `Transform3`, bounds, rays and planes, object coordinate systems (OCS), 2D/3D intersection helpers, polygon triangulation and a bounding-volume `SpatialIndex` for fast window/ray queries. Use it for any double-precision CAD geometry work; no UI."
+        ],
+        "install": "dotnet add package CadSpace.Geometry",
+        "keyTypes": [
+          "`Vec3`, `Bounds3`, `Ray3`, `Plane3` – immutable value types with dot/cross, `Include`/`Union`, plane and triangle intersection.",
+          "`Transform3` – `Translation`, `Scaling`, `RotationZ`, `RotationAxis`, `MirrorXY`, composed with `Then`.",
+          "`GeometryMath` – `IntersectLinesXY`, `CircleThrough`, `NearestOnSegment`, `PointInPolygon`, `TryParsePoint`.",
+          "`Coordinates3D` – OCS (`ObjectCoordinateSystem`), `Frame` and `Inverse`.",
+          "`Triangulation` / `SpatialIndex` – polygon triangulation and indexed box/ray queries."
+        ],
+        "content": [
+          {
+            "type": "code",
+            "lang": "csharp",
+            "code": "using CadSpace.Geometry;\n\nvar a = new Vec3(0, 0);\nvar b = new Vec3(100, 50);\nif (GeometryMath.IntersectLinesXY(a, b, new Vec3(0, 50), new Vec3(100, 0), out var hit))\n    Console.WriteLine($\"Intersection at {hit}\");\n\nvar transform = Transform3.RotationZ(45, center: new Vec3(50, 25)).Then(Transform3.Translation(new Vec3(10, 0)));\nVec3 moved = transform.Point(b);\nvar (center, radius) = GeometryMath.CircleThrough(a, b, new Vec3(100, 0));\n\nVec3[] square = [new(0, 0), new(10, 0), new(10, 10), new(0, 10)];\nint[] triangles = Triangulation.Polygon(square);                // index triples\n\nvar index = new SpatialIndex([Bounds3.From(square), Bounds3.From([moved, moved + new Vec3(5, 5)])]);\nvar found = new List<int>();\nindex.Query(new Bounds3(new Vec3(-1, -1), new Vec3(20, 20)), found, xyOnly: true);"
+          }
+        ],
+        "keyTypesNote": "namespace `CadSpace.Geometry`",
+        "project": "CadSpace.Geometry",
+        "nuget": {
+          "id": "CadSpace.Geometry",
+          "version": "0.1.0",
+          "downloads": 0,
+          "verified": false
+        }
+      },
+      {
+        "id": "CadSpace.Model",
+        "description": "Immutable entities, styles and blocks, undoable documents, scene cache, spline/hatch and mesh algorithms.",
+        "summary": [
+          "The immutable drawing model: entity records (lines, polylines with bulges/widths, arcs, circles, ellipses, splines, text, dimensions, hatches, meshes, block references), layers, linetypes and blocks in a `Drawing`, an undoable `CadDocument`, scene tessellation and mesh algorithms (primitives, extrude/revolve and closed-mesh Booleans). Depends on `CadSpace.Geometry`; no UI."
+        ],
+        "install": "dotnet add package CadSpace.Model",
+        "keyTypes": [
+          "`Drawing` – immutable entities, `Layers`, `Blocks`, `Linetypes`; start from `Drawing.Empty`.",
+          "`CadDocument` – validated, undoable wrapper: `Edit`, `Add`, `Undo`/`Redo`, `IsDirty`, `Changed`.",
+          "`LineEntity`, `CircleEntity`, `PolylineEntity`, `TextEntity`, `HatchEntity`, `MeshEntity`, … – `Entity` records with layer/color/linetype.",
+          "`EntityGeometry.BuildScene(drawing)` – tessellates to a `DrawingScene` of paths, texts and triangles.",
+          "`MeshFactory` / `MeshBoolean` – boxes, cylinders, spheres, extrusion, revolution and union/subtract/intersect."
+        ],
+        "content": [
+          {
+            "type": "code",
+            "lang": "csharp",
+            "code": "using CadSpace.Geometry;\nusing CadSpace.Model;\n\nvar document = new CadDocument();\ndocument.Edit(\"Add layer\", d => d with { Layers = d.Layers.Add(\"Walls\", new Layer(\"Walls\", 0xFFFFC857)) });\ndocument.Add(\"Draw walls\",\n    PolylineEntity.FromPoints([new(0, 0), new(240, 0), new(240, 140), new(0, 140)], closed: true) with { Layer = \"Walls\" },\n    new CircleEntity(new Vec3(120, 70), 30));\n\nvar box = MeshFactory.Box(new Vec3(0, 0, 0), new Vec3(50, 50, 50));\nvar drill = MeshFactory.Cylinder(new Vec3(25, 25, -10), 10, 70);\ndocument.Add(\"Drill\", MeshBoolean.Apply(box, drill, MeshBooleanOperation.Subtract));\n\nDrawingScene scene = EntityGeometry.BuildScene(document.Drawing);\nConsole.WriteLine($\"{document.Drawing.Entities.Length} entities, {scene.Paths.Length} paths, {scene.Triangles.Length} triangles\");\ndocument.Undo();"
+          }
+        ],
+        "keyTypesNote": "namespace `CadSpace.Model`",
+        "project": "CadSpace.Model",
+        "nuget": {
+          "id": "CadSpace.Model",
+          "version": "0.1.0",
+          "downloads": 0,
+          "verified": false
+        }
+      },
+      {
+        "id": "CadSpace.Engine",
+        "description": "Sessions, commands, selection, grips, snapping, undoable editing and workspace preferences.",
+        "summary": [
+          "The headless CAD session: selection (pick, window, crossing), object snaps, grips, transforms, offset/trim/extend/fillet and other edits, block creation, mesh modeling commands and a text `CommandEngine` implementing the command-line workflows. Also holds the `WorkspaceLayout` preference codec and sample drawings. Depends on `CadSpace.Model`; no UI."
+        ],
+        "install": "dotnet add package CadSpace.Engine",
+        "keyTypes": [
+          "`CadSession` – `Document`, `Selection`, `SelectWindow`, `HitTest`, `Snap`, `TransformSelection`, `Offset`, `Extrude`, `Changed`.",
+          "`CommandEngine` – `Submit(text)`, `Point(vec)`, `Preview(cursor)`, `Prompt`, `Message`; `Commands` lists every workflow.",
+          "`CommandCatalog.Suggest(query)` – command completion.",
+          "`GripEditing`, `LineEditing`, `PolylineEditing`, `AdvancedEditing` – reusable entity edits.",
+          "`WorkspaceLayout` / `SampleDrawings` – preference `Encode`/`Decode` and the `StudioPlan`/`ModelStudy` samples."
+        ],
+        "content": [
+          {
+            "type": "code",
+            "lang": "csharp",
+            "code": "using CadSpace.Engine;\nusing CadSpace.Geometry;\nusing CadSpace.Model;\n\nvar session = new CadSession(new CadDocument(SampleDrawings.StudioPlan()));\nvar commands = new CommandEngine(session);\ncommands.Message += Console.WriteLine;\n\nforeach (var line in new[] { \"RECTANG\", \"0,0\", \"240,140\", \"CIRCLE\", \"120,70\", \"30\" })\n    commands.Submit(line);                                     // same input as the command line\n\nsession.SelectWindow(new Vec3(-10, -10), new Vec3(250, 150), crossing: false);\nsession.TransformSelection(\"Copy\", Transform3.Translation(new Vec3(500, 0)), copy: true);\nSnapResult snap = session.Snap(new Vec3(501, 2), tolerance: 5);\nConsole.WriteLine($\"{snap.Kind} at {snap.Point}; {commands.Prompt}\");\nsession.Document.Undo();"
+          }
+        ],
+        "keyTypesNote": "namespace `CadSpace.Engine`",
+        "project": "CadSpace.Engine",
+        "nuget": {
+          "id": "CadSpace.Engine",
+          "version": "0.1.0",
+          "downloads": 0,
+          "verified": false
+        }
+      },
+      {
+        "id": "CadSpace.Dxf",
+        "description": "ASCII/binary DXF reading and writing, native `.cadspace` projects and a checksummed recovery journal.",
+        "summary": [
+          "DXF exchange and persistence: ASCII and binary DXF reading with code-page detection, writers that reuse unmodified source records, the native `.cadspace` project format (geometry plus original DXF provenance) and a checksummed, alternating-slot `RecoveryJournal` over a host-supplied `IRecoveryStorage`. Depends on `CadSpace.Model`; no UI. Review returned warnings for lossy conversions."
+        ],
+        "install": "dotnet add package CadSpace.Dxf",
+        "keyTypes": [
+          "`DxfBinary` – `Read(bytes)` for ASCII or binary input, `Write(drawing, source, binary)`, `IsBinary`.",
+          "`DxfCodec` – text `Read`/`Write` returning `DxfReadResult`/`DxfWriteResult` with warnings.",
+          "`CadProjectCodec` – native project `Write`/`Read` preserving the `DxfSource`.",
+          "`RecoveryJournal` / `IRecoveryStorage` – `SaveAsync`, `ReadAsync`, `RemoveAsync` checkpoints."
+        ],
+        "content": [
+          {
+            "type": "code",
+            "lang": "csharp",
+            "code": "using CadSpace.Dxf;\n\nDxfReadResult read = DxfBinary.Read(File.ReadAllBytes(\"plan.dxf\"), \"plan.dxf\");   // ASCII or binary\nforeach (var warning in read.Warnings) Console.WriteLine(warning);\n\nDxfWriteResult ascii = DxfCodec.Write(read.Drawing, read.Source);    // reuses unmodified source records\nFile.WriteAllText(\"plan-copy.dxf\", ascii.Text);\nDxfBytesResult binary = DxfBinary.Write(read.Drawing, read.Source, binary: true);\nFile.WriteAllBytes(\"plan-binary.dxf\", binary.Bytes);\n\nFile.WriteAllText(\"plan.cadspace\", CadProjectCodec.Write(read.Drawing, read.Source));\nCadProjectReadResult project = CadProjectCodec.Read(File.ReadAllText(\"plan.cadspace\"));\n\nvar journal = new RecoveryJournal(storage);                          // your IRecoveryStorage\nawait journal.SaveAsync(Guid.NewGuid(), generation: 1, \"plan.dxf\", project.Drawing, project.DxfSource);"
+          }
+        ],
+        "keyTypesNote": "namespace `CadSpace.Dxf`",
+        "project": "CadSpace.Dxf",
+        "nuget": {
+          "id": "CadSpace.Dxf",
+          "version": "0.1.0",
+          "downloads": 0,
+          "verified": false
+        }
+      },
+      {
+        "id": "CadSpace.Rendering",
+        "description": "Cameras, SkiaSharp 2D drafting and OpenGL geometry, text, pattern and selection passes.",
+        "summary": [
+          "Rendering building blocks without a UI framework: 2D and 3D cameras, a SkiaSharp drafting renderer (grid, linetypes, widths, selection, snap/cursor overlays) and OpenGL scene, text, pattern and selection-attribute passes through Silk.NET, plus ViewCube geometry. Depends on `CadSpace.Model`, SkiaSharp and Silk.NET.OpenGL; the OpenGL passes need a current GL/GLES/WebGL context supplied by the host."
+        ],
+        "install": "dotnet add package CadSpace.Rendering",
+        "keyTypes": [
+          "`Camera2D` – `Fit`, `Pan`, `Zoom`, `WorldToScreen`/`ScreenToWorld`, `VisibleBounds`.",
+          "`Camera3D` – orbit/zoom/pan, orthographic or perspective `Matrix`, `Ray` picking and `Project`.",
+          "`SkiaDraftRenderer` – `Render(canvas, camera, scene, selection)` and `DrawInteraction` overlays.",
+          "`GlSceneRenderer` – `Initialize(gl)`, `Render(gl, scene, camera, …)` with `ModelVisualStyle`, `Destroy(gl)`.",
+          "`ViewCubeGeometry` – named orientations, cube faces and picking."
+        ],
+        "content": [
+          {
+            "type": "code",
+            "lang": "csharp",
+            "code": "using CadSpace.Geometry;\nusing CadSpace.Model;\nusing CadSpace.Rendering;\nusing SkiaSharp;\n\nvar drawing = Drawing.Empty with { Entities = [new LineEntity(new Vec3(0, 0), new Vec3(240, 140)), new CircleEntity(new Vec3(120, 70), 30)] };\nDrawingScene scene = EntityGeometry.BuildScene(drawing);\n\nvar camera = new Camera2D { Width = 1200, Height = 800 };\ncamera.Fit(Bounds3.From(scene.Paths.SelectMany(p => p.Points)));\n\nusing var surface = SKSurface.Create(new SKImageInfo(1200, 800));\nusing var renderer = new SkiaDraftRenderer();\nrenderer.Render(surface.Canvas, camera, scene, new HashSet<Guid>(), grid: true);\nusing var png = surface.Snapshot().Encode(SKEncodedImageFormat.Png, 100);\nFile.WriteAllBytes(\"plan.png\", png.ToArray());"
+          }
+        ],
+        "keyTypesNote": "namespace `CadSpace.Rendering`",
+        "project": "CadSpace.Rendering",
+        "nuget": {
+          "id": "CadSpace.Rendering",
+          "version": "0.1.0",
+          "downloads": 0,
+          "verified": false
+        }
+      },
+      {
+        "id": "CadSpace.Controls",
+        "description": "Uno workspace: viewport, ribbon, palettes, managers, command line and navigation.",
+        "summary": [
+          "The Uno Platform CAD workspace: `CadWorkspace` assembles the application bar, ribbon, classic menus, document/layout tabs, retained Skia/OpenGL `CadViewport` with ViewCube and navigation bar, dockable palettes, Properties and Layer/Linetype managers, command line with dynamic input and the status bar. Each component can also be hosted on its own. Depends on `CadSpace.Engine` and `CadSpace.Rendering`; requires Uno Platform (Skia renderer; 3D needs OpenGL/GLES/WebGL)."
+        ],
+        "install": "dotnet add package CadSpace.Controls",
+        "keyTypes": [
+          "`CadWorkspace` – `Bind(session, commands)`, `Invoke(command)`, `FileRequested`, `PreferencesChanged`, `RestorePreferences`.",
+          "`CadViewport` – `Bind`, `Fit()`, `Set3D`, `Camera`/`ModelCamera`, `VisualStyle`, `ClippingPlane`.",
+          "`CadCommandLine` – command history and input bound to a `CommandEngine`.",
+          "`CadRibbon`, `CadDockHost`/`CadDockPane`, `CadPropertySelectors`, `CadLayerManager`, `CadStatusBar`, `CadWorkspaceOptions`."
+        ],
+        "content": [
+          {
+            "type": "code",
+            "lang": "csharp",
+            "code": "using CadSpace.Controls;\nusing CadSpace.Engine;\nusing CadSpace.Model;\n\nvar session = new CadSession(new CadDocument(SampleDrawings.StudioPlan()));\nvar commands = new CommandEngine(session);\nvar workspace = new CadWorkspace();\nworkspace.Bind(session, commands);\nworkspace.FileRequested += action => { /* Host supplies NEW/OPEN/SAVE/export/recovery. */ };\nworkspace.PreferencesChanged += layout => SaveUiPreferences(layout.Encode());\nwindow.Content = workspace;\n\n// Or host individual components:\nvar viewport = new CadViewport();\nviewport.Bind(session, commands);\nvar console = new CadCommandLine();\nconsole.Bind(commands);"
+          }
+        ],
+        "keyTypesNote": "namespace `CadSpace.Controls`",
+        "project": "CadSpace.Controls",
+        "nuget": {
+          "id": "CadSpace.Controls",
+          "version": "0.1.0",
+          "downloads": 0,
+          "verified": false
+        }
+      }
+    ]
+  }
 }

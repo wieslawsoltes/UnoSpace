@@ -10,14 +10,20 @@
     "forks": 0,
     "openIssues": 3,
     "createdAt": "2026-09-27T10:02:27Z",
-    "pushedAt": "2026-09-28T06:11:07Z",
+    "pushedAt": "2026-09-29T17:24:59Z",
     "homepage": "https://wieslawsoltes.github.io/PresentationSpace/",
     "license": "MIT"
   },
+  "release": {
+    "tag": "v0.6.0",
+    "url": "https://github.com/wieslawsoltes/PresentationSpace/releases/tag/v0.6.0",
+    "prerelease": false,
+    "publishedAt": "2026-09-29T14:32:35Z"
+  },
   "lastCommit": {
-    "sha": "9971625",
-    "date": "2026-09-28T08:08:33+02:00",
-    "subject": "feat: PresentationSpace 0.6 responsive UI, table design and indexed editing (#9)"
+    "sha": "42d73da",
+    "date": "2026-09-29T18:52:17+02:00",
+    "subject": "Document NuGet packages with badges and usage"
   },
   "loc": {
     "total": 7192,
@@ -38,6 +44,7 @@
         "net10.0-desktop"
       ],
       "packable": false,
+      "packageId": "PresentationSpace.App",
       "description": "Independent Office-style presentation editor built with Uno Platform and SkiaSharp.",
       "unoFeatures": [
         "SkiaRenderer"
@@ -59,6 +66,7 @@
         "net10.0-desktop"
       ],
       "packable": true,
+      "packageId": "PresentationSpace.Controls.Uno",
       "description": "Reusable slide viewport, filmstrip, inspector, notes, sorter and presenter controls for Uno Platform.",
       "unoFeatures": [
         "SkiaRenderer"
@@ -90,6 +98,7 @@
         "net10.0"
       ],
       "packable": false,
+      "packageId": "PresentationSpace.Core",
       "description": "Immutable presentation model, geometry, editing commands and transactional undo without a UI dependency.",
       "unoFeatures": [],
       "projectRefs": [],
@@ -107,6 +116,7 @@
         "net10.0-desktop"
       ],
       "packable": true,
+      "packageId": "PresentationSpace.Editor.Uno",
       "description": "Embeddable Office-style presentation editing workspace with pluggable storage for Uno Platform.",
       "unoFeatures": [
         "SkiaRenderer"
@@ -128,6 +138,7 @@
         "net10.0"
       ],
       "packable": false,
+      "packageId": "PresentationSpace.Formats",
       "description": "Bounded, dependency-free PresentationML import and editable PowerPoint export.",
       "unoFeatures": [],
       "projectRefs": [
@@ -146,6 +157,7 @@
         "net10.0"
       ],
       "packable": false,
+      "packageId": "PresentationSpace.Performance",
       "description": "",
       "unoFeatures": [],
       "projectRefs": [
@@ -170,6 +182,7 @@
         "net10.0"
       ],
       "packable": false,
+      "packageId": "PresentationSpace.Rendering.Skia",
       "description": "Reusable SkiaSharp slide rendering, thumbnails, PNG and PDF export.",
       "unoFeatures": [],
       "projectRefs": [
@@ -194,6 +207,7 @@
         "net10.0-desktop"
       ],
       "packable": true,
+      "packageId": "PresentationSpace.Ribbon.Uno",
       "description": "Reusable Office-style ribbon tabs, groups and command controls for Uno Platform.",
       "unoFeatures": [
         "SkiaRenderer"
@@ -212,6 +226,7 @@
         "net10.0"
       ],
       "packable": false,
+      "packageId": "PresentationSpace.Tests",
       "description": "",
       "unoFeatures": [],
       "projectRefs": [
@@ -298,5 +313,205 @@
     "docs/compatibility.md",
     "docs/performance.md"
   ],
-  "images": []
+  "images": [],
+  "nugetDocs": {
+    "intro": [
+      "All six libraries are MIT-licensed and published on [NuGet.org](https://www.nuget.org/packages?q=PresentationSpace). `PresentationSpace.Core`, `PresentationSpace.Formats` and `PresentationSpace.Rendering.Skia` target `net10.0` and have no UI-framework dependency (the renderer needs only SkiaSharp). The `*.Uno` packages target `net10.0-desktop` and `net10.0-browserwasm` on Uno Platform 6.7 with the Skia renderer. Every package is versioned together with the app, and symbols ship on NuGet.org as `.snupkg` with SourceLink."
+    ],
+    "install": "dotnet add package PresentationSpace.Core",
+    "notes": [
+      {
+        "type": "paragraph",
+        "text": "Dependencies follow the layers: `Core ← Formats`, `Core ← Rendering.Skia`, `Core + Rendering.Skia + Ribbon.Uno ← Controls.Uno ← Editor.Uno (+ Formats)`. `Ribbon.Uno` depends only on Uno. `PresentationSpace.App` is the executable host; no library references the app."
+      }
+    ],
+    "packages": [
+      {
+        "id": "PresentationSpace.Core",
+        "description": "Immutable presentation model, rich text, tables, charts, geometry, editing commands and transactional undo, with no UI dependency",
+        "summary": [
+          "The document engine: immutable `PresentationDocument`/`Slide`/`SlideShape` records, mixed-style rich text, merged and styled tables, multi-series chart data, layouts, geometry, selection and a transactional `EditorSession` with undo/redo. Use it standalone to generate or transform decks on a server or in tests. No dependencies and no UI requirement."
+        ],
+        "install": "dotnet add package PresentationSpace.Core",
+        "keyTypes": [
+          "`EditorSession`: current document, slide and selection; `Insert`, `Apply`, `EditSlide`, `AddSlide`, `Undo`/`Redo`, `Changed` event.",
+          "`SlideFactory`: `Text(...)` shapes, `Create(layout)` slides and the `Welcome()` sample deck.",
+          "`RichText`: character-range formatting (`Format`, `Replace`, `Segments`).",
+          "`TableModel` / `TableSpec`: create, merge/split, insert/delete tracks, style presets and borders (limits: 100 rows, 100 columns, one million characters).",
+          "`ChartModel` / `ChartSpec` / `ChartTabularData`: six chart kinds, validation and spreadsheet-style copy/paste text.",
+          "`DocumentSerializer`: native `.pspace` JSON with schema validation."
+        ],
+        "content": [
+          {
+            "type": "code",
+            "lang": "csharp",
+            "code": "using PresentationSpace.Core;\n\nvar session = new EditorSession(SlideFactory.Welcome());\nsession.AddSlide(\"Title only\");\n\nvar title = SlideFactory.Text(\"Hello, slides\", 80, 100, 900, 130, 56);\ntitle = RichText.Format(title, 0, 5, style => style with { Bold = true, Color = \"#D35230\" });\nsession.Insert(title);                 // one undoable transaction\nsession.ApplyLayout(\"Title slide\");    // unmatched content is retained\n\nvar table = TableModel.Create(rows: 4, columns: 3);\ntable = TableModel.SetText(table, 0, 0, \"Quarterly results\");\ntable = TableModel.Merge(table, new TableRange(0, 0, 1, 3));\ntable = TableModel.ApplyStyle(table, TableStylePreset.Blue);\nsession.Insert(TableModel.Apply(new SlideShape { Name = \"Results\", Bounds = new(100, 260, 960, 320) }, table));\n\nsession.Undo();\nstring json = DocumentSerializer.Serialize(session.Document); // native .pspace"
+          },
+          {
+            "type": "paragraph",
+            "text": "`TableModel.Apply` and `ChartModel.Apply` maintain legacy projection fields (`Cells`, `TableColumns`, `Values`, `Labels`); edit the table/chart model rather than those projections. `TableLayout` supplies normalized edges, merge-origin bounds and hit-testing. Sessions are single-thread-affine."
+          }
+        ],
+        "project": "PresentationSpace.Core",
+        "nuget": {
+          "id": "PresentationSpace.Core",
+          "version": "0.6.0",
+          "downloads": 0,
+          "verified": false
+        }
+      },
+      {
+        "id": "PresentationSpace.Formats",
+        "description": "Bounded, dependency-free PPTX import and editable PowerPoint export, including native tables, charts and embedded chart workbooks",
+        "summary": [
+          "Bounded PresentationML (PPTX) import and editable PowerPoint export: real text runs, preset shapes, pictures, merged/styled native tables, native multi-series charts with embedded workbooks, notes and basic transitions. ZIP/XML sizes are bounded, DTDs are prohibited and external relationships are never fetched. Depends on Core only; no UI requirement."
+        ],
+        "install": "dotnet add package PresentationSpace.Formats",
+        "keyTypes": [
+          "`PptxCodec.Import(byte[])`: returns an `ImportResult` with the `Document` and `Warnings`.",
+          "`PptxCodec.Export(PresentationDocument)`: returns an `ExportResult` with the `.pptx` `Data` and `Warnings`.",
+          "`ImportResult` / `ExportResult`: report unsupported content instead of silently dropping it."
+        ],
+        "content": [
+          {
+            "type": "code",
+            "lang": "csharp",
+            "code": "using PresentationSpace.Core;\nusing PresentationSpace.Formats;\n\nImportResult imported = PptxCodec.Import(File.ReadAllBytes(\"deck.pptx\"));\nforeach (var warning in imported.Warnings)\n    Console.WriteLine(warning);        // unsupported parts are reported, not silently kept\n\nvar session = new EditorSession(imported.Document);\nsession.ReplaceText(\"2025\", \"2026\");\n\nExportResult exported = PptxCodec.Export(session.Document);\nFile.WriteAllBytes(\"deck-2026.pptx\", exported.Data);"
+          },
+          {
+            "type": "paragraph",
+            "text": "Import is not lossless for arbitrary PPTX files, and valid OOXML output does not guarantee visual equivalence. See [Compatibility](https://github.com/wieslawsoltes/PresentationSpace/blob/main/docs/compatibility.md)."
+          }
+        ],
+        "project": "PresentationSpace.Formats",
+        "nuget": {
+          "id": "PresentationSpace.Formats",
+          "version": "0.6.0",
+          "downloads": 0,
+          "verified": false
+        }
+      },
+      {
+        "id": "PresentationSpace.Rendering.Skia",
+        "description": "SkiaSharp slide, table and chart rendering, thumbnails, PNG and vector PDF export",
+        "summary": [
+          "Draws slides, mixed-style text, images, merged/styled tables and the six chart types to any `SKCanvas`, with picture/scene caching, thumbnails and PNG/vector PDF export. Use it headlessly for exports or inside any Skia-based UI. Depends on Core and SkiaSharp 3.119; headless hosts must also reference the operating system's SkiaSharp native-assets package."
+        ],
+        "install": "dotnet add package PresentationSpace.Rendering.Skia",
+        "keyTypes": [
+          "`SlideRenderer`: `Render`, `ExportPng`, `ExportPdf`, `RenderTable`, `RenderChart`, `DrawRichText` and `AutoFitTableRows`.",
+          "`SlideRenderer.CacheStatistics` / `RenderCacheStatistics`: picture and scene cache counters.",
+          "`TypefaceRegistry` / `ITypefaceResolver`: register embedded font files and resolve typefaces per `TextStyle`."
+        ],
+        "content": [
+          {
+            "type": "code",
+            "lang": "csharp",
+            "code": "using PresentationSpace.Core;\nusing PresentationSpace.Rendering.Skia;\nusing SkiaSharp;\n\nvar document = SlideFactory.Welcome();\nusing var renderer = new SlideRenderer();\nFile.WriteAllBytes(\"slide-1.png\", renderer.ExportPng(document, document.Slides[0], width: 1920));\nFile.WriteAllBytes(\"deck.pdf\", renderer.ExportPdf(document));\n\n// Draw a chart onto any SKCanvas, without a document or editor.\nvar chart = new ChartSpec\n{\n    Kind = ChartKind.Line,\n    Title = \"Quarterly performance\",\n    Categories = [\"Q1\", \"Q2\", \"Q3\"],\n    Series = [new() { Name = \"Actual\", Color = \"#D35230\", Values = [10, null, 25] }]\n};\nusing var surface = SKSurface.Create(new SKImageInfo(640, 360));\nrenderer.RenderChart(surface.Canvas, chart, new RectF(0, 0, 640, 360), new TextStyle());"
+          },
+          {
+            "type": "paragraph",
+            "text": "Renderers are single-thread-affine: use one per concurrent worker and dispose it."
+          }
+        ],
+        "project": "PresentationSpace.Rendering.Skia",
+        "nuget": {
+          "id": "PresentationSpace.Rendering.Skia",
+          "version": "0.6.0",
+          "downloads": 0,
+          "verified": false
+        }
+      },
+      {
+        "id": "PresentationSpace.Ribbon.Uno",
+        "description": "Office-style ribbon tabs, groups, command buttons, overflow scrolling and a compact toggle switch for Uno Platform",
+        "summary": [
+          "A self-contained Office-style ribbon for any Uno Platform app: tabs, captioned groups, large/small command buttons, overflow scroll arrows, collapse on double-click and an accessible compact toggle switch. It has no dependency on the presentation engine. Requires Uno Platform."
+        ],
+        "install": "dotnet add package PresentationSpace.Ribbon.Uno",
+        "keyTypes": [
+          "`RibbonControl`: `SetTabs`, `SelectTab`, `ToggleCollapsed`, `SelectedTab` and the `TabChanged` event.",
+          "`RibbonTab(Title, Build)`: a tab whose groups are built on selection.",
+          "`RibbonGroup(title, params UIElement[] items)` and `RibbonGroup.Column(...)` for stacked small buttons.",
+          "`RibbonCommandButton(id, label, glyph, action, large, shortcut)`: sets automation name/ID and tooltip.",
+          "`CompactToggleSwitch` and `OfficePalette` (shared brushes and `Brush(hex)`)."
+        ],
+        "content": [
+          {
+            "type": "code",
+            "lang": "csharp",
+            "code": "using PresentationSpace.Ribbon.Uno;\n\nvar ribbon = new RibbonControl();\nribbon.SetTabs([\n    new RibbonTab(\"Home\", () => [\n        new RibbonGroup(\"Clipboard\",\n            new RibbonCommandButton(\"paste\", \"Paste\", \"\", Paste, shortcut: \"Ctrl+V\"),\n            RibbonGroup.Column(\n                new RibbonCommandButton(\"cut\", \"Cut\", \"\", Cut, large: false),\n                new RibbonCommandButton(\"copy\", \"Copy\", \"\", Copy, large: false)))\n    ]),\n    new RibbonTab(\"View\", () => [new RibbonGroup(\"Zoom\", new RibbonCommandButton(\"fit\", \"Fit\", \"\", Fit))])\n]);\nribbon.TabChanged += (_, tab) => System.Diagnostics.Debug.WriteLine($\"Selected {tab}\");\nmyPage.Content = ribbon;"
+          }
+        ],
+        "project": "PresentationSpace.Ribbon.Uno",
+        "nuget": {
+          "id": "PresentationSpace.Ribbon.Uno",
+          "version": "0.6.0",
+          "downloads": 0,
+          "verified": false
+        }
+      },
+      {
+        "id": "PresentationSpace.Controls.Uno",
+        "description": "Slide viewport, filmstrip, sorter, inspector, table/chart data editors, notes, status bar and slide-show player for Uno Platform",
+        "summary": [
+          "The reusable editing surfaces behind the workspace, each bound to a shared `EditorSession`: a Skia slide viewport with selection, handles, snapping and in-place text editing; virtualized filmstrip and sorter; the Format/Selection/Comments inspector; standalone table and chart data editors; notes; status bar; and a slide-show player. Depends on Core, Rendering.Skia, Ribbon.Uno and Uno's Skia canvas; requires Uno Platform."
+        ],
+        "install": "dotnet add package PresentationSpace.Controls.Uno",
+        "keyTypes": [
+          "`SlideViewport`: interactive canvas (`Session`, `SetZoom`, `Fit`, `ShowGrid`, `EditText`, `CommitText`).",
+          "`SlideFilmstrip` / `SlideSorter`: recycled slide navigators (`Session`, `SlideInvoked`).",
+          "`FormatPane` (`Mode` = `InspectorMode.Format`/`Selection`/`Comments`), `NotesPane`, `PresentationStatusBar`.",
+          "`TableDataEditor` / `ChartDataEditor`: `SetValue(...)` plus a `ValueChanged` event that emits validated `TableSpec`/`ChartSpec` snapshots.",
+          "`PresentationPlayer`: full-screen show with `Start(document, from)`, `Next`, `Previous`, `Close`."
+        ],
+        "content": [
+          {
+            "type": "code",
+            "lang": "csharp",
+            "code": "using Microsoft.UI.Xaml;\nusing Microsoft.UI.Xaml.Controls;\nusing PresentationSpace.Controls.Uno;\nusing PresentationSpace.Core;\n\nvar session = new EditorSession(SlideFactory.Welcome());\nvar filmstrip = new SlideFilmstrip { Session = session };\nvar viewport = new SlideViewport { Session = session };\n\nvar root = new Grid();\nroot.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(200) });\nroot.ColumnDefinitions.Add(new ColumnDefinition());\nGrid.SetColumn(viewport, 1);\nroot.Children.Add(filmstrip);\nroot.Children.Add(viewport);\nwindow.Content = root;\n\n// Standalone chart data editor: apply each validated snapshot to the selected shape.\nvar chartEditor = new ChartDataEditor();\nchartEditor.SetValue(new ChartSpec { Categories = [\"Q1\", \"Q2\"], Series = [new() { Values = [4, 7] }] });\nchartEditor.ValueChanged += (_, chart) => session.Apply(\"Edit chart\", shape => ChartModel.Apply(shape, chart));"
+          }
+        ],
+        "project": "PresentationSpace.Controls.Uno",
+        "nuget": {
+          "id": "PresentationSpace.Controls.Uno",
+          "version": "0.6.0",
+          "downloads": 0,
+          "verified": false
+        }
+      },
+      {
+        "id": "PresentationSpace.Editor.Uno",
+        "description": "Embeddable, complete Office-style presentation editor with pluggable storage for Uno Platform",
+        "summary": [
+          "The complete workspace in one control: title bar, quick access, ribbon, filmstrip, canvas, notes, inspector panes, sorter, slide show, command search (**Alt+Q**), PPTX/PNG/PDF commands and device-local recovery. Embed it in any Uno app and supply storage through `IWorkspaceStorage`. Depends on Controls.Uno and Formats; requires Uno Platform."
+        ],
+        "install": "dotnet add package PresentationSpace.Editor.Uno",
+        "keyTypes": [
+          "`PresentationEditor(EditorSession?, IWorkspaceStorage?)`: the embeddable `UserControl`; exposes `Session`, `Viewport`, `Ribbon` and `Storage`.",
+          "`PresentationEditor.RestoreRecoveryAsync()`, `StartShow(fromBeginning)`, `ShowSorter()`, `ShowNormal()`, `ShowInspector(mode)`.",
+          "`IWorkspaceStorage`: host pickers, saves and recovery (`OpenAsync`, `SaveAsync`, `ReadRecoveryAsync`, `WriteRecoveryAsync`).",
+          "`WorkspaceFile(Name, Data)`: a file returned from `OpenAsync`."
+        ],
+        "content": [
+          {
+            "type": "code",
+            "lang": "csharp",
+            "code": "using PresentationSpace.Core;\nusing PresentationSpace.Editor.Uno;\n\nvar editor = new PresentationEditor(new EditorSession(SlideFactory.Welcome()), new HostStorage());\nwindow.Content = editor;               // or a Page's Content\nawait editor.RestoreRecoveryAsync();\n\nsealed class HostStorage : IWorkspaceStorage\n{\n    public Task<WorkspaceFile?> OpenAsync(IReadOnlyList<string> extensions) => Task.FromResult<WorkspaceFile?>(null); // show a picker\n    public Task<bool> SaveAsync(string suggestedName, byte[] data, string mimeType) => Task.FromResult(false);      // false when canceled\n    public Task<string?> ReadRecoveryAsync() => Task.FromResult<string?>(null);\n    public Task WriteRecoveryAsync(string json) => Task.CompletedTask;\n}"
+          },
+          {
+            "type": "paragraph",
+            "text": "Return `false` from `SaveAsync` when the user cancels; recovery must not imply that a portable file was saved. The app supplies a device-local Uno implementation (`LocalWorkspaceStorage`)."
+          }
+        ],
+        "project": "PresentationSpace.Editor.Uno",
+        "nuget": {
+          "id": "PresentationSpace.Editor.Uno",
+          "version": "0.6.0",
+          "downloads": 0,
+          "verified": false
+        }
+      }
+    ]
+  }
 }

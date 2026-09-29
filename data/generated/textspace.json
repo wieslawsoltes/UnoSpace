@@ -10,14 +10,20 @@
     "forks": 1,
     "openIssues": 0,
     "createdAt": "2026-09-27T09:48:19Z",
-    "pushedAt": "2026-09-28T17:01:30Z",
+    "pushedAt": "2026-09-29T16:53:46Z",
     "homepage": "https://wieslawsoltes.github.io/TextSpace/",
     "license": "MIT"
   },
+  "release": {
+    "tag": "v0.5.1-alpha.1",
+    "url": "https://github.com/wieslawsoltes/TextSpace/releases/tag/v0.5.1-alpha.1",
+    "prerelease": true,
+    "publishedAt": "2026-09-29T14:31:46Z"
+  },
   "lastCommit": {
-    "sha": "3138923",
-    "date": "2026-09-28T19:01:30+02:00",
-    "subject": "fix: ship protected startup recovery and native tab compatibility"
+    "sha": "3b0be71",
+    "date": "2026-09-29T18:53:43+02:00",
+    "subject": "Document NuGet packages with badges and usage"
   },
   "loc": {
     "total": 11795,
@@ -38,6 +44,7 @@
         "net10.0-desktop"
       ],
       "packable": false,
+      "packageId": "TextSpace.App",
       "description": "Local-first word processing with Uno Platform and SkiaSharp.",
       "unoFeatures": [
         "SkiaRenderer"
@@ -59,6 +66,7 @@
         "net10.0-desktop"
       ],
       "packable": true,
+      "packageId": "TextSpace.Controls",
       "description": "Custom Uno office ribbon, iconography, galleries, fields, palettes, dialogs and scrolling controls.",
       "unoFeatures": [
         "SkiaRenderer"
@@ -79,6 +87,7 @@
         "net10.0"
       ],
       "packable": false,
+      "packageId": "TextSpace.Core",
       "description": "UI-independent rich document model, typography, tables, selections and text indexing.",
       "unoFeatures": [],
       "projectRefs": [],
@@ -95,6 +104,7 @@
         "net10.0"
       ],
       "packable": false,
+      "packageId": "TextSpace.Documents",
       "description": "Validated native document serialization, templates and HTML/text interchange.",
       "unoFeatures": [],
       "projectRefs": [
@@ -113,6 +123,7 @@
         "net10.0"
       ],
       "packable": false,
+      "packageId": "TextSpace.Editing",
       "description": "Transactional rich-text editing, Unicode selection, history, formatting and document commands.",
       "unoFeatures": [],
       "projectRefs": [
@@ -132,6 +143,7 @@
         "net10.0-desktop"
       ],
       "packable": true,
+      "packageId": "TextSpace.Editor",
       "description": "Embeddable Uno Skia paginated document editor, native text input bridge, rulers and direct manipulation.",
       "unoFeatures": [
         "SkiaRenderer"
@@ -154,6 +166,7 @@
         "net10.0"
       ],
       "packable": false,
+      "packageId": "TextSpace.Layout",
       "description": "Deterministic point-based pagination, line breaking, tables, columns and caret hit testing.",
       "unoFeatures": [],
       "projectRefs": [
@@ -172,6 +185,7 @@
         "net10.0"
       ],
       "packable": false,
+      "packageId": "TextSpace.OpenXml",
       "description": "Dependency-light, bounded OOXML DOCX import/export for rich paragraphs, tables, pictures, comments, headers and footers.",
       "unoFeatures": [],
       "projectRefs": [
@@ -190,6 +204,7 @@
         "net10.0"
       ],
       "packable": false,
+      "packageId": "TextSpace.Performance",
       "description": "",
       "unoFeatures": [],
       "projectRefs": [
@@ -219,6 +234,7 @@
         "net10.0"
       ],
       "packable": false,
+      "packageId": "TextSpace.Skia",
       "description": "SkiaSharp and HarfBuzz text metrics, paginated rendering, selection painting and PDF/PNG export.",
       "unoFeatures": [],
       "projectRefs": [
@@ -246,6 +262,7 @@
         "net10.0"
       ],
       "packable": false,
+      "packageId": "TextSpace.Storage",
       "description": "Local recovery contracts, atomic desktop storage and bounded recovery history for document applications.",
       "unoFeatures": [],
       "projectRefs": [],
@@ -262,6 +279,7 @@
         "net10.0"
       ],
       "packable": false,
+      "packageId": "TextSpace.Tests",
       "description": "",
       "unoFeatures": [],
       "projectRefs": [
@@ -309,6 +327,7 @@
         "net10.0-desktop"
       ],
       "packable": true,
+      "packageId": "TextSpace.Workbench",
       "description": "Composable Word-style Uno workbench, ribbon commands, backstage, navigation and review workflows.",
       "unoFeatures": [
         "SkiaRenderer"
@@ -393,5 +412,306 @@
     "docs/TABLES.md",
     "docs/TYPOGRAPHY.md"
   ],
-  "images": []
+  "images": [],
+  "nugetDocs": {
+    "intro": [
+      "TextSpace ships as ten MIT-licensed packages, all versioned together. Seven target plain `net10.0` and have no UI dependency: `TextSpace.Core`, `Storage`, `Documents`, `Layout`, `Editing` and `OpenXml` are pure .NET, and `TextSpace.Skia` adds only SkiaSharp and HarfBuzz. The three Uno Platform packages (`Controls`, `Editor`, `Workbench`) target `net10.0-desktop` and `net10.0-browserwasm`. Symbols are published to nuget.org as `.snupkg` with SourceLink, so you can step into the library source while debugging."
+    ],
+    "install": "dotnet add package TextSpace.Core --prerelease",
+    "notes": [
+      {
+        "type": "paragraph",
+        "text": "Dependencies (from project references): `Core ← Documents ← Editing`, `Documents ← OpenXml`, `Core ← Layout ← Skia`, `Core ← Controls`; `Controls + Editing + Skia ← Editor`; `Editor + OpenXml + Storage ← Workbench`. `Storage` stands alone. `TextSpace.App` (not packaged) supplies the browser and native desktop hosts."
+      }
+    ],
+    "packages": [
+      {
+        "id": "TextSpace.Core",
+        "description": "UI-independent rich document model, typography, tables, sections, selections and text indexing",
+        "summary": [
+          "The document model every other package builds on: blocks (paragraphs, tables, pictures, page/section/column breaks), immutable character and paragraph formatting, page and section settings, comments, tracked edits, fields and bookmarks. Use it alone to build or inspect documents in code. No dependencies and no UI."
+        ],
+        "install": "dotnet add package TextSpace.Core --prerelease",
+        "keyTypes": [
+          "`DocumentModel` – root object: `Blocks`, `Page`, `Comments`, `Fields`, `Bookmarks`, `PlainText`, `WordCount`",
+          "`Paragraph`, `TextRun`, `TableBlock.Create(rows, columns)`, `ImageBlock`, `SectionBreakBlock` – content blocks",
+          "`TextStyle`, `ParagraphFormat`, `PageSettings` – immutable records using typographic points",
+          "`DocumentStyles.BuiltIn` / `DocumentStyles.Find(name)` – Normal, Heading 1–3, Title, Quote, Caption…",
+          "`TextIndex` – UTF-16 coordinate index with paragraph lookup and grapheme snapping (`At`, `Snap`, `Next`)"
+        ],
+        "content": [
+          {
+            "type": "code",
+            "lang": "csharp",
+            "code": "using TextSpace.Core;\n\nvar heading = DocumentStyles.Find(\"Heading 1\");\nvar document = new DocumentModel { Title = \"Quarterly report\", Page = new PageSettings().Landscape() };\ndocument.Blocks.Clear();\ndocument.Blocks.Add(new Paragraph(\"Summary\", heading.Character, heading.Paragraph));\n\nvar body = new Paragraph(\"Revenue grew \");\nbody.Runs.Add(new TextRun(\"12%\", new TextStyle { Bold = true, Color = \"#107C10\" }));\ndocument.Blocks.Add(body);\ndocument.Blocks.Add(TableBlock.Create(rows: 3, columns: 2));\n\nvar index = new TextIndex(document);          // UTF-16 text coordinates, grapheme-safe\nvar address = index.At(10);                   // paragraph containing offset 10\nConsole.WriteLine($\"{document.WordCount} words; offset 10 is in \\\"{address.Paragraph.Text}\\\"\");"
+          }
+        ],
+        "project": "TextSpace.Core",
+        "nuget": {
+          "id": "TextSpace.Core",
+          "version": "0.5.1-alpha.1",
+          "downloads": 0,
+          "verified": false
+        }
+      },
+      {
+        "id": "TextSpace.Storage",
+        "description": "Recovery contracts, atomic desktop storage, protected originals and checksum-verified transport",
+        "summary": [
+          "Local persistence primitives for document apps: an atomic latest-snapshot store with bounded rolling history, a content-addressed archive of protected originals that is never evicted automatically, and a checksum-verified envelope for moving original text across interop boundaries. It has no dependency on the document model and no UI."
+        ],
+        "install": "dotnet add package TextSpace.Storage --prerelease",
+        "keyTypes": [
+          "`IRecoveryStore` / `FileRecoveryStore` – `WriteLatestAsync`, `ReadLatestAsync`, `ListVersionsAsync`, `ReadVersionAsync`",
+          "`IRecoveryArchiveStore` / `FileRecoveryArchiveStore` – `ProtectAsync`, `ListProtectedAsync`, `ReadProtectedAsync`",
+          "`RecoveryArchiveTransport` – `Encode` / `Decode` with SHA-256 and byte-count verification",
+          "`RecoveryArchiveLimits` – entry, per-original and total byte budgets"
+        ],
+        "content": [
+          {
+            "type": "code",
+            "lang": "csharp",
+            "code": "using TextSpace.Storage;\n\nvar root = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), \"MyApp\");\n\nusing var recovery = new FileRecoveryStore(Path.Combine(root, \"Recovery\"));\nawait recovery.WriteLatestAsync(\"Draft\", json);          // atomic replace + rolling history\nstring? latest = await recovery.ReadLatestAsync();\nforeach (var version in await recovery.ListVersionsAsync())\n    Console.WriteLine($\"{version.Title} {version.SavedAt:u} ({version.Bytes} bytes)\");\n\nvar originals = new FileRecoveryArchiveStore(Path.Combine(root, \"ProtectedOriginals\"));\nRecoveryArchive archive = await originals.ProtectAsync(originalText); // SHA-256 addressed\nstring envelope = RecoveryArchiveTransport.Encode(originalText);\nstring verified = RecoveryArchiveTransport.Decode(envelope, expectedId: archive.Id);"
+          }
+        ],
+        "project": "TextSpace.Storage",
+        "nuget": {
+          "id": "TextSpace.Storage",
+          "version": "0.5.1-alpha.1",
+          "downloads": 0,
+          "verified": false
+        }
+      },
+      {
+        "id": "TextSpace.Documents",
+        "description": "Validated native serialization, repair plans, templates, fields, HTML export, CSV mail merge and writing checks",
+        "summary": [
+          "Everything that turns a `DocumentModel` into files and back without a renderer: native `.textspace` JSON with strict size/structure validation, explicit tab-stop repair plans, sample templates, field evaluation, sanitized HTML export, CSV mail merge and offline writing checks. Depends on `TextSpace.Core`; no UI."
+        ],
+        "install": "dotnet add package TextSpace.Documents --prerelease",
+        "keyTypes": [
+          "`DocumentJson` – `Save`, `Load` (validating), `Clone`, `FromText`, `Validate`",
+          "`DocumentRecovery.PrepareTabRepair` – non-destructive `RecoveryRepairPlan` for invalid saved files",
+          "`HtmlExporter.Export` – escaped HTML with a restrictive content-security policy",
+          "`MailMerge` – `ParseCsv` and `Merge` for `«Field»` placeholders",
+          "`FieldEngine.Evaluate`, `FieldInstruction.Parse` – DATE, PAGE, SEQ, REF/PAGEREF and other supported fields",
+          "`WritingAnalysis` – `Statistics` and repetition/spacing/long-sentence `Check`"
+        ],
+        "content": [
+          {
+            "type": "code",
+            "lang": "csharp",
+            "code": "using TextSpace.Documents;\n\nvar template = DocumentJson.FromText(\"Dear «Name»,\\nYour order ships on «Date».\", \"Letter\");\nstring json = DocumentJson.Save(template);        // native .textspace JSON\nvar reloaded = DocumentJson.Load(json);           // bounded + validated\n\nvar recipients = MailMerge.ParseCsv(\"Name,Date\\nAda,Monday\\nGrace,Friday\");\nforeach (var record in recipients.Records)\n{\n    var letter = MailMerge.Merge(reloaded, record);\n    File.WriteAllText($\"letter-{record[\"Name\"]}.html\", HtmlExporter.Export(letter));\n}\n\nvar stats = WritingAnalysis.Statistics(reloaded);\nConsole.WriteLine($\"{stats.Words} words, ~{stats.ReadingMinutes} min\");\nforeach (var issue in WritingAnalysis.Check(reloaded)) Console.WriteLine(issue.Message);"
+          }
+        ],
+        "project": "TextSpace.Documents",
+        "nuget": {
+          "id": "TextSpace.Documents",
+          "version": "0.5.1-alpha.1",
+          "downloads": 0,
+          "verified": false
+        }
+      },
+      {
+        "id": "TextSpace.Layout",
+        "description": "Renderer-independent pagination, line breaking, tables, columns, section regions and caret hit testing",
+        "summary": [
+          "Deterministic, point-based layout: line breaking with tab stops, pagination with keeps and widow control, sections and columns, repeating table headers and row splitting, plus caret geometry and hit testing. It measures text through the `ITextMetrics` interface, so it runs headless (tests, servers) or with the real shaper from `TextSpace.Skia`. Depends on `TextSpace.Core`; no UI."
+        ],
+        "install": "dotnet add package TextSpace.Layout --prerelease",
+        "keyTypes": [
+          "`PageLayoutEngine` – `Layout(document)` with a bounded `ParagraphLayoutCache`",
+          "`DocumentLayout` – `Pages`, `Caret`, `HitTest`, `VerticalMove`, `VisiblePages`, `Notices`",
+          "`LayoutPage`, `LayoutLine`, `LayoutCell`, `LayoutRegion` – positioned output for renderers",
+          "`ITextMetrics` / `MonospaceTextMetrics` – measurement contract and a deterministic stand-in"
+        ],
+        "content": [
+          {
+            "type": "code",
+            "lang": "csharp",
+            "code": "using TextSpace.Documents;\nusing TextSpace.Layout;\n\nvar document = DocumentJson.FromText(string.Join('\\n', Enumerable.Repeat(\"Lorem ipsum dolor sit amet.\", 200)));\n\n// Any ITextMetrics works; MonospaceTextMetrics is a deterministic stand-in (TextSpace.Skia provides real shaping).\nvar engine = new PageLayoutEngine(new MonospaceTextMetrics());\nDocumentLayout layout = engine.Layout(document);\nConsole.WriteLine($\"{layout.Pages.Count} pages, {layout.Pages[0].Lines.Count} lines on page 1\");\n\nCaretGeometry caret = layout.Caret(position: 120);\ndouble x = layout.PageLeft(caret.PageIndex) + caret.X, y = layout.PageTop(caret.PageIndex) + caret.Y;\nint hit = layout.HitTest(x, y + caret.Height / 2);   // back to a text position\nint below = layout.VerticalMove(hit, deltaY: caret.Height);"
+          },
+          {
+            "type": "paragraph",
+            "text": "(`TextSpace.Documents` is used here only for `DocumentJson.FromText`.)"
+          }
+        ],
+        "project": "TextSpace.Layout",
+        "nuget": {
+          "id": "TextSpace.Layout",
+          "version": "0.5.1-alpha.1",
+          "downloads": 0,
+          "verified": false
+        }
+      },
+      {
+        "id": "TextSpace.Editing",
+        "description": "Transactional rich-text editing, Unicode selections, formatting, structure, fields and bounded history",
+        "summary": [
+          "A UI-independent editing session: every command is an atomic, undoable transaction over the model, with grapheme-safe selections, typing style, paragraph styles, lists, tables (including merge/split), sections, fields, bookmarks, comments and tracked changes. Use it to script edits or to drive your own editor view. Depends on `TextSpace.Documents` (and Core); no UI."
+        ],
+        "install": "dotnet add package TextSpace.Editing --prerelease",
+        "keyTypes": [
+          "`EditorSession` – `Document`, `Selection`, `SetSelection`, `InsertText`, `Replace`, `Undo`/`Redo`, `IsDirty`",
+          "Formatting – `ToggleBold`, `SetFont`, `SetFontSize`, `ApplyStyle`, `FormatParagraph`, `ToggleList`",
+          "Structure – `InsertTable`, `InsertPicture`, `InsertSectionBreak`, `MergeTableCells`, `InsertField`, `SetBookmark`",
+          "`EditorSession.Changed` / `EditorChangedEventArgs` – document, selection and view notifications",
+          "`SessionTextProjection` – revision-bound presentation text for input synchronization"
+        ],
+        "content": [
+          {
+            "type": "code",
+            "lang": "csharp",
+            "code": "using TextSpace.Documents;\nusing TextSpace.Editing;\n\nvar session = new EditorSession(DocumentJson.FromText(\"Introduction\\nDetails\", \"Example\"));\nsession.Changed += (_, e) => Console.WriteLine($\"{e.Kind}: {e.Label}\");\n\nsession.SetSelection(0, 12);            // \"Introduction\"\nsession.ApplyStyle(\"Heading 1\");\nsession.SetSelection(13, 20);           // \"Details\"\nsession.ToggleBold();\nsession.SetBookmark(\"Details\");\nsession.SetSelection(session.Index.Length, session.Index.Length);\nsession.InsertText(\" follow.\");\nsession.InsertTable(rows: 2, columns: 3);\n\nConsole.WriteLine($\"{session.Find(\"details\").Count} match(es); dirty: {session.IsDirty}\");\nsession.Undo();                         // each command is one transaction\nstring json = DocumentJson.Save(session.Document);"
+          }
+        ],
+        "project": "TextSpace.Editing",
+        "nuget": {
+          "id": "TextSpace.Editing",
+          "version": "0.5.1-alpha.1",
+          "downloads": 0,
+          "verified": false
+        }
+      },
+      {
+        "id": "TextSpace.OpenXml",
+        "description": "Dependency-light, bounded DOCX import/export for paragraphs, tables, pictures, comments, headers and footers",
+        "summary": [
+          "Bounded DOCX import and export written directly against the OOXML package (no Open XML SDK at runtime): paragraphs and runs, styles, lists, tab stops, tables with real `gridSpan`/`vMerge`, pictures, comments, bookmarks, fields, sections, headers and footers. Imports cap package sizes, prohibit DTDs and never fetch external relationships; unsupported content is reported as warnings. Depends on `TextSpace.Documents`; no UI."
+        ],
+        "install": "dotnet add package TextSpace.OpenXml --prerelease",
+        "keyTypes": [
+          "`DocxReader.Read(bytes)` – returns a `DocxImportResult`",
+          "`DocxImportResult` – the imported `Document` plus `Warnings` for anything dropped",
+          "`DocxWriter.Write(document)` – `.docx` bytes"
+        ],
+        "content": [
+          {
+            "type": "code",
+            "lang": "csharp",
+            "code": "using TextSpace.OpenXml;\n\nDocxImportResult result = new DocxReader().Read(File.ReadAllBytes(\"input.docx\"));\nforeach (var warning in result.Warnings)\n    Console.WriteLine($\"Not imported: {warning}\");\n\nvar document = result.Document;              // TextSpace.Core.DocumentModel\ndocument.Title = \"Round-tripped\";\nFile.WriteAllBytes(\"output.docx\", new DocxWriter().Write(document));"
+          }
+        ],
+        "project": "TextSpace.OpenXml",
+        "nuget": {
+          "id": "TextSpace.OpenXml",
+          "version": "0.5.1-alpha.1",
+          "downloads": 0,
+          "verified": false
+        }
+      },
+      {
+        "id": "TextSpace.Skia",
+        "description": "SkiaSharp + HarfBuzz text metrics, font registration, page rendering and PDF/PNG export",
+        "summary": [
+          "The rendering backend: HarfBuzz-shaped text metrics with glyph caches, explicit font registration, and page painting (selection, caret, formatting marks, comments, tracked changes) onto any `SKCanvas`, plus PDF and PNG export. Use it headless for server-side PDF/PNG generation. Depends on `TextSpace.Layout`, SkiaSharp and SkiaSharp.HarfBuzz; no UI framework."
+        ],
+        "install": "dotnet add package TextSpace.Skia --prerelease",
+        "keyTypes": [
+          "`DocumentRenderer` – `Layout`, `DrawPage`, `ExportPdf`, `ExportPng`, `Metrics`",
+          "`SkiaTextMetrics` – `Register(family, bold, italic, data)`, HarfBuzz `Measure`/`CaretPositions`, shaped-run cache",
+          "`RenderOptions` – selection, caret, formatting marks, comments, changes and boundaries"
+        ],
+        "content": [
+          {
+            "type": "code",
+            "lang": "csharp",
+            "code": "using SkiaSharp;\nusing TextSpace.Documents;\nusing TextSpace.Skia;\n\nvar document = SampleDocument.Report();\nusing var renderer = new DocumentRenderer();\n\n// Register faces before layout; the built-in styles use \"Aptos\".\nvar regular = File.ReadAllBytes(\"fonts/Carlito-Regular.ttf\");\nrenderer.Metrics.Register(\"Aptos\", bold: false, italic: false, regular);\n\nvar layout = renderer.Layout(document);\nFile.WriteAllBytes(\"report.pdf\", renderer.ExportPdf(document, layout));\nFile.WriteAllBytes(\"page1.png\", renderer.ExportPng(document, layout, pageIndex: 0, scale: 2));\n\n// Or draw a page onto any SKCanvas (units are points).\nusing var surface = SKSurface.Create(new SKImageInfo(612, 792));\nrenderer.DrawPage(surface.Canvas, document, layout, pageIndex: 0, new RenderOptions { ShowFormatting = true });"
+          }
+        ],
+        "project": "TextSpace.Skia",
+        "nuget": {
+          "id": "TextSpace.Skia",
+          "version": "0.5.1-alpha.1",
+          "downloads": 0,
+          "verified": false
+        }
+      },
+      {
+        "id": "TextSpace.Controls",
+        "description": "Uno office ribbon, iconography, galleries, menus, palettes, dialogs, panes and scroll bars",
+        "summary": [
+          "Custom Uno Platform office chrome drawn with the Skia renderer: a tabbed `RibbonBar` with lazy groups, ribbon/office buttons with bindable appearance properties, vector icons, style gallery, table picker, color palette, menus, dialogs, task panes, zoom slider and scroll bars. Useful for any Uno app that wants an Office-style command surface. Depends on `TextSpace.Core` (for style definitions) and Uno Platform (Skia renderer)."
+        ],
+        "install": "dotnet add package TextSpace.Controls --prerelease",
+        "keyTypes": [
+          "`RibbonBar` – `AddTab`, `InsertGroup` (extend a tab without replacing its factory), `SelectTab`, `AddFileTab`",
+          "`RibbonGroup`, `RibbonButton`, `OfficeButton` (`IsSelected`, `IsPrimary`, `RestBackground` dependency properties)",
+          "`OfficeIcon`, `StyleGallery`, `TablePicker`, `ColorPalette` (`AsFlyout`)",
+          "`OfficeMenu`, `OfficeDialog`, `OfficeTaskPane`, `OfficeZoomSlider`, `OfficeScrollBar`",
+          "`OfficeTheme` – palette constants, `Font`, and `Text`/`Rows`/`Columns` layout helpers"
+        ],
+        "content": [
+          {
+            "type": "code",
+            "lang": "csharp",
+            "code": "using TextSpace.Controls;\n\nvar status = OfficeTheme.Text(\"Ready\", 12, OfficeTheme.Muted);\nvar ribbon = new RibbonBar();\nribbon.AddTab(\"Home\", () =>\n{\n    var clipboard = new RibbonGroup(\"Clipboard\");\n    clipboard.Body.Children.Add(new RibbonButton(\"paste\", \"Paste\", () => status.Text = \"Pasted\", large: true, showLabel: true));\n    clipboard.Body.Children.Add(new RibbonButton(\"copy\", \"Copy\", () => status.Text = \"Copied\"));\n    return [clipboard];\n});\n\nvar zoom = new OfficeZoomSlider { Value = 1 };\nzoom.ValueChanged += value => status.Text = $\"{value:P0}\";\nwindow.Content = OfficeTheme.Rows((ribbon, 0), (status, -1), (zoom, 0)); // 0 = auto, -1 = star"
+          }
+        ],
+        "project": "TextSpace.Controls",
+        "nuget": {
+          "id": "TextSpace.Controls",
+          "version": "0.5.1-alpha.1",
+          "downloads": 0,
+          "verified": false
+        }
+      },
+      {
+        "id": "TextSpace.Editor",
+        "description": "Embeddable Uno Skia paginated editor with native text input, rulers and page previews",
+        "summary": [
+          "The embeddable paginated editor: `DocumentSurface` renders an `EditorSession` with Skia, bridges native text input, handles mouse/keyboard selection, zoom and scrolling, and shows a horizontal ruler with indent handles. `DocumentPreview` draws page thumbnails. Depends on `TextSpace.Controls`, `TextSpace.Editing`, `TextSpace.Skia` and Uno Platform (Skia renderer)."
+        ],
+        "install": "dotnet add package TextSpace.Editor --prerelease",
+        "keyTypes": [
+          "`DocumentSurface` – `DocumentSurface(session)`, `Session`, `Renderer`, `Layout`, `Relayout`, `SetZoom`, `FitPageWidth`, `FocusEditor`",
+          "`DocumentSurface` events – `Error`, `ViewChanged`, `CommandRequested`, `ContextRequested`",
+          "`PageRuler` – ruler with `IndentChanged`",
+          "`DocumentPreview` – page thumbnail for navigation panes"
+        ],
+        "content": [
+          {
+            "type": "code",
+            "lang": "csharp",
+            "code": "using TextSpace.Documents;\nusing TextSpace.Editing;\nusing TextSpace.Editor;\n\nvar session = new EditorSession(DocumentJson.FromText(\"Hello from TextSpace\", \"Hello\"));\nvar surface = new DocumentSurface(session) { ShowRuler = true };\nsurface.Renderer.Metrics.Register(\"Aptos\", false, false, fontBytes); // register faces, then relayout\nsurface.Relayout();\nsurface.Error += message => System.Diagnostics.Debug.WriteLine(message);\n\nwindow.Content = surface;\nwindow.Closed += (_, _) => surface.Dispose();\nsurface.FocusEditor();"
+          }
+        ],
+        "project": "TextSpace.Editor",
+        "nuget": {
+          "id": "TextSpace.Editor",
+          "version": "0.5.1-alpha.1",
+          "downloads": 0,
+          "verified": false
+        }
+      },
+      {
+        "id": "TextSpace.Workbench",
+        "description": "Composable Word-style Uno workbench: ribbon commands, backstage, recovery, navigation and review",
+        "summary": [
+          "The complete Word-style shell: ribbon tabs (Home, Insert, Design, Layout, References, Mailings, Review, View, Help plus contextual table/picture tabs), File backstage, navigation/review panes, dialogs, recovery tools and status bar around a `DocumentSurface`. All platform services go through `IWorkspaceHost` (files, clipboard, printing, URI launching and `IRecoveryStore` AutoSave); wrap it in `RecoveryWorkspaceHost` with an `IRecoveryArchiveStore` to enable the Recovery tab. Dispose owned workbenches when their host closes. Depends on `TextSpace.Editor`, `TextSpace.OpenXml`, `TextSpace.Storage` and Uno Platform."
+        ],
+        "install": "dotnet add package TextSpace.Workbench --prerelease",
+        "keyTypes": [
+          "`WordWorkbench` – `WordWorkbench(session, host)`, `Session`, `Surface`, `Ribbon`, `ExecuteCommandAsync(id)`, `StateChanged`",
+          "`IWorkspaceHost` – host contract; `OpenedFile` result",
+          "`RecoveryWorkspaceHost` – adds protected originals to any host",
+          "`WordWorkbench.EnableRecoveryTools` / `ShowRecoveryNotice` – recovery UI"
+        ],
+        "content": [
+          {
+            "type": "code",
+            "lang": "csharp",
+            "code": "using TextSpace.Controls;\nusing TextSpace.Documents;\nusing TextSpace.Editing;\nusing TextSpace.Storage;\nusing TextSpace.Workbench;\n\n// MyWorkspaceHost implements IWorkspaceHost (file pickers, clipboard, printing, URIs, AutoSave).\nIWorkspaceHost host = new RecoveryWorkspaceHost(new MyWorkspaceHost(),\n    new FileRecoveryArchiveStore(Path.Combine(appData, \"ProtectedOriginals\")));\n\nvar workbench = new WordWorkbench(new EditorSession(SampleDocument.Create()), host);\nworkbench.EnableRecoveryTools();\nworkbench.Ribbon.InsertGroup(\"Home\", 0, () => new RibbonGroup(\"My tools\"));\nworkbench.Surface.Renderer.Metrics.Register(\"Aptos\", false, false, fontBytes);\nworkbench.Surface.Relayout();\n\nwindow.Content = workbench;\nwindow.Closed += (_, _) => workbench.Dispose();"
+          }
+        ],
+        "project": "TextSpace.Workbench",
+        "nuget": {
+          "id": "TextSpace.Workbench",
+          "version": "0.5.1-alpha.1",
+          "downloads": 0,
+          "verified": false
+        }
+      }
+    ]
+  }
 }

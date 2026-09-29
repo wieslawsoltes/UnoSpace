@@ -1,28 +1,34 @@
 {
   "slug": "labspace",
   "repo": "wieslawsoltes/LabSpace",
-  "version": "0.2.0-alpha.1",
+  "version": "0.3.0-alpha.1",
   "dotnetSdk": "10.0.401",
   "unoSdk": "6.7.30",
   "pinned": [],
   "github": {
     "stars": 1,
     "forks": 0,
-    "openIssues": 1,
+    "openIssues": 0,
     "createdAt": "2026-09-28T18:17:53Z",
-    "pushedAt": "2026-09-29T07:49:21Z",
+    "pushedAt": "2026-09-29T16:58:40Z",
     "homepage": "https://wieslawsoltes.github.io/LabSpace/",
     "license": "MIT"
   },
+  "release": {
+    "tag": "v0.3.0-alpha.1",
+    "url": "https://github.com/wieslawsoltes/LabSpace/releases/tag/v0.3.0-alpha.1",
+    "prerelease": true,
+    "publishedAt": "2026-09-29T14:36:40Z"
+  },
   "lastCommit": {
-    "sha": "2d50c2e",
-    "date": "2026-09-29T00:19:08+02:00",
-    "subject": "fix: resolve Quick Drop from synchronous query state before executing Enter"
+    "sha": "66d7824",
+    "date": "2026-09-29T18:58:38+02:00",
+    "subject": "Document NuGet packages with badges and usage"
   },
   "loc": {
-    "total": 3778,
-    "src": 3338,
-    "tests": 424
+    "total": 6159,
+    "src": 5257,
+    "tests": 886
   },
   "projectCount": 12,
   "libraryCount": 9,
@@ -38,6 +44,7 @@
         "net10.0-desktop"
       ],
       "packable": false,
+      "packageId": "LabSpace.App",
       "description": "Graphical instrumentation studio for desktop and browser.",
       "unoFeatures": [
         "SkiaRenderer"
@@ -47,7 +54,7 @@
       ],
       "packageRefs": [],
       "files": 7,
-      "loc": 196
+      "loc": 212
     },
     {
       "name": "LabSpace.Benchmarks",
@@ -58,6 +65,7 @@
         "net10.0"
       ],
       "packable": false,
+      "packageId": "LabSpace.Benchmarks",
       "description": "",
       "unoFeatures": [],
       "projectRefs": [
@@ -78,6 +86,7 @@
         "net10.0-desktop"
       ],
       "packable": true,
+      "packageId": "LabSpace.Controls",
       "description": "Custom Uno diagram, instrument, palette, chrome and inspector controls.",
       "unoFeatures": [
         "SkiaRenderer"
@@ -86,8 +95,8 @@
         "LabSpace.Skia"
       ],
       "packageRefs": [],
-      "files": 9,
-      "loc": 723
+      "files": 12,
+      "loc": 987
     },
     {
       "name": "LabSpace.Core",
@@ -98,12 +107,13 @@
         "net10.0"
       ],
       "packable": false,
+      "packageId": "LabSpace.Core",
       "description": "Typed virtual instruments, graphical programs and front-panel models.",
       "unoFeatures": [],
       "projectRefs": [],
       "packageRefs": [],
-      "files": 6,
-      "loc": 307
+      "files": 8,
+      "loc": 413
     },
     {
       "name": "LabSpace.Dataflow",
@@ -114,14 +124,15 @@
         "net10.0"
       ],
       "packable": false,
+      "packageId": "LabSpace.Dataflow",
       "description": "Typed graph compiler and deterministic, bounded dataflow execution.",
       "unoFeatures": [],
       "projectRefs": [
         "LabSpace.Signals"
       ],
       "packageRefs": [],
-      "files": 5,
-      "loc": 542
+      "files": 10,
+      "loc": 1312
     },
     {
       "name": "LabSpace.Documents",
@@ -132,14 +143,15 @@
         "net10.0"
       ],
       "packable": false,
+      "packageId": "LabSpace.Documents",
       "description": "Versioned bounded project persistence and executable example VIs.",
       "unoFeatures": [],
       "projectRefs": [
         "LabSpace.Core"
       ],
       "packageRefs": [],
-      "files": 3,
-      "loc": 194
+      "files": 5,
+      "loc": 331
     },
     {
       "name": "LabSpace.Editing",
@@ -150,6 +162,7 @@
         "net10.0"
       ],
       "packable": false,
+      "packageId": "LabSpace.Editing",
       "description": "Transactional graphical editing, bounded history and debugger sessions.",
       "unoFeatures": [],
       "projectRefs": [
@@ -157,8 +170,8 @@
         "LabSpace.Documents"
       ],
       "packageRefs": [],
-      "files": 2,
-      "loc": 340
+      "files": 4,
+      "loc": 686
     },
     {
       "name": "LabSpace.Signals",
@@ -169,6 +182,7 @@
         "net10.0"
       ],
       "packable": false,
+      "packageId": "LabSpace.Signals",
       "description": "Bounded signal generation, filtering, statistics and FFT kernels.",
       "unoFeatures": [],
       "projectRefs": [
@@ -187,6 +201,7 @@
         "net10.0"
       ],
       "packable": false,
+      "packageId": "LabSpace.Skia",
       "description": "Original Skia instrument, plot and typed diagram rendering components.",
       "unoFeatures": [],
       "projectRefs": [
@@ -199,7 +214,7 @@
         }
       ],
       "files": 6,
-      "loc": 458
+      "loc": 527
     },
     {
       "name": "LabSpace.Storage",
@@ -210,6 +225,7 @@
         "net10.0"
       ],
       "packable": false,
+      "packageId": "LabSpace.Storage",
       "description": "Portable project import, export and recovery storage contracts.",
       "unoFeatures": [],
       "projectRefs": [],
@@ -226,6 +242,7 @@
         "net10.0"
       ],
       "packable": false,
+      "packageId": "LabSpace.Tests",
       "description": "",
       "unoFeatures": [],
       "projectRefs": [
@@ -246,8 +263,8 @@
           "version": "3.1.5"
         }
       ],
-      "files": 6,
-      "loc": 424
+      "files": 10,
+      "loc": 886
     },
     {
       "name": "LabSpace.Workbench",
@@ -259,6 +276,7 @@
         "net10.0-desktop"
       ],
       "packable": true,
+      "packageId": "LabSpace.Workbench",
       "description": "Composable graphical instrumentation workbench for Uno desktop and browser hosts.",
       "unoFeatures": [
         "SkiaRenderer"
@@ -268,8 +286,8 @@
         "LabSpace.Storage"
       ],
       "packageRefs": [],
-      "files": 4,
-      "loc": 477
+      "files": 6,
+      "loc": 688
     }
   ],
   "nuget": [
@@ -309,11 +327,294 @@
     }
   ],
   "docs": [
+    "docs/advanced-structures.md",
     "docs/architecture.md",
     "docs/compatibility.md",
+    "docs/debugger.md",
     "docs/development.md",
     "docs/typed-structures.md",
     "docs/user-guide.md"
   ],
-  "images": []
+  "images": [],
+  "nugetDocs": {
+    "intro": [
+      "The studio is built from nine MIT-licensed packages that are versioned and released together; the host application and tests are not packages. Seven packages (`Core` through `Skia`) target plain `net10.0` and have no UI dependency; only `LabSpace.Skia` pulls in SkiaSharp (3.119.4, the Uno-compatible build). `Controls` and `Workbench` are Uno Platform libraries targeting `net10.0-desktop` and `net10.0-browserwasm`. Every package ships symbols to NuGet.org (`.snupkg`) with SourceLink."
+    ],
+    "install": "dotnet add package LabSpace.Core --prerelease",
+    "notes": [
+      {
+        "type": "paragraph",
+        "text": "Dependencies (from project references):"
+      },
+      {
+        "type": "code",
+        "lang": "text",
+        "code": "Core ← Signals ← Dataflow\nCore ← Documents\nDataflow + Documents ← Editing ← Skia (+ SkiaSharp) ← Controls (Uno)\nControls + Storage ← Workbench\nStorage has no dependencies"
+      },
+      {
+        "type": "paragraph",
+        "text": "See [typed structures](https://github.com/wieslawsoltes/LabSpace/blob/main/docs/typed-structures.md) for contract definitions and resumable execution, and [architecture](https://github.com/wieslawsoltes/LabSpace/blob/main/docs/architecture.md) for layering."
+      }
+    ],
+    "packages": [
+      {
+        "id": "LabSpace.Core",
+        "description": "VI/diagram/panel models, immutable typed values, node catalog and structure contracts",
+        "summary": [
+          "The document and type model: projects, virtual instruments (VIs), diagrams of nodes and wires, front-panel items, immutable typed `Value`s (number, Boolean, string, array, waveform, error cluster, complex) and the catalog of node definitions with named terminals and structure contracts. No dependencies beyond .NET; no UI."
+        ],
+        "install": "dotnet add package LabSpace.Core --prerelease",
+        "keyTypes": [
+          "`LabProject` / `VirtualInstrument` / `Diagram` / `Node` / `Wire` / `PanelItem` — the serializable program model.",
+          "`Value` / `ValueKind` — immutable typed values: `Numeric`, `Bool`, `String`, `Vector`, `Series`, `ErrorValue`, `ComplexValue`.",
+          "`NodeCatalog` — `All`, `Get(kind)`, `Resolve(node)` for terminal definitions.",
+          "`StructureContract` — tunnels, indexing modes and shift registers for loops/structures.",
+          "`StructureFrame` / `FormulaSignature` / `ErrorCluster` — case/sequence frames, formula terminals and error clusters."
+        ],
+        "content": [
+          {
+            "type": "code",
+            "lang": "csharp",
+            "code": "using LabSpace.Core;\n\nValue wave = Value.Series([0, 1, 0, -1], sampleRate: 1000);\nValue error = Value.ErrorValue(status: true, code: 42, source: \"Acquire\");\nValue z = Value.ComplexValue(3, 4);\nConsole.WriteLine($\"{wave.Kind}, |z| = {z.Complex.Magnitude}\");   // Waveform, |z| = 5\n\nNodeDefinition add = NodeCatalog.Get(\"add\");\nConsole.WriteLine(string.Join(\", \", add.Inputs.Select(p => $\"{p.Name}: {p.Kind}\")));   // x: Number, y: Number"
+          }
+        ],
+        "project": "LabSpace.Core",
+        "nuget": {
+          "id": "LabSpace.Core",
+          "version": "0.3.0-alpha.1",
+          "downloads": 0,
+          "verified": false
+        }
+      },
+      {
+        "id": "LabSpace.Storage",
+        "description": "Host-neutral open/save/export/recovery contract and protected recovery",
+        "summary": [
+          "A small host-neutral contract for opening, saving, exporting and recovering projects, plus an in-memory implementation and a wrapper that stops automatic recovery from overwriting a recovery copy that failed to load until the user explicitly saves. No dependencies; no UI."
+        ],
+        "install": "dotnet add package LabSpace.Storage --prerelease",
+        "keyTypes": [
+          "`IProjectStorage` — `OpenAsync`, `SaveAsync`, `ReadRecoveryAsync`, `WriteRecoveryAsync`, `ExportAsync`.",
+          "`MemoryProjectStorage` — in-memory implementation for tests and headless hosts.",
+          "`ProtectedRecoveryStorage` — suppresses recovery writes until an explicit save succeeds."
+        ],
+        "content": [
+          {
+            "type": "code",
+            "lang": "csharp",
+            "code": "using LabSpace.Storage;\n\nvar memory = new MemoryProjectStorage();\nIProjectStorage storage = new ProtectedRecoveryStorage(memory);\n\nawait storage.WriteRecoveryAsync(\"{}\");                       // ignored: nothing saved yet\nawait storage.SaveAsync(\"Demo.labspace.json\", projectJson);   // saves and re-enables recovery\nConsole.WriteLine(memory.Recovery is not null);               // True"
+          }
+        ],
+        "project": "LabSpace.Storage",
+        "nuget": {
+          "id": "LabSpace.Storage",
+          "version": "0.3.0-alpha.1",
+          "downloads": 0,
+          "verified": false
+        }
+      },
+      {
+        "id": "LabSpace.Signals",
+        "description": "Bounded signal generation, filtering, stable RMS and FFT",
+        "summary": [
+          "Deterministic signal kernels used by the dataflow functions: sine/square/triangle generation with seeded noise, moving-average filtering, numerically stable RMS and a Hann-windowed radix-2 FFT magnitude spectrum. Depends on `LabSpace.Core` (for `Value`); no UI."
+        ],
+        "install": "dotnet add package LabSpace.Signals --prerelease",
+        "keyTypes": [
+          "`SignalMath.Generate` — bounded waveform generation (2–65,536 samples, up to Nyquist).",
+          "`SignalMath.MovingAverage`, `Transform` — filtering and per-sample transforms.",
+          "`SignalMath.Rms` — overflow-safe RMS.",
+          "`SignalMath.Spectrum` — magnitude spectrum of a power-of-two waveform."
+        ],
+        "content": [
+          {
+            "type": "code",
+            "lang": "csharp",
+            "code": "using LabSpace.Core;\nusing LabSpace.Signals;\n\nValue sine = SignalMath.Generate(count: 1024, rate: 2000, frequency: 50, amplitude: 2,\n    start: 0, shape: \"Sine\", noise: 0.05);\nValue smooth = SignalMath.MovingAverage(sine, window: 8);\ndouble rms = SignalMath.Rms(smooth.Samples);\nValue spectrum = SignalMath.Spectrum(sine);        // 513 bins"
+          }
+        ],
+        "project": "LabSpace.Signals",
+        "nuget": {
+          "id": "LabSpace.Signals",
+          "version": "0.3.0-alpha.1",
+          "downloads": 0,
+          "verified": false
+        }
+      },
+      {
+        "id": "LabSpace.Documents",
+        "description": "Versioned source-generated JSON, validation/migration and executable example VIs",
+        "summary": [
+          "Persistence and examples: version-3 `.labspace.json` with source-generated serialization, validation, 8 MiB bounds and migration from versions 1 and 2, plus builders for the eight executable example VIs. Depends on `LabSpace.Core`; no UI."
+        ],
+        "install": "dotnet add package LabSpace.Documents --prerelease",
+        "keyTypes": [
+          "`ProjectSerializer` — `Save`, `Load` (validating/migrating), `Clone`, `Validate`.",
+          "`Examples` — `Create()` (the example project), `Blank`, `NewNode`, `Connect`.",
+          "`StructuredExamples`, `AdvancedExamples`, `FormulaExamples` — loop, case/sequence, error/complex and formula VIs."
+        ],
+        "content": [
+          {
+            "type": "code",
+            "lang": "csharp",
+            "code": "using LabSpace.Core;\nusing LabSpace.Documents;\n\nvar vi = Examples.Blank(\"Sum.vi\");\nvar x = Examples.NewNode(\"control\", 80, 80); x.Label = \"x\"; x.Value = 3;\nvar y = Examples.NewNode(\"control\", 80, 220); y.Label = \"y\"; y.Value = 7;\nvar sum = Examples.NewNode(\"add\", 320, 130);\nvar output = Examples.NewNode(\"indicator\", 570, 130); output.Label = \"x + y\";\nvi.Diagram.Nodes.AddRange([x, y, sum, output]);\nExamples.Connect(vi.Diagram, x, sum, \"x\");\nExamples.Connect(vi.Diagram, y, sum, \"y\");\nExamples.Connect(vi.Diagram, sum, output);\n\nstring json = ProjectSerializer.Save(new LabProject { Name = \"Demo\", Instruments = [vi] });\nLabProject loaded = ProjectSerializer.Load(json);"
+          }
+        ],
+        "project": "LabSpace.Documents",
+        "nuget": {
+          "id": "LabSpace.Documents",
+          "version": "0.3.0-alpha.1",
+          "downloads": 0,
+          "verified": false
+        }
+      },
+      {
+        "id": "LabSpace.Dataflow",
+        "description": "Typed graph compiler, formula bytecode and deterministic, bounded execution",
+        "summary": [
+          "The execution engine: validates and compiles a diagram into a cached topological plan (typed terminals, single-driver inputs, explicit feedback), then executes it with named outputs, nested structure activations, shift-register state, a compiled scalar formula language and shared node/instruction budgets. Depends on `LabSpace.Signals`; no UI."
+        ],
+        "install": "dotnet add package LabSpace.Dataflow --prerelease",
+        "keyTypes": [
+          "`GraphCompiler` — `Validate` (returns `Diagnostic`s) and `Compile` to a `CompiledGraph`.",
+          "`DataflowRuntime` — `Run` to completion or `Start` a resumable `ExecutionFrame`; `Reset`, `FrameCompleted`.",
+          "`ExecutionFrame` — `GetOutput(nodeId, output)`, `Step`, `StepInto`, `Completed`.",
+          "`FormulaProgram` — `Compile(source, signature)` and bounded `Evaluate`.",
+          "`ExecutionBudget`, `ExecutionLimitException`, `GraphValidationException`."
+        ],
+        "content": [
+          {
+            "type": "code",
+            "lang": "csharp",
+            "code": "using LabSpace.Dataflow;\nusing LabSpace.Documents;\n\nvar vi = StructuredExamples.IndexedAccumulator();\nvar loop = vi.Diagram.Nodes.Single(node => node.Kind == \"for\");\nvar graph = GraphCompiler.Compile(vi.Diagram);\nvar runtime = new DataflowRuntime();\n\nusing var cancellation = new CancellationTokenSource();\nvar frame = runtime.Run(graph, cancellation.Token, maximumNodes: 100_000);\nConsole.WriteLine(frame.GetOutput(loop.Id, \"state\").Number);                  // 15\nConsole.WriteLine(string.Join(\", \", frame.GetOutput(loop.Id, \"totals\").Samples)); // 1, 3, 6, 10, 15\n\nvar formula = FormulaProgram.Compile(\"result = x * x + 1;\", new());\nConsole.WriteLine(formula.Evaluate(_ => 3)[\"result\"]);                        // 10"
+          }
+        ],
+        "project": "LabSpace.Dataflow",
+        "nuget": {
+          "id": "LabSpace.Dataflow",
+          "version": "0.3.0-alpha.1",
+          "downloads": 0,
+          "verified": false
+        }
+      },
+      {
+        "id": "LabSpace.Editing",
+        "description": "UI-independent editing, transactions, history, wiring, execution and debugger session",
+        "summary": [
+          "The UI-independent editor model: `InstrumentSession` owns the project, active VI, navigation into structures, selection, bounded undo/redo, typed wiring, gestures, clipboard, execution (run/continuous/pause/abort/step) and the cross-VI debugger with probes and breakpoints. Depends on `Dataflow` and `Documents`; no UI."
+        ],
+        "install": "dotnet add package LabSpace.Editing --prerelease",
+        "keyTypes": [
+          "`InstrumentSession` — `Add`, `Connect`, `SetValue`, `Delete`, `Undo`/`Redo`, `BeginGesture`/`EndGesture`, `Changed`.",
+          "Execution — `Run(continuous)`, `Tick`, `Pause`, `Abort`, `Step`, `StepInto`, `StepOut`, `OutputValue`.",
+          "Navigation — `Switch`, `Enter`/`Leave`, `SelectFrame`, `ConfigureStructure`, `ConfigureFormula`.",
+          "Debugger — `ToggleProbe`, `ToggleBreakpoint`, `GetProbes`, `LocateProbe`, `ProbeSnapshot`.",
+          "`SessionChange` — flags describing what changed."
+        ],
+        "content": [
+          {
+            "type": "code",
+            "lang": "csharp",
+            "code": "using LabSpace.Core;\nusing LabSpace.Documents;\nusing LabSpace.Editing;\n\nvar session = new InstrumentSession(new LabProject { Name = \"Demo\", Instruments = [Examples.Blank(\"Sum.vi\")] });\nvar a = session.Add(\"control\", 80, 80);          // also places a front-panel control\nvar b = session.Add(\"control\", 80, 220);\nvar add = session.Add(\"add\", 320, 130);\nvar result = session.Add(\"indicator\", 570, 130);\nsession.Connect(a.Id, add.Id, \"x\");               // type-checked; rejects cycles/multiple drivers\nsession.Connect(b.Id, add.Id, \"y\");\nsession.Connect(add.Id, result.Id, \"x\");\nsession.SetValue(a.Id, 3); session.SetValue(b.Id, 7);\n\nsession.Run();                                    // continuous runs advance via session.Tick()\nConsole.WriteLine(session.OutputValue(result.Id)); // 10\nsession.Undo();"
+          }
+        ],
+        "project": "LabSpace.Editing",
+        "nuget": {
+          "id": "LabSpace.Editing",
+          "version": "0.3.0-alpha.1",
+          "downloads": 0,
+          "verified": false
+        }
+      },
+      {
+        "id": "LabSpace.Skia",
+        "description": "Instrument, plot and diagram rendering, geometry, cached previews and icons",
+        "summary": [
+          "Original SkiaSharp rendering for front panels (numerics, knobs, sliders, gauges, LEDs, switches, strings, arrays, error/complex clusters, graphs and charts with extrema-preserving decimation) and typed block diagrams (nodes, wires, structure previews, probes), plus geometry and icons. Draws an `InstrumentSession` into any `SKCanvas`. Depends on `LabSpace.Editing` and SkiaSharp; no UI framework."
+        ],
+        "install": "dotnet add package LabSpace.Skia --prerelease",
+        "keyTypes": [
+          "`PanelRenderer(LabFonts)` — `Draw(canvas, session, viewport)` for the active front panel; `Cursors`.",
+          "`DiagramRenderer(LabFonts)` — `Draw` the active block diagram; `HitWire`.",
+          "`PlotRenderer`, `IconPainter`, `LabDrawing` — plots, icons and drawing primitives.",
+          "`DiagramGeometry` — node bounds, terminal positions and wire routing.",
+          "`LabFonts` — shared typeface (`Load(stream)`); `IDisposable`."
+        ],
+        "content": [
+          {
+            "type": "code",
+            "lang": "csharp",
+            "code": "using LabSpace.Documents;\nusing LabSpace.Editing;\nusing LabSpace.Skia;\nusing SkiaSharp;\n\nvar session = new InstrumentSession(Examples.Create());\nsession.Run();                                   // Signal Analysis.vi\n\nusing var fonts = new LabFonts();                // or fonts.Load(stream) for a custom typeface\nusing var panel = new PanelRenderer(fonts);\nusing var surface = SKSurface.Create(new SKImageInfo(1200, 700));\npanel.Draw(surface.Canvas, session, new SKRect(0, 0, 1200, 700));\n\nusing var image = surface.Snapshot();\nusing var png = image.Encode(SKEncodedImageFormat.Png, 100);\nFile.WriteAllBytes(\"front-panel.png\", png.ToArray());"
+          }
+        ],
+        "project": "LabSpace.Skia",
+        "nuget": {
+          "id": "LabSpace.Skia",
+          "version": "0.3.0-alpha.1",
+          "downloads": 0,
+          "verified": false
+        }
+      },
+      {
+        "id": "LabSpace.Controls",
+        "description": "Uno canvases, chrome, palette, Quick Drop, staged editors, Debug window and inspector",
+        "summary": [
+          "The interactive Uno controls: front-panel and block-diagram canvases with pan/zoom, placement, wiring and operation; searchable function palette; Quick Drop; staged structure, frame and formula editors; property inspector; and the cross-VI Debug window. Depends on `LabSpace.Skia`; requires Uno Platform (Skia renderer)."
+        ],
+        "install": "dotnet add package LabSpace.Controls --prerelease",
+        "keyTypes": [
+          "`FrontPanelSurface(session, fonts)` / `DiagramSurface(session, fonts)` — editable canvases; `Fit`, `SetZoom`, `ArmPlacement`.",
+          "`FunctionPalette` — searchable palette; `SetControls`, `AddRequested`.",
+          "`PropertyInspector(session)`, `DebugWindowControl(session)`, `QuickDropControl`.",
+          "`StructureContractEditor`, `FrameEditorControl`, `FormulaEditorControl` — staged editors.",
+          "`LabTheme`, `LabButton`, `VectorIcon` — chrome helpers."
+        ],
+        "content": [
+          {
+            "type": "code",
+            "lang": "csharp",
+            "code": "using LabSpace.Controls;\nusing LabSpace.Documents;\nusing LabSpace.Editing;\nusing LabSpace.Skia;\n\nvar fonts = new LabFonts();\nvar session = new InstrumentSession(Examples.Create());\nvar diagram = new DiagramSurface(session, fonts);\nvar palette = new FunctionPalette();\npalette.AddRequested += (kind, widget) => diagram.ArmPlacement(kind);   // click to place\n\nvar layout = new Grid();\nlayout.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(260) });\nlayout.ColumnDefinitions.Add(new ColumnDefinition());\nlayout.Children.Add(palette);\nGrid.SetColumn(diagram, 1); layout.Children.Add(diagram);\nwindow.Content = layout;                          // your Uno Window\ndiagram.Loaded += (_, _) => diagram.Fit();"
+          }
+        ],
+        "project": "LabSpace.Controls",
+        "nuget": {
+          "id": "LabSpace.Controls",
+          "version": "0.3.0-alpha.1",
+          "downloads": 0,
+          "verified": false
+        }
+      },
+      {
+        "id": "LabSpace.Workbench",
+        "description": "Complete reusable Uno studio: commands, navigation, execution and recovery scheduling",
+        "summary": [
+          "The complete studio as one `UserControl`: project explorer, VI tabs, paired or split Front Panel / Block Diagram editors, palettes, context help, properties, Debug window, commands and keyboard shortcuts, execution timer and recovery scheduling. Depends on `Controls` and `Storage`; requires Uno Platform (Skia renderer)."
+        ],
+        "install": "dotnet add package LabSpace.Workbench --prerelease",
+        "keyTypes": [
+          "`InstrumentWorkbench(InstrumentSession, IProjectStorage, LabFonts)` — the studio control; `IDisposable`.",
+          "`Session`, `FrontPanel`, `BlockDiagram`, `Palette`, `Inspector`, `DebugWindow`, `Commands`.",
+          "`SetView(StudioView)`, `ToggleView`, `ShowDebugWindow`, `Fit`."
+        ],
+        "content": [
+          {
+            "type": "code",
+            "lang": "csharp",
+            "code": "using LabSpace.Documents;\nusing LabSpace.Editing;\nusing LabSpace.Skia;\nusing LabSpace.Storage;\nusing LabSpace.Workbench;\n\nprotected override void OnLaunched(LaunchActivatedEventArgs args)\n{\n    var window = new Window { Title = \"LabSpace\" };\n    var fonts = new LabFonts();\n    IProjectStorage storage = new MemoryProjectStorage();   // or your platform implementation\n    var workbench = new InstrumentWorkbench(new InstrumentSession(Examples.Create()), storage, fonts);\n    workbench.SetView(StudioView.Split);\n    window.Content = workbench;\n    window.Closed += (_, _) => { workbench.Dispose(); fonts.Dispose(); };\n    window.Activate();\n}"
+          },
+          {
+            "type": "paragraph",
+            "text": "`src/LabSpace.App` shows desktop and browser (IndexedDB) `IProjectStorage` implementations and font loading."
+          }
+        ],
+        "project": "LabSpace.Workbench",
+        "nuget": {
+          "id": "LabSpace.Workbench",
+          "version": "0.3.0-alpha.1",
+          "downloads": 0,
+          "verified": false
+        }
+      }
+    ]
+  }
 }
