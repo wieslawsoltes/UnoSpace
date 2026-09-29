@@ -5,6 +5,7 @@
 //   node scripts/shots.mjs                 # all projects
 //   node scripts/shots.mjs vectorspace     # a subset
 //   PW_CHANNEL=chrome node scripts/shots.mjs   # use an installed Chrome
+//   SHOT_SCHEME=dark node scripts/shots.mjs    # emulate a dark OS theme (default: light)
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -16,8 +17,9 @@ const only = process.argv.slice(2).map((s) => s.toLowerCase());
 const settle = Number(process.env.SHOT_SETTLE_MS || 6000);
 
 const browser = await chromium.launch({ channel: process.env.PW_CHANNEL || undefined });
+// Light OS theme by default: several apps only partially adapt to prefers-color-scheme: dark.
 // One shared context so the .NET runtime assets stay in the HTTP cache across retries.
-const context = await browser.newContext({ viewport: { width: 1600, height: 1000 }, deviceScaleFactor: 1, colorScheme: 'dark' });
+const context = await browser.newContext({ viewport: { width: 1600, height: 1000 }, deviceScaleFactor: 1, colorScheme: process.env.SHOT_SCHEME || 'light' });
 const attempts = Number(process.env.SHOT_ATTEMPTS || 3);
 let failures = 0;
 for (const { repo } of catalog.projects) {
