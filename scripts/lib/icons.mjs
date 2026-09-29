@@ -86,7 +86,7 @@ const P = {
 
 export const iconNames = Object.keys(P);
 
-export function icon(name, { size = 20, cls = '', stroke = 1.75 } = {}) {
+export function icon(name, { size = 20, cls = '', stroke = 1.5 } = {}) {
   const body = P[name] || P.sparkles;
   return `<svg class="ico${cls ? ' ' + cls : ''}" width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="${stroke}" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${body}</svg>`;
 }

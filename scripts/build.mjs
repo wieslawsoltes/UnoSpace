@@ -18,14 +18,14 @@ const sha = (process.env.GITHUB_SHA || '').slice(0, 7);
 /* ------------------------------------------------------------------ data */
 const APP_ICON = { VectorSpace: 'pen', ArtSpace: 'brush', TextSpace: 'text', GridSpace: 'table', PdfSpace: 'pdf', PresentationSpace: 'slides', ImageSpace: 'image', LightSpace: 'camera', VideoSpace: 'film', EffectsSpace: 'sparkles', CadSpace: 'cad', LabSpace: 'flask', ControlSpace: 'chip', CodeSpace: 'code', GitSpace: 'branch', DataSpace: 'database', NoteSpace: 'note' };
 const LAYERS = [
-  { id: 'model', label: 'Model', color: '#67e5ad', icon: 'cube', text: 'Immutable documents, geometry and domain types' },
-  { id: 'engine', label: 'Engine', color: '#159bff', icon: 'bolt', text: 'Layout, formulas, simulation and algorithms' },
-  { id: 'io', label: 'I/O', color: '#ffb547', icon: 'download', text: 'Formats, persistence and interchange' },
-  { id: 'rendering', label: 'Rendering', color: '#ff5fa2', icon: 'palette', text: 'SkiaSharp drawing, caching and export' },
-  { id: 'controls', label: 'Controls', color: '#a58bff', icon: 'puzzle', text: 'Reusable Uno controls and iconography' },
-  { id: 'editor', label: 'Editor', color: '#7a67f8', icon: 'pen', text: 'Interactive surfaces and direct manipulation' },
-  { id: 'workbench', label: 'Workbench', color: '#35d8e8', icon: 'layout', text: 'Complete embeddable application shells' },
-  { id: 'service', label: 'Service', color: '#f85977', icon: 'plug', text: 'Hosts, workers and platform bridges' },
+  { id: 'model', label: 'Model', color: '#107c41', icon: 'cube', text: 'Immutable documents, geometry and domain types' },
+  { id: 'engine', label: 'Engine', color: '#0f6cbd', icon: 'bolt', text: 'Layout, formulas, simulation and algorithms' },
+  { id: 'io', label: 'I/O', color: '#ca5010', icon: 'download', text: 'Formats, persistence and interchange' },
+  { id: 'rendering', label: 'Rendering', color: '#c239b3', icon: 'palette', text: 'SkiaSharp drawing, caching and export' },
+  { id: 'controls', label: 'Controls', color: '#8764b8', icon: 'puzzle', text: 'Reusable Uno controls and iconography' },
+  { id: 'editor', label: 'Editor', color: '#4f6bed', icon: 'pen', text: 'Interactive surfaces and direct manipulation' },
+  { id: 'workbench', label: 'Workbench', color: '#038387', icon: 'layout', text: 'Complete embeddable application shells' },
+  { id: 'service', label: 'Service', color: '#d13438', icon: 'plug', text: 'Hosts, workers and platform bridges' },
 ];
 const layerOf = (id) => LAYERS.find((l) => l.id === id) || LAYERS[1];
 const catOf = (id) => catalog.categories.find((c) => c.id === id);
@@ -110,7 +110,10 @@ function layout({ R, title, description, body, active = '', style = '', image = 
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>${esc(fullTitle)}</title>
 <meta name="description" content="${esc(description)}">
-<meta name="theme-color" content="#04050d">
+<meta name="theme-color" content="#f3f3f3" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#202020" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="light dark">
+<script>try{var t=localStorage.getItem('unospace.theme');if(t=='light'||t=='dark')document.documentElement.dataset.theme=t}catch(e){}</script>
 <link rel="canonical" href="${SITE.baseUrl}${canonical}">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="${SITE.title}">
@@ -121,16 +124,11 @@ function layout({ R, title, description, body, active = '', style = '', image = 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="${img}">
 <link rel="icon" href="${R}favicon.svg" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="${R}assets/css/main.css">
 ${extraHead}
 </head>
 <body style="${style}">
-<div class="aurora" aria-hidden="true"></div>
-<canvas id="cosmos" aria-hidden="true"></canvas>
-<div class="noise" aria-hidden="true"></div>
+<div class="mica" aria-hidden="true"></div>
 <a class="sr-only" href="#main">Skip to content</a>
 <header class="nav">
   <div class="wrap">
@@ -144,6 +142,7 @@ ${extraHead}
       ${navLink('packages/index.html', 'Packages', 'packages')}
       ${navLink('compare/index.html', 'Compare', 'compare')}
       <a href="https://github.com/${owner}/UnoSpace" rel="noopener">${icon('github', { size: 16 })} GitHub</a>
+      <button class="btn btn-subtle btn-icon theme-toggle" data-theme-toggle aria-label="Toggle light or dark theme" title="Toggle theme">${icon('sun', { size: 18 })}${icon('moon', { size: 18 })}</button>
       <a class="btn btn-primary btn-sm nav-cta" href="${R}playground/index.html">${icon('play', { size: 14 })} Launch apps</a>
     </nav>
   </div>
@@ -152,7 +151,7 @@ ${extraHead}
 ${body}
 </main>
 ${footer(R)}
-<button class="to-top" aria-label="Back to top"><svg class="ring" width="48" height="48" viewBox="0 0 48 48"><defs><linearGradient id="topGrad"><stop offset="0" stop-color="#7a67f8"/><stop offset="1" stop-color="#159bff"/></linearGradient></defs><circle cx="24" cy="24" r="23" stroke-dasharray="144.5" stroke-dashoffset="144.5"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+<button class="to-top" aria-label="Back to top"><svg class="ring" width="42" height="42" viewBox="0 0 48 48"><circle cx="24" cy="24" r="23" stroke-dasharray="144.5" stroke-dashoffset="144.5"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
 <script src="${R}assets/js/main.js" defer></script>
 </body>
 </html>
@@ -160,7 +159,7 @@ ${footer(R)}
 }
 
 function brandMark(k = 'h') {
-  return `<svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><defs><radialGradient id="bm-${k}" cx="35%" cy="30%"><stop offset="0" stop-color="#fff"/><stop offset=".4" stop-color="#9d8fff"/><stop offset="1" stop-color="#5b46e8"/></radialGradient><linearGradient id="bmr-${k}" x1="0" x2="1"><stop offset="0" stop-color="#159bff"/><stop offset="1" stop-color="#67e5ad"/></linearGradient></defs><circle cx="16" cy="16" r="7" fill="url(#bm-${k})"/><g class="orbit"><ellipse cx="16" cy="16" rx="14" ry="5.5" fill="none" stroke="url(#bmr-${k})" stroke-width="1.6" transform="rotate(-28 16 16)"/><circle cx="28.2" cy="9.6" r="2.3" fill="#f85977"/></g></svg>`;
+  return `<svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><defs><linearGradient id="bm-${k}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4f9ff0"/><stop offset="1" stop-color="#5b4fd9"/></linearGradient></defs><rect x="1" y="1" width="30" height="30" rx="8" fill="url(#bm-${k})"/><circle cx="16" cy="16" r="5.2" fill="#fff"/><ellipse class="orbit" cx="16" cy="16" rx="11.5" ry="4.4" fill="none" stroke="#fff" stroke-opacity=".85" stroke-width="1.6" transform="rotate(-30 16 16)"/><circle cx="25.6" cy="10.5" r="1.9" fill="#fff"/></svg>`;
 }
 
 function footer(R) {
@@ -189,7 +188,6 @@ function appCard(p, R, i) {
   return `<article class="app-card" data-reveal style="${vars(p)};--d:${i % 3}" data-cat="${p.category}" data-search="${esc(search)}">
   <div class="shot">${p.shot ? `<img src="${R}${p.shot}" alt="${esc(p.name)} running in the browser" loading="lazy" width="1600" height="1000">` : ''}</div>
   <span class="live"><span class="live-dot">LIVE</span></span>
-  <div class="glare"></div>
   <div class="body">
     <div class="head">${planet(p, '', 26)}<div><div class="cat">${esc(catOf(p.category).label)}</div><h3>${p.name}</h3></div></div>
     <p>${esc(p.tagline)}</p>
@@ -334,7 +332,7 @@ function pkgCard(pk, p) {
 /* ================================================================= HOME */
 function homePage() {
   const R = '';
-  const orbitData = projects.map((p) => ({ name: p.name, tagline: p.tagline, accent: p.accent, accent2: p.accent2, href: `projects/${p.slug}/index.html`, weight: Math.min(1, (p.gen.loc?.total || 0) / 20000) }));
+  const orbitData = projects.map((p) => ({ name: p.name, tagline: p.tagline, accent: p.accent, accent2: p.accent2, glyph: icon(p.icon, { size: 24, stroke: 2 }).replace('stroke="currentColor"', 'stroke="#fff"').replace('<svg ', '<svg xmlns="http://www.w3.org/2000/svg" '), href: `projects/${p.slug}/index.html`, weight: Math.min(1, (p.gen.loc?.total || 0) / 20000) }));
   const metrics = {
     metrics: [
       { key: 'loc', label: 'Lines of C# & XAML', caption: 'Non-blank lines of C# and XAML per repository (src, tests, tools).' },
@@ -372,17 +370,16 @@ function homePage() {
     return `<td>${has ? `<div class="m" style="${vars(p)};--i:${mi++}" title="${p.name}${ver ? ' · ' + ver : ''}"></div>` : ''}</td>`;
   }).join('')}</tr>`).join('')}</tbody></table>`;
 
-  const marquee = [...projects, ...projects].map((p) => `<a href="projects/${p.slug}/index.html" tabindex="-1">${planet(p, '', 16)}${p.name}</a>`).join('');
   const withShots = projects.filter((p) => p.shot);
   const pattern = [
-    ['Core', 'cube', 'Immutable model', '#67e5ad'], ['Documents', 'download', 'Formats & storage', '#ffb547'], ['Engine', 'bolt', 'Layout · formulas · sim', '#159bff'], ['Editing', 'history', 'Transactions & undo', '#7a67f8'],
-    ['Skia', 'palette', 'Rendering & export', '#ff5fa2'], ['Controls', 'puzzle', 'Custom Uno controls', '#a58bff'], ['Workbench', 'layout', 'Embeddable shell', '#35d8e8'], ['App', 'globe', 'Browser + desktop', '#f85977'],
+    ['Core', 'cube', 'Immutable model', '#107c41'], ['Documents', 'download', 'Formats & storage', '#ca5010'], ['Engine', 'bolt', 'Layout · formulas · sim', '#0f6cbd'], ['Editing', 'history', 'Transactions & undo', '#4f6bed'],
+    ['Skia', 'palette', 'Rendering & export', '#c239b3'], ['Controls', 'puzzle', 'Custom Uno controls', '#8764b8'], ['Workbench', 'layout', 'Embeddable shell', '#038387'], ['App', 'globe', 'Browser + desktop', '#d13438'],
   ];
   const body = `
 <section class="hero">
   <div class="wrap">
     <div>
-      <div class="pill"><b>${projects.length} apps</b> Uno Platform · SkiaSharp · .NET WebAssembly</div>
+      <div class="pill"><b>${projects.length} apps</b>Uno Platform · SkiaSharp · .NET WebAssembly</div>
       <h1><span class="line"><span style="--i:0">Desktop‑class apps.</span></span><span class="line"><span style="--i:1">Written in C#.</span></span><span class="line"><span style="--i:2" class="grad-text">Running in your browser.</span></span></h1>
       <p class="lede">Uno Space is a constellation of ${projects.length} local‑first workspaces — vector design, word processing, spreadsheets, PDF, photo, video, CAD, PLC engineering, Git and more. Each one is real compiled C# running on Uno Platform WebAssembly, built from ${n(totals.libraries)} reusable libraries you can embed in your own apps.</p>
       <div class="actions">
@@ -395,11 +392,9 @@ function homePage() {
       <div class="orbit-label"></div>
     </div>
   </div>
-  <div class="scroll-cue"><i></i>Scroll</div>
   <script type="application/json" id="orbit-data">${JSON.stringify(orbitData).replace(/</g, '\\u003c')}</script>
 </section>
 
-<div class="marquee" aria-hidden="true"><div class="marquee-track">${marquee}</div></div>
 
 <section class="section-sm">
   <div class="wrap">
@@ -446,11 +441,11 @@ function homePage() {
     </div>
     <div class="stack-layers" data-reveal="right">
       ${[
-        ['Your workspace', 'Workbench, editors & custom controls', 'layout', '#f85977', `${projects.length} apps`],
-        ['Uno Platform 6.7', 'WinUI API surface · single project · Skia renderer', 'layers', '#7a67f8', 'UI'],
-        ['SkiaSharp 3', 'GPU‑accelerated 2D graphics · HarfBuzz text shaping', 'palette', '#159bff', 'Render'],
-        ['.NET 10', 'C# 14 · engines · documents · algorithms', 'code', '#67e5ad', 'Runtime'],
-        ['WebAssembly · Desktop', 'Browser, Win32, macOS, X11 hosts', 'globe', '#ffb547', 'Targets'],
+        ['Your workspace', 'Workbench, editors & custom controls', 'layout', '#d13438', `${projects.length} apps`],
+        ['Uno Platform 6.7', 'WinUI API surface · single project · Skia renderer', 'layers', '#8764b8', 'UI'],
+        ['SkiaSharp 3', 'GPU‑accelerated 2D graphics · HarfBuzz text shaping', 'palette', '#0f6cbd', 'Render'],
+        ['.NET 10', 'C# 14 · engines · documents · algorithms', 'code', '#107c41', 'Runtime'],
+        ['WebAssembly · Desktop', 'Browser, Win32, macOS, X11 hosts', 'globe', '#ca5010', 'Targets'],
       ].map(([b, s, ic, c, t], i) => `<div class="layer" style="--c:${c};--i:${i}">${icon(ic, { size: 26 })}<div><b>${b}</b><span>${s}</span></div><span class="tagline">${t}</span></div>`).join('')}
     </div>
   </div>
@@ -469,13 +464,13 @@ function homePage() {
     <div class="grid g2" style="margin-top:28px">
       <div class="card chart-card reveal-group" data-reveal>
         <h3 class="sub">Libraries by layer, across all apps</h3>
-        <div class="layers-chart">${layerRows.map((r) => `<div class="lc-row"><span style="display:flex;gap:8px;align-items:center;color:${r.L.color}">${icon(r.L.icon, { size: 16 })}<span style="color:var(--text)">${r.L.label}</span></span><span class="segs">${r.segs.map((s, i) => `<span style="${vars(s.p)};--n:${s.k};--i:${i}" title="${s.p.name}: ${s.k}"></span>`).join('')}</span><b>${r.total}</b></div>`).join('')}</div>
-        <p class="dim" style="font-size:13px;margin:18px 0 0">Each segment is one app, sized by how many of its libraries sit in that layer.</p>
+        <div class="layers-chart">${layerRows.map((r) => `<div class="lc-row" style="--lc:${r.L.color}"><span style="display:flex;gap:8px;align-items:center;color:${r.L.color}">${icon(r.L.icon, { size: 16 })}<span style="color:var(--text)">${r.L.label}</span></span><span class="segs">${r.segs.map((s, i) => `<span style="${vars(s.p)};--n:${s.k};--i:${i}" title="${s.p.name}: ${s.k}"></span>`).join('')}</span><b>${r.total}</b></div>`).join('')}</div>
+        <p class="dim" style="font-size:13px;margin:18px 0 0">Each segment is one app, sized by how many of its libraries sit in that layer. Hover a segment to see the app.</p>
       </div>
       <div class="card chart-card" data-reveal>
         <h3 class="sub">Apps by domain</h3>
         <div class="donut-wrap">
-          <svg class="donut" viewBox="0 0 220 220" width="220" height="220" role="img" aria-label="Apps by category">${donut}<text x="110" y="104" text-anchor="middle" fill="#fff" style="font:700 44px 'Space Grotesk'">${projects.length}</text><text x="110" y="130" text-anchor="middle" fill="#a3abd1" style="font:500 12px Inter">apps</text></svg>
+          <svg class="donut" viewBox="0 0 220 220" width="220" height="220" role="img" aria-label="Apps by category">${donut}<text class="donut-num" x="110" y="112" text-anchor="middle">${projects.length}</text><text class="donut-cap" x="110" y="136" text-anchor="middle">apps</text></svg>
           <ul class="legend">${cats.map((c) => `<li style="--c:${c.color}"><i></i>${esc(c.label)}<b>${c.count}</b></li>`).join('')}</ul>
         </div>
       </div>
@@ -575,7 +570,7 @@ function projectPage(p) {
       </div>
       <div class="facts" data-reveal="right">${heroStats}</div>
     </div>
-    ${p.shot ? `<div class="frame"><div class="frame-bar"><i></i><i></i><i></i><span class="url">${p.url.replace('https://', '')}</span></div><img src="${R}${p.shot}" alt="${esc(p.name)} running in a browser" width="1600" height="1000"></div>` : ''}
+    ${p.shot ? `<div class="frame"><div class="frame-bar">${planet(p, '', 10)}<span class="title">${p.name}</span><span class="url">${p.url.replace('https://', '')}</span><span class="caps" aria-hidden="true"><svg viewBox="0 0 10 10"><path d="M1 5h8"/></svg><svg viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" rx="1"/></svg><svg viewBox="0 0 10 10"><path d="M1.5 1.5l7 7M8.5 1.5l-7 7"/></svg></span></div><img src="${R}${p.shot}" alt="${esc(p.name)} running in a browser" width="1600" height="1000"></div>` : ''}
   </div>
 </section>
 
@@ -811,9 +806,9 @@ function comparePage() {
       || placedDots.some((d) => Math.hypot(Math.max(o.bx, Math.min(d.x, o.bx + tw)) - d.x, Math.max(o.ly - 11, Math.min(d.y, o.ly)) - d.y) < d.r);
     const o = options.find((c) => !hit(c)) || options[0];
     labels.push({ x: o.bx, y: o.ly, w: tw });
-    return `<a href="${R}projects/${r.p.slug}/index.html"><g class="bub"><circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${rad.toFixed(1)}" fill="url(#bg-${r.p.slug})" fill-opacity=".9" stroke="${r.p.accent2}" stroke-opacity=".7"><title>${r.p.name}: ${n(r.loc)} lines, ${r.features} features, ${r.libs} libraries</title></circle><text x="${o.lx.toFixed(1)}" y="${o.ly.toFixed(1)}" text-anchor="${o.anchor}">${r.p.name}</text></g></a>`;
+    return `<a href="${R}projects/${r.p.slug}/index.html"><g class="bub"><circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${rad.toFixed(1)}" fill="${r.p.accent}" fill-opacity=".82"><title>${r.p.name}: ${n(r.loc)} lines, ${r.features} features, ${r.libs} libraries</title></circle><text x="${o.lx.toFixed(1)}" y="${o.ly.toFixed(1)}" text-anchor="${o.anchor}">${r.p.name}</text></g></a>`;
   }).join('');
-  const defs = projects.map((p) => `<radialGradient id="bg-${p.slug}" cx="35%" cy="30%"><stop offset="0" stop-color="#fff" stop-opacity=".9"/><stop offset=".35" stop-color="${p.accent2}"/><stop offset="1" stop-color="${p.accent}"/></radialGradient>`).join('');
+  const defs = '';
   const body = `
 <section class="page-hero">
   <div class="wrap">

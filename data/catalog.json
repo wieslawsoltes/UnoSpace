@@ -2,34 +2,143 @@
   "owner": "wieslawsoltes",
   "site": {
     "title": "Uno Space",
-    "tagline": "Seventeen native-grade creative & engineering workspaces, written in C#, running in your browser.",
+    "tagline": "Seventeen desktop-class creative and engineering workspaces, written in C#, running in your browser.",
     "baseUrl": "https://wieslawsoltes.github.io/UnoSpace/"
   },
   "categories": [
-    { "id": "Design", "label": "Design & Illustration", "color": "#ff5fa2" },
-    { "id": "Documents", "label": "Documents & Office", "color": "#4fa3ff" },
-    { "id": "Media", "label": "Photo, Video & Motion", "color": "#ffb547" },
-    { "id": "Engineering", "label": "Engineering & Science", "color": "#3ee6a8" },
-    { "id": "Developer", "label": "Developer Tools", "color": "#a58bff" },
-    { "id": "Data", "label": "Data & Knowledge", "color": "#35d8e8" }
+    {
+      "id": "Design",
+      "label": "Design & Illustration",
+      "color": "#c239b3"
+    },
+    {
+      "id": "Documents",
+      "label": "Documents & Office",
+      "color": "#0f6cbd"
+    },
+    {
+      "id": "Media",
+      "label": "Photo, Video & Motion",
+      "color": "#ca5010"
+    },
+    {
+      "id": "Engineering",
+      "label": "Engineering & Science",
+      "color": "#038387"
+    },
+    {
+      "id": "Developer",
+      "label": "Developer Tools",
+      "color": "#4f6bed"
+    },
+    {
+      "id": "Data",
+      "label": "Data & Knowledge",
+      "color": "#8764b8"
+    }
   ],
   "projects": [
-    { "repo": "VectorSpace", "category": "Design", "accent": "#ff5fa2", "accent2": "#ff9f5f" },
-    { "repo": "ArtSpace", "category": "Design", "accent": "#ff7ad9", "accent2": "#b980ff" },
-    { "repo": "TextSpace", "category": "Documents", "accent": "#4fa3ff", "accent2": "#7cf2ff" },
-    { "repo": "GridSpace", "category": "Documents", "accent": "#35d07f", "accent2": "#b4f25a" },
-    { "repo": "PdfSpace", "category": "Documents", "accent": "#ff5a5a", "accent2": "#ffb36b" },
-    { "repo": "PresentationSpace", "category": "Documents", "accent": "#ff8a3d", "accent2": "#ffd166" },
-    { "repo": "ImageSpace", "category": "Media", "accent": "#3dbbff", "accent2": "#8f7bff" },
-    { "repo": "LightSpace", "category": "Media", "accent": "#ffc53d", "accent2": "#ff7b54" },
-    { "repo": "VideoSpace", "category": "Media", "accent": "#b36bff", "accent2": "#ff5fa2" },
-    { "repo": "EffectsSpace", "category": "Media", "accent": "#8b6bff", "accent2": "#3de0ff" },
-    { "repo": "CadSpace", "category": "Engineering", "accent": "#2fe0c8", "accent2": "#4f8bff" },
-    { "repo": "LabSpace", "category": "Engineering", "accent": "#3ee6a8", "accent2": "#e6f23e" },
-    { "repo": "ControlSpace", "category": "Engineering", "accent": "#5ee05a", "accent2": "#2fc4ff" },
-    { "repo": "CodeSpace", "category": "Developer", "accent": "#5b8cff", "accent2": "#a58bff" },
-    { "repo": "GitSpace", "category": "Developer", "accent": "#ff6a3d", "accent2": "#ffcf5c" },
-    { "repo": "DataSpace", "category": "Data", "accent": "#35d8e8", "accent2": "#5b8cff" },
-    { "repo": "NoteSpace", "category": "Data", "accent": "#c9a0ff", "accent2": "#ffa0c8" }
+    {
+      "repo": "VectorSpace",
+      "category": "Design",
+      "accent": "#e43ba6",
+      "accent2": "#f59bd2"
+    },
+    {
+      "repo": "ArtSpace",
+      "category": "Design",
+      "accent": "#b146c2",
+      "accent2": "#dca5e6"
+    },
+    {
+      "repo": "TextSpace",
+      "category": "Documents",
+      "accent": "#0f6cbd",
+      "accent2": "#62abf5"
+    },
+    {
+      "repo": "GridSpace",
+      "category": "Documents",
+      "accent": "#107c41",
+      "accent2": "#4cb87a"
+    },
+    {
+      "repo": "PdfSpace",
+      "category": "Documents",
+      "accent": "#d13438",
+      "accent2": "#f08c8e"
+    },
+    {
+      "repo": "PresentationSpace",
+      "category": "Documents",
+      "accent": "#c43e1c",
+      "accent2": "#f0916f"
+    },
+    {
+      "repo": "ImageSpace",
+      "category": "Media",
+      "accent": "#4f6bed",
+      "accent2": "#9aabf6"
+    },
+    {
+      "repo": "LightSpace",
+      "category": "Media",
+      "accent": "#da7b00",
+      "accent2": "#f8bf5f"
+    },
+    {
+      "repo": "VideoSpace",
+      "category": "Media",
+      "accent": "#7160e8",
+      "accent2": "#b0a6f5"
+    },
+    {
+      "repo": "EffectsSpace",
+      "category": "Media",
+      "accent": "#5c2e91",
+      "accent2": "#a57fd4"
+    },
+    {
+      "repo": "CadSpace",
+      "category": "Engineering",
+      "accent": "#038387",
+      "accent2": "#4cc3c6"
+    },
+    {
+      "repo": "LabSpace",
+      "category": "Engineering",
+      "accent": "#498205",
+      "accent2": "#8dc451"
+    },
+    {
+      "repo": "ControlSpace",
+      "category": "Engineering",
+      "accent": "#005b70",
+      "accent2": "#3fa0b8"
+    },
+    {
+      "repo": "CodeSpace",
+      "category": "Developer",
+      "accent": "#0078d4",
+      "accent2": "#5eb3f2"
+    },
+    {
+      "repo": "GitSpace",
+      "category": "Developer",
+      "accent": "#d83b01",
+      "accent2": "#f58f63"
+    },
+    {
+      "repo": "DataSpace",
+      "category": "Data",
+      "accent": "#a4262c",
+      "accent2": "#dd7479"
+    },
+    {
+      "repo": "NoteSpace",
+      "category": "Data",
+      "accent": "#7719aa",
+      "accent2": "#bd73e0"
+    }
   ]
 }
