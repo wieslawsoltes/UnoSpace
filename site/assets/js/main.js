@@ -274,8 +274,16 @@
   const sub = $('.subnav');
   if (sub) {
     const links = $$('a[href^="#"]', sub); const map = new Map(links.map((a) => [a.getAttribute('href').slice(1), a]));
+    const strip = $('.wrap', sub);
+    // Only scroll the sub-nav strip horizontally. Element.scrollIntoView() would also
+    // scroll the page itself and fight the user's wheel/touch scrolling.
+    const centerLink = (a) => {
+      if (strip.scrollWidth <= strip.clientWidth) return;
+      const left = a.offsetLeft - strip.offsetLeft - (strip.clientWidth - a.offsetWidth) / 2;
+      strip.scrollTo({ left: Math.max(0, left), behavior: reduced ? 'auto' : 'smooth' });
+    };
     const spy = new IntersectionObserver((entries) => {
-      entries.forEach((e) => { if (e.isIntersecting) { links.forEach((l) => l.classList.remove('on')); const a = map.get(e.target.id); if (a) { a.classList.add('on'); a.scrollIntoView({ block: 'nearest', inline: 'center' }); } } });
+      entries.forEach((e) => { if (e.isIntersecting) { links.forEach((l) => l.classList.remove('on')); const a = map.get(e.target.id); if (a) { a.classList.add('on'); centerLink(a); } } });
     }, { rootMargin: '-45% 0px -50% 0px' });
     map.forEach((_, id) => { const s = document.getElementById(id); if (s) spy.observe(s); });
   }
