@@ -104,6 +104,13 @@ and `npm run build`.
 | **Pages** | push to `main`, daily, after screenshot refresh, manual | syncs live metrics from all 17 repositories (falls back to committed data), builds, validates, deploys to GitHub Pages and verifies the live `build-info.json` |
 | **Refresh screenshots** | weekly, manual | boots every live app in Chromium, captures new screenshots and the social image, commits changes (which redeploys Pages) |
 
+## Releasing the apps
+
+Every showcased repository ships single-file desktop executables (Windows, macOS, Linux ×
+x64/arm64) and publishes its libraries to NuGet.org with Trusted Publishing from one
+`release.yml`. See [docs/RELEASING.md](docs/RELEASING.md) for the one-time nuget.org setup and
+how to cut a release.
+
 ## License
 
 MIT for the site source. Each showcased application carries its own license in its
