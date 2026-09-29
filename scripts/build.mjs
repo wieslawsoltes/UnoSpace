@@ -128,7 +128,8 @@ function layout({ R, title, description, body, active = '', style = '', image = 
 ${extraHead}
 </head>
 <body style="${style}">
-<div class="mica" aria-hidden="true"></div>
+<div class="wallpaper" aria-hidden="true"></div>
+<canvas id="wallpaper" aria-hidden="true"></canvas>
 <a class="sr-only" href="#main">Skip to content</a>
 <header class="nav">
   <div class="wrap">
@@ -153,6 +154,8 @@ ${body}
 ${footer(R)}
 <button class="to-top" aria-label="Back to top"><svg class="ring" width="42" height="42" viewBox="0 0 48 48"><circle cx="24" cy="24" r="23" stroke-dasharray="144.5" stroke-dashoffset="144.5"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
 <script src="${R}assets/js/main.js" defer></script>
+<script type="module" src="${R}assets/js/fluent-bg.js"></script>
+<script type="speculationrules">{"prerender":[{"where":{"and":[{"href_matches":"/UnoSpace/*"},{"not":{"href_matches":"*.json"}}]},"eagerness":"moderate"}]}</script>
 </body>
 </html>
 `;
@@ -186,10 +189,10 @@ function footer(R) {
 function appCard(p, R, i) {
   const search = [p.name, p.tagline, p.summary, p.category, p.inspiredBy, ...p.packages.map((x) => x.name)].join(' ').toLowerCase();
   return `<article class="app-card" data-reveal style="${vars(p)};--d:${i % 3}" data-cat="${p.category}" data-search="${esc(search)}">
-  <div class="shot">${p.shot ? `<img src="${R}${p.shot}" alt="${esc(p.name)} running in the browser" loading="lazy" width="1600" height="1000">` : ''}</div>
+  <div class="shot">${p.shot ? `<img src="${R}${p.shot}" alt="${esc(p.name)} running in the browser" loading="lazy" width="1600" height="1000" style="view-transition-name:shot-${p.slug}">` : ''}</div>
   <span class="live"><span class="live-dot">LIVE</span></span>
   <div class="body">
-    <div class="head">${planet(p, '', 26)}<div><div class="cat">${esc(catOf(p.category).label)}</div><h3>${p.name}</h3></div></div>
+    <div class="head">${planet(p, '', 26).replace('class="planet ', `style="view-transition-name:icon-${p.slug};${vars(p)}" class="planet `).replace(/ style="--a1[^"]*"/, '')}<div><div class="cat">${esc(catOf(p.category).label)}</div><h3>${p.name}</h3></div></div>
     <p>${esc(p.tagline)}</p>
     <div class="meta"><span><b>${p.packages.length}</b> libs</span><span><b>${n(p.gen.loc?.total)}</b> lines</span><span>v${esc(p.gen.version || p.version || '—')}</span><span class="go">${icon('arrow', { size: 18 })}</span></div>
   </div>
@@ -387,9 +390,12 @@ function homePage() {
         <a class="btn" href="playground/index.html">${icon('play', { size: 16 })} Open playground</a>
       </div>
     </div>
-    <div class="orbit-stage" aria-label="Interactive orbit of all Uno Space apps">
-      <canvas id="orbit" role="img" aria-label="Orbit visualization: hover a planet to see the app, click to open it"></canvas>
+    <div class="orbit-stage" data-bloom-focus aria-label="Interactive orbit of all Uno Space apps">
+      <canvas id="orbit" role="img" aria-label="Orbit visualization: hover an app tile to see the app, click to open it"></canvas>
       <div class="orbit-label"></div>
+      <div class="float-card fc1" data-depth="18" aria-hidden="true"><span class="fc-ico" style="--a1:#0f6cbd;--a2:#62abf5">${icon('package', { size: 18, stroke: 2 })}</span><span><b>${n(totals.libraries)} libraries</b><small>reusable .NET packages</small></span></div>
+      <div class="float-card fc2" data-depth="30" aria-hidden="true"><span class="fc-ico" style="--a1:#107c41;--a2:#4cb87a">${icon('globe', { size: 18, stroke: 2 })}</span><span><b>WebAssembly</b><small>Windows · macOS · Linux</small></span></div>
+      <div class="float-card fc3" data-depth="24" aria-hidden="true"><span class="fc-ico" style="--a1:#8764b8;--a2:#c3a8f0">${icon('bolt', { size: 18, stroke: 2 })}</span><span><b>Uno + SkiaSharp</b><small>one C# codebase</small></span></div>
     </div>
   </div>
   <script type="application/json" id="orbit-data">${JSON.stringify(orbitData).replace(/</g, '\\u003c')}</script>
@@ -559,7 +565,7 @@ function projectPage(p) {
     <nav class="crumbs" aria-label="Breadcrumb" data-reveal><a href="${R}index.html">Uno Space</a>›<a href="${R}index.html#apps">${esc(cat.label)}</a>›<span>${p.name}</span></nav>
     <div class="top">
       <div data-reveal>
-        <div class="title">${planet(p, 'xl', 50)}<div><h1>${p.name}</h1><div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap"><span class="chip" style="--c:${cat.color}"><span class="dot"></span>${esc(cat.label)}</span>${g.version || p.version ? `<span class="chip mono">v${esc(g.version || p.version)}</span>` : ''}<span class="chip">${icon('shield', { size: 13 })} MIT</span>${g.github?.stars ? `<span class="chip">${icon('star', { size: 13 })} ${g.github.stars}</span>` : ''}</div></div></div>
+        <div class="title">${planet(p, 'xl', 50).replace('class="planet ', `data-bloom-focus style="view-transition-name:icon-${p.slug};${vars(p)}" class="planet `).replace(/ style="--a1[^"]*"/, '')}<div><h1>${p.name}</h1><div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap"><span class="chip" style="--c:${cat.color}"><span class="dot"></span>${esc(cat.label)}</span>${g.version || p.version ? `<span class="chip mono">v${esc(g.version || p.version)}</span>` : ''}<span class="chip">${icon('shield', { size: 13 })} MIT</span>${g.github?.stars ? `<span class="chip">${icon('star', { size: 13 })} ${g.github.stars}</span>` : ''}</div></div></div>
         <p class="tagline">${esc(p.tagline)}</p>
         <p class="summary">${md(p.summary)}</p>
         <div class="actions">
@@ -570,7 +576,7 @@ function projectPage(p) {
       </div>
       <div class="facts" data-reveal="right">${heroStats}</div>
     </div>
-    ${p.shot ? `<div class="frame"><div class="frame-bar">${planet(p, '', 10)}<span class="title">${p.name}</span><span class="url">${p.url.replace('https://', '')}</span><span class="caps" aria-hidden="true"><svg viewBox="0 0 10 10"><path d="M1 5h8"/></svg><svg viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" rx="1"/></svg><svg viewBox="0 0 10 10"><path d="M1.5 1.5l7 7M8.5 1.5l-7 7"/></svg></span></div><img src="${R}${p.shot}" alt="${esc(p.name)} running in a browser" width="1600" height="1000"></div>` : ''}
+    ${p.shot ? `<div class="frame"><div class="frame-bar">${planet(p, '', 10)}<span class="win-title">${p.name}</span><span class="url">${p.url.replace('https://', '')}</span><span class="caps" aria-hidden="true"><svg viewBox="0 0 10 10"><path d="M1 5h8"/></svg><svg viewBox="0 0 10 10"><rect x="1.5" y="1.5" width="7" height="7" rx="1"/></svg><svg viewBox="0 0 10 10"><path d="M1.5 1.5l7 7M8.5 1.5l-7 7"/></svg></span></div><img src="${R}${p.shot}" alt="${esc(p.name)} running in a browser" width="1600" height="1000" style="view-transition-name:shot-${p.slug}"></div>` : ''}
   </div>
 </section>
 

@@ -166,17 +166,6 @@ code, kbd, pre { font-family: var(--mono); }
 .nowrap { white-space: nowrap; }
 .ico { flex: none; }
 
-/* Mica: the page backdrop — neutral base with a faint, wallpaper-like tint. */
-.mica { position: fixed; inset: 0; z-index: -1; pointer-events: none;
-  background:
-    radial-gradient(1200px 700px at 8% -10%, var(--mica-tint-1), transparent 65%),
-    radial-gradient(1000px 700px at 100% 0%, var(--mica-tint-2), transparent 60%),
-    var(--bg); }
-body[style*="--a1"] .mica { background:
-    radial-gradient(1200px 700px at 8% -10%, color-mix(in srgb, var(--a1) 9%, transparent), transparent 65%),
-    radial-gradient(1000px 700px at 100% 0%, var(--mica-tint-2), transparent 60%),
-    var(--bg); }
-
 /* Acrylic: translucent, blurred material reserved for transient / overlay surfaces. */
 .nav.scrolled, .mega, .subnav, .pg-bar, .pg-cover > div, .toast {
   background-color: var(--acrylic);
@@ -349,7 +338,7 @@ a.card:hover, .hl .card:hover { box-shadow: var(--shadow-8); }
 .app-card:hover .meta .go { transform: translateX(3px); }
 .app-card > a.cover { position: absolute; inset: 0; z-index: 4; border-radius: inherit; }
 .app-card .live { position: absolute; top: 10px; right: 10px; z-index: 5; }
-.live-dot { display: inline-flex; align-items: center; gap: 6px; height: 22px; padding: 0 8px; border-radius: var(--r-sm); background: var(--acrylic-strong); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid var(--stroke); font: 600 11.5px var(--font); color: var(--success); box-shadow: var(--shadow-2); }
+.live-dot { display: inline-flex; align-items: center; gap: 6px; height: 22px; padding: 0 8px; border-radius: var(--r-sm); background: var(--acrylic-strong); border: 1px solid var(--stroke); font: 600 11.5px var(--font); color: var(--success); box-shadow: var(--shadow-2); }
 .live-dot::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--success); }
 
 /* Stack diagram */
@@ -449,12 +438,12 @@ a.card:hover, .hl .card:hover { box-shadow: var(--shadow-8); }
 .frame { margin-top: 48px; border-radius: var(--r-lg); border: 1px solid var(--stroke-2); background: var(--surface-alt); overflow: hidden; box-shadow: var(--shadow-64); transform-origin: top center; transform: scale(var(--sc, 0.97)); transition: transform 120ms linear; }
 .frame-bar { height: 36px; display: flex; align-items: center; gap: 10px; padding: 0 0 0 12px; border-bottom: 1px solid var(--stroke); }
 .frame-bar .planet { --s: 16px; border-radius: 4px; box-shadow: none; }
-.frame-bar .title { line-height: 1; font-size: 12.5px; color: var(--fg-2); }
+.frame-bar .win-title { line-height: 1; font-size: 12.5px; color: var(--fg-2); }
 .frame-bar .url { flex: 1; max-width: 460px; margin: 0 auto; height: 24px; line-height: 24px; padding: 0 12px; border-radius: 999px; background: var(--subtle); font-size: 12px; color: var(--fg-3); text-align: center; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .frame-bar .caps { display: flex; height: 100%; }
 .frame-bar .caps svg { width: 46px; height: 100%; padding: 13px 18px; fill: none; stroke: var(--fg-2); stroke-width: 1; }
 .frame img { width: 100%; }
-@media (max-width: 640px) { .frame-bar .title, .frame-bar .caps svg:nth-child(-n + 2) { display: none; } }
+@media (max-width: 640px) { .frame-bar .win-title, .frame-bar .caps svg:nth-child(-n + 2) { display: none; } }
 
 .subnav { position: sticky; top: var(--nav-h); z-index: 30; border-block: 1px solid var(--stroke); }
 .subnav .wrap { display: flex; gap: 2px; overflow-x: auto; scrollbar-width: none; align-items: center; height: 48px; }
@@ -725,3 +714,173 @@ h3.sub { font: 600 16px var(--display); color: var(--fg); margin: 0 0 12px; }
   *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
   [data-reveal], .hero h1 .line > span, .hero .lede, .hero .actions, .hero .pill, .orbit-stage { opacity: 1; transform: none; }
 }
+
+/* ==========================================================================
+   FLUENT MATERIALS LAYER
+   Wallpaper (GPU bloom) → Mica/Acrylic surfaces → Reveal light → depth & motion
+   ========================================================================== */
+:root {
+  --bloom-base: #edf1fa;
+  --bloom-1: #4f9ff0;
+  --bloom-2: #8c7cf0;
+  --bloom-3: #f28ad0;
+  --bloom-4: #50d0c8;
+  --bloom-intensity: 0.62;
+  --bg: #edf1fa;
+  --glass: rgba(255, 255, 255, 0.64);
+  --glass-hover: rgba(255, 255, 255, 0.8);
+  --glass-strong: rgba(255, 255, 255, 0.82);
+  --glass-sheen: rgba(255, 255, 255, 0.55);
+  --glass-stroke: rgba(255, 255, 255, 0.75);
+  --glass-edge: 0 0 0 1px rgba(0, 0, 0, 0.055);
+  --reveal-fill: rgba(255, 255, 255, 0.55);
+  --reveal-border: rgba(255, 255, 255, 1);
+  --mica: rgba(243, 245, 250, 0.86);
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.5 0 0 0 0 0.5 0 0 0 0 0.5 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  --hero-grad: linear-gradient(95deg, #0f6cbd 0%, #6b4fd9 45%, #c2379f 100%);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bloom-base: #0a0c16; --bloom-1: #1466c8; --bloom-2: #5a3fd0; --bloom-3: #b0348c; --bloom-4: #0a8f8a; --bloom-intensity: 0.85;
+    --bg: #0a0c16;
+    --glass: rgba(30, 32, 44, 0.56); --glass-hover: rgba(40, 42, 56, 0.68); --glass-strong: rgba(34, 36, 48, 0.86);
+    --glass-sheen: rgba(255, 255, 255, 0.06); --glass-stroke: rgba(255, 255, 255, 0.1); --glass-edge: 0 0 0 1px rgba(0, 0, 0, 0.25);
+    --reveal-fill: rgba(255, 255, 255, 0.07); --reveal-border: rgba(255, 255, 255, 0.55); --mica: rgba(16, 18, 28, 0.82);
+    --hero-grad: linear-gradient(95deg, #5caeff 0%, #a78bfa 45%, #f472c6 100%);
+    --acrylic: rgba(26, 28, 40, 0.7); --acrylic-strong: rgba(30, 32, 44, 0.88);
+  }
+}
+:root[data-theme="dark"] {
+  --bloom-base: #0a0c16; --bloom-1: #1466c8; --bloom-2: #5a3fd0; --bloom-3: #b0348c; --bloom-4: #0a8f8a; --bloom-intensity: 0.85;
+  --bg: #0a0c16;
+  --glass: rgba(30, 32, 44, 0.56); --glass-hover: rgba(40, 42, 56, 0.68); --glass-strong: rgba(34, 36, 48, 0.86);
+  --glass-sheen: rgba(255, 255, 255, 0.06); --glass-stroke: rgba(255, 255, 255, 0.1); --glass-edge: 0 0 0 1px rgba(0, 0, 0, 0.25);
+  --reveal-fill: rgba(255, 255, 255, 0.07); --reveal-border: rgba(255, 255, 255, 0.55); --mica: rgba(16, 18, 28, 0.82);
+  --hero-grad: linear-gradient(95deg, #5caeff 0%, #a78bfa 45%, #f472c6 100%);
+  --acrylic: rgba(26, 28, 40, 0.7); --acrylic-strong: rgba(30, 32, 44, 0.88);
+}
+/* App pages tint the wallpaper with the app's own colours. */
+body[style*="--a1"] { --bloom-1: var(--a1); --bloom-2: var(--a2); }
+
+/* Wallpaper: CSS gradient fallback, replaced by the GPU canvas once its first frame lands. */
+.wallpaper { position: fixed; inset: 0; z-index: -3; pointer-events: none;
+  background:
+    radial-gradient(60vmax 45vmax at 78% 18%, color-mix(in srgb, var(--bloom-2) 55%, transparent), transparent 70%),
+    radial-gradient(55vmax 40vmax at 12% 4%, color-mix(in srgb, var(--bloom-1) 50%, transparent), transparent 70%),
+    radial-gradient(50vmax 40vmax at 90% 80%, color-mix(in srgb, var(--bloom-3) 35%, transparent), transparent 70%),
+    radial-gradient(50vmax 40vmax at 5% 85%, color-mix(in srgb, var(--bloom-4) 35%, transparent), transparent 70%),
+    var(--bloom-base); }
+#wallpaper { position: fixed; inset: 0; width: 100%; height: 100%; z-index: -2; pointer-events: none; opacity: 0; transition: opacity 600ms var(--ease); }
+#wallpaper.on { opacity: 1; }
+body { background: var(--bloom-base); }
+
+/* Acrylic cards: tint + luminosity sheen + grain + glass edge. The wallpaper is already soft,
+   so no backdrop blur is needed here — keeps scrolling at full frame rate. */
+.card, .app-card, .stats, .stack-layers, .target, .pat, .fact, .f-list li, .format, .list-clean li, .doc, .tc, .stage, .pager a, .arch-layer, .ptable-wrap, .hero .pill, .chip, .search input, .btn:not(.btn-primary):not(.btn-subtle), .f-tab.on, .hub-list button.on {
+  background:
+    radial-gradient(420px circle at var(--mx, -999px) var(--my, -999px), var(--reveal-fill), transparent 65%),
+    linear-gradient(180deg, var(--glass-sheen), transparent 42%),
+    var(--grain),
+    var(--glass);
+  border-color: var(--glass-stroke);
+}
+.card, .app-card, .stats, .stack-layers, .target, .pat, .fact, .f-list li, .format, .list-clean li, .doc, .tc, .stage, .pager a, .arch-layer, .ptable-wrap {
+  box-shadow: var(--glass-edge), var(--shadow-4);
+}
+.card:hover, .app-card:hover, .doc:hover, .stage:hover, .pager a:hover, .pkg:hover, .fact:hover {
+  background:
+    radial-gradient(420px circle at var(--mx, -999px) var(--my, -999px), var(--reveal-fill), transparent 65%),
+    linear-gradient(180deg, var(--glass-sheen), transparent 42%),
+    var(--grain),
+    var(--glass-hover);
+}
+.app-card:hover { box-shadow: var(--glass-edge), var(--shadow-28); transform: translateY(-3px); }
+a.card:hover, .hl .card:hover, .doc:hover, .pkg:hover, a.stage:hover, .pager a:hover { box-shadow: var(--glass-edge), var(--shadow-16); }
+button.chip.is-on { background: var(--brand-subtle); }
+.btn:not(.btn-primary):not(.btn-subtle):hover { background: var(--glass-hover); }
+
+/* Reveal highlight: a pointer-following light on the border (Fluent). */
+.card, .app-card, .fact, .f-list li, .pat, .target, .format, .doc, .stage, .pager a, .list-clean li, .arch-layer, .btn, .chip { position: relative; }
+.card::after, .app-card::after, .fact::after, .f-list li::after, .pat::after, .target::after, .format::after, .doc::after, .stage::after, .pager a::after, .list-clean li::after, .arch-layer::after, .btn::after, button.chip::after {
+  content: ''; position: absolute; inset: -1px; border-radius: inherit; padding: 1px; pointer-events: none; z-index: 6;
+  background: radial-gradient(160px circle at var(--mx, -999px) var(--my, -999px), var(--reveal-border), transparent 70%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  opacity: 0; transition: opacity 250ms var(--ease);
+}
+.card:hover::after, .app-card:hover::after, .fact:hover::after, .f-list li:hover::after, .pat:hover::after, .target:hover::after, .format:hover::after, .doc:hover::after, .stage:hover::after, .pager a:hover::after, .list-clean li:hover::after, .arch-layer:hover::after, .btn:hover::after, button.chip:hover::after { opacity: 1; }
+.btn-primary::after { --reveal-border: rgba(255, 255, 255, 0.8); }
+
+/* Mica for large, long-lived chrome */
+.footer { background: var(--grain), var(--mica); border-top-color: var(--glass-stroke); }
+.pg { background: var(--glass-strong); border-color: var(--glass-stroke); }
+.pg-side { background: transparent; }
+.code { background: var(--code-bg); }
+.matrix th:first-child, .matrix td:first-child, .ptable th { background: var(--glass-strong); }
+
+/* Glossy, 3D-leaning app icons (Fluent colour iconography). */
+.planet {
+  background:
+    radial-gradient(120% 80% at 28% 6%, rgba(255, 255, 255, 0.5), transparent 52%),
+    linear-gradient(150deg, var(--a2) 0%, var(--a1) 62%, color-mix(in srgb, var(--a1) 78%, #000) 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), inset 0 -3px 6px rgba(0, 0, 0, 0.16), 0 6px 16px -6px color-mix(in srgb, var(--a1) 70%, transparent), 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+.planet .ico { filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.25)); }
+.planet.xl { box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), inset 0 -4px 10px rgba(0, 0, 0, 0.18), 0 18px 40px -12px color-mix(in srgb, var(--a1) 75%, transparent), 0 2px 4px rgba(0, 0, 0, 0.2); }
+.app-card .planet { box-shadow: 0 0 0 3px var(--glass-strong), inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 10px 20px -8px color-mix(in srgb, var(--a1) 70%, transparent); }
+.ico-orb { color: #fff; background: radial-gradient(120% 80% at 28% 6%, rgba(255, 255, 255, 0.45), transparent 52%), linear-gradient(150deg, var(--a2), var(--a1) 70%); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 8px 18px -8px color-mix(in srgb, var(--a1) 70%, transparent); }
+.layer > .ico, .pat .ico { color: #fff; background: linear-gradient(150deg, color-mix(in srgb, var(--c) 60%, #fff), var(--c) 70%); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 6px 14px -6px var(--c); }
+
+/* Hero: gradient headline, floating acrylic cards with depth. */
+.hero { min-height: 100vh; min-height: 100svh; }
+.hero h1 .grad-text { background: var(--hero-grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.cta h2 .grad-text, .page-hero h1 .grad-text { background: var(--hero-grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.float-card { position: absolute; z-index: 2; display: flex; gap: 10px; align-items: center; padding: 10px 14px 10px 10px; border-radius: var(--r-xl);
+  background: linear-gradient(180deg, var(--glass-sheen), transparent 50%), var(--acrylic);
+  -webkit-backdrop-filter: blur(24px) saturate(160%); backdrop-filter: blur(24px) saturate(160%);
+  border: 1px solid var(--glass-stroke); box-shadow: var(--glass-edge), var(--shadow-16); font-size: 13px; pointer-events: none;
+  translate: var(--px, 0) var(--py, 0); animation: floaty 7s ease-in-out infinite; transition: translate 600ms var(--ease); }
+.float-card b { display: block; font-size: 14px; }
+.float-card small { display: block; color: var(--fg-3); font-size: 12px; }
+.fc-ico { width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center; color: #fff; background: radial-gradient(120% 80% at 28% 6%, rgba(255, 255, 255, 0.45), transparent 52%), linear-gradient(150deg, var(--a2), var(--a1) 70%); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4); }
+.fc1 { left: -6%; top: 8%; }
+.fc2 { right: -4%; top: 48%; animation-delay: -2.5s; }
+.fc3 { left: 6%; bottom: 4%; animation-delay: -4.5s; }
+@keyframes floaty { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+@media (max-width: 980px) { .fc1 { left: 0; } .fc2 { right: 0; } }
+@media (max-width: 520px) { .float-card { display: none; } }
+
+/* Scroll-driven motion (off the main thread where supported). */
+@supports (animation-timeline: scroll()) {
+  .hero .wrap > div:first-child { animation: heroDrift linear both; animation-timeline: scroll(root); animation-range: 0 100vh; }
+  @keyframes heroDrift { to { transform: translateY(-80px); opacity: 0.2; } }
+  .frame { animation: frameIn linear both; animation-timeline: view(); animation-range: entry 0% cover 35%; }
+  @keyframes frameIn { from { transform: perspective(1400px) rotateX(10deg) scale(0.93); } to { transform: none; } }
+}
+
+/* Cross-document View Transitions: the app icon and screenshot morph between pages. */
+@view-transition { navigation: auto; }
+::view-transition-group(*) { animation-duration: 380ms; animation-timing-function: cubic-bezier(0.1, 0.9, 0.2, 1); }
+::view-transition-old(root), ::view-transition-new(root) { animation-duration: 220ms; }
+.nav { view-transition-name: site-nav; }
+
+/* Long lists render lazily. */
+.pkg-section { content-visibility: auto; contain-intrinsic-size: auto 640px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .float-card { animation: none; }
+  .hero .wrap > div:first-child, .frame { animation: none !important; }
+  @view-transition { navigation: none; }
+}
+/* Re-resolve the app ink wherever an element carries its own accent. */
+[style*="--a1"] { --app-ink: color-mix(in srgb, var(--a1) calc(100% - var(--app-mix-pct)), var(--app-mix)); }
+.p-hero .summary, .hero .lede { color: var(--fg-2); }
+/* App pages speak in the app's colour. */
+body[style*="--a1"] .btn-primary, body[style*="--a1"] .pg-cover .play, body[style*="--a1"] .tour input:checked { background: color-mix(in srgb, var(--a1) 84%, #000); border-color: transparent; }
+body[style*="--a1"] .btn-primary:hover, body[style*="--a1"] .pg-cover .play:hover { background: color-mix(in srgb, var(--a1) 72%, #000); }
+body[style*="--a1"] .progress i, body[style*="--a1"] .eyebrow { background-color: transparent; }
+body[style*="--a1"] .progress i { background: var(--app-ink); }
+body[style*="--a1"] .eyebrow { color: var(--app-ink); }
+.accent-text { background: linear-gradient(95deg, var(--app-ink), color-mix(in srgb, var(--app-ink) 55%, #6b4fd9)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.hero .pill b { white-space: nowrap; flex: none; }
+@media (max-width: 520px) { .hero .pill { height: auto; min-height: 28px; padding: 4px 12px 4px 4px; line-height: 1.3; } }

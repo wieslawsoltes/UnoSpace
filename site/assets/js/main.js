@@ -61,6 +61,35 @@
   }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
   $$('[data-reveal], [data-count], .reveal-group').forEach((el) => io.observe(el));
 
+  /* ---------------- Reveal light (pointer-following highlight on materials) ---------------- */
+  const REVEAL = '.card, .app-card, .fact, .f-list li, .pat, .target, .format, .doc, .stage, .pager a, .list-clean li, .arch-layer, .btn, .chip, .pkg';
+  if (matchMedia('(pointer: fine)').matches) {
+    let lit = null, px = 0, py = 0, queued = false;
+    const paint = () => {
+      queued = false;
+      if (!lit) return;
+      const r = lit.getBoundingClientRect();
+      lit.style.setProperty('--mx', `${px - r.left}px`); lit.style.setProperty('--my', `${py - r.top}px`);
+    };
+    document.addEventListener('pointermove', (e) => {
+      const el = e.target.closest?.(REVEAL);
+      if (el !== lit) { lit?.style.removeProperty('--mx'); lit?.style.removeProperty('--my'); lit = el; }
+      px = e.clientX; py = e.clientY;
+      if (lit && !queued) { queued = true; requestAnimationFrame(paint); }
+    }, { passive: true });
+    document.addEventListener('pointerleave', () => { lit?.style.removeProperty('--mx'); lit?.style.removeProperty('--my'); lit = null; });
+  }
+
+  /* ---------------- Hero depth parallax (floating acrylic cards) ---------------- */
+  const stage = $('.orbit-stage');
+  if (stage && !reduced && matchMedia('(pointer: fine)').matches) {
+    const cards = $$('.float-card', stage);
+    $('.hero')?.addEventListener('pointermove', (e) => {
+      const x = e.clientX / innerWidth - 0.5, y = e.clientY / innerHeight - 0.5;
+      cards.forEach((c) => { const d = +c.dataset.depth || 20; c.style.setProperty('--px', `${(-x * d).toFixed(1)}px`); c.style.setProperty('--py', `${(-y * d).toFixed(1)}px`); });
+    }, { passive: true });
+  }
+
   /* ---------------- Theme (light / dark, follows system until chosen) ---------------- */
   const sysDark = matchMedia('(prefers-color-scheme: dark)');
   const isDark = () => document.documentElement.dataset.theme ? document.documentElement.dataset.theme === 'dark' : sysDark.matches;
@@ -111,11 +140,14 @@
     const rr = (x, y, w, h, r) => { ctx.beginPath(); ctx.moveTo(x + r, y); ctx.arcTo(x + w, y, x + w, y + h, r); ctx.arcTo(x + w, y + h, x, y + h, r); ctx.arcTo(x, y + h, x, y, r); ctx.arcTo(x, y, x + w, y, r); ctx.closePath(); };
     const tile = (x, y, s, c1, c2, img, alpha, lift) => {
       ctx.save(); ctx.globalAlpha = alpha;
-      ctx.shadowColor = colors.dark ? 'rgba(0,0,0,0.45)' : 'rgba(0,0,0,0.18)'; ctx.shadowBlur = lift; ctx.shadowOffsetY = lift / 3;
+      ctx.shadowColor = colors.dark ? 'rgba(0,0,0,0.5)' : c1 + '66'; ctx.shadowBlur = lift * 1.6; ctx.shadowOffsetY = lift / 2;
       const g = ctx.createLinearGradient(x - s / 2, y - s / 2, x + s / 2, y + s / 2);
       g.addColorStop(0, c2); g.addColorStop(0.7, c1); g.addColorStop(1, c1);
       rr(x - s / 2, y - s / 2, s, s, s * 0.24); ctx.fillStyle = g; ctx.fill();
       ctx.shadowColor = 'transparent';
+      const gl = ctx.createRadialGradient(x - s * 0.22, y - s * 0.46, 0, x - s * 0.22, y - s * 0.46, s * 0.75);
+      gl.addColorStop(0, 'rgba(255,255,255,0.5)'); gl.addColorStop(1, 'rgba(255,255,255,0)');
+      ctx.fillStyle = gl; ctx.fill();
       ctx.strokeStyle = 'rgba(255,255,255,0.18)'; ctx.lineWidth = 1; ctx.stroke();
       if (img.complete && img.naturalWidth) ctx.drawImage(img, x - s * 0.27, y - s * 0.27, s * 0.54, s * 0.54);
       ctx.restore();
